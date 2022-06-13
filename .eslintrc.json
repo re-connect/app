@@ -1,0 +1,60 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "comma-dangle": "off",
+    "max-len": ["error", { "code": 150 }],
+    "no-console": "warn",
+    "no-empty": "warn",
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "no-use-before-define": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/display-name": "off",
+    "react/jsx-filename-extension": "off",
+    "react/jsx-uses-vars": [2],
+    "react/prop-types": "off"
+  },
+  "globals": {
+    "Blob": false,
+    "fetch": false,
+    "FormData": false,
+    "global": false,
+    "module": false,
+    "Promise": false,
+    "setTimeout": false,
+    "console": true,
+    "XMLHttpRequest": true,
+    "File": true
+  }
+}

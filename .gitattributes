@@ -1,0 +1,7 @@
+*.pbxproj -text
+*.keystore filter=crypt diff=crypt
+.env.* filter=crypt diff=crypt
+.env filter=crypt diff=crypt
+secrets.json filter=crypt diff=crypt
+api-key.json filter=crypt diff=crypt
+ios_devices.txt filter=crypt diff=crypt

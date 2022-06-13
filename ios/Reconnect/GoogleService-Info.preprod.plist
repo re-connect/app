@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>CLIENT_ID</key>
+    <string>671373158728-d1snsr0lfla5cp1gcbfgd50gvstfh33n.apps.googleusercontent.com</string>
+    <key>REVERSED_CLIENT_ID</key>
+    <string>com.googleusercontent.apps.671373158728-d1snsr0lfla5cp1gcbfgd50gvstfh33n</string>
+    <key>API_KEY</key>
+    <string>AIzaSyCVoxAhXKzIZK1aGLSNdVlkgtUvTLa_HSE</string>
+    <key>GCM_SENDER_ID</key>
+    <string>671373158728</string>
+    <key>PLIST_VERSION</key>
+    <string>1</string>
+    <key>BUNDLE_ID</key>
+    <string>com.reconnect.CloudSolidaire.preprod</string>
+    <key>PROJECT_ID</key>
+    <string>coffre-fort-numerique</string>
+    <key>STORAGE_BUCKET</key>
+    <string>coffre-fort-numerique.appspot.com</string>
+    <key>IS_ADS_ENABLED</key>
+    <false></false>
+    <key>IS_ANALYTICS_ENABLED</key>
+    <false></false>
+    <key>IS_APPINVITE_ENABLED</key>
+    <true></true>
+    <key>IS_GCM_ENABLED</key>
+    <true></true>
+    <key>IS_SIGNIN_ENABLED</key>
+    <true></true>
+    <key>GOOGLE_APP_ID</key>
+    <string>1:671373158728:ios:983756de6dbc28c9936b7d</string>
+  </dict>
+</plist>

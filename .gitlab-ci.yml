@@ -1,0 +1,21 @@
+image: node:14-alpine
+cache:
+  paths:
+    - node_modules/
+before_script:
+  - apk add python3
+  - apk add git
+  - apk add --update --no-cache gcc g++ make libc6-compat
+  - apk add vips-dev fftw-dev build-base --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community/ --repository https://dl-3.alpinelinux.org/alpine/edge/main
+  - npm install
+test:
+  only:
+    - merge_requests
+    - master
+  stage: test
+  script:
+    - echo "Launching jest tests"
+    - mv src/secrets.json.dist src/secrets.json
+    # - npm run test:types
+    - npm run lint
+    - npm run test:coverage

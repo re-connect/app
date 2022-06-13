@@ -1,0 +1,17 @@
+# git_url("https://gitlab.com/re-connect/certificates")
+git_url("git@gitlab.com:re-connect/certificates.git")
+clone_branch_directly(true)
+verbose(true)
+shallow_clone(true)
+
+storage_mode("git")
+
+type("adhoc") # The default type, can be: appstore, adhoc, enterprise or development
+
+# app_identifier(["tools.fastlane.app", "tools.fastlane.app2"])
+username("thibaut.cheymol@gmail.com") # Your Apple Developer Portal username
+
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options
+
+# The docs are available on https://docs.fastlane.tools/actions/match

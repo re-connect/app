@@ -1,0 +1,121 @@
+{
+  "project_info": {
+    "project_number": "671373158728",
+    "project_id": "coffre-fort-numerique",
+    "storage_bucket": "coffre-fort-numerique.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671373158728:android:c957f6e40861792e936b7d",
+        "android_client_info": {
+          "package_name": "com.reconnect.cloudsolidaire.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671373158728-7o1hko3lme5hb2hbo9m73ha7q72minue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByjwO1AccmWFOJ0dw-NhWrR9DTk-gq4kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671373158728-7o1hko3lme5hb2hbo9m73ha7q72minue.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "671373158728-lpqfikbrs82l47iv5jp34iiele9oipsa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.reconnect.cloudsolidaire.prod",
+                "app_store_id": "1462428802"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671373158728:android:5932b1d032d3e95b936b7d",
+        "android_client_info": {
+          "package_name": "com.reconnect.cloudsolidaire.preprod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671373158728-7o1hko3lme5hb2hbo9m73ha7q72minue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByjwO1AccmWFOJ0dw-NhWrR9DTk-gq4kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671373158728-7o1hko3lme5hb2hbo9m73ha7q72minue.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "671373158728-lpqfikbrs82l47iv5jp34iiele9oipsa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.reconnect.cloudsolidaire.prod",
+                "app_store_id": "1462428802"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671373158728:android:527784ff90433eb6936b7d",
+        "android_client_info": {
+          "package_name": "com.reconnect.cloudsolidaire.prod"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671373158728-7o1hko3lme5hb2hbo9m73ha7q72minue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByjwO1AccmWFOJ0dw-NhWrR9DTk-gq4kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671373158728-7o1hko3lme5hb2hbo9m73ha7q72minue.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "671373158728-lpqfikbrs82l47iv5jp34iiele9oipsa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.reconnect.cloudsolidaire.prod",
+                "app_store_id": "1462428802"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

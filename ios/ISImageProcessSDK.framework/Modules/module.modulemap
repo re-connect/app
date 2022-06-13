@@ -1,0 +1,6 @@
+framework module ISImageProcessSDK {
+  umbrella header "ISImageProcessSDK.h"
+
+  export *
+  module * { export * }
+}
