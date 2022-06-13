@@ -10,12 +10,15 @@
 
 ## Setup
 
-* Decrypt secret files
+- Decrypt secret files
 Ask the project leader for the **"Transcrypt Password"** and run:
-```
+
+```#!/bin/bash
 transcrypt -c aes-256-cbc -p '<my-password>'
 ```
 
-## Develop
+- on iOS to install pods, for arm architecture (Apple Silicon ships), run :
 
-‼️ YOU HAVE TO MANUALLY ADD A HOMEPAGE TO REACT_NATIVE_PERSPECTIVE_CROPPER IN THE PODFILE AFTER NPM INSTALL
+```#!/bin/bash
+arch -x86_64 pod install --repo-update
+```
