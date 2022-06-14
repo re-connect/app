@@ -4,7 +4,7 @@ import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
 project.ext.react = [
-    enableHermes: false,
+    enableHermes: true,
     entryFile: "index.js",
     bundleAssetName: "index.android.bundle",
     bundleInDebug: true,
