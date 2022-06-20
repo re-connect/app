@@ -232,10 +232,16 @@ platform :android do
 
   lane :build do |options|
     set_keys
+    if ENV['ENV'] === 'preprod' then
     gradle(
-      task: "assembleRelease",
+      task: "assemblePreProdRelease",
       project_dir: ENV['ANDROID_PROJECT_DIR']
     )
+    else gradle(
+      task: "assembleProdRelease",
+      project_dir: ENV['ANDROID_PROJECT_DIR']
+    )
+    end
     restore_files
   end
 
