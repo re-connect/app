@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android --appIdSuffix 'debug'",
+    "android": "react-native run-android --appIdSuffix 'debug' --variant=localDebug",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "npm run test:types && jest",
