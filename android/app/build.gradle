@@ -13,7 +13,7 @@ project.ext.react = [
 ]
 
 project.ext.envConfigFiles = [
-    debug: ".env",
+    local: ".env.debug",
     preprod: '.env.preprod',
     prod: '.env.prod',
 ]
@@ -150,6 +150,9 @@ android {
         dimension "version"
       }
       preprod {
+        dimension "version"
+      }
+      local {
         dimension "version"
       }
     }
