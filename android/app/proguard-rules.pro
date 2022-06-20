@@ -11,3 +11,11 @@
 
 -keep class com.facebook.hermes.unicode.** { *; }
 -keep class com.facebook.jni.** { *; }
+
+
+-keep class com.reconnect.cloudsolidaire.prod.BuildConfig { *; }
+-keep class com.reconnect.cloudsolidaire.preprod.BuildConfig { *; }
+-keep class com.reconnect.cloudsolidaire.debug.BuildConfig { *; }
+-keep class com.reconnect.cloudsolidaire.prod.generated.AppConstants { *; }
+-keep class com.reconnect.cloudsolidaire.preprod.generated.AppConstants { *; }
+-keep class com.reconnect.cloudsolidaire.debug.generated.AppConstants { *; }
