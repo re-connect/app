@@ -1325,7 +1325,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.prod;
 				PRODUCT_NAME = Reconnect;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.reconnect.CloudSolidaire.debug";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
@@ -1368,7 +1368,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.preprod;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.prod;
 				PRODUCT_NAME = Reconnect;
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.reconnect.CloudSolidaire.preprod";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
