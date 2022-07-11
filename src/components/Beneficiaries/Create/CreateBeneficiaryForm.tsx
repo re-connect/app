@@ -92,7 +92,6 @@ const CreateBeneficiaryForm: React.FC = () => {
         onSubmit={values =>
           triggerCreateBeneficiary({
             ...values,
-            phone: !values.phone ? '' : values.phone,
             centers,
           })
         }>
