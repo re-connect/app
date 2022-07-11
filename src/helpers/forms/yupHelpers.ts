@@ -46,9 +46,9 @@ export const getPhoneSchema = (): Yup.StringSchema => {
 
 export const getItlPhoneSchema = (): Yup.StringSchema => {
   return Yup.string()
-    .min(8, t.t('form_field_invalid_french_phone'))
-    .max(15, t.t('form_field_invalid_french_phone'))
-    .matches(/^\+[0-9]+$/, t.t('form_field_invalid_french_phone'));
+    .min(8, t.t('form_field_invalid_phone'))
+    .max(15, t.t('form_field_invalid_phone'))
+    .matches(/^\+[0-9]+$/, t.t('form_field_invalid_phone'));
 };
 
 export const getGenericPhoneSchema = (): Yup.StringSchema<string | null | undefined> => {
