@@ -1,4 +1,5 @@
 import environments from './environment';
+// eslint-disable-next-line
 import secrets from './secrets.json';
 
 export const crispUri = `https://go.crisp.chat/chat/embed/?website_id=${secrets['crispWebsiteId']}`;

@@ -232,16 +232,12 @@ platform :android do
 
   lane :build do |options|
     set_keys
-    if ENV['ENV'] === 'preprod' then
     gradle(
-      task: "assemblePreProdRelease",
+      task: "assemble",
+      flavor: "Prod",
+      build_type: "Release",
       project_dir: ENV['ANDROID_PROJECT_DIR']
     )
-    else gradle(
-      task: "assembleProdRelease",
-      project_dir: ENV['ANDROID_PROJECT_DIR']
-    )
-    end
     restore_files
   end
 
@@ -264,7 +260,7 @@ platform :android do
 
   lane :deploy_to_playstore do |options|
     supply(
-      package_name: ENV['GRADLE_APP_IDENTIFIER'],
+      package_name: "com.reconnect.CloudSolidaire",
       track: 'internal',
       apk: ENV['ANDROID_APK_PATH'],
       json_key: ENV['ANDROID_PLAYSTORE_JSON_KEY_PATH'],

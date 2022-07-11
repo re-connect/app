@@ -1,4 +1,4 @@
-// import * as Sentry from '@sentry/react-native';
+import * as Sentry from '@sentry/react-native';
 import { extendTheme, NativeBaseProvider } from 'native-base';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger/array';
@@ -13,6 +13,7 @@ import FolderContext from './src/context/FolderContext';
 import NoteContext from './src/context/NoteContext';
 import ThemeContext from './src/context/ThemeContext';
 import UserContext from './src/context/UserContext';
+import secrets from './src/secrets.json';
 // import { isCodePushEnabled } from './src/helpers/codePushHelper';
 import Routes from './src/Routes';
 import './src/services/translation';
@@ -33,7 +34,7 @@ SplashScreen.hide();
 //   // trackAllPureComponents: true,
 // });
 
-// Sentry.init({ dsn: secrets['CLIENT_SECRET'] });
+Sentry.init({ dsn: secrets['sentry_secret'] });
 
 const App: React.FC = () => {
   const [documents, setDocuments] = React.useState<DocumentInterface[]>([]);
@@ -94,4 +95,4 @@ const App: React.FC = () => {
 //   installMode: ON_NEXT_RESTART,
 // })(App) : App;
 
-export default App;
+export default Sentry.wrap(App);
