@@ -1,5 +1,5 @@
 import { Stack } from 'native-base';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
@@ -13,15 +13,6 @@ const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, val
   const { t } = useTranslation();
 
   const phoneInput = useRef<PhoneInput>(null);
-  /*const [valid, setValid] = useState(true);
-
-  useEffect(() => {
-    if (value) {
-      const checkValid = phoneInput.current?.isValidNumber(value);
-      setValid(!!checkValid);
-    }
-  }, [value]);
-  */
 
   const getRightIconName = () => {
     return !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
