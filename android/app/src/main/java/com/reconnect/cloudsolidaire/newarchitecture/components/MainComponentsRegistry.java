@@ -1,4 +1,4 @@
-package com.reconnect.cloudsolidaire.newarchitecture.components;
+package com.reconnect.CloudSolidaire.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

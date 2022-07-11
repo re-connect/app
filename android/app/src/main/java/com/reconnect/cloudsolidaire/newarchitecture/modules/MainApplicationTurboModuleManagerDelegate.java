@@ -1,4 +1,4 @@
-package com.reconnect.cloudsolidaire.newarchitecture.modules;
+package com.reconnect.CloudSolidaire.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

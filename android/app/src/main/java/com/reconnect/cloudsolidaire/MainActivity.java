@@ -1,4 +1,4 @@
-package com.reconnect.cloudsolidaire;
+package com.reconnect.CloudSolidaire;
 
 import android.os.Bundle;
 import org.devio.rn.splashscreen.SplashScreen;
@@ -14,7 +14,7 @@ public class MainActivity extends ReactActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.show(this);
-        super.onCreate(savedInstanceState);
+        super.onCreate(null);
     }
     /**
      * Returns the name of the main component registered from JavaScript. This is

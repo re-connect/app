@@ -13,9 +13,9 @@
 -keep class com.facebook.jni.** { *; }
 
 
--keep class com.reconnect.cloudsolidaire.prod.BuildConfig { *; }
--keep class com.reconnect.cloudsolidaire.preprod.BuildConfig { *; }
--keep class com.reconnect.cloudsolidaire.debug.BuildConfig { *; }
--keep class com.reconnect.cloudsolidaire.prod.generated.AppConstants { *; }
--keep class com.reconnect.cloudsolidaire.preprod.generated.AppConstants { *; }
--keep class com.reconnect.cloudsolidaire.debug.generated.AppConstants { *; }
+-keep class com.reconnect.CloudSolidaire.prod.BuildConfig { *; }
+-keep class com.reconnect.CloudSolidaire.preprod.BuildConfig { *; }
+-keep class com.reconnect.CloudSolidaire.debug.BuildConfig { *; }
+-keep class com.reconnect.CloudSolidaire.prod.generated.AppConstants { *; }
+-keep class com.reconnect.CloudSolidaire.preprod.generated.AppConstants { *; }
+-keep class com.reconnect.CloudSolidaire.debug.generated.AppConstants { *; }
