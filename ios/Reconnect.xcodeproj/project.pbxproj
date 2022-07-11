@@ -1325,9 +1325,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.prod;
 				PRODUCT_NAME = Reconnect;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.reconnect.CloudSolidaire.debug";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.reconnect.CloudSolidaire.prod";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1368,9 +1368,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.preprod;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.prod;
 				PRODUCT_NAME = Reconnect;
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.reconnect.CloudSolidaire.preprod";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.reconnect.CloudSolidaire.prod";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

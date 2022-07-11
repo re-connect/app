@@ -1,4 +1,4 @@
-package com.reconnect.cloudsolidaire.newarchitecture;
+package com.reconnect.CloudSolidaire.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -20,8 +20,8 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.reconnect.cloudsolidaire.newarchitecture.components.MainComponentsRegistry;
-import com.reconnect.cloudsolidaire.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.reconnect.CloudSolidaire.newarchitecture.components.MainComponentsRegistry;
+import com.reconnect.CloudSolidaire.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.reconnect.cloudsolidaire;
+package com.reconnect.CloudSolidaire;
 
 import android.app.Application;
 
@@ -14,7 +14,7 @@ import com.facebook.react.PackageList;
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.soloader.SoLoader;
-import com.reconnect.cloudsolidaire.newarchitecture.MainApplicationReactNativeHost;
+import com.reconnect.CloudSolidaire.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 // import com.microsoft.codepush.react.CodePush;
 
@@ -85,7 +85,7 @@ public class MainApplication extends Application implements ReactApplication {
          * We use reflection here to pick up the class that initializes Flipper, since
          * Flipper library is not available in release mode
          */
-        Class<?> aClass = Class.forName("com.reconnect.cloudsolidaire");
+        Class<?> aClass = Class.forName("com.reconnect.CloudSolidaire");
         aClass.getMethod("initializeFlipper", Context.class, ReactInstanceManager.class).invoke(null, context,
             reactInstanceManager);
       } catch (ClassNotFoundException e) {

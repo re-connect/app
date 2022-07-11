@@ -59,13 +59,12 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           height: screenHeight / 2,
           width: screenWidth,
         }}
-      >
-      </View>
+      ></View>
       <View style={styles.languageSwitchContainer}>
         <LanguageSwitch />
       </View>
       <Button style={styles.chatIconContainer} onPress={() => navigation.navigate('Chat')}>
-        <Icon style={styles.chatIcon} solid name="comment-alt" />
+        <Icon style={styles.chatIcon} solid name='comment-alt' />
       </Button>
     </Screen>
   );
