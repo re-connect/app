@@ -1,7 +1,7 @@
 fastlane_require 'dotenv'
 fastlane_require 'spaceship'
 release_notes_command = "git log HEAD --pretty=format:\"%s\" -1"
-
+flavor = ENV['ENV'] === 'debug' ? 'Debug' : ENV['ENV'] === 'preprod' ? 'PreProd' : 'Prod'
 # Check Git Status
 
 lane :check_git_status do |options|
@@ -234,7 +234,7 @@ platform :android do
     set_keys
     gradle(
       task: "assemble",
-      flavor: "Prod",
+      flavor: flavor,
       build_type: "Release",
       project_dir: ENV['ANDROID_PROJECT_DIR']
     )
