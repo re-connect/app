@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface TextFieldProps {
+export interface TextFieldProps {
   autocompleteType?: string;
   contentType?: any;
   disabled?: boolean;
@@ -71,28 +71,24 @@ const TextField: React.FC<TextFieldProps> = ({
 
   const LeftElement = leftElement ? (
     leftElement
-  ) : !iconName ? (
-    undefined
-  ) : (
+  ) : !iconName ? undefined : (
     <Icon style={{ ...styles.icon, color: colors.darkGray, ...iconSyle }} name={iconName} />
   );
 
   const RightElement =
     contentType === 'password' ? (
-      <Icon name='eye' style={{ ...styles.icon, color: getIconColor() }} onPress={showPasswordActions.toggle} />
-    ) : !touched ? (
-      undefined
-    ) : (
+      <Icon name="eye" style={{ ...styles.icon, color: getIconColor() }} onPress={showPasswordActions.toggle} />
+    ) : !touched ? undefined : (
       <Icon name={getRightIconName()} style={{ ...styles.icon, color: getIconColor() }} />
     );
 
   return (
-    <Stack mt={3} space={4} w='100%' backgroundColor={colors.white} borderRadius='24'>
+    <Stack mt={3} space={4} w="100%" backgroundColor={colors.white} borderRadius="24">
       <Input
         borderColor={colors.darkGray}
-        h='48px'
-        size='xl'
-        autoCapitalize='none'
+        h="48px"
+        size="xl"
+        autoCapitalize="none"
         autoCompleteType={!autocompleteType ? contentType : autocompleteType}
         isDisabled={disabled}
         isInvalid={!!error}
@@ -107,7 +103,7 @@ const TextField: React.FC<TextFieldProps> = ({
         style={{ ...style, borderWidth: 1 }}
         textContentType={contentType}
         value={!value ? '' : value}
-        variant='rounded'
+        variant="rounded"
         isFullWidth
         leftElement={LeftElement}
         rightElement={RightElement}

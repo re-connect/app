@@ -10,6 +10,7 @@ import { formatPhoneForApi } from '../../helpers/userHelpers';
 import { useUpdateUser } from '../../hooks/UserHooks';
 import { colors } from '../../style';
 import { UserField } from '../../types/Users';
+import PhoneInputField from './PhoneInputField';
 import Text from './Text';
 import TextField from './TextField';
 
@@ -60,14 +61,13 @@ const ProfileItem: React.FC<Props> = ({ field, iconName, label, readOnly, value,
       <Formik.Formik
         onSubmit={(values: Record<UserField, string>) => onSave(values)}
         initialValues={initialValues}
-        validationSchema={userShape}
-      >
+        validationSchema={userShape}>
         {(props: Formik.FormikProps<Record<UserField, string>>) => {
           return (
-            <VStack justifyContent='center' rounded='md' bg={colors.white} shadow={3} mb='2'>
-              <HStack bg={userColor} opacity='0.6' p='4' roundedTop='md'>
+            <VStack justifyContent="center" rounded="md" bg={colors.white} shadow={3} mb="2">
+              <HStack bg={userColor} opacity="0.6" p="4" roundedTop="md">
                 <Center>{!iconName ? null : <Icon style={styles.icon} name={iconName} color={colors.gray} />}</Center>
-                <Flex flex='1'>
+                <Flex flex="1">
                   <Center>
                     <Text style={{ ...styles.label, fontWeight: 'bold' }}>{label}</Text>
                   </Center>
@@ -77,11 +77,10 @@ const ProfileItem: React.FC<Props> = ({ field, iconName, label, readOnly, value,
                     onPress={() => {
                       showForm ? props.handleSubmit() : actions.setTrue();
                     }}
-                    disabled={isUpdating || readOnly}
-                  >
+                    disabled={isUpdating || readOnly}>
                     <Center>
                       {isUpdating ? (
-                        <ActivityIndicator size='small' color={colors.white} />
+                        <ActivityIndicator size="small" color={colors.white} />
                       ) : (
                         <Icon style={styles.icon} name={showForm ? 'save' : 'pen'} />
                       )}
@@ -89,29 +88,40 @@ const ProfileItem: React.FC<Props> = ({ field, iconName, label, readOnly, value,
                   </Pressable>
                 ) : null}
               </HStack>
-              <HStack p='4' bg={colors.white}>
+              <HStack p="4" bg={colors.white}>
                 <View style={{ flex: 1 }}>
                   {isUpdating ? (
                     <Center>
-                      <ActivityIndicator size='small' color={userColor} />
+                      <ActivityIndicator size="small" color={userColor} />
                     </Center>
                   ) : (
                     <>
                       {showForm ? (
                         <>
-                          {field !== 'telephone' ? null : <Text style={styles.phoneIndicator}>+33 </Text>}
-                          <TextField
-                            error={props.errors[field]}
-                            touched={!!props.touched[field]}
-                            fieldLabel={!label ? '' : label}
-                            handleChange={props.handleChange(field)}
-                            handleBlur={props.handleBlur(field)}
-                            iconName={!iconName ? 'question' : iconName}
-                            okIcon
-                            style={style}
-                            iconSyle={{ color: colors.darkGray }}
-                            value={props.values[field]}
-                          />
+                          {field === 'telephone' ? (
+                            <PhoneInputField
+                              error={props.errors[field]}
+                              touched={!!props.touched[field]}
+                              handleChange={props.handleChange(field)}
+                              handleBlur={props.handleBlur(field)}
+                              okIcon
+                              value={props.values[field]}
+                              style={style}
+                            />
+                          ) : (
+                            <TextField
+                              error={props.errors[field]}
+                              touched={!!props.touched[field]}
+                              fieldLabel={!label ? '' : label}
+                              handleChange={props.handleChange(field)}
+                              handleBlur={props.handleBlur(field)}
+                              iconName={!iconName ? 'question' : iconName}
+                              okIcon
+                              style={style}
+                              iconSyle={{ color: colors.darkGray }}
+                              value={props.values[field]}
+                            />
+                          )}
                         </>
                       ) : (
                         <Text style={{ ...styles.label, color: colors.darkGray }}>

@@ -15,6 +15,7 @@ import { colors } from '../../../style';
 import { CreateBeneficiaryDataInterface } from '../../../types/Beneficiaries';
 import ErrorText from '../../UI/ErrorText';
 import FakeTextField from '../../UI/FakeTextField';
+import PhoneInputField from '../../UI/PhoneInputField';
 import RoundedButton from '../../UI/RoundedButton';
 import Separator from '../../UI/Separator';
 import Text from '../../UI/Text';
@@ -22,7 +23,6 @@ import TextField from '../../UI/TextField';
 
 const styles = StyleSheet.create({
   form: { paddingHorizontal: 8 },
-  phoneIndicator: { fontSize: 18, marginLeft: 16 },
   errorText: { color: 'red', textAlign: 'center' },
   selectWrapper: {
     paddingLeft: 16,
@@ -92,11 +92,9 @@ const CreateBeneficiaryForm: React.FC = () => {
         onSubmit={values =>
           triggerCreateBeneficiary({
             ...values,
-            phone: !values.phone ? '' : '+33' + values.phone,
             centers,
           })
-        }
-      >
+        }>
         {(formikBag: FormikProps<CreateBeneficiaryDataInterface>) => {
           const allErrors = { ...formikBag.errors, ...createErrors };
           if (formikBag.values.birth_date === '') {
@@ -113,9 +111,9 @@ const CreateBeneficiaryForm: React.FC = () => {
           return (
             <>
               <TextField
-                contentType='name'
-                fieldLabel='first_name_required'
-                iconName='user'
+                contentType="name"
+                fieldLabel="first_name_required"
+                iconName="user"
                 error={allErrors.first_name}
                 handleBlur={formikBag.handleBlur('first_name')}
                 handleChange={formikBag.handleChange('first_name')}
@@ -126,10 +124,10 @@ const CreateBeneficiaryForm: React.FC = () => {
               {formikBag.touched.first_name && allErrors.first_name ? <ErrorText text={allErrors.first_name} /> : null}
               <Separator height={1} />
               <TextField
-                contentType='familyName'
-                autocompleteType='name'
-                fieldLabel='last_name_required'
-                iconName='users'
+                contentType="familyName"
+                autocompleteType="name"
+                fieldLabel="last_name_required"
+                iconName="users"
                 error={allErrors.last_name}
                 handleBlur={formikBag.handleBlur('last_name')}
                 handleChange={formikBag.handleChange('last_name')}
@@ -142,27 +140,27 @@ const CreateBeneficiaryForm: React.FC = () => {
               <FakeTextField
                 onPress={showDatepickerActions.toggle}
                 value={'' === formikBag.values.birth_date ? t('birth_date') : formikBag.values.birth_date}
-                iconName='calendar-alt'
+                iconName="calendar-alt"
                 touched={isFormTouched}
                 error={allErrors.birth_date}
               />
               {showDatepicker && (
-                <Flex mt='2'>
+                <Flex mt="2">
                   <DateTimePicker
-                    testID='dateTimePicker'
+                    testID="dateTimePicker"
                     value={stringToDate(formikBag.values.birth_date)}
-                    mode='date'
+                    mode="date"
                     is24Hour={true}
-                    display='default'
+                    display="default"
                     onChange={onChangeDate}
                   />
                 </Flex>
               )}
               <Separator height={1} />
               <TextField
-                contentType='password'
-                fieldLabel='password_required'
-                iconName='key'
+                contentType="password"
+                fieldLabel="password_required"
+                iconName="key"
                 error={allErrors.password}
                 handleBlur={formikBag.handleBlur('password')}
                 handleChange={formikBag.handleChange('password')}
@@ -175,9 +173,9 @@ const CreateBeneficiaryForm: React.FC = () => {
                 <>
                   <Separator height={1} />
                   <TextField
-                    contentType='password'
-                    fieldLabel='confirm_password_required'
-                    iconName='key'
+                    contentType="password"
+                    fieldLabel="confirm_password_required"
+                    iconName="key"
                     error={allErrors.confirmPassword}
                     handleBlur={formikBag.handleBlur('confirmPassword')}
                     handleChange={formikBag.handleChange('confirmPassword')}
@@ -195,27 +193,25 @@ const CreateBeneficiaryForm: React.FC = () => {
                   ...styles.selectWrapper,
                   borderColor: isFormTouched && allErrors.secret_question ? colors.red : colors.darkGray,
                 }}
-                mt='4'
-                alignItems='center'
-              >
-                <FaIcon name='question' color={colors.darkGray} />
+                mt="4"
+                alignItems="center">
+                <FaIcon name="question" color={colors.darkGray} />
                 <Select
                   selectedValue={formikBag.values.secret_question}
-                  minWidth='200'
-                  borderWidth='0'
+                  minWidth="200"
+                  borderWidth="0"
                   color={colors.darkGray}
                   placeholderTextColor={colors.darkGray}
                   accessibilityLabel={t('secret_question_required')}
                   placeholder={t('secret_question_required')}
-                  variant='outline'
-                  _selectedItem={{ endIcon: <FaIcon name='check' color={colors.green} /> }}
-                  dropdownCloseIcon={<FaIcon name='chevron-down' color={colors.darkGray} style={{ marginRight: 20 }} />}
-                  dropdownOpenIcon={<FaIcon name='chevron-up' color={colors.darkGray} style={{ marginRight: 20 }} />}
+                  variant="outline"
+                  _selectedItem={{ endIcon: <FaIcon name="check" color={colors.green} /> }}
+                  dropdownCloseIcon={<FaIcon name="chevron-down" color={colors.darkGray} style={{ marginRight: 20 }} />}
+                  dropdownOpenIcon={<FaIcon name="chevron-up" color={colors.darkGray} style={{ marginRight: 20 }} />}
                   onValueChange={newQuestion => {
                     formikBag.setFieldValue('secret_question', newQuestion);
                     formikBag.handleBlur('secret_question');
-                  }}
-                >
+                  }}>
                   {secretQuestionList.map(label => (
                     <Select.Item key={label} label={label} value={label} />
                   ))}
@@ -226,10 +222,10 @@ const CreateBeneficiaryForm: React.FC = () => {
                 <>
                   <Separator height={1} />
                   <TextField
-                    contentType='none'
-                    autocompleteType='off'
-                    fieldLabel='secret_answer_required'
-                    iconName='question'
+                    contentType="none"
+                    autocompleteType="off"
+                    fieldLabel="secret_answer_required"
+                    iconName="question"
                     error={allErrors.secret_question_custom_text}
                     handleBlur={formikBag.handleBlur('secret_question_custom_text')}
                     handleChange={formikBag.handleChange('secret_question_custom_text')}
@@ -243,10 +239,10 @@ const CreateBeneficiaryForm: React.FC = () => {
                 <>
                   <Separator height={1} />
                   <TextField
-                    contentType='none'
-                    autocompleteType='off'
-                    fieldLabel='answer_required'
-                    iconName='question-circle'
+                    contentType="none"
+                    autocompleteType="off"
+                    fieldLabel="answer_required"
+                    iconName="question-circle"
                     error={allErrors.secret_question_answer}
                     handleBlur={formikBag.handleBlur('secret_question_answer')}
                     handleChange={formikBag.handleChange('secret_question_answer')}
@@ -261,11 +257,11 @@ const CreateBeneficiaryForm: React.FC = () => {
               )}
               <Separator height={1} />
               <TextField
-                contentType='emailAddress'
-                autocompleteType='email'
-                fieldLabel='email'
-                iconName='at'
-                keyboardType='email-address'
+                contentType="emailAddress"
+                autocompleteType="email"
+                fieldLabel="email"
+                iconName="at"
+                keyboardType="email-address"
                 error={allErrors.email}
                 handleBlur={formikBag.handleBlur('email')}
                 handleChange={formikBag.handleChange('email')}
@@ -276,12 +272,7 @@ const CreateBeneficiaryForm: React.FC = () => {
               {formikBag.touched.email && allErrors.email ? <ErrorText text={allErrors.email} /> : null}
               <Separator height={1} />
               <HStack>
-                <TextField
-                  contentType='telephoneNumber'
-                  leftElement={<Text style={styles.phoneIndicator}>+33 </Text>}
-                  fieldLabel='phone_french'
-                  autocompleteType='tel'
-                  keyboardType='phone-pad'
+                <PhoneInputField
                   error={allErrors.phone}
                   handleBlur={formikBag.handleBlur('phone')}
                   handleChange={formikBag.handleChange('phone')}
@@ -291,27 +282,26 @@ const CreateBeneficiaryForm: React.FC = () => {
                 />
               </HStack>
               {formikBag.touched.phone && allErrors.phone ? <ErrorText text={allErrors.phone} /> : null}
-              <VStack my='5' px='2'>
+              <VStack my="5" px="2">
                 <Text style={{ color: colors.darkGray }}>Centres</Text>
-                <Checkbox.Group value={centers.map((id: number) => id.toString())} accessibilityLabel='choose numbers'>
+                <Checkbox.Group value={centers.map((id: number) => id.toString())} accessibilityLabel="choose numbers">
                   {allCenters.map(item => (
                     <Checkbox
                       my={2}
                       key={item.id}
                       value={item.id.toString()}
-                      size='lg'
+                      size="lg"
                       onChange={() => toggleCheckbox(item.id)}
-                      colorScheme='info'
-                      icon={<Icon as={<FaIcon name='home' />} />}
-                    >
+                      colorScheme="info"
+                      icon={<Icon as={<FaIcon name="home" />} />}>
                       {item.name}
                     </Checkbox>
                   ))}
                 </Checkbox.Group>
               </VStack>
               <RoundedButton
-                text='create'
-                iconName='plus'
+                text="create"
+                iconName="plus"
                 disabled={!formikBag.isValid}
                 onPress={formikBag.handleSubmit}
                 isLoading={isCreating}
