@@ -106,6 +106,7 @@ const ProfileItem: React.FC<Props> = ({ field, iconName, label, readOnly, value,
                               handleBlur={props.handleBlur(field)}
                               okIcon
                               value={props.values[field]}
+                              style={style}
                             />
                           ) : (
                             <TextField

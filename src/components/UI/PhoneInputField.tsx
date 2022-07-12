@@ -1,7 +1,7 @@
 import { Stack } from 'native-base';
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import { colors } from '../../style';
 import { TextFieldProps } from './TextField';
@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import parsePhoneNumber from 'libphonenumber-js';
 export type PhoneNumberType = Omit<TextFieldProps, 'fieldLabel'>;
 
-const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, value, error, okIcon }) => {
+const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, value, error, okIcon, style }) => {
   const { t } = useTranslation();
 
   const phoneInput = useRef<PhoneInput>(null);
@@ -60,6 +60,8 @@ const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, val
               onChangeFormattedText={handleChange}
               textContainerStyle={styles.textContainer}
               containerStyle={styles.container}
+              textInputStyle={[style, styles.textInput]}
+              codeTextStyle={[style, styles.textInput]}
             />
             <RightElement />
           </>
@@ -88,8 +90,12 @@ const styles = StyleSheet.create({
   container: { height: 50 },
   textContainer: {
     backgroundColor: colors.white,
-    height: 60,
-    paddingTop: 8,
+    height: Platform.OS === 'ios' ? 60 : 66,
+    paddingTop: Platform.OS === 'ios' ? 4 : 0,
+  },
+  textInput: {
+    fontSize: 15.5,
+    alignSelf: 'center',
   },
 });
 
