@@ -356,9 +356,9 @@ PODS:
     - glog
   - react-native-blob-util (0.14.1):
     - React-Core
-  - react-native-config (1.4.5):
-    - react-native-config/App (= 1.4.5)
-  - react-native-config/App (1.4.5):
+  - react-native-config (1.4.6):
+    - react-native-config/App (= 1.4.6)
+  - react-native-config/App (1.4.6):
     - React-Core
   - react-native-document-picker (8.0.0):
     - React-Core
@@ -462,7 +462,7 @@ PODS:
     - Firebase/Messaging (= 8.8.0)
     - React-Core
     - RNFBApp
-  - RNGestureHandler (1.10.3):
+  - RNGestureHandler (2.5.0):
     - React-Core
   - RNImageCropPicker (0.37.3):
     - React-Core
@@ -767,7 +767,7 @@ SPEC CHECKSUMS:
   React-jsinspector: c5989c77cb89ae6a69561095a61cce56a44ae8e8
   React-logger: a0833912d93b36b791b7a521672d8ee89107aff1
   react-native-blob-util: 7ac01cd4a4ba81016864727a756ce2c1af995e35
-  react-native-config: 6502b1879f97ed5ac570a029961fc35ea606cd14
+  react-native-config: 7cd105e71d903104e8919261480858940a6b9c0e
   react-native-document-picker: 429972f7ece4463aa5bcdd789622b3a674a3c5d1
   react-native-document-scanner: ff13091b7685b2bb29ffecce968ef0a15af9eb80
   react-native-netinfo: 3d3769f0d65de15c83a9bf1346f8be71de5a24bf
@@ -797,7 +797,7 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 4944cf8787b9c5bffaf301fda68cc1a2ec003341
   RNFBApp: 729c0666395b1953198dc4a1ec6deb8fbe1c302e
   RNFBMessaging: 8415ec196e5c1196caa26ec0742cdb48ed4d0f97
-  RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
+  RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
   RNImageCropPicker: 44e2807bc410741f35d4c45b6586aedfe3da39d2
   RNSentry: 679e5960e7c20c0bad79c8a9f8057971e2497826
   RNSound: 6c156f925295bdc83e8e422e7d8b38d33bc71852
