@@ -77,7 +77,6 @@ const TextArea: React.FC<TextFieldProps> = ({
       size='2xl'
       h={h ?? '300'}
       autoCapitalize='none'
-      verticalAlign='bottom'
       numberOfLines={100}
       autoCompleteType='off'
       isDisabled={disabled}
