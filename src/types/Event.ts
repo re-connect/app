@@ -18,7 +18,7 @@ export interface EventInterface extends AnyDataInterface {
 export interface CreateEventData extends CreateDataInterface {
   nom: string;
   rappels: string[];
-  date?: string | null;
+  date: string;
   commentaire?: string;
   lieu?: string;
 }

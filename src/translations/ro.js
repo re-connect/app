@@ -28,6 +28,7 @@ export default {
   content: 'Conţinut',
   create_beneficiary: 'Noul beneficiar',
   create: ' A creea',
+  date: 'Data',
   date_placeholder: 'Data (Ex. 15/04/2001)',
   datetime_placeholder: 'Data (Ex. 15/04/2001 12:30)',
   day: 'Zi',

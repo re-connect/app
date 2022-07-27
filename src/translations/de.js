@@ -28,6 +28,7 @@ export default {
   content: 'Inhalt',
   create_beneficiary: 'neue Empfänger',
   create: 'schaffen ',
+  date_placeholder: 'Datum',
   date_placeholder: 'Datum (Ex. 15/04/2001)',
   datetime_placeholder: 'Date (Ex. 15/04/2001 12:30)',
   day: 'Tag',

@@ -27,6 +27,7 @@ export default {
   content: 'Содержание',
   create_beneficiary: 'Создать Получатель',
   create: 'создать',
+  date: 'дата',
   date_placeholder: 'дата',
   datetime_placeholder: 'дата',
   day: 'день',

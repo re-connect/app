@@ -27,6 +27,7 @@ export default {
   content: 'محتوى',
   create_beneficiary: 'مستفيد جديد',
   create: 'إنشاء',
+  date: 'التاريخ',
   date_placeholder: 'التاريخ (مثال 15 نيسان 2001)',
   datetime_placeholder: 'التاريخ (مثال 15 نيسان 2001 الساعة ١٢:٣٠)',
   day: 'يوم',

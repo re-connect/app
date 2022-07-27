@@ -1,5 +1,4 @@
 import { RouteProp } from '@react-navigation/native';
-import { formatISO9075, parse } from 'date-fns';
 import { View } from 'native-base';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
@@ -24,17 +23,10 @@ type Props = {
   route: RouteProp<CreateEventScreenParams, 'Event'>;
 };
 
-const serializeEvent = (event: CreateEventData) => ({
-  ...event,
-  date: !event.date ? new Date() : formatISO9075(parse(event.date, 'ddMMyyyyHHmm', new Date())),
-  rappels: event.rappels.map((dateRappel: string) =>
-    ({date: formatISO9075(parse(dateRappel, 'ddMMyyyyHHmm', new Date()))})),
-});
-
-const EditEventScreen: React.FC<Props> = ({route}) => {
-  const {eventId} = route.params;
-  const {list} = React.useContext(EventContext);
-  const {isUpdating, update} = useUpdateData(`events/${eventId}`, eventId, EventContext);
+const EditEventScreen: React.FC<Props> = ({ route }) => {
+  const { eventId } = route.params;
+  const { list } = React.useContext(EventContext);
+  const { isUpdating, update } = useUpdateData(`events/${eventId}`, eventId, EventContext);
   const event: any = list.find((event: EventInterface) => event.id === eventId);
 
   if (!event) return null;
@@ -45,7 +37,7 @@ const EditEventScreen: React.FC<Props> = ({route}) => {
         <EventForm
           event={event}
           isSubmitting={isUpdating}
-          onSubmit={(newEvent: CreateEventData) => update({...event, ...serializeEvent(newEvent)})}
+          onSubmit={(newEvent: CreateEventData) => update({ ...event, ...newEvent })}
         />
       </View>
     </Screen>

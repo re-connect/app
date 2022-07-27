@@ -1,5 +1,5 @@
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
-import { format, parse } from 'date-fns';
+import { parse } from 'date-fns';
 import { Formik, FormikProps } from 'formik';
 import { Checkbox, Flex, HStack, Icon, ScrollView, Select, VStack } from 'native-base';
 import * as React from 'react';
@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import FaIcon from 'react-native-vector-icons/FontAwesome5';
 import CenterContext from '../../../context/CenterContext';
+import { dateToString, stringToDate } from '../../../helpers/dateHelpers';
 import Shape from '../../../helpers/forms/createBeneficiaryShape';
 import { useCreateBeneficiary, useFetchSecretQuestions } from '../../../hooks/BeneficiariesHooks';
 import { useFetchCenters } from '../../../hooks/CentersHooks';
@@ -46,17 +47,6 @@ const initialFormValues: CreateBeneficiaryDataInterface = {
   secret_question_answer: '',
   centers: [],
 };
-
-const stringToDate = (string: string) => {
-  let date = new Date();
-  if ('' !== string) {
-    date = parse(string, 'dd/MM/yyyy', new Date());
-  }
-
-  return date;
-};
-
-const dateToString = (date: Date) => format(date, 'dd/MM/yyyy');
 
 const CreateBeneficiaryForm: React.FC = () => {
   const { t } = useTranslation();

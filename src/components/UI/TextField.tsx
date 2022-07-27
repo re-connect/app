@@ -1,3 +1,4 @@
+import { FormikErrors, FormikTouched } from 'formik';
 import { Input, Stack } from 'native-base';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger/array';
@@ -18,8 +19,8 @@ export interface TextFieldProps {
   contentType?: any;
   disabled?: boolean;
   editable?: boolean;
-  error?: string;
-  fieldLabel: string;
+  error?: string | string[] | FormikErrors<any> | FormikErrors<any>[];
+  fieldLabel?: string;
   handleBlur?: any;
   handleChange?: any;
   iconName?: string;
@@ -28,7 +29,7 @@ export interface TextFieldProps {
   okIcon?: boolean;
   onFocus?: () => void;
   style?: any;
-  touched?: boolean;
+  touched?: boolean | FormikTouched<any> | FormikTouched<any>[];
   value?: string;
   leftElement?: React.ReactElement;
 }
@@ -104,7 +105,7 @@ const TextField: React.FC<TextFieldProps> = ({
         onBlur={handleBlur}
         onChangeText={handleChange}
         onFocus={onFocus}
-        placeholder={t(fieldLabel)}
+        placeholder={t(fieldLabel ?? '')}
         placeholderTextColor={colors.darkGray}
         secureTextEntry={contentType === 'password' && !showPassword}
         style={style}

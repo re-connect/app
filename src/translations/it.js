@@ -28,6 +28,7 @@ export default {
   content: 'Contenuto',
   create_beneficiary: 'Creare un beneficiario',
   create: 'Creare',
+  date: 'Data',
   date_placeholder: 'Data (Ex. 15/04/2001)',
   datetime_placeholder: 'Data (Ex. 15/04/2001 12:30)',
   day: 'Giorno',

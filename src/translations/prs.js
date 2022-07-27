@@ -27,6 +27,7 @@ export default {
   content: 'محتوا',
   create_beneficiary: 'ایجاد کردن حساب شخص ذی نفع',
   create: 'ایجاد کردن',
+  date: 'تاریخ',
   date_placeholder: 'تاریخ',
   datetime_placeholder: 'تاریخ',
   day: 'روز',
