@@ -101,14 +101,11 @@ const triggerAcceptInvitationAlert = (
           text: t.t('accept'),
           onPress: async () => {
             triggerAcceptInvitation(center.centre);
-            triggerAcceptInvitationAlert(invitations, triggerAcceptInvitation);
           },
         },
         {
           text: t.t('refuse'),
-          onPress: () => {
-            triggerAcceptInvitationAlert(invitations, triggerAcceptInvitation);
-          },
+          onPress: () => {},
         },
       ],
       { cancelable: true },
