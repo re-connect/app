@@ -51,7 +51,7 @@ const CenterCard: React.FC<CenterCardProps> = ({ center }) => {
 
   return (
     <View style={styles.container} key={center.id}>
-      <Icon style={styles.centerIcon} color={colors.black} name="hotel" />
+      <Icon style={styles.centerIcon} color={colors.black} name='hotel' />
       <Text style={styles.name}>{center.centre.nom}</Text>
       {!center.b_valid ? (
         <TouchableOpacity
@@ -62,15 +62,15 @@ const CenterCard: React.FC<CenterCardProps> = ({ center }) => {
           {!isAcceptingInvitation ? (
             <Text style={{ color: colors.white }}>accept</Text>
           ) : (
-            <ActivityIndicator size="large" color={colors.white} />
+            <ActivityIndicator size='large' color={colors.white} />
           )}
         </TouchableOpacity>
       ) : (
         <TouchableOpacity disabled={isLeaving} onPress={leave}>
           {!isLeaving ? (
-            <Icon style={styles.leaveIcon} name="sign-out-alt" color={colors.red} />
+            <Icon style={styles.leaveIcon} name='sign-out-alt' color={colors.red} />
           ) : (
-            <ActivityIndicator size="large" color={colors.red} />
+            <ActivityIndicator size='large' color={colors.red} />
           )}
         </TouchableOpacity>
       )}

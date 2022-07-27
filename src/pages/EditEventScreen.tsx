@@ -15,15 +15,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
   },
-  actions: {
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-  },
-  form: {
-    paddingHorizontal: 32,
-    flex: 1,
-    alignSelf: 'stretch',
-  },
 });
 
 type CreateEventScreenParams = {
