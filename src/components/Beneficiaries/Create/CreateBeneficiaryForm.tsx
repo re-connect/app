@@ -94,7 +94,8 @@ const CreateBeneficiaryForm: React.FC = () => {
             ...values,
             centers,
           })
-        }>
+        }
+      >
         {(formikBag: FormikProps<CreateBeneficiaryDataInterface>) => {
           const allErrors = { ...formikBag.errors, ...createErrors };
           if (formikBag.values.birth_date === '') {

@@ -9,7 +9,7 @@ import DocumentContext from '../context/DocumentContext';
 import FolderContext from '../context/FolderContext';
 import { updateDatumInList } from '../helpers/dataHelper';
 import { renameItem, showDocument, uploadDocuments } from '../services/documents';
-import { makeRequest, makeRequestv2 } from '../services/requests';
+import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
 import { DocumentInterface } from '../types/Documents';
 import { FolderInterface } from '../types/Folder';
@@ -287,7 +287,7 @@ export const useMoveDocumentInFolder = () => {
   const triggerMoveDocumentIntoFolder = async (document: DocumentInterface, folder: DocumentInterface) => {
     try {
       isMovingActions.setTrue();
-      const updatedFile = await makeRequest(`/documents/${document.id}/folder/${folder.id}`, 'PATCH');
+      const updatedFile = await makeRequestv2(`/documents/${document.id}/folder/${folder.id}`, 'PATCH');
       setList([
         ...list.map((document: DocumentInterface) => {
           return document.id === updatedFile.id ? updatedFile : document;
@@ -314,7 +314,7 @@ export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
       setIsMovingOut(true);
       const folderId = document.folder_id;
       if (folderId) {
-        const newDocument = await makeRequest(`/documents/${document.id}/get-out-from-folder`, 'PATCH');
+        const newDocument = await makeRequestv2(`/documents/${document.id}/get-out-from-folder`, 'PATCH');
         setList([
           ...list.map((document: DocumentInterface) => {
             return document.id === newDocument.id ? newDocument : document;

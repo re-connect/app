@@ -6,7 +6,7 @@ import { apiEndpoint } from '../appConstants';
 import { DocumentInterface } from '../types/Documents';
 import { handleError } from './errors';
 import { checkNetworkConnection } from './networking';
-import { makeAuthenticatedUrl, makeRequest } from './requests';
+import { makeAuthenticatedUrlv2, makeRequestv2 } from './requests';
 
 export const addDocumentsToFormData = (data: any, documents: Partial<Image & File>[]): FormData => {
   documents.forEach((document) => {
@@ -74,7 +74,7 @@ export const uploadDocuments = async (images: any, beneficiaryId: number, folder
       Promise.all(
         files.map(async (file: {id: number, folder_id?: number}) => {
           file.folder_id = folderId;
-          await makeRequest(`/documents/${file.id}/folder/${folderId}`, 'PATCH');
+          await makeRequestv2(`/documents/${file.id}/folder/${folderId}`, 'PATCH');
         })
       )
     }
@@ -90,7 +90,7 @@ export const uploadDocuments = async (images: any, beneficiaryId: number, folder
 export const showDocument = async (documentId: number, size?: string):Promise<string|undefined> => {
   try {
     const endpoint = !size ? `/documents/${documentId}` : `/documents/${documentId}/${size}`;
-    const url = await makeAuthenticatedUrl(endpoint);
+    const url = await makeAuthenticatedUrlv2(endpoint);
 
     return url;
   } catch (error: any) {
@@ -111,7 +111,7 @@ export const findFolderDocuments = (documents: DocumentInterface[], folderId: nu
 export const renameItem = async (document: DocumentInterface, name: string) => {
   try {
     const url = `/${document.is_folder ? 'folders' : 'documents'}/${document.id}/name`;
-    const response = await makeRequest(url, 'PATCH', { name });
+    const response = await makeRequestv2(url, 'PATCH', { name });
 
     return response;
   } catch (error: any) {

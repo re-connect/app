@@ -10,7 +10,7 @@ import DocumentContext from '../context/DocumentContext';
 import EventContext from '../context/EventContext';
 import NoteContext from '../context/NoteContext';
 import { formatEnableBeneficiaryErrors } from '../middlewares/dataTransformer';
-import { makeRequest, makeRequestv2 } from '../services/requests';
+import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
 import {
   BeneficiaryInterface,
@@ -26,7 +26,7 @@ export const useFetchBeneficiaries = () => {
   const triggerFetchBeneficiaries = useCallback(async () => {
     try {
       setIsFetchingBeneficiaries(true);
-      const beneficiaries = await makeRequest(`/beneficiaires`, 'GET');
+      const beneficiaries = await makeRequestv2(`/beneficiaires`, 'GET');
       if (beneficiaries && JSON.stringify(beneficiaries) !== JSON.stringify(list)) setList(beneficiaries);
 
       setIsFetchingBeneficiaries(false);

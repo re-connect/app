@@ -1,4 +1,4 @@
 module.exports = {
-  ENV: 'prod',
+  ENV: 'debug',
   // CODEPUSH: true,
 };
