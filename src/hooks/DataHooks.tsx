@@ -4,7 +4,7 @@ import { useBoolean } from 'react-hanger/array';
 import { Alert } from 'react-native';
 import UserContext from '../context/UserContext';
 import { removeDatumInList, updateDatumInList } from '../helpers/dataHelper';
-import { makeRequest, makeRequestv2 } from '../services/requests';
+import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
 import { CreateAnyDataInterface, CreateDataInterface, DataInterface, ListContextInterface } from '../types/Data';
 
@@ -24,11 +24,11 @@ export const useFetchData = (
     try {
       actions.setTrue();
       if (null !== endpoint) {
-        const data = await makeRequest(`/${endpoint}`, 'GET');
+        const data = await makeRequestv2(`/${endpoint}`, 'GET');
         if (data) setList(data);
       }
       actions.setFalse();
-    } catch (error: any) {
+    } catch (error) {
       actions.setFalse();
       Alert.alert(t.t('error_fetching_data'));
     }
@@ -58,11 +58,11 @@ export const usePostData = (
     async (data: CreateDataInterface) => {
       try {
         actions.setTrue();
-        const createdData = await makeRequest(`/${endpoint}`, 'POST', data);
+        const createdData = await makeRequestv2(`/${endpoint}`, 'POST', data);
         if (createdData) setList([createdData, ...list]);
         navigation.goBack();
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_creating_data'));
       }
@@ -102,7 +102,7 @@ export const useUpdateData = (
         }
         navigation.goBack();
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_updating_data'));
       }
@@ -137,7 +137,7 @@ export const useDeleteData = (
             style: 'default',
             onPress: async () => {
               actions.setTrue();
-              const deletedItem = await makeRequest(`/${endpoint}`, 'DELETE');
+              const deletedItem = await makeRequestv2(`/${endpoint}`, 'DELETE');
               if (deletedItem !== undefined) setList(list.filter((item: DataInterface) => item.id !== itemId));
               actions.setFalse();
               if (goBackAfter && true === goBackAfter) navigation.goBack();
@@ -145,7 +145,7 @@ export const useDeleteData = (
           },
         ]);
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_deleting_data'));
       }
@@ -174,7 +174,7 @@ export const usePatchData = (
     async (goBackAfter?: boolean) => {
       try {
         actions.setTrue();
-        const newData = await makeRequest(`/${endpoint}`, 'PATCH');
+        const newData = await makeRequestv2(`/${endpoint}`, 'PATCH');
         if (newData) {
           if (newData.b_prive && !!user && user.type_user !== 'ROLE_BENEFICIAIRE') {
             setList(removeDatumInList(list, itemId));
@@ -187,7 +187,7 @@ export const usePatchData = (
           if (goBackAfter) navigation.goBack();
         }
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_updating_data_privacy'));
       }

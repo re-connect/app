@@ -7,20 +7,6 @@ import { checkNetworkConnection } from './networking';
 
 type HTTPVerb = 'POST' | 'GET' | 'DELETE' | 'PUT' | 'PATCH';
 
-export const makeAuthenticatedUrl = async (endpoint: string) => {
-  const isConnected = await checkNetworkConnection();
-  if (!isConnected) return;
-
-  const token = await AsyncStorage.getItem('accessToken');
-  if (!token) {
-    handle401();
-
-    return;
-  }
-
-  return `${apiEndpoint}${endpoint}?access_token=${token}`;
-};
-
 export const makeAuthenticatedUrlv2 = async (endpoint: string) => {
   const isConnected = await checkNetworkConnection();
   if (!isConnected) return;
@@ -37,7 +23,7 @@ export const makeAuthenticatedUrlv2 = async (endpoint: string) => {
 
 export const fetchCurrentUser = async (): Promise<null|UserInterface> => {
   try {
-    const url = await makeAuthenticatedUrl('/user');
+    const url = await makeAuthenticatedUrlv2('/user');
     if (url) {
       const request = axios.get(url, {'timeout': 3000});
       const response = await request;
@@ -48,24 +34,6 @@ export const fetchCurrentUser = async (): Promise<null|UserInterface> => {
     return null;
   } catch (error: any) {
     return null;
-  }
-};
-
-export const makeRequest = async (endpoint: string, method: HTTPVerb, data?: Record<string, any>): Promise<any> => {
-  try {
-    const url = await makeAuthenticatedUrl(endpoint);
-
-    if (url) {
-      const response = await axios({method, url, data, timeout: 7000});
-
-      return response.data;
-    }
-
-    return;
-  } catch (error: any) {
-    handleError(error);
-
-    return;
   }
 };
 

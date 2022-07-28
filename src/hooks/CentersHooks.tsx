@@ -4,7 +4,7 @@ import { Alert } from 'react-native';
 import CenterContext from '../context/CenterContext';
 import UserContext from '../context/UserContext';
 import { acceptCenterInList, removeCenterFromList } from '../helpers/centersHelper';
-import { makeRequest, makeRequestv2 } from '../services/requests';
+import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
 import { CenterInterface, UserCenterInterface } from '../types/Centers';
 
@@ -15,7 +15,7 @@ export const useFetchCenters = () => {
   const triggerFetchCenters = React.useCallback(async () => {
     try {
       actions.setTrue();
-      const centers = await makeRequest('/centers', 'GET');
+      const centers = await makeRequestv2('/centers', 'GET');
       if (centers) setList(centers);
       actions.setFalse();
     } catch (error) {
@@ -39,7 +39,7 @@ export const useAcceptCenterInvitation = () => {
     async (center: CenterInterface) => {
       try {
         actions.setTrue();
-        const newCenter = await makeRequest(`/centers/${center.id}/accept`, 'PATCH');
+        const newCenter = await makeRequestv2(`/centers/${center.id}/accept`, 'PATCH');
         if (newCenter) setList(acceptCenterInList(list, center));
         actions.setFalse();
       } catch (error) {
@@ -101,14 +101,11 @@ const triggerAcceptInvitationAlert = (
           text: t.t('accept'),
           onPress: async () => {
             triggerAcceptInvitation(center.centre);
-            triggerAcceptInvitationAlert(invitations, triggerAcceptInvitation);
           },
         },
         {
           text: t.t('refuse'),
-          onPress: () => {
-            triggerAcceptInvitationAlert(invitations, triggerAcceptInvitation);
-          },
+          onPress: () => {},
         },
       ],
       { cancelable: true },
@@ -120,15 +117,14 @@ export const useFetchInvitations = () => {
   const { triggerAcceptInvitation } = useAcceptCenterInvitation();
   const fetchInvitations = React.useCallback(async () => {
     try {
-      const centers = await makeRequest('/centers', 'GET');
+      const centers = await makeRequestv2('/centers', 'GET');
       if (centers && Array.isArray(centers)) {
         const invitations = centers.filter((center: UserCenterInterface) => {
           return !center.b_valid;
         });
         triggerAcceptInvitationAlert(invitations, triggerAcceptInvitation);
       }
-    } catch (exception) {
-    }
+    } catch (exception) {}
   }, []);
 
   React.useEffect(() => {

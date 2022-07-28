@@ -16,7 +16,7 @@ import UserContext from '../context/UserContext';
 import { getTruncatedFullName } from '../helpers/userHelpers';
 import { login } from '../services/authentication';
 import { LoginFormValues } from '../services/forms';
-import { fetchCurrentUser, makeRequest } from '../services/requests';
+import { fetchCurrentUser, makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
 import { UserField } from '../types/Users';
 import { useFetchInvitations } from './CentersHooks';
@@ -147,7 +147,7 @@ export const useUpdateUser = () => {
           if (updatedUser.date_naissance) {
             updatedUser.date_naissance = format(new Date(updatedUser.date_naissance), 'yyyy-MM-dd');
           }
-          const newData = await makeRequest(`/users/${user?.id}`, 'PUT', updatedUser);
+          const newData = await makeRequestv2(`/users/${user?.id}`, 'PUT', updatedUser);
           if (newData) {
             if (newData.type_user === 'ROLE_BENEFICIAIRE') setCurrent(newData);
             setUser(newData);
@@ -226,7 +226,7 @@ export const useResetPassword = () => {
       try {
         if (user && user.subject_id && values.password && values.password === values.confirm) {
           resetActions.setTrue();
-          const newData = await makeRequest(`/beneficiaries/${user.subject_id}/password`, 'PATCH', {
+          const newData = await makeRequestv2(`/beneficiaries/${user.subject_id}/password`, 'PATCH', {
             password: values.password,
           });
           if (newData) {

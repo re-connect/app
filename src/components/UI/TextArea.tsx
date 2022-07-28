@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
+import { TextFieldProps } from './TextField';
 
 const styles = StyleSheet.create({
   icon: {
@@ -12,27 +13,10 @@ const styles = StyleSheet.create({
   },
 });
 
-interface TextFieldProps {
-  disabled?: boolean;
-  error?: string;
-  fieldLabel: string;
-  h?: string;
-  handleBlur?: any;
-  handleChange?: any;
-  iconName?: string;
-  iconSyle?: any;
-  leftElement?: React.ReactElement;
-  okIcon?: boolean;
-  onFocus?: () => void;
-  touched?: boolean;
-  value?: string;
-}
-
 const TextArea: React.FC<TextFieldProps> = ({
   disabled,
   error,
   fieldLabel,
-  h,
   handleBlur,
   handleChange,
   iconName,
@@ -75,9 +59,8 @@ const TextArea: React.FC<TextFieldProps> = ({
   return (
     <BaseTextArea
       size='2xl'
-      h={h ?? '300'}
+      h='150'
       autoCapitalize='none'
-      verticalAlign='bottom'
       numberOfLines={100}
       autoCompleteType='off'
       isDisabled={disabled}
@@ -89,7 +72,7 @@ const TextArea: React.FC<TextFieldProps> = ({
       borderRadius={24}
       onChangeText={handleChange}
       onFocus={onFocus}
-      placeholder={t(fieldLabel)}
+      placeholder={t(fieldLabel ?? '')}
       placeholderTextColor={colors.darkGray}
       value={value ?? ''}
       leftElement={LeftElement}

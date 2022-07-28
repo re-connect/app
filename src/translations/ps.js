@@ -28,6 +28,7 @@ export default {
   content: 'مینځپانګه',
   create_beneficiary: 'ګټه اخیستونکی جوړول',
   create: 'جوړول',
+  date: 'نیټه',
   date_placeholder: 'نیټه',
   datetime_placeholder: 'نیټه',
   day: 'ورځ',

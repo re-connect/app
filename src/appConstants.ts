@@ -1,4 +1,6 @@
 import environments from './environment';
+
+// @ts-ignore: Unreachable code error
 // eslint-disable-next-line
 import secrets from './secrets.json';
 
