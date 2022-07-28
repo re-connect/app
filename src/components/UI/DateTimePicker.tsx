@@ -1,5 +1,4 @@
 import RNDateTimePicker, { Event } from '@react-native-community/datetimepicker';
-import { View } from 'native-base';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { dateToIso, isoToDate } from '../../helpers/dateHelpers';
@@ -24,12 +23,8 @@ const DateTimePicker: React.FC<Props> = ({ value, handleChange }) => {
   return (
     <>
       <Text style={styles.text}>date</Text>
-      <View style={{ top: -20 }}>
-        <RNDateTimePicker value={date} mode='time' onChange={onChangeDate} />
-      </View>
-      <View style={{ top: -55, right: 100 }}>
-        <RNDateTimePicker value={date} mode='date' onChange={onChangeDate} />
-      </View>
+      <RNDateTimePicker value={date} mode='date' onChange={onChangeDate} />
+      <RNDateTimePicker value={date} mode='time' onChange={onChangeDate} />
     </>
   );
 };
