@@ -4,23 +4,13 @@ import { View } from 'native-base';
 import * as React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Screen from '../components/Screen';
-import ProfileItem from '../components/UI/ProfileItem';
+import ProfileItem, { ProfileItemInterface } from '../components/UI/ProfileItem';
 import RoundedButton from '../components/UI/RoundedButton';
 import Separator from '../components/UI/Separator';
 import BeneficiaryContext from '../context/BeneficiaryContext';
 import UserContext from '../context/UserContext';
 import { useDeleteBeneficiary } from '../hooks/BeneficiariesHooks';
 import { colors } from '../style';
-import { UserField } from '../types/Users';
-
-interface ItemInterface {
-  field: UserField;
-  label: string;
-  value: string;
-  iconName: string;
-  readOnly?: boolean;
-  beneficiaryField?: boolean;
-}
 
 interface Props {
   navigation: NavigationProp<any>;
@@ -35,7 +25,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
 
   const { nom, prenom, email, username, telephone, date_naissance, reponse_secrete, question_secrete } = user;
 
-  const items: ItemInterface[] = [
+  const items: ProfileItemInterface[] = [
     { field: 'username', value: username, label: 'username', iconName: 'user', readOnly: true },
     { field: 'nom', value: nom, label: 'last_name', iconName: 'users' },
     { field: 'prenom', value: prenom, label: 'first_name', iconName: 'user' },
@@ -43,15 +33,14 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
     { field: 'telephone', value: telephone, label: 'phone', iconName: 'phone' },
     {
       field: 'question_secrete',
-      value: !question_secrete ? '' : question_secrete,
+      value: question_secrete ?? '',
       label: 'secret_question',
       iconName: 'question',
       beneficiaryField: true,
-      readOnly: true,
     },
     {
       field: 'reponse_secrete',
-      value: !reponse_secrete ? '' : reponse_secrete,
+      value: reponse_secrete ?? '',
       label: 'secret_answer',
       iconName: 'question',
       beneficiaryField: true,
@@ -68,16 +57,8 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <Screen>
       <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
-        {items.map((item: ItemInterface) => (
-          <ProfileItem
-            field={item.field}
-            key={item.field}
-            label={item.label}
-            value={item.value}
-            iconName={item.iconName}
-            readOnly={!!item.readOnly}
-            beneficiaryField={item.beneficiaryField}
-          />
+        {items.map((item: ProfileItemInterface) => (
+          <ProfileItem item={item} />
         ))}
         {isMember ? null : (
           <View style={{ marginHorizontal: 32 }}>
