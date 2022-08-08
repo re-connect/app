@@ -58,7 +58,7 @@
     "react-native-flags": "^1.0.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-gradle-plugin": "^0.0.7",
-    "react-native-image-crop-picker": "^0.37.3",
+    "react-native-image-crop-picker": "^0.38.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-pdf": "^6.5.0",
     "react-native-perspective-image-cropper": "Michaelvilleneuve/react-native-perspective-image-cropper#cdb40e5",
