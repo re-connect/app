@@ -125,6 +125,7 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
             if (images.length === 1) {
               const imageCropped = await ImageCropper.openCropper({
                 mediaType: 'photo',
+                freeStyleCropEnabled: true,
                 ...images[0],
               });
               imagesToUpload.push(imageCropped);
