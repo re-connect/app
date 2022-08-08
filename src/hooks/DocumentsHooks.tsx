@@ -4,7 +4,7 @@ import { useBoolean } from 'react-hanger';
 import { useBoolean as useBooleanArray } from 'react-hanger/array';
 import { Alert, AlertButton, Platform } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-import ImageCropper from 'react-native-image-crop-picker';
+import ImageCropper, { Image } from 'react-native-image-crop-picker';
 import DocumentContext from '../context/DocumentContext';
 import FolderContext from '../context/FolderContext';
 import { updateDatumInList } from '../helpers/dataHelper';
@@ -113,16 +113,26 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
         style: 'default',
         onPress: async () => {
           try {
+            const imagesToUpload: Image[] = [];
             const images = await ImageCropper.openPicker({
               width: 1000,
               height: 1000,
               multiple: true,
-              cropping: Platform.OS === 'android',
-              freeStyleCropEnabled: Platform.OS === 'android',
               avoidEmptySpaceAroundImage: false,
               writeTempFile: true,
             });
-            const response = await uploadDocuments(images, beneficiaryId, folderId);
+            // due to lib limitation, we allow only one image to be cropped
+            if (images.length === 1) {
+              const imageCropped = await ImageCropper.openCropper({
+                mediaType: 'photo',
+                ...images[0],
+              });
+              imagesToUpload.push(imageCropped);
+            } else {
+              imagesToUpload.push(...images);
+            }
+
+            const response = await uploadDocuments(imagesToUpload, beneficiaryId, folderId);
             if (response) {
               setList([...response, ...list]);
               Alert.alert(t.t('file_added'));
