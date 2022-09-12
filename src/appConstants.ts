@@ -14,4 +14,8 @@ export const apiv2Endpoint = `${apiEndpoint}/v2`;
 export const loginApiEndpoint = `${backendUrl}/oauth/v2/token`;
 export const connexionInformation = secrets['connexionInformation'];
 export const geniusSdkLicense =
-  environments && environments.ENV && environments.ENV === 'prod' ? secrets.geniusProd : secrets.geniusDebug;
+  environments && environments.ENV && environments.ENV === 'prod'
+    ? secrets.geniusProd
+    : environments.ENV === 'preprod'
+    ? secrets.geniusPreProd
+    : secrets.geniusDebug;
