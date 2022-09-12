@@ -32,7 +32,6 @@ import PitchesScreen from './pages/PitchesScreen';
 import PrivacyPolicyScreen from './pages/PrivacyPolicyScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import ResetPasswordScreen from './pages/ResetPasswordScreen';
-import ScanScreen from './pages/ScanScreen';
 import SettingsScreen from './pages/SettingsScreen';
 import TermsOfUseScreen from './pages/TermsOfUseScreen';
 import { navigationRef } from './RootNavigation';
@@ -45,44 +44,50 @@ let activeTheme = false;
 const SettingsButton = ({ navigation }: { navigation: NavigationProp<any, any> }) => (
   <Button
     onPress={() => navigation.navigate('Settings')}
-    iconColor='white'
-    text=''
-    iconName='user-alt'
-    backgroundColor='transparent'
+    iconColor="white"
+    text=""
+    iconName="user-alt"
+    backgroundColor="transparent"
   />
 );
 
-const getBeneficiaryHeader = (title: string) => ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
-  title,
-  headerStyle: {
-    backgroundColor: colors.green,
-  },
-  headerTintColor: colors.white,
-  headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
-});
+const getBeneficiaryHeader =
+  (title: string) =>
+  ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
+    title,
+    headerStyle: {
+      backgroundColor: colors.green,
+    },
+    headerTintColor: colors.white,
+    headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
+  });
 
-const getMemberHeader = (title: string) => ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
-  title,
-  headerStyle: {
-    backgroundColor: colors.blue,
-  },
-  headerTintColor: colors.white,
-  headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
-});
+const getMemberHeader =
+  (title: string) =>
+  ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
+    title,
+    headerStyle: {
+      backgroundColor: colors.blue,
+    },
+    headerTintColor: colors.white,
+    headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
+  });
 
 let getHeader = getBeneficiaryHeader;
 
 const TabBarButton = (props: any) => <TouchableOpacity {...props} />;
-const getTabScreenOptions = (t: any) => ({ route }: { route: RouteProp<ParamListBase, string> }) => ({
-  tabBarIcon: getTabStackIcon(route),
-  tabBarButton: TabBarButton,
-  tabBarLabel: t(route.name.toLowerCase()),
-  tabBarActiveTintColor: activeTheme ? colors.primaryPro : colors.primary,
-  tabBarInactiveTintColor: 'gray',
-  tabBarStyle: {
-    backgroundColor: 'white',
-  },
-});
+const getTabScreenOptions =
+  (t: any) =>
+  ({ route }: { route: RouteProp<ParamListBase, string> }) => ({
+    tabBarIcon: getTabStackIcon(route),
+    tabBarButton: TabBarButton,
+    tabBarLabel: t(route.name.toLowerCase()),
+    tabBarActiveTintColor: activeTheme ? colors.primaryPro : colors.primary,
+    tabBarInactiveTintColor: 'gray',
+    tabBarStyle: {
+      backgroundColor: 'white',
+    },
+  });
 
 const SettingsStack = createStackNavigator();
 const DocumentsStack = createStackNavigator();
@@ -102,24 +107,24 @@ const Settings = () => {
   const { t } = useTranslation();
 
   return (
-    <SettingsStack.Navigator initialRouteName='SettingsIndex'>
-      <SettingsStack.Screen name='SettingsIndex' component={SettingsScreen} options={getHeader(t('settings'))} />
-      <SettingsStack.Screen name='Profile' component={ProfileScreen} options={getHeader(t('profil'))} />
+    <SettingsStack.Navigator initialRouteName="SettingsIndex">
+      <SettingsStack.Screen name="SettingsIndex" component={SettingsScreen} options={getHeader(t('settings'))} />
+      <SettingsStack.Screen name="Profile" component={ProfileScreen} options={getHeader(t('profil'))} />
       <SettingsStack.Screen
-        name='ResetPassword'
+        name="ResetPassword"
         component={ResetPasswordScreen}
         options={getHeader(t('new_password'))}
       />
-      <SettingsStack.Screen name='TermsOfUse' component={TermsOfUseScreen} options={getHeader(t('terms_of_use'))} />
-      <SettingsStack.Screen name='LegalNotices' component={LegalNoticesScreen} options={getHeader(t('legal_notice'))} />
+      <SettingsStack.Screen name="TermsOfUse" component={TermsOfUseScreen} options={getHeader(t('terms_of_use'))} />
+      <SettingsStack.Screen name="LegalNotices" component={LegalNoticesScreen} options={getHeader(t('legal_notice'))} />
       <SettingsStack.Screen
-        name='PrivacyPolicy'
+        name="PrivacyPolicy"
         component={PrivacyPolicyScreen}
         options={getHeader(t('privacy_policy'))}
       />
-      <SettingsStack.Screen name='Pitches' component={PitchesScreen} options={getHeader(t('pitches'))} />
-      <SettingsStack.Screen name='Centers' component={CentersScreen} options={getHeader(t('centers'))} />
-      <SettingsStack.Screen name='Chat' component={ChatScreen} options={getHeader(t('support'))} />
+      <SettingsStack.Screen name="Pitches" component={PitchesScreen} options={getHeader(t('pitches'))} />
+      <SettingsStack.Screen name="Centers" component={CentersScreen} options={getHeader(t('centers'))} />
+      <SettingsStack.Screen name="Chat" component={ChatScreen} options={getHeader(t('support'))} />
     </SettingsStack.Navigator>
   );
 };
@@ -128,11 +133,10 @@ const Documents = () => {
   const { t } = useTranslation();
 
   return (
-    <DocumentsStack.Navigator initialRouteName='DocumentsList'>
-      <DocumentsStack.Screen name='DocumentsList' component={DocumentsScreen} options={getHeader(t('documents'))} />
-      <DocumentsStack.Screen name='Folder' component={FolderScreen} options={getHeader(t('folders'))} />
-      <DocumentsStack.Screen name='Scan' component={ScanScreen} options={getHeader(t('scan'))} />
-      <DocumentsStack.Screen name='Document' component={DocumentScreen} options={getHeader(t('documents'))} />
+    <DocumentsStack.Navigator initialRouteName="DocumentsList">
+      <DocumentsStack.Screen name="DocumentsList" component={DocumentsScreen} options={getHeader(t('documents'))} />
+      <DocumentsStack.Screen name="Folder" component={FolderScreen} options={getHeader(t('folders'))} />
+      <DocumentsStack.Screen name="Document" component={DocumentScreen} options={getHeader(t('documents'))} />
     </DocumentsStack.Navigator>
   );
 };
@@ -141,15 +145,15 @@ const Contacts = () => {
   const { t } = useTranslation();
 
   return (
-    <ContactsStack.Navigator initialRouteName='ContactsList'>
-      <ContactsStack.Screen name='ContactsList' component={ContactsScreen} options={getHeader(t('contacts'))} />
+    <ContactsStack.Navigator initialRouteName="ContactsList">
+      <ContactsStack.Screen name="ContactsList" component={ContactsScreen} options={getHeader(t('contacts'))} />
       <ContactsStack.Screen
-        name='CreateContact'
+        name="CreateContact"
         component={CreateContactScreen}
         options={getHeader(t('new_contact'))}
       />
-      <ContactsStack.Screen name='Contact' component={ContactScreen} options={getHeader(t('contact'))} />
-      <ContactsStack.Screen name='EditContact' component={EditContactScreen} options={getHeader(t('update_contact'))} />
+      <ContactsStack.Screen name="Contact" component={ContactScreen} options={getHeader(t('contact'))} />
+      <ContactsStack.Screen name="EditContact" component={EditContactScreen} options={getHeader(t('update_contact'))} />
     </ContactsStack.Navigator>
   );
 };
@@ -158,11 +162,11 @@ const Notes = () => {
   const { t } = useTranslation();
 
   return (
-    <NotesStack.Navigator initialRouteName='NotesList'>
-      <NotesStack.Screen name='NotesList' component={NotesScreen} options={getHeader(t('notes'))} />
-      <NotesStack.Screen name='CreateNote' component={CreateNoteScreen} options={getHeader(t('new_note'))} />
-      <NotesStack.Screen name='Note' component={NoteScreen} options={getHeader(t('note'))} />
-      <NotesStack.Screen name='EditNote' component={EditNoteScreen} options={getHeader(t('update_note'))} />
+    <NotesStack.Navigator initialRouteName="NotesList">
+      <NotesStack.Screen name="NotesList" component={NotesScreen} options={getHeader(t('notes'))} />
+      <NotesStack.Screen name="CreateNote" component={CreateNoteScreen} options={getHeader(t('new_note'))} />
+      <NotesStack.Screen name="Note" component={NoteScreen} options={getHeader(t('note'))} />
+      <NotesStack.Screen name="EditNote" component={EditNoteScreen} options={getHeader(t('update_note'))} />
     </NotesStack.Navigator>
   );
 };
@@ -171,11 +175,11 @@ const Events = () => {
   const { t } = useTranslation();
 
   return (
-    <EventsStack.Navigator initialRouteName='EventsList'>
-      <EventsStack.Screen name='EventsList' component={EventsScreen} options={getHeader(t('events'))} />
-      <EventsStack.Screen name='CreateEvent' component={CreateEventScreen} options={getHeader(t('new_event'))} />
-      <EventsStack.Screen name='Event' component={EventScreen} options={getHeader(t('event'))} />
-      <EventsStack.Screen name='EditEvent' component={EditEventScreen} options={getHeader(t('update_event'))} />
+    <EventsStack.Navigator initialRouteName="EventsList">
+      <EventsStack.Screen name="EventsList" component={EventsScreen} options={getHeader(t('events'))} />
+      <EventsStack.Screen name="CreateEvent" component={CreateEventScreen} options={getHeader(t('new_event'))} />
+      <EventsStack.Screen name="Event" component={EventScreen} options={getHeader(t('event'))} />
+      <EventsStack.Screen name="EditEvent" component={EditEventScreen} options={getHeader(t('update_event'))} />
     </EventsStack.Navigator>
   );
 };
@@ -184,15 +188,15 @@ const AuthLoading = () => {
   const { t } = useTranslation();
 
   return (
-    <AuthLoadingStack.Navigator initialRouteName='AuthLoading'>
-      <AuthLoadingStack.Screen name='AuthLoading' component={AuthLoadingScreen} options={getHeader(t('loading'))} />
+    <AuthLoadingStack.Navigator initialRouteName="AuthLoading">
+      <AuthLoadingStack.Screen name="AuthLoading" component={AuthLoadingScreen} options={getHeader(t('loading'))} />
     </AuthLoadingStack.Navigator>
   );
 };
 
 const Chat = () => (
-  <ChatStack.Navigator initialRouteName='ChatIndex'>
-    <ChatStack.Screen name='ChatIndex' component={ChatScreen} options={{ headerShown: false }} />
+  <ChatStack.Navigator initialRouteName="ChatIndex">
+    <ChatStack.Screen name="ChatIndex" component={ChatScreen} options={{ headerShown: false }} />
   </ChatStack.Navigator>
 );
 
@@ -200,9 +204,9 @@ const Auth = () => {
   const { t } = useTranslation();
 
   return (
-    <AuthStack.Navigator initialRouteName='Login'>
-      <AuthStack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
-      <AuthStack.Screen name='Chat' component={ChatScreen} options={getHeader(t('loading'))} />
+    <AuthStack.Navigator initialRouteName="Login">
+      <AuthStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+      <AuthStack.Screen name="Chat" component={ChatScreen} options={getHeader(t('loading'))} />
     </AuthStack.Navigator>
   );
 };
@@ -212,11 +216,11 @@ const BeneficiaryHome = () => {
 
   return (
     <HomeTab.Navigator screenOptions={getTabScreenOptions(t)}>
-      <HomeTab.Screen name='Documents' component={Documents} options={{ headerShown: false }} />
-      <HomeTab.Screen name='Events' component={Events} options={{ headerShown: false }} />
-      <HomeTab.Screen name='Contacts' component={Contacts} options={{ headerShown: false }} />
-      <HomeTab.Screen name='Notes' component={Notes} options={{ headerShown: false }} />
-      <HomeTab.Screen name='Chat' component={Chat} options={{ headerShown: false }} />
+      <HomeTab.Screen name="Documents" component={Documents} options={{ headerShown: false }} />
+      <HomeTab.Screen name="Events" component={Events} options={{ headerShown: false }} />
+      <HomeTab.Screen name="Contacts" component={Contacts} options={{ headerShown: false }} />
+      <HomeTab.Screen name="Notes" component={Notes} options={{ headerShown: false }} />
+      <HomeTab.Screen name="Chat" component={Chat} options={{ headerShown: false }} />
     </HomeTab.Navigator>
   );
 };
@@ -225,19 +229,19 @@ const MemberHome = () => {
   const { t } = useTranslation();
 
   return (
-    <MemberBeneficiariesStack.Navigator initialRouteName='Beneficiaries'>
+    <MemberBeneficiariesStack.Navigator initialRouteName="Beneficiaries">
       <MemberBeneficiariesStack.Screen
-        name='Beneficiaries'
+        name="Beneficiaries"
         component={BeneficiariesScreen}
         options={getHeader(t('beneficiaries'))}
       />
       <MemberBeneficiariesStack.Screen
-        name='Beneficiary'
+        name="Beneficiary"
         component={BeneficiaryHome}
         options={{ headerShown: false }}
       />
       <MemberBeneficiariesStack.Screen
-        name='CreateBeneficiary'
+        name="CreateBeneficiary"
         component={CreateBeneficiaryScreen}
         options={getHeader(t('create_beneficiary'))}
       />
@@ -248,7 +252,7 @@ const MemberHome = () => {
 const ActivationScreen = () => (
   <ActivationStack.Navigator>
     <ActivationStack.Screen
-      name='EnableBeneficiary'
+      name="EnableBeneficiary"
       component={EnableBeneficiaryScreen}
       options={{ headerShown: false }}
     />
@@ -259,9 +263,9 @@ const Activation = () => {
   const { t } = useTranslation();
 
   return (
-    <ActivationTab.Navigator initialRouteName='EnableBeneficiary' screenOptions={getTabScreenOptions(t)}>
-      <ActivationTab.Screen name='Enabling' component={ActivationScreen} options={getHeader(t('enabling'))} />
-      <ActivationTab.Screen name='Support' component={Chat} options={getHeader(t('support'))} />
+    <ActivationTab.Navigator initialRouteName="EnableBeneficiary" screenOptions={getTabScreenOptions(t)}>
+      <ActivationTab.Screen name="Enabling" component={ActivationScreen} options={getHeader(t('enabling'))} />
+      <ActivationTab.Screen name="Support" component={Chat} options={getHeader(t('support'))} />
     </ActivationTab.Navigator>
   );
 };
@@ -275,12 +279,12 @@ const AppContainer = ({ user }: { user: UserInterface }) => {
   }
   return (
     <NavigationContainer ref={navigationRef}>
-      <Root.Navigator initialRouteName='AuthLoadingRoot' screenOptions={{ headerShown: false }}>
-        <Root.Screen name='AuthLoadingRoot' component={AuthLoading} />
-        <Root.Screen name='Auth' component={Auth} />
-        <Root.Screen name='Home' component={isMember ? MemberHome : BeneficiaryHome} />
-        <Root.Screen name='Activation' component={Activation} />
-        <Root.Screen name='Settings' component={Settings} />
+      <Root.Navigator initialRouteName="AuthLoadingRoot" screenOptions={{ headerShown: false }}>
+        <Root.Screen name="AuthLoadingRoot" component={AuthLoading} />
+        <Root.Screen name="Auth" component={Auth} />
+        <Root.Screen name="Home" component={isMember ? MemberHome : BeneficiaryHome} />
+        <Root.Screen name="Activation" component={Activation} />
+        <Root.Screen name="Settings" component={Settings} />
       </Root.Navigator>
     </NavigationContainer>
   );

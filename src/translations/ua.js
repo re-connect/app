@@ -5,7 +5,6 @@ export default {
   answer_required: 'Відповідь',
   arabic: 'Арабська',
   association: 'Організвція',
-  automatic_detection: 'Автоматичний скан',
   back_to_login: 'Повернутися до сторінки входу',
   beneficiaries: 'Одержувач',
   beneficiary_creation_success: "Ім'я користувача створено успішно",

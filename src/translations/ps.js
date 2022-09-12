@@ -5,7 +5,6 @@ export default {
   answer_required: 'ځواب *',
   arabic: 'عرب',
   association: 'انجمن',
-  automatic_detection: 'اتوماتیک پیژندنه',
   back_to_login: 'د کنکشن پاڼې ته بیرته تلل ؟',
   beneficiaries: 'ګټه اخیستونکي',
   beneficiary_creation_success: 'ګټه اخیستونکی په بریالیتوب سره جوړ شوی',

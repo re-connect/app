@@ -5,7 +5,6 @@ export default {
   answer_required: 'جواب *',
   arabic: 'عربی',
   association: 'انجمن',
-  automatic_detection: 'تشخیص اتومات',
   back_to_login: 'بازگشت به صفحه وصل شدن؟',
   beneficiaries: 'اشخاص ذی نفع',
   beneficiary_creation_success: 'حساب شخص ذی نفع با موفقیت ایجاد شد',

@@ -462,6 +462,8 @@ PODS:
     - Firebase/Messaging (= 8.8.0)
     - React-Core
     - RNFBApp
+  - RNGeniusScan (1.0.0):
+    - React
   - RNGestureHandler (1.10.3):
     - React-Core
   - RNImageCropPicker (0.37.3):
@@ -570,6 +572,7 @@ DEPENDENCIES:
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
+  - "RNGeniusScan (from `../node_modules/@thegrizzlylabs/react-native-genius-scan/ios`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
@@ -708,6 +711,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBMessaging:
     :path: "../node_modules/@react-native-firebase/messaging"
+  RNGeniusScan:
+    :path: "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNImageCropPicker:
@@ -797,6 +802,7 @@ SPEC CHECKSUMS:
   RNDeviceInfo: 4944cf8787b9c5bffaf301fda68cc1a2ec003341
   RNFBApp: 729c0666395b1953198dc4a1ec6deb8fbe1c302e
   RNFBMessaging: 8415ec196e5c1196caa26ec0742cdb48ed4d0f97
+  RNGeniusScan: f3ed4ac943fd1e6d7386d3270fbfff3806664c51
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNImageCropPicker: 44e2807bc410741f35d4c45b6586aedfe3da39d2
   RNSentry: 679e5960e7c20c0bad79c8a9f8057971e2497826

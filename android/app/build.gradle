@@ -24,7 +24,7 @@ apply from: "../../node_modules/react-native/react.gradle"
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 // apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
-def _sdkVersion = 30
+def _sdkVersion = 31
 // def _codePushDeploymentKey = '"' + env.ANDROID_CODEPUSH_DEPLOYMENT_KEY ?: '') + '"'
 
 def enableSeparateBuildPerCPUArchitecture = false

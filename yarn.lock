@@ -2637,6 +2637,11 @@
   dependencies:
     pretty-format "^27.0.0"
 
+"@thegrizzlylabs/react-native-genius-scan@^4.5.3":
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/@thegrizzlylabs/react-native-genius-scan/-/react-native-genius-scan-4.5.3.tgz#c7e50a0bf76117649339d3e8500b398b5cbb79e5"
+  integrity sha512-T+p5gXV+6Q07c5XypgXVo/JmHeAT45tiJ87VjBmNWV6DHBCw1AeCQs/22trxMjSPfTO+apu0P/ZT+CcKVyHhrw==
+
 "@tootallnate/once@1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
@@ -8416,10 +8421,10 @@ react-native-gradle-plugin@^0.0.7:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz#96602f909745239deab7b589443f14fce5da2056"
   integrity sha512-+4JpbIx42zGTONhBTIXSyfyHICHC29VTvhkkoUOJAh/XHPEixpuBduYgf6Y4y9wsN1ARlQhBBoptTvXvAFQf5g==
 
-react-native-image-crop-picker@^0.37.3:
-  version "0.37.3"
-  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.37.3.tgz#f260e40b6a6ba8e98f4db3dde25a8f09e0936385"
-  integrity sha512-ih+0pWWRUNEFQyaHwGbH9rqJNOb7EBYMwKJhTY0VmsKIA9E+usfwMmQXAFIfOnee7fTn0A2vOXkBCPQZwyvnQw==
+react-native-image-picker@^4.10.0:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-4.10.0.tgz#471ca942bd1189134eff63e25903147f54aeb8c2"
+  integrity sha512-QNK4ZnFLD+BdiM1QL1jh9GUALhRXm3MV97crhnTCSMv50H6E4tq3ozgfyxF5uKz0cECbNkWswg4sjgqZKEJtww==
 
 react-native-iphone-x-helper@^1.0.3:
   version "1.3.1"
