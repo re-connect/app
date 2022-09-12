@@ -1,15 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { format } from 'date-fns';
 import { Platform } from 'react-native';
-import { Image } from 'react-native-image-crop-picker';
 import { apiEndpoint } from '../appConstants';
 import { DocumentInterface } from '../types/Documents';
+import { ImageInterface } from '../types/Image';
 import { handleError } from './errors';
 import { checkNetworkConnection } from './networking';
 import { makeAuthenticatedUrlv2, makeRequestv2 } from './requests';
 
-export const addDocumentsToFormData = (data: any, documents: Partial<Image & File>[]): FormData => {
-  documents.forEach((document) => {
+export const addDocumentsToFormData = (data: any, documents: Partial<ImageInterface & File>[]): FormData => {
+  documents.forEach(document => {
     if (document.path) {
       const fileData = {
         name: document.filename ? document.filename : `${new Date().getTime()}.jpg`,
@@ -55,7 +55,7 @@ export const uploadBase64 = async (image: string, beneficiaryId: number) => {
   }
 };
 
-export const uploadDocuments = async (images: any, beneficiaryId: number, folderId?: number) => {
+export const uploadDocuments = async (images: ImageInterface[], beneficiaryId: number, folderId?: number) => {
   try {
     const isConnected = await checkNetworkConnection();
     if (!isConnected) return;
@@ -72,11 +72,11 @@ export const uploadDocuments = async (images: any, beneficiaryId: number, folder
 
     if (folderId) {
       Promise.all(
-        files.map(async (file: {id: number, folder_id?: number}) => {
+        files.map(async (file: { id: number; folder_id?: number }) => {
           file.folder_id = folderId;
           await makeRequestv2(`/documents/${file.id}/folder/${folderId}`, 'PATCH');
-        })
-      )
+        }),
+      );
     }
 
     return files;
@@ -87,7 +87,7 @@ export const uploadDocuments = async (images: any, beneficiaryId: number, folder
   }
 };
 
-export const showDocument = async (documentId: number, size?: string):Promise<string|undefined> => {
+export const showDocument = async (documentId: number, size?: string): Promise<string | undefined> => {
   try {
     const endpoint = !size ? `/documents/${documentId}` : `/documents/${documentId}/${size}`;
     const url = await makeAuthenticatedUrlv2(endpoint);

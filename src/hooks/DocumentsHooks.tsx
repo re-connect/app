@@ -14,8 +14,9 @@ import { updateDatumInList } from '../helpers/dataHelper';
 import { renameItem, showDocument, uploadDocuments } from '../services/documents';
 import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
-import { DocumentInterface } from '../types/Documents';
+import { DocumentInterface, ScannedGeniusDocumentInterface } from '../types/Documents';
 import { FolderInterface } from '../types/Folder';
+import { ImageInterface } from '../types/Image';
 
 export const useFetchDocuments = (beneficiaryId?: number) => {
   const [isFetching, setIsFetching] = React.useState<boolean>(false);
@@ -58,13 +59,13 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
         onPress: async () => {
           try {
             await RNGeniusScan.setLicenceKey(geniusSdkLicense);
-            const geniusImageScanned = await RNGeniusScan.scanWithConfiguration({
+            const geniusImageScanned: ScannedGeniusDocumentInterface = await RNGeniusScan.scanWithConfiguration({
               source: 'camera',
               jpegQuality: 100,
               multiPage: false,
             });
-            const images: { path: any }[] = [];
-            geniusImageScanned.scans.map((enhancedImage: any) => {
+            const images: ImageInterface[] = [];
+            geniusImageScanned.scans.map(enhancedImage => {
               const image = {
                 path: enhancedImage.enhancedUrl,
               };
