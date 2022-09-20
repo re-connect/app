@@ -26,9 +26,6 @@ const DateTimePicker: React.FC<Props> = ({ value, handleChange }) => {
   const [displayTimePickerAndroid, setDisplayTimePickerAndroid] = useState(false);
   const date = isoToDate(value);
 
-  console.log('value', value);
-  console.log('date', date);
-
   React.useEffect(() => {
     value !== '' && setDisplayDatePickerAndroid(false);
     value !== '' && setDisplayTimePickerAndroid(false);
