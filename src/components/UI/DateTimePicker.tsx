@@ -15,17 +15,20 @@ export interface Props {
 }
 
 const DateTimePicker: React.FC<Props> = ({ value, handleChange }) => {
-  const onChangeDate = (_event: Event, date?: Date) => {
-    handleChange(dateToIso(date));
+  const onChangeDate = (_event: Event, currentDate?: Date) => {
+    currentDate && setNewDate(dateToIso(currentDate));
+    displayDatePickerAndroid && setDisplayDatePickerAndroid(false);
+    displayTimePickerAndroid && setDisplayTimePickerAndroid(false);
   };
   const [displayDatePickerAndroid, setDisplayDatePickerAndroid] = useState(false);
   const [displayTimePickerAndroid, setDisplayTimePickerAndroid] = useState(false);
+  const [newDate, setNewDate] = useState('');
   const date = isoToDate(value);
 
   React.useEffect(() => {
-    value !== '' && setDisplayDatePickerAndroid(false);
-    value !== '' && setDisplayTimePickerAndroid(false);
-  }, [value]);
+    newDate !== '' && handleChange(newDate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newDate]);
 
   return Platform.OS === 'ios' ? (
     <>
