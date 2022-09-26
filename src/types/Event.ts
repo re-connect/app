@@ -2,7 +2,7 @@ import { AnyDataInterface, CreateDataInterface } from './Data';
 
 export interface ReminderInterface {
   id: number;
-  date: Date;
+  date: string;
 }
 
 export interface EventInterface extends AnyDataInterface {

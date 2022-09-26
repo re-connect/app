@@ -3,15 +3,11 @@ import { format } from 'date-fns';
 import { View } from 'native-base';
 import * as React from 'react';
 import { useState } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Dimensions, Platform, StyleSheet } from 'react-native';
 import { dateToIso, dateToString, isoToDate } from '../../helpers/dateHelpers';
 import { colors } from '../../style';
 import FakeTextField from './FakeTextField';
 import Text from './Text';
-
-const styles = StyleSheet.create({
-  text: { color: colors.darkGray, fontSize: 18, fontWeight: 'bold', marginLeft: 16 },
-});
 
 export interface Props {
   value: string;
@@ -34,13 +30,23 @@ const DateTimePicker: React.FC<Props> = ({ value, handleChange }) => {
   return Platform.OS === 'ios' ? (
     <>
       <Text style={styles.text}>date</Text>
-      <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-        <View style={{ flex: 0.3, alignSelf: 'flex-start', justifyContent: 'center' }}>
-          <RNDateTimePicker value={date} mode='date' onChange={onChangeDate} minimumDate={new Date()} />
-        </View>
-        <View style={{ flex: 0.3, alignSelf: 'flex-start', justifyContent: 'center' }}>
-          <RNDateTimePicker value={date} mode='time' onChange={onChangeDate} minimumDate={new Date()} />
-        </View>
+      <View style={styles.wrapperGlobalDatePickerIos}>
+        <RNDateTimePicker
+          value={date}
+          mode='date'
+          onChange={onChangeDate}
+          minimumDate={new Date()}
+          themeVariant='light'
+          style={styles.datePickerIos}
+        />
+        <RNDateTimePicker
+          value={date}
+          mode='time'
+          onChange={onChangeDate}
+          minimumDate={new Date()}
+          themeVariant='light'
+          style={[styles.datePickerIos, { width: 90 }]}
+        />
       </View>
     </>
   ) : (
@@ -80,5 +86,25 @@ const DateTimePicker: React.FC<Props> = ({ value, handleChange }) => {
     </>
   );
 };
+
+const isLittleDevice = Dimensions.get('window').width <= 375;
+const styles = StyleSheet.create({
+  text: {
+    color: colors.darkGray,
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginLeft: 4,
+    marginBottom: 3,
+  },
+  datePickerIos: {
+    width: isLittleDevice ? 135 : 150,
+    marginLeft: isLittleDevice ? 0 : -25,
+    marginRight: isLittleDevice ? 10 : 15,
+  },
+  wrapperGlobalDatePickerIos: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+});
 
 export default DateTimePicker;
