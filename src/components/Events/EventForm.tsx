@@ -43,36 +43,31 @@ const EventForm: React.FC<Props> = ({ event, onSubmit, isSubmitting }) => {
 
   return (
     <Formik initialValues={initialValues} validationSchema={eventShape} onSubmit={onSubmit}>
-      {(formikBag: FormikProps<CreateEventData>) => {
-        return (
-          <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
-            <View style={styles.icons}>
-              <Icon style={styles.iconLeft} name='share' color={colors.blue} />
-              <RNSwitch
-                value={formikBag.values.b_prive}
-                onPress={() => formikBag.setFieldValue('b_prive', !formikBag.values.b_prive)}
-              />
-              <Icon style={styles.iconRight} name='lock' color={colors.red} />
-            </View>
-            <FormikTextField formikBag={formikBag} name='nom' icon='tag' label='name' />
-            <Separator height={2} />
-            <DateTimePicker
-              value={formikBag.values.date}
-              handleChange={date => formikBag.setFieldValue('date', date)}
+      {(formikBag: FormikProps<CreateEventData>) => (
+        <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
+          <View style={styles.icons}>
+            <Icon style={styles.iconLeft} name='share' color={colors.blue} />
+            <RNSwitch
+              value={formikBag.values.b_prive}
+              onPress={() => formikBag.setFieldValue('b_prive', !formikBag.values.b_prive)}
             />
-            <FormikTextField formikBag={formikBag} name='lieu' icon='map-marker-alt' label='place' />
-            <Separator height={2} />
-            <FormikTextField formikBag={formikBag} name='commentaire' icon='comment-alt' label='comment' isTextArea />
-            <RemindersForm reminders={formikBag.values.rappels} handleBlur={formikBag.handleBlur} />
-            <RoundedButton
-              isLoading={isSubmitting}
-              disabled={!formikBag.isValid}
-              text={!event.id ? 'create' : 'update'}
-              onPress={formikBag.handleSubmit}
-            />
-          </KeyboardAwareScrollView>
-        );
-      }}
+            <Icon style={styles.iconRight} name='lock' color={colors.red} />
+          </View>
+          <FormikTextField formikBag={formikBag} name='nom' icon='tag' label='name' />
+          <Separator height={2} />
+          <DateTimePicker value={formikBag.values.date} handleChange={date => formikBag.setFieldValue('date', date)} />
+          <FormikTextField formikBag={formikBag} name='lieu' icon='map-marker-alt' label='place' />
+          <Separator height={2} />
+          <FormikTextField formikBag={formikBag} name='commentaire' icon='comment-alt' label='comment' isTextArea />
+          <RemindersForm reminders={formikBag.values.rappels} handleBlur={formikBag.handleBlur} />
+          <RoundedButton
+            isLoading={isSubmitting}
+            disabled={!formikBag.isValid}
+            text={!event.id ? 'create' : 'update'}
+            onPress={formikBag.handleSubmit}
+          />
+        </KeyboardAwareScrollView>
+      )}
     </Formik>
   );
 };
