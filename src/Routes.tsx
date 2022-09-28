@@ -32,7 +32,6 @@ import PitchesScreen from './pages/PitchesScreen';
 import PrivacyPolicyScreen from './pages/PrivacyPolicyScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import ResetPasswordScreen from './pages/ResetPasswordScreen';
-import ScanScreen from './pages/ScanScreen';
 import SettingsScreen from './pages/SettingsScreen';
 import TermsOfUseScreen from './pages/TermsOfUseScreen';
 import { navigationRef } from './RootNavigation';
@@ -52,37 +51,43 @@ const SettingsButton = ({ navigation }: { navigation: NavigationProp<any, any> }
   />
 );
 
-const getBeneficiaryHeader = (title: string) => ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
-  title,
-  headerStyle: {
-    backgroundColor: colors.green,
-  },
-  headerTintColor: colors.white,
-  headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
-});
+const getBeneficiaryHeader =
+  (title: string) =>
+  ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
+    title,
+    headerStyle: {
+      backgroundColor: colors.green,
+    },
+    headerTintColor: colors.white,
+    headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
+  });
 
-const getMemberHeader = (title: string) => ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
-  title,
-  headerStyle: {
-    backgroundColor: colors.blue,
-  },
-  headerTintColor: colors.white,
-  headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
-});
+const getMemberHeader =
+  (title: string) =>
+  ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
+    title,
+    headerStyle: {
+      backgroundColor: colors.blue,
+    },
+    headerTintColor: colors.white,
+    headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
+  });
 
 let getHeader = getBeneficiaryHeader;
 
 const TabBarButton = (props: any) => <TouchableOpacity {...props} />;
-const getTabScreenOptions = (t: any) => ({ route }: { route: RouteProp<ParamListBase, string> }) => ({
-  tabBarIcon: getTabStackIcon(route),
-  tabBarButton: TabBarButton,
-  tabBarLabel: t(route.name.toLowerCase()),
-  tabBarActiveTintColor: activeTheme ? colors.primaryPro : colors.primary,
-  tabBarInactiveTintColor: 'gray',
-  tabBarStyle: {
-    backgroundColor: 'white',
-  },
-});
+const getTabScreenOptions =
+  (t: any) =>
+  ({ route }: { route: RouteProp<ParamListBase, string> }) => ({
+    tabBarIcon: getTabStackIcon(route),
+    tabBarButton: TabBarButton,
+    tabBarLabel: t(route.name.toLowerCase()),
+    tabBarActiveTintColor: activeTheme ? colors.primaryPro : colors.primary,
+    tabBarInactiveTintColor: 'gray',
+    tabBarStyle: {
+      backgroundColor: 'white',
+    },
+  });
 
 const SettingsStack = createStackNavigator();
 const DocumentsStack = createStackNavigator();
@@ -131,7 +136,6 @@ const Documents = () => {
     <DocumentsStack.Navigator initialRouteName='DocumentsList'>
       <DocumentsStack.Screen name='DocumentsList' component={DocumentsScreen} options={getHeader(t('documents'))} />
       <DocumentsStack.Screen name='Folder' component={FolderScreen} options={getHeader(t('folders'))} />
-      <DocumentsStack.Screen name='Scan' component={ScanScreen} options={getHeader(t('scan'))} />
       <DocumentsStack.Screen name='Document' component={DocumentScreen} options={getHeader(t('documents'))} />
     </DocumentsStack.Navigator>
   );

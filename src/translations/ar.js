@@ -5,7 +5,6 @@ export default {
   answer_required: 'جواب',
   arabic: 'عربي',
   association: 'جمعية',
-  automatic_detection: 'تعرف تلقائي',
   back_to_login: 'رجوع إلى صفحة تسجيل الدخول',
   beneficiaries: 'المستفيدون',
   beneficiary_creation_success: 'تمٌ إنشاء المستفيد {{username}} بنجاح',

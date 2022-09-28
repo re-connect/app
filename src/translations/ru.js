@@ -5,7 +5,6 @@ export default {
   answer_required: 'ответ *',
   arabic: 'арабский',
   association: 'ассоциация',
-  automatic_detection: 'Автоматическое распознавание',
   back_to_login: 'Вернуться на страницу входа?',
   beneficiaries: 'Получатели',
   beneficiary_creation_success: 'Получатель {{username}} успешно создан',

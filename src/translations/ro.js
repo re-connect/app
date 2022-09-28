@@ -5,7 +5,6 @@ export default {
   answer_required: 'Răspuns',
   arabic: 'Araba',
   association: 'Asociatie',
-  automatic_detection: 'Scanare automată',
   back_to_login: 'Înapoi la pagina de autentificare?',
   beneficiaries: 'Beneficiari',
   beneficiary_creation_success: 'Beneficiarul {{username}} a fost creat cu succes',

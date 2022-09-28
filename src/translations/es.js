@@ -5,7 +5,6 @@ export default {
   answer_required: 'Respuesta *',
   arabic: 'Árabe',
   association: 'Asociación',
-  automatic_detection: 'Escaneo automático',
   back_to_login: 'Volver a la página de inicio de sesión ?',
   beneficiaries: 'Beneficiarios',
   beneficiary_creation_success: 'El beneficiario {{username}} ha sido creado con éxito',

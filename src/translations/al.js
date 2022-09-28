@@ -5,7 +5,6 @@ export default {
   answer_required: 'Përgjigje',
   arabic: 'Arabisht',
   association: 'Shoqatë',
-  automatic_detection: 'Skanim automatik',
   back_to_login: 'Rikthim në faqen e identifikimit',
   beneficiaries: 'Përdoruesit',
   beneficiary_creation_success: 'Emri i përdoruesit u krijua me sukses',

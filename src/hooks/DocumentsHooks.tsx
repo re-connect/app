@@ -2,22 +2,25 @@ import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger';
 import { useBoolean as useBooleanArray } from 'react-hanger/array';
-import { Alert, AlertButton, Platform } from 'react-native';
+import { Alert, AlertButton } from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-import ImageCropper from 'react-native-image-crop-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
+//@ts-ignore
+import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
+import { geniusSdkLicense } from '../appConstants';
 import DocumentContext from '../context/DocumentContext';
 import FolderContext from '../context/FolderContext';
 import { updateDatumInList } from '../helpers/dataHelper';
 import { renameItem, showDocument, uploadDocuments } from '../services/documents';
 import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
-import { DocumentInterface } from '../types/Documents';
+import { DocumentInterface, ScannedGeniusDocumentInterface } from '../types/Documents';
 import { FolderInterface } from '../types/Folder';
+import { ImageInterface } from '../types/Image';
 
 export const useFetchDocuments = (beneficiaryId?: number) => {
   const [isFetching, setIsFetching] = React.useState<boolean>(false);
   const { list, setList } = React.useContext(DocumentContext);
-
   const triggerFetch = React.useCallback(async () => {
     try {
       setIsFetching(true);
@@ -42,7 +45,6 @@ export const useFetchDocuments = (beneficiaryId?: number) => {
 export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => {
   const isUploadingDocument = useBoolean(false);
   const { list, setList } = React.useContext(DocumentContext);
-  const navigation = useNavigation<any>();
 
   const triggerDocumentUpload = () => {
     isUploadingDocument.setTrue();
@@ -56,15 +58,21 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
         style: 'default',
         onPress: async () => {
           try {
-            const image = await ImageCropper.openCamera({
-              width: 1000,
-              height: 1000,
-              cropping: Platform.OS === 'android',
-              freeStyleCropEnabled: Platform.OS === 'android',
-              avoidEmptySpaceAroundImage: false,
-              writeTempFile: true,
+            await RNGeniusScan.setLicenceKey(geniusSdkLicense);
+            const geniusImageScanned: ScannedGeniusDocumentInterface = await RNGeniusScan.scanWithConfiguration({
+              source: 'camera',
+              jpegQuality: 100,
+              multiPage: false,
             });
-            const response = await uploadDocuments([image], beneficiaryId, folderId);
+            const images: ImageInterface[] = [];
+            geniusImageScanned.scans.map(enhancedImage => {
+              const image = {
+                path: enhancedImage.enhancedUrl,
+              };
+              images.push(image);
+            });
+
+            const response = await uploadDocuments(images, beneficiaryId, folderId);
             if (response) {
               setList([...response, ...list]);
             }
@@ -113,14 +121,23 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
         style: 'default',
         onPress: async () => {
           try {
-            const images = await ImageCropper.openPicker({
-              width: 1000,
-              height: 1000,
-              multiple: true,
-              cropping: Platform.OS === 'android',
-              freeStyleCropEnabled: Platform.OS === 'android',
-              avoidEmptySpaceAroundImage: false,
-              writeTempFile: true,
+            await RNGeniusScan.setLicenceKey(geniusSdkLicense);
+            const res = await launchImageLibrary({
+              mediaType: 'photo',
+              maxWidth: 2000,
+              maxHeight: 2000,
+              quality: 1,
+            });
+            const geniusImageScanned = await RNGeniusScan.scanWithConfiguration({
+              source: 'image',
+              sourceImageUrl: res.assets && res.assets[0].uri,
+              multiPage: false,
+            });
+            const images: { path: any }[] = [];
+            geniusImageScanned.scans.map((enhancedImage: any) => {
+              images.push({
+                path: enhancedImage.enhancedUrl,
+              });
             });
             const response = await uploadDocuments(images, beneficiaryId, folderId);
             if (response) {
@@ -142,18 +159,6 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
         },
       },
     ];
-    /* istanbul ignore next */
-    if (Platform.OS !== 'android') {
-      buttons.push({
-        text: t.t('automatic_detection'),
-        style: 'default',
-        onPress: async () => {
-          isUploadingDocument.setFalse();
-          navigation.navigate('Scan', { beneficiaryId: beneficiaryId });
-        },
-      });
-      buttons.push({ text: t.t('cancel'), onPress: async () => isUploadingDocument.setFalse(), style: 'cancel' });
-    }
     Alert.alert(t.t('choose_picture'), '', buttons, {
       cancelable: true,
       onDismiss: isUploadingDocument.setFalse,
