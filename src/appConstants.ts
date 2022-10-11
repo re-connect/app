@@ -1,6 +1,5 @@
 import { config } from '../src/config';
 
-console.log(config);
 export const crispUri = `https://go.crisp.chat/chat/embed/?website_id=${config.crispWebsiteId}`;
 
 export const backendUrl = config.backendUrl;
