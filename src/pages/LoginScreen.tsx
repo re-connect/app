@@ -1,11 +1,12 @@
 import { NavigationProp } from '@react-navigation/native';
 import { Button } from 'native-base';
 import * as React from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import LoginForm from '../components/Authentication/LoginForm';
 import Screen from '../components/Screen';
 import LanguageSwitch from '../components/User/LanguageSwitch';
+import { config } from '../config';
 import ThemeContext from '../context/ThemeContext';
 import { colors } from '../style';
 
@@ -58,14 +59,14 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
           backgroundColor: theme.value ? colors.primaryPro : colors.primary,
           height: screenHeight / 2,
           width: screenWidth,
-        }}
-      ></View>
+        }}></View>
       <View style={styles.languageSwitchContainer}>
         <LanguageSwitch />
       </View>
       <Button style={styles.chatIconContainer} onPress={() => navigation.navigate('Chat')}>
         <Icon style={styles.chatIcon} solid name='comment-alt' />
       </Button>
+      <Text>{config.version}</Text>
     </Screen>
   );
 };

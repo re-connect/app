@@ -12,6 +12,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		90921B7425D9E05000F6E306 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90921B7325D9E04F00F6E306 /* GoogleService-Info.plist */; };
+		A4F5A3F72A7B74A0ECC86564 /* libPods-Reconnect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F439F23953AC721F0547FD5 /* libPods-Reconnect.a */; };
 		B8C7377A274265B9001B40D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8C73779274265B9001B40D9 /* LaunchScreen.storyboard */; };
 		B8C7377E274267E2001B40D9 /* logo-blue-512.png in Resources */ = {isa = PBXBuildFile; fileRef = B8C7377D274267E2001B40D9 /* logo-blue-512.png */; };
 		B8E4CB0627148F5100E67913 /* romanian.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8E4CB0027148F5100E67913 /* romanian.mp3 */; };
@@ -319,7 +320,7 @@
 		00C302D31ABCB9D200DB3ED1 /* RCTNetwork.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTNetwork.xcodeproj; path = "../node_modules/react-native/Libraries/Network/RCTNetwork.xcodeproj"; sourceTree = "<group>"; };
 		00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVibration.xcodeproj; path = "../node_modules/react-native/Libraries/Vibration/RCTVibration.xcodeproj"; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* ReconnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReconnectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		079850C3147EE6AA5DAF3C28 /* Pods-Reconnect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect.debug.xcconfig"; path = "Target Support Files/Pods-Reconnect/Pods-Reconnect.debug.xcconfig"; sourceTree = "<group>"; };
+		0E84503C51AA6714CE60D324 /* Pods-Reconnect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect.release.xcconfig"; path = "Target Support Files/Pods-Reconnect/Pods-Reconnect.release.xcconfig"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Reconnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reconnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,6 +330,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Reconnect/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Reconnect/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2C4ACCB1EC3885558FF69B2F /* Pods-Reconnect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect.debug.xcconfig"; path = "Target Support Files/Pods-Reconnect/Pods-Reconnect.debug.xcconfig"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		32BECE72D24C42E68FBFB6BF /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		4F439F23953AC721F0547FD5 /* libPods-Reconnect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reconnect.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -338,9 +340,13 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		90921B6425D9D3B200F6E306 /* Reconnect.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Reconnect.entitlements; path = Reconnect/Reconnect.entitlements; sourceTree = "<group>"; };
 		90921B7325D9E04F00F6E306 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Reconnect/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A82F1E6EC270D8218E32904D /* Pods-Reconnect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect.release.xcconfig"; path = "Target Support Files/Pods-Reconnect/Pods-Reconnect.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AF60560A724E412E863D9573 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
+		B6CF4F3E28F4507E002F31F7 /* Reconnect copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reconnect copy-Info.plist"; path = "/Users/fraffinc/app/reconnect-app/ios/Reconnect copy-Info.plist"; sourceTree = "<absolute>"; };
+		B6CF4F6128F450B2002F31F7 /* Reconnect copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reconnect copy2-Info.plist"; path = "/Users/fraffinc/app/reconnect-app/ios/Reconnect copy2-Info.plist"; sourceTree = "<absolute>"; };
+		B6CF4F9F28F45402002F31F7 /* Reconnect copy3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reconnect copy3-Info.plist"; path = "/Users/fraffinc/app/reconnect-app/ios/Reconnect copy3-Info.plist"; sourceTree = "<absolute>"; };
+		B6CF4FD028F4547C002F31F7 /* Reconnect copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reconnect copy-Info.plist"; path = "/Users/fraffinc/app/reconnect-app/ios/Reconnect copy-Info.plist"; sourceTree = "<absolute>"; };
+		B6CF4FF428F4549F002F31F7 /* Reconnect PrepProd copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reconnect PrepProd copy-Info.plist"; path = "/Users/fraffinc/app/reconnect-app/ios/Reconnect PrepProd copy-Info.plist"; sourceTree = "<absolute>"; };
 		B838CA7A2716D8EC00B71F16 /* libInputMask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libInputMask.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B838CA7C2716D9B400B71F16 /* libInputMask.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libInputMask.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84F7D8424C0A16400418B6F /* Reconnect-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Reconnect-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -387,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD214DAA8295B2D5750FD609 /* libPods-Reconnect.a in Frameworks */,
+				A4F5A3F72A7B74A0ECC86564 /* libPods-Reconnect.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,8 +494,8 @@
 		14D462BA781C248D43FFDF61 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				079850C3147EE6AA5DAF3C28 /* Pods-Reconnect.debug.xcconfig */,
-				A82F1E6EC270D8218E32904D /* Pods-Reconnect.release.xcconfig */,
+				2C4ACCB1EC3885558FF69B2F /* Pods-Reconnect.debug.xcconfig */,
+				0E84503C51AA6714CE60D324 /* Pods-Reconnect.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -596,6 +603,11 @@
 				B825AAAE227999670087AC20 /* Recovered References */,
 				14D462BA781C248D43FFDF61 /* Pods */,
 				B84F7D8424C0A16400418B6F /* Reconnect-Bridging-Header.h */,
+				B6CF4F3E28F4507E002F31F7 /* Reconnect copy-Info.plist */,
+				B6CF4F6128F450B2002F31F7 /* Reconnect copy2-Info.plist */,
+				B6CF4F9F28F45402002F31F7 /* Reconnect copy3-Info.plist */,
+				B6CF4FD028F4547C002F31F7 /* Reconnect copy-Info.plist */,
+				B6CF4FF428F4549F002F31F7 /* Reconnect PrepProd copy-Info.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -705,7 +717,6 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 8BKBA8SNQV;
 						LastSwiftMigration = 1160;
-						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1296,7 +1307,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 079850C3147EE6AA5DAF3C28 /* Pods-Reconnect.debug.xcconfig */;
+			baseConfigurationReference = 2C4ACCB1EC3885558FF69B2F /* Pods-Reconnect.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -1321,13 +1332,13 @@
 				INFOPLIST_FILE = Reconnect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
-				MARKETING_VERSION = 1.0.123;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.prod;
 				PRODUCT_NAME = Reconnect;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.reconnect.CloudSolidaire.debug";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
@@ -1339,7 +1350,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A82F1E6EC270D8218E32904D /* Pods-Reconnect.release.xcconfig */;
+			baseConfigurationReference = 0E84503C51AA6714CE60D324 /* Pods-Reconnect.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -1364,15 +1375,15 @@
 				INFOPLIST_FILE = Reconnect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
-				MARKETING_VERSION = 1.0.123;
+				MARKETING_VERSION = "$(MARKETING_VERSION)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.prod;
 				PRODUCT_NAME = Reconnect;
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc com.reconnect.CloudSolidaire.debug";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.reconnect.CloudSolidaire.debug";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
