@@ -13,7 +13,6 @@ import FolderContext from './src/context/FolderContext';
 import NoteContext from './src/context/NoteContext';
 import ThemeContext from './src/context/ThemeContext';
 import UserContext from './src/context/UserContext';
-import secrets from './src/secrets.json';
 // import { isCodePushEnabled } from './src/helpers/codePushHelper';
 import Routes from './src/Routes';
 import './src/services/translation';
@@ -26,7 +25,7 @@ import { EventInterface } from './src/types/Event';
 import { FolderInterface } from './src/types/Folder';
 import { NoteInterface } from './src/types/Note';
 import { UserInterface } from './src/types/Users';
-
+import { config } from './src/config';
 SplashScreen.hide();
 // eslint-disable-next-line
 // const whyDidYouRender = require('@welldone-software/why-did-you-render');
@@ -34,7 +33,7 @@ SplashScreen.hide();
 //   // trackAllPureComponents: true,
 // });
 
-Sentry.init({ dsn: secrets['sentry_secret'] });
+Sentry.init({ dsn: config.sentrySecret });
 
 const App: React.FC = () => {
   const [documents, setDocuments] = React.useState<DocumentInterface[]>([]);
@@ -62,8 +61,7 @@ const App: React.FC = () => {
   return (
     <UserContext.Provider value={{ user, setUser, lastUsername, setLastUsername }}>
       <BeneficiaryContext.Provider
-        value={{ current: beneficiary, setCurrent: setBeneficiary, list: beneficiaries, setList: setBeneficiaries }}
-      >
+        value={{ current: beneficiary, setCurrent: setBeneficiary, list: beneficiaries, setList: setBeneficiaries }}>
         <CenterContext.Provider value={{ list: centers, setList: setCenters }}>
           <ContactContext.Provider value={{ list: contacts, setList: setContacts }}>
             <NoteContext.Provider value={{ list: notes, setList: setNotes }}>

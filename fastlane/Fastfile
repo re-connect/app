@@ -231,6 +231,7 @@ platform :android do
   end
 
   lane :build do |options|
+    sh("cd .. && npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && rm android/app/src/main/res/drawable*/*.png && git checkout android/app/src/main/res/drawable*/*.png ")
     set_keys
     gradle(
       task: "assemble",
