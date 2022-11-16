@@ -62,16 +62,21 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
             const geniusImageScanned: ScannedGeniusDocumentInterface = await RNGeniusScan.scanWithConfiguration({
               source: 'camera',
               jpegQuality: 100,
-              multiPage: false,
-            });
-            const images: ImageInterface[] = [];
-            geniusImageScanned.scans.map(enhancedImage => {
-              const image = {
-                path: enhancedImage.enhancedUrl,
-              };
-              images.push(image);
+              multiPageFormat: 'pdf',
+              pdfPageSize: 'a4',
             });
 
+            const images: ImageInterface[] = [];
+            /* if users takes more than one picture, updload a pdf with all pages. Improves this with asking user if he wants to generate a pdf */
+            if (geniusImageScanned.scans.length > 1) {
+              images.push({ path: geniusImageScanned.multiPageDocumentUrl, filename: `${new Date().getTime()}.pdf` });
+            } else {
+              geniusImageScanned.scans.map(enhancedImage => {
+                images.push({
+                  path: enhancedImage.enhancedUrl,
+                });
+              });
+            }
             const response = await uploadDocuments(images, beneficiaryId, folderId);
             if (response) {
               setList([...response, ...list]);
