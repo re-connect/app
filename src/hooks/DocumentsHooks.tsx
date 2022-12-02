@@ -2,9 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger';
 import { useBoolean as useBooleanArray } from 'react-hanger/array';
-import { Alert, AlertButton } from 'react-native';
-import DocumentPicker from 'react-native-document-picker';
-import { launchImageLibrary } from 'react-native-image-picker';
+import { Alert } from 'react-native';
 //@ts-ignore
 import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
 import { geniusSdkLicense } from '../appConstants';
@@ -42,133 +40,42 @@ export const useFetchDocuments = (beneficiaryId?: number) => {
   return { list, isFetching, triggerFetch };
 };
 
+export const useScanDocument = () => {
+  const triggerScanDocument = async (): Promise<ScannedGeniusDocumentInterface> => {
+    await RNGeniusScan.setLicenceKey(geniusSdkLicense);
+    const geniusImageScanned: ScannedGeniusDocumentInterface = await RNGeniusScan.scanWithConfiguration({
+      source: 'camera',
+      jpegQuality: 100,
+      multiPageFormat: 'pdf',
+      pdfPageSize: 'a4',
+    });
+    return geniusImageScanned;
+  };
+
+  return { triggerScanDocument };
+};
+
 export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => {
   const isUploadingDocument = useBoolean(false);
   const { list, setList } = React.useContext(DocumentContext);
 
-  const triggerDocumentUpload = () => {
+  const triggerDocumentUpload = async (images: ImageInterface[]) => {
     isUploadingDocument.setTrue();
     if (!beneficiaryId) {
       isUploadingDocument.setFalse();
       return;
     }
-    const buttons: AlertButton[] = [
-      {
-        text: t.t('scan_document'),
-        style: 'default',
-        onPress: async () => {
-          try {
-            await RNGeniusScan.setLicenceKey(geniusSdkLicense);
-            const geniusImageScanned: ScannedGeniusDocumentInterface = await RNGeniusScan.scanWithConfiguration({
-              source: 'camera',
-              jpegQuality: 100,
-              multiPageFormat: 'pdf',
-              pdfPageSize: 'a4',
-            });
-
-            const images: ImageInterface[] = [];
-            /* if users takes more than one picture, updload a pdf with all pages. Improves this with asking user if he wants to generate a pdf */
-            if (geniusImageScanned.scans.length > 1) {
-              images.push({ path: geniusImageScanned.multiPageDocumentUrl, filename: `${new Date().getTime()}.pdf` });
-            } else {
-              geniusImageScanned.scans.map(enhancedImage => {
-                images.push({
-                  path: enhancedImage.enhancedUrl,
-                });
-              });
-            }
-            const response = await uploadDocuments(images, beneficiaryId, folderId);
-            if (response) {
-              setList([...response, ...list]);
-            }
-            Alert.alert(t.t('file_added'));
-            isUploadingDocument.setFalse();
-          } catch (error) {
-            // @ts-ignore
-            if (error.code === 'E_PICKER_CANCELLED') {
-              isUploadingDocument.setFalse();
-            } else {
-              Alert.alert(t.t('error_loading_document'));
-              isUploadingDocument.setFalse();
-            }
-          }
-        },
-      },
-      {
-        text: t.t('choose_file'),
-        style: 'default',
-        onPress: async () => {
-          try {
-            const res = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.allFiles] });
-            const file = {
-              filename: res.name,
-              path: res.uri,
-              size: res.size,
-              type: res.type, // mime type
-            };
-            const response = await uploadDocuments([file], beneficiaryId, folderId);
-            if (response) {
-              setList([...response, ...list]);
-            }
-            isUploadingDocument.setFalse();
-          } catch (error) {
-            if (DocumentPicker.isCancel(error)) {
-              isUploadingDocument.setFalse();
-            } else {
-              isUploadingDocument.setFalse();
-              Alert.alert(t.t('error_loading_document'));
-            }
-          }
-        },
-      },
-      {
-        text: t.t('choose_picture'),
-        style: 'default',
-        onPress: async () => {
-          try {
-            await RNGeniusScan.setLicenceKey(geniusSdkLicense);
-            const res = await launchImageLibrary({
-              mediaType: 'photo',
-              maxWidth: 2000,
-              maxHeight: 2000,
-              quality: 1,
-            });
-            const geniusImageScanned = await RNGeniusScan.scanWithConfiguration({
-              source: 'image',
-              sourceImageUrl: res.assets && res.assets[0].uri,
-              multiPage: false,
-            });
-            const images: { path: any }[] = [];
-            geniusImageScanned.scans.map((enhancedImage: any) => {
-              images.push({
-                path: enhancedImage.enhancedUrl,
-              });
-            });
-            const response = await uploadDocuments(images, beneficiaryId, folderId);
-            if (response) {
-              setList([...response, ...list]);
-              Alert.alert(t.t('file_added'));
-              isUploadingDocument.setFalse();
-            } else {
-              throw new Error('Error uploading documents');
-            }
-          } catch (error) {
-            // @ts-ignore
-            if (error.code === 'E_PICKER_CANCELLED') {
-              isUploadingDocument.setFalse();
-            } else {
-              Alert.alert(t.t('error_loading_document'));
-              isUploadingDocument.setFalse();
-            }
-          }
-        },
-      },
-    ];
-    Alert.alert(t.t('choose_picture'), '', buttons, {
-      cancelable: true,
-      onDismiss: isUploadingDocument.setFalse,
-    });
+    const response = await uploadDocuments(images, beneficiaryId, folderId);
+    if (response) {
+      setList([...response, ...list]);
+      Alert.alert(images.length > 1 ? t.t('files_added') : t.t('file_added'));
+    } else {
+      Alert.alert(t.t('error_loading_document'));
+      throw new Error('Error uploading documents');
+    }
+    isUploadingDocument.setFalse();
   };
+
   return { isUploadingDocument, triggerDocumentUpload };
 };
 
