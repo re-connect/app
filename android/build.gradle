@@ -29,6 +29,16 @@ configurations.all {
 
 allprojects {
     repositories {
+        exclusiveContent {
+            filter {
+                includeGroup "com.facebook.react"
+            }
+            forRepository {
+                maven {
+                    url "$rootDir/../node_modules/react-native/android"
+                }
+            }
+        }
         google()
         mavenCentral()
         mavenLocal()
@@ -50,5 +60,3 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
-
-
