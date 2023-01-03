@@ -19,3 +19,4 @@
 -keep class com.reconnect.CloudSolidaire.prod.generated.AppConstants { *; }
 -keep class com.reconnect.CloudSolidaire.preprod.generated.AppConstants { *; }
 -keep class com.reconnect.CloudSolidaire.debug.generated.AppConstants { *; }
+-keepresources string/build_config_package

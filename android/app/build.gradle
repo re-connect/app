@@ -52,7 +52,7 @@ android {
         versionCode project.env.get("ANDROID_VERSION_CODE") as Integer
         versionName project.env.get("ANDROID_VERSION_NAME")
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
-        // resValue "string", "build_config_package", "Reconnect"
+        resValue "string", "build_config_package", project.env.get("GRADLE_APP_IDENTIFIER")
         resValue "string", "app_name", project.env.get("APP_NAME")
 
         if (isNewArchitectureEnabled()) {

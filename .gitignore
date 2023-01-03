@@ -21,6 +21,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+ios/tmp.xcconfig
 
 # Android/IntelliJ
 #
@@ -30,6 +31,7 @@ build/
 local.properties
 *.iml
 index.android.bundle
+.env
 # Visual Studio Code
 #
 .vscode/
