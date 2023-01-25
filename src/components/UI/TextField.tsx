@@ -1,6 +1,7 @@
 import { FormikErrors, FormikTouched } from 'formik';
 import { Input, Stack } from 'native-base';
 import * as React from 'react';
+import { Text } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import { useTranslation } from 'react-i18next';
 import { KeyboardType, StyleSheet } from 'react-native';
@@ -11,6 +12,9 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: 16,
     marginRight: 16,
+  },
+  error: {
+    color: colors.secondaryPro,
   },
 });
 
@@ -32,6 +36,7 @@ export interface TextFieldProps {
   touched?: boolean | FormikTouched<any> | FormikTouched<any>[];
   value?: string;
   leftElement?: React.ReactElement;
+  displayError?: boolean;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -40,6 +45,7 @@ const TextField: React.FC<TextFieldProps> = ({
   disabled,
   editable,
   error,
+  displayError,
   fieldLabel,
   handleBlur,
   handleChange,
@@ -75,48 +81,51 @@ const TextField: React.FC<TextFieldProps> = ({
 
   const LeftElement = leftElement ? (
     leftElement
-  ) : !iconName ? (
-    undefined
-  ) : (
+  ) : !iconName ? undefined : (
     <Icon style={{ ...styles.icon, color: colors.darkGray, ...iconSyle }} name={iconName} />
   );
 
   const RightElement =
     contentType === 'password' ? (
       <Icon name='eye' style={{ ...styles.icon, color: getIconColor() }} onPress={showPasswordActions.toggle} />
-    ) : !touched ? (
-      undefined
-    ) : (
+    ) : !touched ? undefined : (
       <Icon name={getRightIconName()} style={{ ...styles.icon, color: getIconColor() }} />
     );
 
   return (
-    <Stack mt={3} space={4} w='100%' backgroundColor={colors.white} borderRadius='24'>
-      <Input
-        borderColor={colors.darkGray}
-        h='48px'
-        size='xl'
-        autoCapitalize='none'
-        autoCompleteType={!autocompleteType ? contentType : autocompleteType}
-        isDisabled={disabled}
-        isInvalid={!!error}
-        editable={editable}
-        keyboardType={keyboardType}
-        onBlur={handleBlur}
-        onChangeText={handleChange}
-        onFocus={onFocus}
-        placeholder={t(fieldLabel ?? '')}
-        placeholderTextColor={colors.darkGray}
-        secureTextEntry={contentType === 'password' && !showPassword}
-        style={style}
-        textContentType={contentType}
-        value={!value ? '' : value}
-        variant='rounded'
-        isFullWidth
-        leftElement={LeftElement}
-        rightElement={RightElement}
-      />
-    </Stack>
+    <>
+      <Stack mt={3} space={4} w='100%' backgroundColor={colors.white} borderRadius='24'>
+        <Input
+          borderColor={colors.darkGray}
+          h='48px'
+          size='xl'
+          autoCapitalize='none'
+          autoCompleteType={!autocompleteType ? contentType : autocompleteType}
+          isDisabled={disabled}
+          isInvalid={!!error}
+          editable={editable}
+          keyboardType={keyboardType}
+          onBlur={handleBlur}
+          onChangeText={handleChange}
+          onFocus={onFocus}
+          placeholder={t(fieldLabel ?? '')}
+          placeholderTextColor={colors.darkGray}
+          secureTextEntry={contentType === 'password' && !showPassword}
+          style={style}
+          textContentType={contentType}
+          value={!value ? '' : value}
+          variant='rounded'
+          isFullWidth
+          leftElement={LeftElement}
+          rightElement={RightElement}
+        />
+      </Stack>
+      {displayError && !!error && (
+        <Stack mt={2} space={4} w='100%' paddingLeft={2} paddingRight={2}>
+          <Text style={styles.error}>{error}</Text>
+        </Stack>
+      )}
+    </>
   );
 };
 
