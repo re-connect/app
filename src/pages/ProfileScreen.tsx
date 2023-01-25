@@ -61,9 +61,9 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
           <ProfileItem item={item} />
         ))}
         {isMember ? null : (
-          <View style={{ marginHorizontal: 32 }}>
+          <View style={{ marginHorizontal: 32, marginTop: 10 }}>
             <RoundedButton text='new_password' onPress={() => navigation.navigate('ResetPassword')} />
-            <Separator height={10} />
+            <Separator height={2} />
             {!current || !current.subject_id ? null : (
               <RoundedButton
                 isLoading={isDeleting}
@@ -74,6 +74,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
                 }}
               />
             )}
+            <Separator height={4} />
           </View>
         )}
       </KeyboardAwareScrollView>
