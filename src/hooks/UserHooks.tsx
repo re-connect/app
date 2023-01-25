@@ -90,7 +90,9 @@ export const useGetUser = () => {
 
   return triggerGetUser;
 };
-const MAX_LOGIN_ATTEMPTS = 5;
+
+const MAX_LOGIN_ATTEMPTS = 10;
+
 export const useLogin = () => {
   const [isLoginIn, isLoginInActions] = useBoolean(false);
   const getUser = useGetUser();
