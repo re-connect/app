@@ -1,5 +1,6 @@
 import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
+import { Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import resetPasswordShape from '../../helpers/forms/resetPasswordShape';
 import { useResetPassword } from '../../hooks/UserHooks';
@@ -17,9 +18,8 @@ const ResetPasswordForm: React.FC = () => {
   return (
     <Formik
       validationSchema={resetPasswordShape}
-      onSubmit={(values) => reset(values)}
-      initialValues={{ password: '', confirm: '' }}
-    >
+      onSubmit={values => reset(values)}
+      initialValues={{ password: '', confirm: '' }}>
       {({
         errors,
         isValid,
@@ -29,37 +29,39 @@ const ResetPasswordForm: React.FC = () => {
         touched,
         values,
       }: FormikProps<ResetPasswordData>) => (
-        <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
+        <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
           <Separator height={2} />
           <TextField
-            contentType="password"
+            contentType='password'
             error={errors.password}
-            fieldLabel="new_password"
+            fieldLabel='new_password'
             handleBlur={handleBlur('password')}
             handleChange={handleChange('password')}
-            iconName="tag"
+            iconName='tag'
             okIcon
             touched={touched.password}
             value={values.password}
+            displayError
           />
           <Separator height={2} />
           <TextField
-            contentType="password"
+            contentType='password'
             error={errors.confirm}
-            fieldLabel="confirm_password"
+            fieldLabel='confirm_password'
             handleBlur={handleBlur('confirm')}
             handleChange={handleChange('confirm')}
-            iconName="tag"
+            iconName='tag'
             okIcon
             touched={touched.confirm}
             value={values.confirm}
+            displayError
           />
           <Separator height={2} />
           <RoundedButton
             isLoading={isResetting}
             disabled={!isValid}
-            iconName="save"
-            text="update"
+            iconName='save'
+            text='update'
             onPress={() => handleSubmit()}
           />
         </KeyboardAwareScrollView>
