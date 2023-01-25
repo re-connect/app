@@ -10,6 +10,7 @@ import CenterContext from '../context/CenterContext';
 import ContactContext from '../context/ContactContext';
 import DocumentContext from '../context/DocumentContext';
 import EventContext from '../context/EventContext';
+import LoginTemporisationContext from '../context/LoginTemporisationContext';
 import NoteContext from '../context/NoteContext';
 import ThemeContext from '../context/ThemeContext';
 import UserContext from '../context/UserContext';
@@ -89,12 +90,20 @@ export const useGetUser = () => {
 
   return triggerGetUser;
 };
-
+const MAX_LOGIN_ATTEMPTS = 5;
 export const useLogin = () => {
   const [isLoginIn, isLoginInActions] = useBoolean(false);
   const getUser = useGetUser();
   const fetchInvitations = useFetchInvitations();
   // const registerToNotificationsService = useRegisterToNotificationsService();
+  const { attempts, setAttempts, setIsTemporarlyBlocked } = React.useContext(LoginTemporisationContext);
+
+  React.useEffect(() => {
+    if (attempts + 1 >= MAX_LOGIN_ATTEMPTS) {
+      setIsTemporarlyBlocked(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [attempts]);
 
   const triggerLogin = React.useCallback(
     async (values: LoginFormValues) => {
@@ -105,11 +114,14 @@ export const useLogin = () => {
         await getUser();
         fetchInvitations();
         isLoginInActions.setFalse();
+        setAttempts(0);
       } catch (error) {
         isLoginInActions.setFalse();
         Alert.alert(t.t('wrong_password_or_email'));
+        setAttempts(attempt => attempt + 1);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [getUser, isLoginInActions, fetchInvitations],
   );
 

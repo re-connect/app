@@ -5,6 +5,7 @@ import * as React from 'react';
 import { Image, Linking, StyleSheet, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { backendUrl } from '../../appConstants';
+import LoginTemporisationContext from '../../context/LoginTemporisationContext';
 import ThemeContext from '../../context/ThemeContext';
 import UserContext from '../../context/UserContext';
 import { useGetLastUsername, useLogin } from '../../hooks/UserHooks';
@@ -17,6 +18,7 @@ import Separator from '../UI/Separator';
 import Text from '../UI/Text';
 import TextField from '../UI/TextField';
 import BeneficiaryUsernameHelpText from './BeneifciaryUsernameHelpText';
+import LoginTemporisation from './LoginTemporisation';
 import ProUsernameHelpText from './ProUsernameHelpText';
 
 const styles = StyleSheet.create({
@@ -64,9 +66,10 @@ const LoginForm: React.FC = () => {
   const { isLoginIn, triggerLogin } = useLogin();
   const theme = React.useContext(ThemeContext);
   const { lastUsername, setLastUsername } = React.useContext(UserContext);
+  const { isTemporarlyBlocked } = React.useContext(LoginTemporisationContext);
   const keyboard = useKeyboard();
 
-  return (
+  return !isTemporarlyBlocked ? (
     <Formik
       enableReinitialize={true}
       initialValues={{ username: !lastUsername ? '' : lastUsername, password: '' }}
@@ -75,8 +78,7 @@ const LoginForm: React.FC = () => {
         setLastUsername(values.username);
         resetForm({});
         triggerLogin(values);
-      }}
-    >
+      }}>
       {(props: FormikProps<LoginFormValues>) => (
         <KeyboardAwareScrollView keyboardShouldPersistTaps='handled' contentContainerStyle={styles.container}>
           {keyboard.keyboardShown ? null : <Image source={Logo} style={styles.logo} />}
@@ -123,14 +125,12 @@ const LoginForm: React.FC = () => {
               style={styles.resetPasswordButton}
               onPress={() => {
                 Linking.openURL(`${backendUrl}/reinitialiser-mot-de-passe`);
-              }}
-            >
+              }}>
               <Text
                 style={{
                   ...styles.resetPasswordText,
                   textDecorationColor: theme.value ? colors.primaryPro : colors.primary,
-                }}
-              >
+                }}>
                 reset_password
               </Text>
             </TouchableOpacity>
@@ -140,6 +140,8 @@ const LoginForm: React.FC = () => {
         </KeyboardAwareScrollView>
       )}
     </Formik>
+  ) : (
+    <LoginTemporisation />
   );
 };
 

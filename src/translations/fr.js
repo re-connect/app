@@ -175,4 +175,6 @@ export default {
   delete_my_account_confirm: 'Êtes vous sur de vouloir supprimer votre compte ?',
   delete_my_account: 'Supprimer mon compte',
   this_action_is_irreversible: 'Cette action est irréversible',
+  too_many_login_attempts:
+    'Vous avez effectué trop de tentatives de connexions et vous avez été bloqué pour deux minutes.',
 };
