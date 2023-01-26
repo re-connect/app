@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
 
 interface Props {
   document: DocumentInterface;
+  isSingleDocumentAction?: boolean;
   close: () => void;
   isLoading: boolean;
   actions: {
@@ -56,14 +57,13 @@ const ActionItem: React.FC<ActionItemProps> = ({ action, label, icon, color = co
   );
 };
 
-const ActionsModalContent: React.FC<Props> = ({ document, close, isLoading, actions }) => {
+const ActionsModalContent: React.FC<Props> = ({ document, isSingleDocumentAction, close, isLoading, actions }) => {
   const onOpenItem = () => {
     openItem(document);
     close();
   };
 
   const items = [
-    { action: onOpenItem, label: 'view', icon: 'eye' },
     { action: actions.pickFolder, label: 'move_to_folder', icon: 'folder', condition: !document.is_folder },
     { action: actions.moveOut, label: 'move_out_of_folder', icon: 'folder', condition: !!document.folder_id },
     { action: actions.showSendEmailForm, label: 'send_by_email', icon: 'paper-plane', condition: !document.is_folder },
@@ -71,6 +71,8 @@ const ActionsModalContent: React.FC<Props> = ({ document, close, isLoading, acti
     { action: actions.delete, color: colors.red, label: 'delete', icon: 'trash' },
     { action: close, color: colors.black, label: 'cancel', icon: 'times' },
   ];
+
+  !isSingleDocumentAction && items.unshift({ action: onOpenItem, label: 'view', icon: 'eye' });
 
   const openItem = useOpenItem();
 

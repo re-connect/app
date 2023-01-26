@@ -70,7 +70,10 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
     navigation.setOptions({ title: getTruncatedText(!document ? '' : document.nom) });
   });
 
-  if (!document) return null;
+  if (!document) {
+    navigation.goBack();
+    return null;
+  }
 
   return (
     <Screen>
@@ -80,7 +83,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
           <Icon style={styles.downloadIcon} name='download' />
         </Button>
         <View style={[styles.downloadIconContainer, styles.actionContainer]}>
-          <DocumentCardActions document={document} />
+          <DocumentCardActions document={document} isSingleDocumentAction />
         </View>
         <View style={{ ...styles.switchContainer, width }}>
           <TogglePrivacySwitch

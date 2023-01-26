@@ -20,18 +20,25 @@ const styles = StyleSheet.create({
 
 interface DocumentCardActionsProps {
   document: DocumentInterface;
+  isSingleDocumentAction?: boolean;
 }
 
-const DocumentCardActions: React.FC<DocumentCardActionsProps> = ({ document }) => {
+const DocumentCardActions: React.FC<DocumentCardActionsProps> = ({ document, isSingleDocumentAction }) => {
   const [isModalOpen, openModalACtions] = useBoolean(false);
+
+  React.useEffect(() => {}, [isModalOpen]);
 
   return (
     <View style={styles.content}>
-      <Modal transparent visible={isModalOpen} animationType="fade">
-        <DocumentActionsModal document={document} close={openModalACtions.setFalse} />
+      <Modal transparent visible={isModalOpen} animationType='fade'>
+        <DocumentActionsModal
+          document={document}
+          close={openModalACtions.setFalse}
+          isSingleDocumentAction={!!isSingleDocumentAction}
+        />
       </Modal>
       <TouchableOpacity onPress={openModalACtions.setTrue} style={styles.icon}>
-        <Icon style={{ fontSize: 20 }} color={colors.black} name="ellipsis-v" />
+        <Icon style={{ fontSize: 20 }} color={colors.black} name='ellipsis-v' />
       </TouchableOpacity>
     </View>
   );
