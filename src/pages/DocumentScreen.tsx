@@ -3,6 +3,7 @@ import { Button, View } from 'native-base';
 import * as React from 'react';
 import { Dimensions, Linking, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import DocumentCardActions from '../components/Documents/DocumentCardActions';
 import DocumentPreview from '../components/Documents/DocumentPreview';
 import Screen from '../components/Screen';
 import TogglePrivacySwitch from '../components/UI/TogglePrivacySwitch';
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
   downloadIconContainer: {
     position: 'absolute',
     top: 10,
-    right: 10,
+    right: 70,
     height: 50,
     width: 50,
     borderRadius: 25,
@@ -45,6 +46,9 @@ const styles = StyleSheet.create({
   downloadIcon: {
     fontSize: 20,
     color: colors.primary,
+  },
+  actionContainer: {
+    right: 5,
   },
 });
 
@@ -75,6 +79,9 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
         <Button style={styles.downloadIconContainer} onPress={() => Linking.openURL(documentUrl)}>
           <Icon style={styles.downloadIcon} name='download' />
         </Button>
+        <View style={[styles.downloadIconContainer, styles.actionContainer]}>
+          <DocumentCardActions document={document} />
+        </View>
         <View style={{ ...styles.switchContainer, width }}>
           <TogglePrivacySwitch
             Context={DocumentContext}
