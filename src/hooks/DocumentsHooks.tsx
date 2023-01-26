@@ -153,6 +153,8 @@ export const useOpenItem = () => {
         } else {
           navigation.push('Document', {
             id: item.id,
+            extension: item.extension,
+            url: item.url,
           });
         }
       }
