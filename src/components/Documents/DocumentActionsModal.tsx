@@ -3,11 +3,7 @@ import { useBoolean } from 'react-hanger/array';
 import DocumentContext from '../../context/DocumentContext';
 import FolderContext from '../../context/FolderContext';
 import { useDeleteData } from '../../hooks/DataHooks';
-import {
-  useMoveDocumentOutOfFolder,
-
-  useRenameItem
-} from '../../hooks/DocumentsHooks';
+import { useMoveDocumentOutOfFolder, useRenameItem } from '../../hooks/DocumentsHooks';
 import { DocumentInterface } from '../../types/Documents';
 import ActionsModalContent from './Components/ActionsModalContent';
 import PickFolder from './Components/PickFolder';
@@ -16,10 +12,11 @@ import SendByEmailForm from './SendByEmailForm';
 
 interface Props {
   document: DocumentInterface;
+  isSingleDocumentAction?: boolean;
   close: () => void;
 }
 
-const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
+const DocumentActionsModal: React.FC<Props> = ({ document, isSingleDocumentAction, close }) => {
   const [pickingFolder, pickingFolderActions] = useBoolean(false);
   const [showSendEmailForm, showSendEmailFormActions] = useBoolean(false);
   const { triggerRenameDocument, showForm, showFormActions, isUpdating } = useRenameItem(document);
@@ -37,23 +34,33 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
   };
 
   if (showSendEmailForm) {
-    return <SendByEmailForm document={document} onSubmit={showSendEmailFormActions.setFalse} />
+    return <SendByEmailForm document={document} onSubmit={showSendEmailFormActions.setFalse} />;
   }
 
   if (showForm) {
-    return <Rename
-      close={showFormActions.setFalse}
-      closeModal={close}
-      onSubmit={triggerRenameDocument}
-      document={document}
-    />;
+    return (
+      <Rename
+        close={showFormActions.setFalse}
+        closeModal={close}
+        onSubmit={triggerRenameDocument}
+        document={document}
+      />
+    );
   }
 
   if (pickingFolder) {
     return <PickFolder document={document} onPick={pickingFolderActions.setFalse} close={close} />;
   }
 
-  return <ActionsModalContent document={document} close={close} isLoading={isLoading} actions={actions} />;
+  return (
+    <ActionsModalContent
+      document={document}
+      close={close}
+      isLoading={isLoading}
+      actions={actions}
+      isSingleDocumentAction={!!isSingleDocumentAction}
+    />
+  );
 };
 
 export default DocumentActionsModal;

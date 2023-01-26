@@ -20,13 +20,7 @@ const styles = StyleSheet.create({
 
 const PdfComponent: React.FC<PdfProps> = ({ uri }) => (
   <View style={styles.container}>
-    <Pdf
-      source={{ uri }}
-      onLoadComplete={() => {}}
-      onPageChanged={() => {}}
-      onError={() => {}}
-      style={styles.pdf}
-    />
+    <Pdf source={{ uri }} onLoadComplete={() => {}} onPageChanged={() => {}} onError={() => {}} style={styles.pdf} />
   </View>
 );
 
