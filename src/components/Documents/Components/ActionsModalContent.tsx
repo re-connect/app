@@ -63,7 +63,7 @@ const ActionsModalContent: React.FC<Props> = ({ document, isSingleDocumentAction
     close();
   };
 
-  const items = [
+  const items: ActionItemProps[] = [
     { action: actions.pickFolder, label: 'move_to_folder', icon: 'folder', condition: !document.is_folder },
     { action: actions.moveOut, label: 'move_out_of_folder', icon: 'folder', condition: !!document.folder_id },
     { action: actions.showSendEmailForm, label: 'send_by_email', icon: 'paper-plane', condition: !document.is_folder },
