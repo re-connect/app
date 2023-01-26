@@ -8,11 +8,13 @@ const DocumentPreview: React.FC<{ document: DocumentInterface }> = ({ document }
   const { previewUrl } = useShowDocument(document.id);
   const isPreviewUrlEmpty = previewUrl === '';
 
-  return !isPreviewUrlEmpty && document.extension !== 'pdf' ? (
+  if (isPreviewUrlEmpty) return null;
+
+  return document.extension !== 'pdf' ? (
     <Image style={styles.imageWrapper} source={{ uri: previewUrl }} />
-  ) : !isPreviewUrlEmpty ? (
+  ) : (
     <View style={styles.pdfWrapper}>{document.url && <PdfComponent uri={document.url} />}</View>
-  ) : null;
+  );
 };
 
 const { height } = Dimensions.get('window');
