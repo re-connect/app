@@ -1,27 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import LoginTemporisationContext from '../../context/LoginTemporisationContext';
 import { colors } from '../../style';
-import t from '../../services/translation';
+import TranslatedText from '../UI/Text';
 
 const LoginTemporisation = () => {
-  const { setAttempts, setIsTemporarlyBlocked } = React.useContext(LoginTemporisationContext);
+  const { setAttempts } = React.useContext(LoginTemporisationContext);
+
   const resetAttempts = () => {
     setAttempts(0);
-    setIsTemporarlyBlocked(false);
   };
+
   return (
     <View style={styles.wrapper}>
       <CountDown
         until={2 * 60}
-        onFinish={() => resetAttempts()}
+        onFinish={resetAttempts}
         size={20}
         timeToShow={['M', 'S']}
         timeLabels={{ m: '', s: '' }}
         digitStyle={{ backgroundColor: colors.white }}
       />
-      <Text style={styles.text}>{t.t('too_many_login_attempts')}</Text>
+      <TranslatedText style={styles.text}>too_many_login_attempts</TranslatedText>
     </View>
   );
 };
@@ -38,4 +39,5 @@ const styles = StyleSheet.create({
     marginTop: 80,
   },
 });
+
 export default LoginTemporisation;

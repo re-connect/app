@@ -91,21 +91,12 @@ export const useGetUser = () => {
   return triggerGetUser;
 };
 
-const MAX_LOGIN_ATTEMPTS = 10;
-
 export const useLogin = () => {
   const [isLoginIn, isLoginInActions] = useBoolean(false);
   const getUser = useGetUser();
   const fetchInvitations = useFetchInvitations();
   // const registerToNotificationsService = useRegisterToNotificationsService();
-  const { attempts, setAttempts, setIsTemporarlyBlocked } = React.useContext(LoginTemporisationContext);
-
-  React.useEffect(() => {
-    if (attempts + 1 >= MAX_LOGIN_ATTEMPTS) {
-      setIsTemporarlyBlocked(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [attempts]);
+  const { setAttempts } = React.useContext(LoginTemporisationContext);
 
   const triggerLogin = React.useCallback(
     async (values: LoginFormValues) => {

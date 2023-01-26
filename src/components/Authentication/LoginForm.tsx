@@ -69,7 +69,11 @@ const LoginForm: React.FC = () => {
   const { isTemporarlyBlocked } = React.useContext(LoginTemporisationContext);
   const keyboard = useKeyboard();
 
-  return !isTemporarlyBlocked ? (
+  if (isTemporarlyBlocked()) {
+    return <LoginTemporisation />;
+  }
+
+  return (
     <Formik
       enableReinitialize={true}
       initialValues={{ username: !lastUsername ? '' : lastUsername, password: '' }}
@@ -140,8 +144,6 @@ const LoginForm: React.FC = () => {
         </KeyboardAwareScrollView>
       )}
     </Formik>
-  ) : (
-    <LoginTemporisation />
   );
 };
 
