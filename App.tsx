@@ -28,6 +28,7 @@ import { NoteInterface } from './src/types/Note';
 import { UserInterface } from './src/types/Users';
 import { config } from './src/config';
 import { MAX_LOGIN_ATTEMPTS } from './src/appConstants';
+import { useNumber } from 'react-hanger';
 SplashScreen.hide();
 // eslint-disable-next-line
 // const whyDidYouRender = require('@welldone-software/why-did-you-render');
@@ -49,9 +50,9 @@ const App: React.FC = () => {
   const [beneficiary, setBeneficiary] = React.useState<UserInterface | null>(null);
   const [lastUsername, setLastUsername] = React.useState<string | null>(null);
   const [theme, themeActions] = useBoolean(false);
-  const [attempts, setAttempts] = React.useState<number>(0);
+  const attempts = useNumber(0);
 
-  const isTemporarlyBlocked = () => attempts === MAX_LOGIN_ATTEMPTS;
+  const isTemporarlyBlocked = () => attempts.value === MAX_LOGIN_ATTEMPTS;
 
   const MyTheme = extendTheme({
     colors: {
@@ -64,7 +65,8 @@ const App: React.FC = () => {
   });
 
   return (
-    <LoginTemporisationContext.Provider value={{ attempts, setAttempts, isTemporarlyBlocked }}>
+    <LoginTemporisationContext.Provider
+      value={{ attempts: attempts.value, setAttempts: attempts.setValue, isTemporarlyBlocked }}>
       <UserContext.Provider value={{ user, setUser, lastUsername, setLastUsername }}>
         <BeneficiaryContext.Provider
           value={{ current: beneficiary, setCurrent: setBeneficiary, list: beneficiaries, setList: setBeneficiaries }}>
