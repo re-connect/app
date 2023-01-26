@@ -1,7 +1,7 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { Button, View } from 'native-base';
 import * as React from 'react';
-import { Dimensions, Image, Linking, StyleSheet } from 'react-native';
+import { Dimensions, Linking, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import DocumentPreview from '../components/Documents/DocumentPreview';
 import Screen from '../components/Screen';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 type DocumentScreenParams = {
-  Document: { id: number; extension: string; url: string };
+  Document: { id: number };
 };
 type Props = {
   route: RouteProp<DocumentScreenParams, 'Document'>;
@@ -57,9 +57,9 @@ type Props = {
 };
 
 const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
-  const { id, extension, url } = route.params;
+  const { id } = route.params;
   const { list } = React.useContext(DocumentContext);
-  const { documentUrl, previewUrl } = useShowDocument(id);
+  const { documentUrl } = useShowDocument(id);
   const { width } = Dimensions.get('window');
   const document = findNestedDocument(!list ? [] : list, id);
   React.useEffect(() => {
@@ -67,11 +67,11 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
   });
 
   if (!document) return null;
-  const documentPreviewUrl = extension === 'pdf' ? url : previewUrl;
+
   return (
     <Screen>
       <View style={styles.container}>
-        <DocumentPreview previewUrl={documentPreviewUrl} extension={extension} />
+        <DocumentPreview document={document} />
         <Button style={styles.downloadIconContainer} onPress={() => Linking.openURL(documentUrl)}>
           <Icon style={styles.downloadIcon} name='download' />
         </Button>
