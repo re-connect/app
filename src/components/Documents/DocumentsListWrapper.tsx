@@ -36,11 +36,12 @@ const DocumentsListWrapper: React.FC<DocumentsListWrapperProps> = ({ folderId })
     await fetchFolders.triggerFetch();
     isFetching = fetchFolders.isFetching || fetchDocuments.isFetching;
   }
+  const onPress = (item: AnyDataInterface) => openItem(item)
 
   return (
     <List
       data={list}
-      onItemPress={(item: AnyDataInterface) => openItem(item)}
+      onItemPress={onPress}
       isFetchingData={isFetching}
       triggerFetchData={fetchDocumentsAndFolders}
       hasThumbnail

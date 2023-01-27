@@ -57,7 +57,7 @@ const List: React.FC<Props> = ({
         }
         renderItem={({ item }: DataCardInterface) => (
           <Card
-            itemId={item.id}
+            item={item}
             onPress={() => onItemPress(item)}
             isPrivate={!!item.b_prive}
             title={getName(item)}
