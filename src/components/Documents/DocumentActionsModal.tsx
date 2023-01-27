@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { Linking  } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import DocumentContext from '../../context/DocumentContext';
 import FolderContext from '../../context/FolderContext';
 import { useDeleteData } from '../../hooks/DataHooks';
-import { useMoveDocumentOutOfFolder, useRenameItem } from '../../hooks/DocumentsHooks';
+import { useMoveDocumentOutOfFolder, useRenameItem, useShowDocument } from '../../hooks/DocumentsHooks';
 import { DocumentInterface } from '../../types/Documents';
 import ActionsModalContent from './Components/ActionsModalContent';
 import PickFolder from './Components/PickFolder';
@@ -12,11 +13,11 @@ import SendByEmailForm from './SendByEmailForm';
 
 interface Props {
   document: DocumentInterface;
-  isSingleDocumentAction?: boolean;
   close: () => void;
 }
 
-const DocumentActionsModal: React.FC<Props> = ({ document, isSingleDocumentAction, close }) => {
+const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
+  const { documentUrl } = useShowDocument(document.id);
   const [pickingFolder, pickingFolderActions] = useBoolean(false);
   const [showSendEmailForm, showSendEmailFormActions] = useBoolean(false);
   const { triggerRenameDocument, showForm, showFormActions, isUpdating } = useRenameItem(document);
@@ -27,6 +28,7 @@ const DocumentActionsModal: React.FC<Props> = ({ document, isSingleDocumentActio
   const isLoading = isMovingOut || isUpdating || isDeleting;
   const actions = {
     delete: deleteItem,
+    download: () => Linking.openURL(documentUrl),
     moveOut: triggerMoveDocumentOutOfFolder,
     pickFolder: pickingFolderActions.setTrue,
     showRenameForm: showFormActions.setTrue,
@@ -58,7 +60,6 @@ const DocumentActionsModal: React.FC<Props> = ({ document, isSingleDocumentActio
       close={close}
       isLoading={isLoading}
       actions={actions}
-      isSingleDocumentAction={!!isSingleDocumentAction}
     />
   );
 };

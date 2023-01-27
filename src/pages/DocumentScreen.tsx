@@ -1,8 +1,7 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
-import { Button, View } from 'native-base';
+import { View } from 'native-base';
 import * as React from 'react';
-import { Dimensions, Linking, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Dimensions, StyleSheet } from 'react-native';
 import DocumentCardActions from '../components/Documents/DocumentCardActions';
 import DocumentPreview from '../components/Documents/DocumentPreview';
 import Screen from '../components/Screen';
@@ -10,7 +9,6 @@ import TogglePrivacySwitch from '../components/UI/TogglePrivacySwitch';
 import DocumentContext from '../context/DocumentContext';
 import { getTruncatedText } from '../helpers/dataHelper';
 import { findNestedDocument } from '../helpers/documentsHelper';
-import { useShowDocument } from '../hooks/DocumentsHooks';
 import { colors } from '../style';
 
 const styles = StyleSheet.create({
@@ -28,10 +26,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  downloadIconContainer: {
+  actionsContainer: {
     position: 'absolute',
     top: 10,
-    right: 70,
+    right: 10,
     height: 50,
     width: 50,
     borderRadius: 25,
@@ -42,13 +40,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2,
     shadowOffset: { width: 1, height: 1 },
-  },
-  downloadIcon: {
-    fontSize: 20,
-    color: colors.primary,
-  },
-  actionContainer: {
-    right: 5,
   },
 });
 
@@ -63,7 +54,6 @@ type Props = {
 const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
   const { id } = route.params;
   const { list } = React.useContext(DocumentContext);
-  const { documentUrl } = useShowDocument(id);
   const { width } = Dimensions.get('window');
   const document = findNestedDocument(!list ? [] : list, id);
   React.useEffect(() => {
@@ -72,6 +62,7 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
 
   if (!document) {
     navigation.goBack();
+
     return null;
   }
 
@@ -79,11 +70,8 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
     <Screen>
       <View style={styles.container}>
         <DocumentPreview document={document} />
-        <Button style={styles.downloadIconContainer} onPress={() => Linking.openURL(documentUrl)}>
-          <Icon style={styles.downloadIcon} name='download' />
-        </Button>
-        <View style={[styles.downloadIconContainer, styles.actionContainer]}>
-          <DocumentCardActions document={document} isSingleDocumentAction />
+        <View style={styles.actionsContainer}>
+          <DocumentCardActions document={document} />
         </View>
         <View style={{ ...styles.switchContainer, width }}>
           <TogglePrivacySwitch
