@@ -10,6 +10,7 @@ import ActionsModalContent from './Components/ActionsModalContent';
 import PickFolder from './Components/PickFolder';
 import Rename from './Components/Rename';
 import SendByEmailForm from './SendByEmailForm';
+// import ReactNativeBlobUtil from 'react-native-blob-util';
 
 interface Props {
   document: DocumentInterface;
@@ -28,7 +29,15 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
   const isLoading = isMovingOut || isUpdating || isDeleting;
   const actions = {
     delete: deleteItem,
-    download: () => Linking.openURL(documentUrl),
+    view: () => Linking.openURL(documentUrl),
+    // download: () => {
+    //   ReactNativeBlobUtil
+    //     .config({fileCache: true})
+    //     .fetch('GET', documentUrl, {})
+    //     .then((res) => {
+    //       console.log('The file saved to ', res.path())
+    //     });
+    // },
     moveOut: triggerMoveDocumentOutOfFolder,
     pickFolder: pickingFolderActions.setTrue,
     showRenameForm: showFormActions.setTrue,
