@@ -29,7 +29,6 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
   const isLoading = isMovingOut || isUpdating || isDeleting;
   const actions = {
     delete: deleteItem,
-    view: () => Linking.openURL(documentUrl),
     // download: () => {
     //   ReactNativeBlobUtil
     //     .config({fileCache: true})
@@ -38,6 +37,7 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
     //       console.log('The file saved to ', res.path())
     //     });
     // },
+    view: () => {},
     moveOut: triggerMoveDocumentOutOfFolder,
     pickFolder: pickingFolderActions.setTrue,
     showRenameForm: showFormActions.setTrue,
@@ -46,6 +46,10 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
 
   if (showSendEmailForm) {
     return <SendByEmailForm document={document} onSubmit={showSendEmailFormActions.setFalse} />;
+  }
+
+  if (!document.is_folder) {
+    actions.view = () => Linking.openURL(documentUrl);
   }
 
   if (showForm) {

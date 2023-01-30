@@ -28,7 +28,6 @@ interface Props {
     pickFolder: () => void;
     delete: () => void;
     view: () => void;
-    download: () => void;
     moveOut: () => void;
     showRenameForm: () => void;
     showSendEmailForm: () => void;
@@ -57,13 +56,15 @@ const ActionsModalContent: React.FC<Props> = ({ document, close, isLoading, acti
   const items: ActionItemProps[] = [
     { action: actions.showSendEmailForm, label: 'send_by_email', icon: 'paper-plane', condition: !document.is_folder },
     // { action: actions.download, color: colors.yellow, label: 'download', icon: 'download' },
-    { action: actions.view, color: colors.yellow, label: 'Download', icon: 'download' },
     { action: actions.pickFolder, label: 'move_to_folder', icon: 'folder', condition: !document.is_folder },
     { action: actions.moveOut, label: 'move_out_of_folder', icon: 'folder', condition: !!document.folder_id },
     { action: actions.showRenameForm, color: colors.green, label: 'rename', icon: 'pen' },
     { action: actions.delete, color: colors.red, label: 'delete', icon: 'trash' },
     { action: close, color: colors.black, label: 'cancel', icon: 'times' },
   ];
+  if (!document.is_folder) {
+    items.push( { action: actions.view, color: colors.yellow, label: 'Download', icon: 'download' });
+  }
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={close}>
