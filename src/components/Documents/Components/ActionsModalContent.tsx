@@ -27,7 +27,7 @@ interface Props {
   actions: {
     pickFolder: () => void;
     delete: () => void;
-    download: () => void;
+    view: () => void;
     moveOut: () => void;
     showRenameForm: () => void;
     showSendEmailForm: () => void;
@@ -55,13 +55,16 @@ const ActionItem: React.FC<ActionItemProps> = ({ action, label, icon, color = co
 const ActionsModalContent: React.FC<Props> = ({ document, close, isLoading, actions }) => {
   const items: ActionItemProps[] = [
     { action: actions.showSendEmailForm, label: 'send_by_email', icon: 'paper-plane', condition: !document.is_folder },
-    { action: actions.download, color: colors.yellow, label: 'view', icon: 'eye' },
+    // { action: actions.download, color: colors.yellow, label: 'download', icon: 'download' },
     { action: actions.pickFolder, label: 'move_to_folder', icon: 'folder', condition: !document.is_folder },
     { action: actions.moveOut, label: 'move_out_of_folder', icon: 'folder', condition: !!document.folder_id },
     { action: actions.showRenameForm, color: colors.green, label: 'rename', icon: 'pen' },
     { action: actions.delete, color: colors.red, label: 'delete', icon: 'trash' },
     { action: close, color: colors.black, label: 'cancel', icon: 'times' },
   ];
+  if (!document.is_folder) {
+    items.push( { action: actions.view, color: colors.yellow, label: 'Download', icon: 'download' });
+  }
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={close}>

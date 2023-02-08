@@ -144,17 +144,18 @@ export const useOpenItem = () => {
 
   const triggerOpenItem = React.useCallback(
     (item: DocumentInterface | FolderInterface) => {
-      if (item) {
-        if (item.is_folder && item.beneficiaire) {
-          navigation.push('Folder', {
-            folderId: item.id,
-            beneficiaryId: item.beneficiaire.id,
-          });
-        } else {
-          navigation.push('Document', {
-            id: item.id,
-          });
-        }
+      if (!item) {
+        return;
+      }
+      if (item.is_folder && item.beneficiaire) {
+        navigation.push('Folder', {
+          folderId: item.id,
+          beneficiaryId: item.beneficiaire.id,
+        });
+      } else {
+        navigation.push('Document', {
+          id: item.id,
+        });
       }
     },
     [navigation],
