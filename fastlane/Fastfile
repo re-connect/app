@@ -118,7 +118,6 @@ platform :ios do
     profile_env_name = "sigh_#{ENV['IOS_APP_ID']}_#{ENV['MATCH_TYPE']}_profile-name"
     gymOptions = ({
       silent: true,
-      xcargs: "PROVISIONING_PROFILE_SPECIFIER='#{ENV[profile_env_name]}' DEVELOPMENT_TEAM='#{ENV['IOS_TEAM_ID']}'"
     }).merge(
       File.directory?("../#{xcworkspace}") ?
         {workspace: xcworkspace} :
