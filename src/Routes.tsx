@@ -270,7 +270,7 @@ const Activation = () => {
   );
 };
 
-const AppContainer = ({ user }: { user: UserInterface }) => {
+const AppContainer = ({ user }: { user: UserInterface | null }) => {
   const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
   activeTheme = isMember;
 

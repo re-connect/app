@@ -1,14 +1,14 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
-import { Button, View } from 'native-base';
+import { View } from 'native-base';
 import * as React from 'react';
-import { Dimensions, Image, Linking, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { Dimensions, StyleSheet } from 'react-native';
+import DocumentCardActions from '../components/Documents/DocumentCardActions';
+import DocumentPreview from '../components/Documents/DocumentPreview';
 import Screen from '../components/Screen';
 import TogglePrivacySwitch from '../components/UI/TogglePrivacySwitch';
 import DocumentContext from '../context/DocumentContext';
 import { getTruncatedText } from '../helpers/dataHelper';
 import { findNestedDocument } from '../helpers/documentsHelper';
-import { useShowDocument } from '../hooks/DocumentsHooks';
 import { colors } from '../style';
 
 const styles = StyleSheet.create({
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     position: 'relative',
+    height: '100%',
   },
   switchContainer: {
     position: 'absolute',
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  downloadIconContainer: {
+  actionsContainer: {
     position: 'absolute',
     top: 10,
     right: 10,
@@ -35,10 +36,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.white,
-  },
-  downloadIcon: {
-    fontSize: 20,
-    color: colors.primary,
+    shadowColor: colors.accentDark,
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    shadowOffset: { width: 1, height: 1 },
   },
 });
 
@@ -53,25 +54,25 @@ type Props = {
 const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
   const { id } = route.params;
   const { list } = React.useContext(DocumentContext);
-  const { documentUrl, previewUrl } = useShowDocument(id);
-  const { height, width } = Dimensions.get('window');
+  const { width } = Dimensions.get('window');
   const document = findNestedDocument(!list ? [] : list, id);
   React.useEffect(() => {
     navigation.setOptions({ title: getTruncatedText(!document ? '' : document.nom) });
   });
 
-  if (!document) return null;
+  if (!document) {
+    navigation.goBack();
 
+    return null;
+  }
 
   return (
     <Screen>
       <View style={styles.container}>
-        {previewUrl === '' ? null : (
-          <Image style={{ height: height - 200, resizeMode: 'contain' }} source={{ uri: previewUrl }} />
-        )}
-        <Button style={styles.downloadIconContainer} onPress={() => Linking.openURL(documentUrl)}>
-          <Icon style={styles.downloadIcon} name="download" />
-        </Button>
+        <DocumentPreview document={document} />
+        <View style={styles.actionsContainer}>
+          <DocumentCardActions document={document} />
+        </View>
         <View style={{ ...styles.switchContainer, width }}>
           <TogglePrivacySwitch
             Context={DocumentContext}

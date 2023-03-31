@@ -13,6 +13,7 @@ interface Props {
   isLoading?: boolean;
   onPress?: (event: any) => void;
   text: string;
+  fontSize?: number;
 }
 const styles = StyleSheet.create({
   container: {
@@ -37,10 +38,19 @@ const styles = StyleSheet.create({
   icon: { fontSize: 20, marginHorizontal: 16 },
 });
 
-const RoundedButton: React.FC<Props> = ({ text, onPress, isLoading, iconName, iconColor, disabled, color }) => {
+const RoundedButton: React.FC<Props> = ({
+  text,
+  onPress,
+  isLoading,
+  iconName,
+  iconColor,
+  disabled,
+  color,
+  fontSize,
+}) => {
   const theme = React.useContext(ThemeContext);
   const userColor = theme.value ? colors.primaryPro : colors.primary;
-
+  const fontSizeStyle = fontSize ? { fontSize } : {};
   return (
     <TouchableOpacity
       disabled={isLoading || disabled}
@@ -49,10 +59,9 @@ const RoundedButton: React.FC<Props> = ({ text, onPress, isLoading, iconName, ic
         { backgroundColor: color ? color : userColor },
         isLoading || disabled ? styles.loading : {},
       ]}
-      onPress={onPress}
-    >
+      onPress={onPress}>
       {!iconName ? null : <Icon style={styles.icon} color={!iconColor ? colors.white : iconColor} name={iconName} />}
-      <Text style={styles.text}>{text}</Text>
+      <Text style={[styles.text, fontSizeStyle]}>{text}</Text>
       {isLoading ? <ActivityIndicator style={styles.loader} size='small' color={colors.black} /> : null}
     </TouchableOpacity>
   );

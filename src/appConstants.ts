@@ -8,3 +8,4 @@ export const apiv2Endpoint = `${apiEndpoint}/v2`;
 export const loginApiEndpoint = `${backendUrl}/oauth/v2/token`;
 export const connexionInformation = config.connexionInformation;
 export const geniusSdkLicense = config.geniusSdkLicense;
+export const MAX_LOGIN_ATTEMPTS = 10;
