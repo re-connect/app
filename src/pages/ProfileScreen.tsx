@@ -60,23 +60,21 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
         {items.map((item: ProfileItemInterface) => (
           <ProfileItem item={item} />
         ))}
-        {isMember ? null : (
-          <View style={{ marginHorizontal: 32, marginTop: 15 }}>
-            <RoundedButton text='new_password' onPress={() => navigation.navigate('ResetPassword')} />
-            <Separator height={2} />
-            {!current || !current.subject_id ? null : (
-              <RoundedButton
-                isLoading={isDeleting}
-                color={colors.red}
-                text='delete_my_account'
-                onPress={() => {
-                  triggerDeleteBeneficiary(current.subject_id);
-                }}
-              />
-            )}
-            <Separator height={4} />
-          </View>
-        )}
+        <View style={{ marginHorizontal: 32, marginTop: 15 }}>
+          <RoundedButton text='new_password' onPress={() => navigation.navigate('ResetPassword')} />
+          <Separator height={2} />
+          {!current || !current.subject_id || isMember ? null : (
+            <RoundedButton
+              isLoading={isDeleting}
+              color={colors.red}
+              text='delete_my_account'
+              onPress={() => {
+                triggerDeleteBeneficiary(current.subject_id);
+              }}
+            />
+          )}
+          <Separator height={4} />
+        </View>
       </KeyboardAwareScrollView>
     </Screen>
   );

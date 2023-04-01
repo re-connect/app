@@ -1,12 +1,12 @@
 import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
-import { Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import resetPasswordShape from '../../helpers/forms/resetPasswordShape';
+import { resetPasswordUserShape, resetPasswordMemberShape } from '../../helpers/forms/resetPasswordShape';
 import { useResetPassword } from '../../hooks/UserHooks';
 import RoundedButton from '../UI/RoundedButton';
 import Separator from '../UI/Separator';
 import TextField from '../UI/TextField';
+import UserContext from '../../context/UserContext';
 
 export interface ResetPasswordData {
   password: string;
@@ -15,6 +15,9 @@ export interface ResetPasswordData {
 
 const ResetPasswordForm: React.FC = () => {
   const { isResetting, reset } = useResetPassword();
+  const { user } = React.useContext(UserContext);
+  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
+  const resetPasswordShape = isMember ? resetPasswordMemberShape : resetPasswordUserShape;
   return (
     <Formik
       validationSchema={resetPasswordShape}
