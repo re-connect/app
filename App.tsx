@@ -29,6 +29,7 @@ import { UserInterface } from './src/types/Users';
 import { config } from './src/config';
 import { MAX_LOGIN_ATTEMPTS } from './src/appConstants';
 import { useNumber } from 'react-hanger';
+import { useCheckAndUpdateApp } from './src/hooks/UpdateHooks';
 SplashScreen.hide();
 // eslint-disable-next-line
 // const whyDidYouRender = require('@welldone-software/why-did-you-render');
@@ -63,6 +64,8 @@ const App: React.FC = () => {
       border: colors.black,
     },
   });
+
+  useCheckAndUpdateApp();
 
   return (
     <LoginTemporisationContext.Provider
