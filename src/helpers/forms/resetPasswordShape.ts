@@ -2,10 +2,11 @@ import * as Yup from 'yup';
 import { addMinAndMaxNotEmpty, getPasswordConfirmSchema } from './yupHelpers';
 import t from '../../services/translation';
 
-const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)[a-zA-Z0-9\W]{8,40}$/;
+const passwordRegex =
+  /^(?:(?=.*[!@#$%^&*()\-_=+{};:,<.>§~])(?=.*[0-9])(?=.*[a-z]))|(?:(?=.*[!@#$%^&*()\-_=+{};:,<.>§~])(?=.*[0-9])(?=.*[A-Z]))|(?:(?=.*[!@#$%^&*()\-_=+{};:,<.>§~])(?=.*[a-z])(?=.*[A-Z]))|(?:(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]))\S*{8,40}$/;
 const resetPasswordMemberShape = (): Yup.ObjectSchema<any> =>
   Yup.object().shape({
-    password: Yup.string().matches(passwordRegex, t.t('form_field_password_security_invalid')),
+    password: Yup.string().matches(passwordRegex, t.t('form_field_password_security_invalid')).required(),
     confirm: getPasswordConfirmSchema(),
   });
 
