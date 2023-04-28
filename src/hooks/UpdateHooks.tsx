@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
-import SpInAppUpdates, { NeedsUpdateResponse, IAUUpdateKind, StartUpdateOptions } from 'sp-react-native-in-app-updates';
+import SpInAppUpdates, { IAUUpdateKind, StartUpdateOptions } from 'sp-react-native-in-app-updates';
 
 export const useCheckAndUpdateApp = () => {
   const { t } = useTranslation();
   useEffect(() => {
     const inAppUpdates = new SpInAppUpdates(
-      true, // isDebug
+      false, // isDebug
     );
     // curVersion is optional if you don't provide it will automatically take from the app using react-native-device-info
-    inAppUpdates.checkNeedsUpdate({ curVersion: '0.0.8' }).then(result => {
+    inAppUpdates.checkNeedsUpdate().then(result => {
       if (result.shouldUpdate) {
         const updateOptions: StartUpdateOptions = Platform.select({
           ios: {
