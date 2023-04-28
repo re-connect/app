@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import LoginTemporisationContext from '../../context/LoginTemporisationContext';
 import { colors } from '../../style';
@@ -30,6 +30,9 @@ const LoginTemporisation = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    position: 'absolute',
+    height: Dimensions.get('screen').height,
+    width: Dimensions.get('screen').width,
     justifyContent: 'center',
   },
   text: {

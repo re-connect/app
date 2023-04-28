@@ -167,4 +167,6 @@ export default {
   delete_my_account_confirm: 'هل أنت متأكد أنك تريد حذف حسابك إلى الأبد؟',
   delete_my_account: 'احذف حسابي',
   this_action_is_irreversible: 'هذا العمل لا رجوع فيه',
+  ios_app_udpate_available_title: 'تحديث متوفر',
+  ios_app_udpate_available_message: 'تحديث متوفر للتطبيق. هل تريد تحديثه الآن؟',
 };

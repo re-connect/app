@@ -167,4 +167,6 @@ export default {
   delete_my_account_confirm: 'Are you sure that you want to delete your account forever ?',
   delete_my_account: 'Delete my account',
   this_action_is_irreversible: 'This action is irreversible',
+  ios_app_udpate_available_title: 'Update available',
+  ios_app_udpate_available_message: 'There is a new version available on the AppStore. Would you like to upgrade?',
 };

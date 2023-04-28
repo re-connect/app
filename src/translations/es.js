@@ -169,4 +169,7 @@ export default {
   delete_my_account_confirm: '¿Está seguro de que quiere eliminar su cuenta para siempre?',
   delete_my_account: 'Eliminar mi cuenta',
   this_action_is_irreversible: 'Esta acción es irreversible',
+  ios_app_udpate_available_title: 'Actualización de la aplicación disponible',
+  ios_app_udpate_available_message:
+    'Una nueva versión de Reconnect está disponible en la AppStore, ¿quieres instalarla?',
 };

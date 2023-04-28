@@ -168,4 +168,6 @@ export default {
   delete_my_account_confirm: 'Êtes vous sur de vouloir supprimer votre compte ?',
   delete_my_account: 'Supprimer mon compte',
   this_action_is_irreversible: 'Cette action est irréversible',
+  ios_app_udpate_available_title: 'Actualizare disponibila',
+  ios_app_udpate_available_message: 'O nouă versiune de Reconnect este disponibilă pe AppStore, doriți să o instalați?',
 };
