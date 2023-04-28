@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
 import SpInAppUpdates, { NeedsUpdateResponse, IAUUpdateKind, StartUpdateOptions } from 'sp-react-native-in-app-updates';
 
 export const useCheckAndUpdateApp = () => {
+  const { t } = useTranslation();
   useEffect(() => {
     const inAppUpdates = new SpInAppUpdates(
       true, // isDebug
@@ -12,10 +14,10 @@ export const useCheckAndUpdateApp = () => {
       if (result.shouldUpdate) {
         const updateOptions: StartUpdateOptions = Platform.select({
           ios: {
-            title: 'Mise à jour disponible',
-            message: "Une nouvelle version de Reconnect est disponible sur l'AppStore, souhaitez-vous l'installer ?",
-            buttonUpgradeText: 'Mettre à jour',
-            buttonCancelText: 'Annuler',
+            title: t('ios_app_udpate_available_title'),
+            message: t('ios_app_udpate_available_message'),
+            buttonUpgradeText: t('update'),
+            buttonCancelText: t('cancel'),
           },
           android: {
             updateType: IAUUpdateKind.IMMEDIATE,
