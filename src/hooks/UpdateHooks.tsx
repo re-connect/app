@@ -9,7 +9,7 @@ export const useCheckAndUpdateApp = () => {
     const inAppUpdates = new SpInAppUpdates(
       false, // isDebug
     );
-    // curVersion is optional if you don't provide it will automatically take from the app using react-native-device-info
+
     inAppUpdates.checkNeedsUpdate().then(result => {
       if (result.shouldUpdate) {
         const updateOptions: StartUpdateOptions = Platform.select({
@@ -23,7 +23,7 @@ export const useCheckAndUpdateApp = () => {
             updateType: IAUUpdateKind.IMMEDIATE,
           },
         });
-        inAppUpdates.startUpdate(updateOptions); // https://github.com/SudoPlz/sp-react-native-in-app-updates/blob/master/src/types.ts#L78
+        inAppUpdates.startUpdate(updateOptions);
       }
     });
   }, []);
