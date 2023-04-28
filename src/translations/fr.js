@@ -179,4 +179,7 @@ export default {
     "Le mot de passe doit comporter au minimum 8 caractères et maximum 40 ainsi qu'au moins une majuscule, une minuscule, un chiffre et un caractère spécial (?,!,$,&,@,#)",
   too_many_login_attempts:
     'Vous avez effectué trop de tentatives de connexions et vous avez été bloqué pour deux minutes.',
+  ios_app_udpate_available_title: 'Mise à jour disponible',
+  ios_app_udpate_available_message:
+    "Une nouvelle version de Reconnect est disponible sur l'AppStore, souhaitez-vous l'installer ?",
 };
