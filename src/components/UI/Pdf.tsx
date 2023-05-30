@@ -26,7 +26,7 @@ const PdfComponent: React.FC<PdfProps> = ({ uri }) => (
       onPageChanged={() => {}}
       onError={() => {}}
       style={styles.pdf}
-      trustAllCerts={!(Platform.OS == 'android')} //hack only for android, fix pdf loading
+      trustAllCerts={!(Platform.OS === 'android')} //hack only for android, fix pdf loading
     />
   </View>
 );
