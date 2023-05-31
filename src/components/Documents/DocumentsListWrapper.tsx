@@ -27,16 +27,17 @@ const DocumentsListWrapper: React.FC<DocumentsListWrapperProps> = ({ folderId })
   const folderContext = React.useContext(FolderContext);
   const openItem = useOpenItem();
   let isFetching = fetchFolders.isFetching || fetchDocuments.isFetching;
-  const documents = findBy(documentContext.list, {'folder_id': folderId});
-  const folders = findBy(folderContext.list, {'dossier_parent_id': folderId});
+  const documents = findBy(documentContext.list, { folder_id: folderId });
+  const folders = folderContext.list.filter(item => item.is_folder && item?.dossier_parent?.id === folderId);
   const list = [...folders, ...documents];
 
   const fetchDocumentsAndFolders = async () => {
     await fetchDocuments.triggerFetch();
     await fetchFolders.triggerFetch();
     isFetching = fetchFolders.isFetching || fetchDocuments.isFetching;
-  }
-  const onPress = (item: AnyDataInterface) => openItem(item)
+  };
+
+  const onPress = (item: AnyDataInterface) => openItem(item);
 
   return (
     <List
