@@ -40,6 +40,7 @@ const DocumentUploadModal: React.FC<{
       source: 'image',
       sourceImageUrl: res.assets && res.assets[0].uri,
       multiPage: false,
+      defaultFilter: 'none',
     });
     const images: ImageInterface[] = [];
     geniusImageScanned.scans.map((enhancedImage: any) => {

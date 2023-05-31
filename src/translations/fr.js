@@ -175,6 +175,11 @@ export default {
   delete_my_account_confirm: 'Êtes vous sur de vouloir supprimer votre compte ?',
   delete_my_account: 'Supprimer mon compte',
   this_action_is_irreversible: 'Cette action est irréversible',
+  form_field_password_security_invalid:
+    "Le mot de passe doit comporter au minimum 8 caractères et maximum 40 ainsi qu'au moins 3 des critères suivants : une majuscule, une minuscule, un chiffre et un caractère spécial (?,!,$,&,@,#)",
   too_many_login_attempts:
     'Vous avez effectué trop de tentatives de connexions et vous avez été bloqué pour deux minutes.',
+  ios_app_udpate_available_title: 'Mise à jour disponible',
+  ios_app_udpate_available_message:
+    "Une nouvelle version de Reconnect est disponible sur l'AppStore, souhaitez-vous l'installer ?",
 };

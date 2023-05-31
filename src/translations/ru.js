@@ -168,4 +168,6 @@ export default {
   delete_my_account_confirm: 'Вы уверены, что хотите удалить свой аккаунт навсегда?',
   delete_my_account: 'Удалите мой аккаунт',
   this_action_is_irreversible: 'Это действие необратимо',
+  ios_app_udpate_available_title: 'Доступно обновление',
+  ios_app_udpate_available_message: 'В AppStore доступна новая версия Reconnect, установить ее?',
 };

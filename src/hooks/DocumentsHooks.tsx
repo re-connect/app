@@ -48,6 +48,7 @@ export const useScanDocument = () => {
       jpegQuality: 100,
       multiPageFormat: 'pdf',
       pdfPageSize: 'a4',
+      defaultFilter: 'none',
     });
     return geniusImageScanned;
   };
