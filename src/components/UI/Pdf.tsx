@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 
 interface PdfProps {
@@ -20,7 +20,14 @@ const styles = StyleSheet.create({
 
 const PdfComponent: React.FC<PdfProps> = ({ uri }) => (
   <View style={styles.container}>
-    <Pdf source={{ uri }} onLoadComplete={() => {}} onPageChanged={() => {}} onError={() => {}} style={styles.pdf} />
+    <Pdf
+      source={{ uri }}
+      onLoadComplete={() => {}}
+      onPageChanged={() => {}}
+      onError={() => {}}
+      style={styles.pdf}
+      trustAllCerts={!(Platform.OS === 'android')} //hack only for android, fix pdf loading
+    />
   </View>
 );
 
