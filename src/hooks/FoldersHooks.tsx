@@ -26,10 +26,10 @@ export const useCreateFolder = (beneficiaryId?: number, parentFolderId?: number)
           [
             {text: 'Cancel', onPress: () => {}, style: 'cancel'},
             {text: 'OK', onPress: async (name: string) => {
-              const params = null === parentFolderId ? {} : {dossier_parent_id: parentFolderId, nom: name};
+              const params:{nom: string; dossier_parent_id?: number} = {nom: name};
+              if (parentFolderId) params.dossier_parent_id = parentFolderId;
               const createdFolder = await makeRequestv2(`/beneficiaries/${beneficiaryId}/folders`, 'POST', params);
               if (createdFolder) setList([createdFolder, ...list]);
-
             }},
           ],
           {

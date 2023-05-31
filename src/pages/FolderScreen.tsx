@@ -24,12 +24,12 @@ const FolderScreen: React.FC<Props> = ({ route }) => {
 
   React.useEffect(() => {
     navigation.setOptions({ title: !folder ? 'Dossier' : getTruncatedText(folder?.nom) });
-  })
+  });
 
   return (
-    <Screen backgroundColor="#97A3CF">
+    <Screen backgroundColor='#97A3CF'>
       <DocumentsBottomActions folderId={folderId} />
-      <DocumentsListWrapper folderId={folderId}/>
+      <DocumentsListWrapper folderId={folderId} />
     </Screen>
   );
 };
