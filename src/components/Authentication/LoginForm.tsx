@@ -1,8 +1,7 @@
 import { useKeyboard } from '@react-native-community/hooks';
 import { Formik, FormikProps } from 'formik';
-import { View } from 'native-base';
 import * as React from 'react';
-import { Image, Linking, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { backendUrl } from '../../appConstants';
 import LoginTemporisationContext from '../../context/LoginTemporisationContext';

@@ -1,6 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { checkUserNameValidity, UsernameValidityInterface } from '../../services/usernameValidation';
 import { colors } from '../../style';
@@ -54,20 +53,20 @@ const BeneficiaryUsernameHelpText: React.FC<Props> = ({ username }) => {
   }, [username]);
   return (
     <View style={styles.usernameHelp}>
-      <UsernameHelpTextPart text="first_name_lower" validity={usernameValidity.firstName} />
-      <UsernameHelpTextPart text="." validity={usernameValidity.firstDot} />
-      <UsernameHelpTextPart text="last_name_lower" validity={usernameValidity.lastName} />
-      <UsernameHelpTextPart text="." validity={usernameValidity.secondDot} />
-      <UsernameHelpTextPart text="dd" validity={usernameValidity.day} />
-      <UsernameHelpTextPart text="/" validity={usernameValidity.firstSlash} />
-      <UsernameHelpTextPart text="mm" validity={usernameValidity.month} />
-      <UsernameHelpTextPart text="/" validity={usernameValidity.secondSlash} />
-      <UsernameHelpTextPart text="yyyy" validity={usernameValidity.year} />
+      <UsernameHelpTextPart text='first_name_lower' validity={usernameValidity.firstName} />
+      <UsernameHelpTextPart text='.' validity={usernameValidity.firstDot} />
+      <UsernameHelpTextPart text='last_name_lower' validity={usernameValidity.lastName} />
+      <UsernameHelpTextPart text='.' validity={usernameValidity.secondDot} />
+      <UsernameHelpTextPart text='dd' validity={usernameValidity.day} />
+      <UsernameHelpTextPart text='/' validity={usernameValidity.firstSlash} />
+      <UsernameHelpTextPart text='mm' validity={usernameValidity.month} />
+      <UsernameHelpTextPart text='/' validity={usernameValidity.secondSlash} />
+      <UsernameHelpTextPart text='yyyy' validity={usernameValidity.year} />
       <View style={styles.validIconContainer}>
         {!isEverythingValid ? (
-          <Icon name="times" style={styles.invalidIcon} />
+          <Icon name='times' style={styles.invalidIcon} />
         ) : (
-          <Icon name="check" style={styles.validIcon} />
+          <Icon name='check' style={styles.validIcon} />
         )}
       </View>
     </View>

@@ -1,7 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import { View } from 'native-base';
 import * as React from 'react';
-import { Linking, StyleSheet, TouchableOpacity } from 'react-native';
+import { Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../components/Screen';
 import IconButton from '../components/UI/IconButton';
@@ -36,24 +35,29 @@ type Props = {
   navigation: StackNavigationProp<any>;
 };
 
-const getContactDetails = (contact: AnyDataInterface): React.FC => () => (
-  <View style={styles.contactInfos}>
-    {!contact.telephone ? null : (
-      <TouchableOpacity style={styles.contactInfo} onPress={() => {
-        if (contact && contact.telephone && Linking.canOpenURL(`tel:${contact.telephone}`)) {
-          Linking.openURL(`tel:${contact.telephone}`);
-        }
-      }}>
-        <Icon style={styles.icon} name="phone" color={colors.gray} />
-      </TouchableOpacity>
-    )}
-    {!contact.email ? null : (
-      <View style={styles.contactInfo}>
-        <Icon style={styles.icon} name="at" color={colors.gray} />
+const getContactDetails =
+  (contact: AnyDataInterface): React.FC =>
+  () =>
+    (
+      <View style={styles.contactInfos}>
+        {!contact.telephone ? null : (
+          <TouchableOpacity
+            style={styles.contactInfo}
+            onPress={() => {
+              if (contact && contact.telephone && Linking.canOpenURL(`tel:${contact.telephone}`)) {
+                Linking.openURL(`tel:${contact.telephone}`);
+              }
+            }}>
+            <Icon style={styles.icon} name='phone' color={colors.gray} />
+          </TouchableOpacity>
+        )}
+        {!contact.email ? null : (
+          <View style={styles.contactInfo}>
+            <Icon style={styles.icon} name='at' color={colors.gray} />
+          </View>
+        )}
       </View>
-    )}
-  </View>
-);
+    );
 
 const getContactName = (contact: AnyDataInterface) => `${contact.prenom} ${contact.nom}`;
 const getEndpoint = () => 'contacts';
@@ -68,14 +72,14 @@ const ContactsScreen: React.FC<Props> = ({ navigation }) => {
     <Screen>
       <View style={styles.container}>
         <View style={{ position: 'absolute', right: 5, bottom: 5, zIndex: 1 }}>
-          <IconButton size={60} iconName="plus" onPress={() => navigation.navigate('CreateContact')} />
+          <IconButton size={60} iconName='plus' onPress={() => navigation.navigate('CreateContact')} />
         </View>
         <List
           data={list}
           onItemPress={(item: AnyDataInterface) => navigation.navigate('Contact', { contactId: item.id })}
           isFetchingData={isFetching}
           triggerFetchData={triggerFetch}
-          itemIconName="user"
+          itemIconName='user'
           getName={getContactName}
           getItemRightComponent={getContactDetails}
           getDataContext={() => ContactContext}

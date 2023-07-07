@@ -1,7 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import ContactForm from '../components/Contacts/ContactForm';
 import Screen from '../components/Screen';
 import ContactContext from '../context/ContactContext';

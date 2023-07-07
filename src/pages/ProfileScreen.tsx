@@ -1,6 +1,5 @@
 import { NavigationProp } from '@react-navigation/native';
 import { format } from 'date-fns';
-import { View } from 'native-base';
 import * as React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Screen from '../components/Screen';
@@ -11,6 +10,7 @@ import BeneficiaryContext from '../context/BeneficiaryContext';
 import UserContext from '../context/UserContext';
 import { useDeleteBeneficiary } from '../hooks/BeneficiariesHooks';
 import { colors } from '../style';
+import { View } from 'react-native';
 
 interface Props {
   navigation: NavigationProp<any>;

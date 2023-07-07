@@ -1,6 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import EnableBeneficiaryForm from '../components/Beneficiaries/Enable/EnableBeneficiaryForm';
 import Screen from '../components/Screen';
 import Separator from '../components/UI/Separator';

@@ -1,6 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { ActivityIndicator, GestureResponderEvent, StyleSheet, TouchableHighlight } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableHighlight, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import Text from '../UI/Text';
@@ -68,7 +67,7 @@ const Card: React.FC<Props> = ({
     setTimeout(() => {
       isLoadingActions.setFalse();
     }, 1000);
-  }
+  };
 
   if (disabled) return null;
 
@@ -77,22 +76,20 @@ const Card: React.FC<Props> = ({
       disabled={isLoading}
       onPress={() => onItemPress()}
       underlayColor={colors.secondary}
-      style={{ ...styles.container, borderLeftColor: isPrivate ? colors.red : colors.blue }}
-    >
-      {isLoading
-        ? <ActivityIndicator size="large" color={colors.black} />
-        : <>
+      style={{ ...styles.container, borderLeftColor: isPrivate ? colors.red : colors.blue }}>
+      {isLoading ? (
+        <ActivityIndicator size='large' color={colors.black} />
+      ) : (
+        <>
           {!iconName ? null : <Icon style={styles.icon} solid color={colors.darkGray} name={iconName} />}
           {!hasThumbnail ? null : <Thumbnail documentId={item.id} />}
-          <View
-            style={styles.content}
-          >
+          <View style={styles.content}>
             <Text>{title}</Text>
             {Subtitle === null ? null : <Subtitle />}
           </View>
           {RightComponent === null ? null : <RightComponent />}
         </>
-      }
+      )}
     </TouchableHighlight>
   );
 };

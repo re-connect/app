@@ -1,7 +1,6 @@
-import { View } from 'native-base';
 import React, { useState } from 'react';
 import { useBoolean } from 'react-hanger';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import BeneficiaryContext from '../../context/BeneficiaryContext';
 import { useScanDocument, useUploadDocument } from '../../hooks/DocumentsHooks';

@@ -1,6 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { usePatchData } from '../../hooks/DataHooks';
 import { colors } from '../../style';
@@ -23,12 +22,12 @@ const TogglePrivacySwitch: React.FC<Props> = ({ isPrivate, endpoint, Context, it
   return (
     <>
       {toggle.isPatching ? (
-        <ActivityIndicator size="small" color={colors.primary} />
+        <ActivityIndicator size='small' color={colors.primary} />
       ) : (
         <View style={{ flexDirection: 'row' }}>
-          <Icon style={{ ...styles.icon, marginRight: 8 }} name="share" color={colors.blue} />
+          <Icon style={{ ...styles.icon, marginRight: 8 }} name='share' color={colors.blue} />
           <RNSwitch value={isPrivate} onPress={() => toggle.patch(true)} />
-          <Icon style={{ ...styles.icon, marginLeft: 8 }} name="lock" color={colors.red} />
+          <Icon style={{ ...styles.icon, marginLeft: 8 }} name='lock' color={colors.red} />
         </View>
       )}
     </>
