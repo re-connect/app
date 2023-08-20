@@ -1,7 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import NoteForm from '../components/Notes/NoteForm';
 import Screen from '../components/Screen';
 import NoteContext from '../context/NoteContext';

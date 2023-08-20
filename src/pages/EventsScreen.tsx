@@ -1,8 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { format } from 'date-fns';
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../components/Screen';
 import IconButton from '../components/UI/IconButton';
@@ -35,22 +34,26 @@ type Props = {
 const getEventName = (item: AnyDataInterface) => item.nom;
 const getEndpoint = () => 'events';
 
-const getEventSubtitle = (item: AnyDataInterface): React.FC => () => {
-  if (!item.date) return null;
-  const date = new Date(item.date);
-  return (
-    <View>
-      <Text style={{ ...styles.dateText, color: colors.darkGray }}>{format(date, 'dd/MM/yyyy HH:mm')}</Text>
-      <Text style={{ ...styles.dateText, color: getDateColour(date) }}>{getReadableDate(date)}</Text>
-    </View>
-  );
-};
+const getEventSubtitle =
+  (item: AnyDataInterface): React.FC =>
+  () => {
+    if (!item.date) return null;
+    const date = new Date(item.date);
+    return (
+      <View>
+        <Text style={{ ...styles.dateText, color: colors.darkGray }}>{format(date, 'dd/MM/yyyy HH:mm')}</Text>
+        <Text style={{ ...styles.dateText, color: getDateColour(date) }}>{getReadableDate(date)}</Text>
+      </View>
+    );
+  };
 
-const getEventDetails = (event: AnyDataInterface): React.FC => () => {
-  if (!event.rappels) return null;
-  if (event.rappels && event.rappels.length === 0) return null;
-  return <Icon style={styles.icon} name="bell" solid color={colors.gray} />;
-};
+const getEventDetails =
+  (event: AnyDataInterface): React.FC =>
+  () => {
+    if (!event.rappels) return null;
+    if (event.rappels && event.rappels.length === 0) return null;
+    return <Icon style={styles.icon} name='bell' solid color={colors.gray} />;
+  };
 
 const EventsScreen: React.FC<Props> = ({ navigation }) => {
   useSetTitleToBenefName();
@@ -62,14 +65,14 @@ const EventsScreen: React.FC<Props> = ({ navigation }) => {
     <Screen>
       <View style={styles.container}>
         <View style={{ position: 'absolute', right: 5, bottom: 5, zIndex: 1 }}>
-          <IconButton size={60} iconName="plus" onPress={() => navigation.navigate('CreateEvent')} />
+          <IconButton size={60} iconName='plus' onPress={() => navigation.navigate('CreateEvent')} />
         </View>
         <List
           data={list}
           getName={getEventName}
           getSubtitle={getEventSubtitle}
           isFetchingData={isFetching}
-          itemIconName="calendar-day"
+          itemIconName='calendar-day'
           onItemPress={(item: AnyDataInterface) => navigation.navigate('Event', { eventId: item.id })}
           triggerFetchData={triggerFetch}
           getItemRightComponent={getEventDetails}

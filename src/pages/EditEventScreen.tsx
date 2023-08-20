@@ -1,7 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import EventForm from '../components/Events/EventForm';
 import Screen from '../components/Screen';
 import EventContext from '../context/EventContext';

@@ -1,7 +1,7 @@
-import { HStack, Select } from 'native-base';
+import { Select } from 'native-base';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useFetchSecretQuestions } from '../../hooks/BeneficiariesHooks';
 import { colors } from '../../style';
@@ -27,7 +27,7 @@ const SecretQuestionPicker: React.FC<Props> = ({ value, onChange }) => {
   const { secretQuestionList } = useFetchSecretQuestions();
 
   return (
-    <HStack style={styles.wrapper} mt='4' alignItems='center'>
+    <View style={styles.wrapper}>
       <Icon name='question' color={colors.darkGray} />
       <Select
         selectedValue={value}
@@ -41,13 +41,12 @@ const SecretQuestionPicker: React.FC<Props> = ({ value, onChange }) => {
         _selectedItem={{ endIcon: <Icon name='check' color={colors.green} /> }}
         dropdownCloseIcon={<Icon name='chevron-down' color={colors.darkGray} style={{ marginRight: 20 }} />}
         dropdownOpenIcon={<Icon name='chevron-up' color={colors.darkGray} style={{ marginRight: 20 }} />}
-        onValueChange={onChange}
-      >
+        onValueChange={onChange}>
         {secretQuestionList.map(label => (
           <Select.Item key={label} label={label} value={label} />
         ))}
       </Select>
-    </HStack>
+    </View>
   );
 };
 

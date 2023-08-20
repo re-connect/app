@@ -1,5 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
+import { View } from 'react-native';
 
 interface Props {
   height?: number;

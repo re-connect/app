@@ -1,5 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
+import { View } from 'react-native';
 import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useAcceptCenterInvitation, useLeaveCenter } from '../../hooks/CentersHooks';
@@ -57,8 +57,7 @@ const CenterCard: React.FC<CenterCardProps> = ({ center }) => {
         <TouchableOpacity
           style={styles.acceptInvitation}
           disabled={isAcceptingInvitation}
-          onPress={() => triggerAcceptInvitation(center.centre)}
-        >
+          onPress={() => triggerAcceptInvitation(center.centre)}>
           {!isAcceptingInvitation ? (
             <Text style={{ color: colors.white }}>accept</Text>
           ) : (

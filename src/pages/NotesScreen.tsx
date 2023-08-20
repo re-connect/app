@@ -1,7 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Screen from '../components/Screen';
 import IconButton from '../components/UI/IconButton';
 import List from '../components/UI/List';
@@ -36,14 +35,14 @@ const NotesScreen: React.FC<Props> = ({ navigation }) => {
     <Screen>
       <View style={styles.container}>
         <View style={{ position: 'absolute', right: 5, bottom: 5, zIndex: 1 }}>
-          <IconButton size={60} iconName="plus" onPress={() => navigation.navigate('CreateNote')} />
+          <IconButton size={60} iconName='plus' onPress={() => navigation.navigate('CreateNote')} />
         </View>
         <List
           data={list}
           onItemPress={(item: AnyDataInterface) => navigation.navigate('Note', { noteId: item.id })}
           isFetchingData={isFetching}
           triggerFetchData={triggerFetch}
-          itemIconName="file-alt"
+          itemIconName='file-alt'
           getName={getNoteName}
           getDataContext={() => NoteContext}
           getLeftActionEndpoint={getEndpoint}

@@ -1,6 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import DocumentsBottomActions from '../components/Documents/DocumentsBottomActions';
 import DocumentsListWrapper from '../components/Documents/DocumentsListWrapper';
 import Screen from '../components/Screen';

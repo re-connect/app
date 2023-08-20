@@ -1,10 +1,8 @@
-import { Center, Divider, HStack, Pressable, VStack } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { colors } from '../../../style';
 import { DocumentInterface } from '../../../types/Documents';
-import H3 from '../../UI/H3';
 import Text from '../../UI/Text';
 
 const styles = StyleSheet.create({
@@ -16,8 +14,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'stretch',
   },
-  menuIcon: { fontSize: 20 },
-  text: { fontSize: 16 },
+  menuIcon: {
+    fontSize: 20,
+    paddingRight: 10,
+    width: 30,
+    textAlign: 'center',
+  },
+  text: { fontSize: 16, color: '#666666' },
+  documentName: {
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: 'bold',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  wrapper: {
+    backgroundColor: 'white',
+    width: '95%',
+    borderRadius: 10,
+    padding: 10,
+  },
+  wrapperItems: {
+    borderBottomWidth: 0.5,
+    borderColor: '#cecece',
+    marginVertical: 8,
+  },
 });
 
 interface Props {
@@ -41,16 +62,15 @@ interface ActionItemProps {
   condition?: boolean;
 }
 
-const ActionItem: React.FC<ActionItemProps> = ({ action, label, icon, color = colors.blue, condition = true }) => !condition ? null : (
-  <Pressable onPress={action}>
-    <HStack alignItems='center'>
-      <Center m='2' p='2'>
+const ActionItem: React.FC<ActionItemProps> = ({ action, label, icon, color = colors.blue, condition = true }) =>
+  !condition ? null : (
+    <TouchableOpacity onPress={action}>
+      <View style={{ flexDirection: 'row', padding: 10 }}>
         <Icon style={styles.menuIcon} color={color} name={icon} solid />
-      </Center>
-      <Text style={styles.text}>{label}</Text>
-    </HStack>
-  </Pressable>
-);
+        <Text style={styles.text}>{label}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 
 const ActionsModalContent: React.FC<Props> = ({ document, close, isLoading, actions }) => {
   const items: ActionItemProps[] = [
@@ -62,27 +82,26 @@ const ActionsModalContent: React.FC<Props> = ({ document, close, isLoading, acti
     { action: actions.delete, color: colors.red, label: 'delete', icon: 'trash' },
     { action: close, color: colors.black, label: 'cancel', icon: 'times' },
   ];
+
   if (!document.is_folder) {
-    items.push( { action: actions.view, color: colors.yellow, label: 'Download', icon: 'download' });
+    items.push({ action: actions.view, color: colors.yellow, label: 'Download', icon: 'download' });
   }
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={close}>
-      <VStack alignSelf='stretch' justifyContent='center' rounded='2xl' bg={colors.white} shadow={3} m='2' p='4'>
+      <View style={styles.wrapper}>
         {isLoading ? (
           <ActivityIndicator size='large' color={colors.primary} />
         ) : (
           <>
-            <Center>
-              <H3>{document.nom}</H3>
-            </Center>
-            <Divider my='4' />
+            <Text style={[styles.text, styles.documentName]}>{document.nom}</Text>
+            <View style={styles.wrapperItems} />
             {items.map(({ action, color, label, icon, condition }) => (
               <ActionItem action={action} color={color} label={label} icon={icon} condition={condition} key={label} />
             ))}
           </>
         )}
-      </VStack>
+      </View>
     </TouchableOpacity>
   );
 };

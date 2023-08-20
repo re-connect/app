@@ -1,6 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import ErrorText from './ErrorText';
@@ -60,8 +59,7 @@ const FakeTextField: React.FC<Props> = ({ iconName, onPress, value, touched, err
         style={{
           ...styles.fieldContainer,
           ...(showErrors ? { borderColor: colors.red } : {}),
-        }}
-      >
+        }}>
         <Icon style={styles.leftIcon} color={colors.darkGray} name={iconName} />
         <View style={{ flex: 1 }}>
           <Text style={styles.text}>{value}</Text>

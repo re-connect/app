@@ -1,7 +1,6 @@
 import { FieldArray } from 'formik';
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import BeneficiaryContext from '../../context/BeneficiaryContext';
 import { dateToIso } from '../../helpers/dateHelpers';
