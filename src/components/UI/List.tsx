@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { RefreshControl } from 'react-native';
+import { Modal, RefreshControl } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { colors } from '../../style';
 import { AnyDataInterface, ListContextInterface } from '../../types/Data';
@@ -7,6 +7,8 @@ import Card from './Card';
 import ListHiddenItem from './ListHiddenItem';
 import SearchBar from './SearchBar';
 import Separator from './Separator';
+import DocumentActionsModal from '../Documents/DocumentActionsModal';
+import { UseBooleanActions } from 'react-hanger/array';
 
 type DataCardInterface = { item: AnyDataInterface };
 
@@ -21,8 +23,11 @@ interface Props {
   itemIconName?: string;
   getLeftActionEndpoint: (item?: AnyDataInterface) => string;
   onItemPress: (item: AnyDataInterface) => void;
+  isModalOpen: boolean;
+  openModalActions: UseBooleanActions;
   getRightActionEndpoint: (item?: AnyDataInterface) => string;
   triggerFetchData: () => Promise<void>;
+  currentDocument?: AnyDataInterface | null;
 }
 
 const List: React.FC<Props> = ({
@@ -34,10 +39,13 @@ const List: React.FC<Props> = ({
   hasThumbnail,
   isFetchingData,
   itemIconName,
+  isModalOpen,
+  openModalActions,
   getLeftActionEndpoint,
   onItemPress,
   getRightActionEndpoint,
   triggerFetchData,
+  currentDocument,
 }) => {
   const [search, setSearch] = React.useState<string>('');
   const filteredData = data.filter((datum: AnyDataInterface) =>
@@ -46,6 +54,15 @@ const List: React.FC<Props> = ({
 
   return (
     <>
+      {currentDocument && (
+        <Modal
+          visible={isModalOpen}
+          animationType='fade'
+          transparent
+          onRequestClose={() => openModalActions.setFalse()}>
+          <DocumentActionsModal document={currentDocument} close={openModalActions.setFalse} />
+        </Modal>
+      )}
       <SearchBar onChange={setSearch} />
       <SwipeListView
         data={filteredData}

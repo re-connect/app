@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Linking  } from 'react-native';
+import { useEffect } from 'react';
+import { Linking } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import DocumentContext from '../../context/DocumentContext';
 import FolderContext from '../../context/FolderContext';
@@ -27,6 +28,19 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
   const { deleteItem, isDeleting } = useDeleteData(itemContext, itemEndpoint, document.id);
   const { isMovingOut, triggerMoveDocumentOutOfFolder } = useMoveDocumentOutOfFolder(document);
   const isLoading = isMovingOut || isUpdating || isDeleting;
+
+  const hasUpdating = React.useRef<boolean>(false);
+
+  useEffect(() => {
+    if (isUpdating) {
+      hasUpdating.current = true;
+    }
+  }, [isUpdating]);
+
+  if (hasUpdating.current && !isUpdating) {
+    close();
+  }
+
   const actions = {
     delete: deleteItem,
     // download: () => {
@@ -67,14 +81,7 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
     return <PickFolder document={document} onPick={pickingFolderActions.setFalse} close={close} />;
   }
 
-  return (
-    <ActionsModalContent
-      document={document}
-      close={close}
-      isLoading={isLoading}
-      actions={actions}
-    />
-  );
+  return <ActionsModalContent document={document} close={close} isLoading={isLoading} actions={actions} />;
 };
 
 export default DocumentActionsModal;
