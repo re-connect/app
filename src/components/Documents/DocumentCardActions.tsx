@@ -25,7 +25,7 @@ const DocumentCardActions: React.FC<DocumentCardActionsProps> = ({
   openModalActions,
   setCurrentDocument,
 }) => {
-  const onPress = () => {
+  const onPress = async () => {
     setCurrentDocument(document);
     openModalActions.setTrue();
   };
