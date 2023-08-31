@@ -13,6 +13,7 @@ import TextField from '../UI/TextField';
 interface Props {
   document: DocumentInterface;
   onSubmit: () => void;
+  close: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -42,24 +43,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const SendByEmailForm: React.FC<Props> = ({document, onSubmit}) => {
-  const { isSending, triggerSendDocumentByEmail } = useSendDocumentByEmail(document);
+const SendByEmailForm: React.FC<Props> = ({ document, onSubmit, close }) => {
+  const { isSending, triggerSendDocumentByEmail, isSent } = useSendDocumentByEmail(document);
+  isSent && close();
 
   return (
     <View style={styles.container}>
-      { isSending ? (
+      {isSending ? (
         <View style={styles.content}>
-          <ActivityIndicator size="large" color={colors.primary} />
+          <ActivityIndicator size='large' color={colors.primary} />
         </View>
       ) : (
         <Formik
-          onSubmit={async (values) => {
+          onSubmit={async values => {
             await triggerSendDocumentByEmail(values.email);
             onSubmit();
           }}
           initialValues={{ email: '' }}
-          validationSchema={emailShape}
-        >
+          validationSchema={emailShape}>
           {({
             handleBlur,
             handleChange,
@@ -69,32 +70,39 @@ const SendByEmailForm: React.FC<Props> = ({document, onSubmit}) => {
             touched,
           }: FormikProps<Record<'email', string>>) => {
             return (
-              <VStack alignSelf='stretch' justifyContent="center" rounded="2xl" bg={colors.white} shadow={3} m="2" p="4">
+              <VStack
+                alignSelf='stretch'
+                justifyContent='center'
+                rounded='2xl'
+                bg={colors.white}
+                shadow={3}
+                m='2'
+                p='4'>
                 <HStack>
                   <TextField
-                    autocompleteType="email"
-                    contentType="emailAddress"
+                    autocompleteType='email'
+                    contentType='emailAddress'
                     error={errors.email}
-                    fieldLabel="email"
+                    fieldLabel='email'
                     handleBlur={handleBlur('email')}
                     handleChange={handleChange('email')}
-                    iconName="at"
-                    keyboardType="email-address"
+                    iconName='at'
+                    keyboardType='email-address'
                     okIcon
                     touched={touched.email}
                     value={values.email}
                   />
                 </HStack>
-                <HStack justifyContent="space-between" px="2" mt="5">
+                <HStack justifyContent='space-between' px='2' mt='5'>
                   <Pressable onPress={onSubmit}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.darkGray} name="times" />
+                      <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
                     </View>
                     <Text>cancel</Text>
                   </Pressable>
                   <Pressable onPress={() => handleSubmit()}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.blue} name="paper-plane" solid/>
+                      <Icon style={styles.menuIcon} color={colors.blue} name='paper-plane' solid />
                     </View>
                     <Text>send</Text>
                   </Pressable>
@@ -106,6 +114,6 @@ const SendByEmailForm: React.FC<Props> = ({document, onSubmit}) => {
       )}
     </View>
   );
-}
+};
 
 export default SendByEmailForm;
