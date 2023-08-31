@@ -1,6 +1,6 @@
 import { Formik, FormikProps } from 'formik';
-import { View } from 'native-base';
 import * as React from 'react';
+import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import contactShape from '../../helpers/forms/contactShape';

@@ -1,6 +1,5 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import NoteForm from '../components/Notes/NoteForm';
 import Screen from '../components/Screen';
 import BeneficiaryContext from '../context/BeneficiaryContext';
@@ -35,7 +34,7 @@ const CreateNoteScreen: React.FC = () => {
     <Screen>
       <View style={styles.container}>
         <NoteForm
-          note={{b_prive: user?.type_user === 'ROLE_BENEFICIAIRE', contenu: '', nom: ''}}
+          note={{ b_prive: user?.type_user === 'ROLE_BENEFICIAIRE', contenu: '', nom: '' }}
           isSubmitting={isPosting}
           onSubmit={(note: CreateNoteData) => post(note)}
         />

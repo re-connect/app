@@ -1,7 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
-import { View } from 'native-base';
 import * as React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import DocumentCardActions from '../components/Documents/DocumentCardActions';
 import DocumentPreview from '../components/Documents/DocumentPreview';
 import Screen from '../components/Screen';

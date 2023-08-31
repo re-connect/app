@@ -1,6 +1,5 @@
-import { Text } from 'native-base';
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import { UserInterface } from '../../types/Users';
@@ -26,9 +25,11 @@ const styles = StyleSheet.create({
   fullName: {
     flex: 1,
     fontWeight: 'bold',
+    marginTop: 2,
   },
   username: {
     flex: 1,
+    marginTop: 2,
   },
 });
 
@@ -39,9 +40,9 @@ interface BeneficiaryCardContentProps {
 const BeneficiaryCardContent: React.FC<BeneficiaryCardContentProps> = ({ beneficiary }) => (
   <View style={styles.content}>
     <View style={styles.iconconContainer}>
-      <Icon style={styles.icon} name="user" solid />
+      <Icon style={styles.icon} name='user' solid />
     </View>
-    <View style={{ flexDirection: 'column', flex: 1 }}>
+    <View>
       <Text style={styles.fullName}>
         {beneficiary.prenom} {beneficiary.nom}
       </Text>

@@ -1,9 +1,8 @@
 import RNDateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
-import { View } from 'native-base';
 import * as React from 'react';
 import { useState } from 'react';
-import { Dimensions, Platform, StyleSheet } from 'react-native';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import { dateToIso, dateToString, isoToDate } from '../../helpers/dateHelpers';
 import { colors } from '../../style';
 import FakeTextField from './FakeTextField';
