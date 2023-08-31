@@ -366,7 +366,7 @@ PODS:
     - React-Core
   - react-native-netinfo (6.2.1):
     - React-Core
-  - react-native-pdf (6.5.0):
+  - react-native-pdf (6.6.2):
     - React-Core
   - react-native-progress-bar-android (1.0.4):
     - React
@@ -757,7 +757,7 @@ SPEC CHECKSUMS:
   react-native-document-picker: 429972f7ece4463aa5bcdd789622b3a674a3c5d1
   react-native-image-picker: 4bc9ed38c8be255b515d8c88babbaf74973f91a8
   react-native-netinfo: 3d3769f0d65de15c83a9bf1346f8be71de5a24bf
-  react-native-pdf: de35db0d8f1e5d37e65e887554f7d4bd062af56b
+  react-native-pdf: 33c622cbdf776a649929e8b9d1ce2d313347c4fa
   react-native-progress-bar-android: be43138ab7da30d51fc038bafa98e9ed594d0c40
   react-native-progress-view: 9e6b6a5305a9115c2157ae3b8852081aba0aab7c
   react-native-safe-area-context: 9e40fb181dac02619414ba1294d6c2a807056ab9
@@ -792,6 +792,6 @@ SPEC CHECKSUMS:
   Yoga: 99652481fcd320aefa4a7ef90095b95acd181952
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 031f2dbad52b7e1cfa367b6a98ff0d1c09a15a3f
+PODFILE CHECKSUM: 435ac172863a35f88cb21470140b67b508806b86
 
 COCOAPODS: 1.11.3
