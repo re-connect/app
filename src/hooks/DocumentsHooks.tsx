@@ -276,5 +276,5 @@ export const useSendDocumentByEmail = (document: DocumentInterface) => {
     }
   };
 
-  return { isSending, triggerSendDocumentByEmail, isSent };
+  return { isSending, triggerSendDocumentByEmail, isSent: isSent.value };
 };

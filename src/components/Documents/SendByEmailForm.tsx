@@ -45,9 +45,8 @@ const styles = StyleSheet.create({
 
 const SendByEmailForm: React.FC<Props> = ({ document, onSubmit, close }) => {
   const { isSending, triggerSendDocumentByEmail, isSent } = useSendDocumentByEmail(document);
-  if (isSent.value) {
-    close();
-  }
+  isSent && close();
+
   return (
     <View style={styles.container}>
       {isSending ? (
