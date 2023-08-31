@@ -165,11 +165,12 @@ export const useOpenItem = () => {
   return triggerOpenItem;
 };
 
-export const useRenameItem = (item: DocumentInterface | FolderInterface, close?: () => void) => {
+export const useRenameItem = (item: DocumentInterface | FolderInterface) => {
   const { list: documentsList, setList: setDocumentsList } = React.useContext(DocumentContext);
   const { list: foldersList, setList: setFoldersList } = React.useContext(FolderContext);
   const [showForm, showFormActions] = useBooleanArray(false);
   const [isUpdating, isUpdatingActions] = useBooleanArray(false);
+  const hasBeenRenamed = useBoolean(false);
 
   const triggerRenameDocument = async (name: string): Promise<void> => {
     try {
@@ -184,7 +185,7 @@ export const useRenameItem = (item: DocumentInterface | FolderInterface, close?:
       }
       isUpdatingActions.setFalse();
       showFormActions.setFalse();
-      close && close();
+      hasBeenRenamed.setTrue();
     } catch {
       Alert.alert(t.t('error_renaming_document'));
       isUpdatingActions.setFalse();
@@ -196,12 +197,14 @@ export const useRenameItem = (item: DocumentInterface | FolderInterface, close?:
     showForm,
     showFormActions,
     isUpdating,
+    hasBeenRenamed: hasBeenRenamed.value,
   };
 };
 
-export const useMoveDocumentInFolder = (close?: () => void) => {
+export const useMoveDocumentInFolder = () => {
   const { list, setList } = React.useContext(DocumentContext);
   const [isMovingIn, isMovingActions] = useBooleanArray(false);
+  const hasMoved = useBoolean(false);
   const openItem = useOpenItem();
 
   const triggerMoveDocumentIntoFolder = async (document: DocumentInterface, folder: DocumentInterface) => {
@@ -215,20 +218,21 @@ export const useMoveDocumentInFolder = (close?: () => void) => {
       ]);
       openItem(folder);
       isMovingActions.setFalse();
-      close && close();
+      hasMoved.setTrue();
     } catch {
       isMovingActions.setFalse();
       Alert.alert(t.t('error_generic'));
     }
   };
 
-  return { isMovingIn, triggerMoveDocumentIntoFolder };
+  return { isMovingIn, triggerMoveDocumentIntoFolder, hasMoved: hasMoved.value };
 };
 
-export const useMoveDocumentOutOfFolder = (document: DocumentInterface, close?: () => void) => {
+export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
   const { list, setList } = React.useContext(DocumentContext);
   const navigation = useNavigation<any>();
   const [isMovingOut, setIsMovingOut] = React.useState<boolean>(false);
+  const hasBeenMoved = useBoolean(false);
 
   const triggerMoveDocumentOutOfFolder = async () => {
     try {
@@ -242,8 +246,8 @@ export const useMoveDocumentOutOfFolder = (document: DocumentInterface, close?: 
           }),
         ]);
         setIsMovingOut(false);
+        hasBeenMoved.setTrue();
       }
-      close && close();
       navigation.goBack();
     } catch {
       setIsMovingOut(false);
@@ -251,7 +255,7 @@ export const useMoveDocumentOutOfFolder = (document: DocumentInterface, close?: 
     }
   };
 
-  return { isMovingOut, triggerMoveDocumentOutOfFolder };
+  return { isMovingOut, triggerMoveDocumentOutOfFolder, hasBeenMoved: hasBeenMoved.value };
 };
 
 export const useSendDocumentByEmail = (document: DocumentInterface) => {

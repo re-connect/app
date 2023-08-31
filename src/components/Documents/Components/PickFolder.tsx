@@ -30,7 +30,8 @@ interface Props {
 
 const PickFolder: React.FC<Props> = ({ document, close, onPick }) => {
   const { list: folders } = React.useContext(FolderContext);
-  const { isMovingIn, triggerMoveDocumentIntoFolder } = useMoveDocumentInFolder(close);
+  const { isMovingIn, triggerMoveDocumentIntoFolder, hasMoved } = useMoveDocumentInFolder();
+  hasMoved && close();
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={close}>

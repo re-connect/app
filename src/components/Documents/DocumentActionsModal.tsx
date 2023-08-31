@@ -21,12 +21,16 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
   const { documentUrl } = useShowDocument(document.id);
   const [pickingFolder, pickingFolderActions] = useBoolean(false);
   const [showSendEmailForm, showSendEmailFormActions] = useBoolean(false);
-  const { triggerRenameDocument, showForm, showFormActions, isUpdating } = useRenameItem(document, close);
+  const { triggerRenameDocument, showForm, showFormActions, isUpdating, hasBeenRenamed } = useRenameItem(document);
   const itemEndpoint = document.is_folder ? `folders/${document.id}` : `documents/${document.id}`;
   const itemContext = document.is_folder ? FolderContext : DocumentContext;
-  const { deleteItem, isDeleting } = useDeleteData(itemContext, itemEndpoint, document.id, close);
-  const { isMovingOut, triggerMoveDocumentOutOfFolder } = useMoveDocumentOutOfFolder(document, close);
+  const { deleteItem, isDeleting, hasBeenDeleted } = useDeleteData(itemContext, itemEndpoint, document.id);
+  const { isMovingOut, triggerMoveDocumentOutOfFolder, hasBeenMoved } = useMoveDocumentOutOfFolder(document);
   const isLoading = isMovingOut || isUpdating || isDeleting;
+
+  const needToCloseModal = hasBeenDeleted || hasBeenMoved || hasBeenRenamed;
+
+  needToCloseModal && close();
 
   const actions = {
     delete: deleteItem,

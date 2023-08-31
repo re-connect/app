@@ -13,7 +13,7 @@ import TextField from '../UI/TextField';
 interface Props {
   document: DocumentInterface;
   onSubmit: () => void;
-  close?: () => void;
+  close: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 const SendByEmailForm: React.FC<Props> = ({ document, onSubmit, close }) => {
   const { isSending, triggerSendDocumentByEmail, isSent } = useSendDocumentByEmail(document);
   if (isSent.value) {
-    close && close();
+    close();
   }
   return (
     <View style={styles.container}>
