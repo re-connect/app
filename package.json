@@ -65,7 +65,7 @@
     "react-native-phone-number-input": "^2.1.0",
     "react-native-prompt-android": "^1.1.0",
     "react-native-render-html": "^6.3.4",
-    "react-native-safe-area-context": "^3.4.1",
+    "react-native-safe-area-context": "3.*",
     "react-native-sound": "^0.11.2",
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^12.1.1",
