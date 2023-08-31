@@ -165,7 +165,7 @@ export const useOpenItem = () => {
   return triggerOpenItem;
 };
 
-export const useRenameItem = (item: DocumentInterface | FolderInterface) => {
+export const useRenameItem = (item: DocumentInterface | FolderInterface, close?: () => void) => {
   const { list: documentsList, setList: setDocumentsList } = React.useContext(DocumentContext);
   const { list: foldersList, setList: setFoldersList } = React.useContext(FolderContext);
   const [showForm, showFormActions] = useBooleanArray(false);
@@ -184,6 +184,7 @@ export const useRenameItem = (item: DocumentInterface | FolderInterface) => {
       }
       isUpdatingActions.setFalse();
       showFormActions.setFalse();
+      close && close();
     } catch {
       Alert.alert(t.t('error_renaming_document'));
       isUpdatingActions.setFalse();
@@ -198,7 +199,7 @@ export const useRenameItem = (item: DocumentInterface | FolderInterface) => {
   };
 };
 
-export const useMoveDocumentInFolder = () => {
+export const useMoveDocumentInFolder = (close?: () => void) => {
   const { list, setList } = React.useContext(DocumentContext);
   const [isMovingIn, isMovingActions] = useBooleanArray(false);
   const openItem = useOpenItem();
@@ -214,6 +215,7 @@ export const useMoveDocumentInFolder = () => {
       ]);
       openItem(folder);
       isMovingActions.setFalse();
+      close && close();
     } catch {
       isMovingActions.setFalse();
       Alert.alert(t.t('error_generic'));
@@ -223,7 +225,7 @@ export const useMoveDocumentInFolder = () => {
   return { isMovingIn, triggerMoveDocumentIntoFolder };
 };
 
-export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
+export const useMoveDocumentOutOfFolder = (document: DocumentInterface, close?: () => void) => {
   const { list, setList } = React.useContext(DocumentContext);
   const navigation = useNavigation<any>();
   const [isMovingOut, setIsMovingOut] = React.useState<boolean>(false);
@@ -241,6 +243,7 @@ export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
         ]);
         setIsMovingOut(false);
       }
+      close && close();
       navigation.goBack();
     } catch {
       setIsMovingOut(false);
@@ -253,6 +256,7 @@ export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
 
 export const useSendDocumentByEmail = (document: DocumentInterface) => {
   const [isSending, isSendingActions] = useBooleanArray(false);
+  const isSent = useBoolean(false);
 
   const triggerSendDocumentByEmail = async (email: string) => {
     try {
@@ -261,11 +265,12 @@ export const useSendDocumentByEmail = (document: DocumentInterface) => {
       await makeRequestv2(`/documents/${document.id}/share`, 'POST', { email });
       isSendingActions.setFalse();
       Alert.alert(t.t('document_successfully_sent_by_email') + email);
+      isSent.setTrue();
     } catch {
       isSendingActions.setFalse();
       Alert.alert(t.t('error_generic'));
     }
   };
 
-  return { isSending, triggerSendDocumentByEmail };
+  return { isSending, triggerSendDocumentByEmail, isSent };
 };

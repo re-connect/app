@@ -121,6 +121,7 @@ export const useDeleteData = (
   context: React.Context<ListContextInterface<any>>,
   endpoint: string,
   itemId: number,
+  close?: () => void,
 ): DeleteDataInformation => {
   const [isDeleting, actions] = useBoolean(false);
   const { list, setList } = React.useContext(context);
@@ -140,6 +141,7 @@ export const useDeleteData = (
               const deletedItem = await makeRequestv2(`/${endpoint}`, 'DELETE');
               if (deletedItem !== undefined) setList(list.filter((item: DataInterface) => item.id !== itemId));
               actions.setFalse();
+              close && close();
               if (goBackAfter && true === goBackAfter) navigation.goBack();
             },
           },

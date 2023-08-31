@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import { Linking } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import DocumentContext from '../../context/DocumentContext';
@@ -22,24 +21,12 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
   const { documentUrl } = useShowDocument(document.id);
   const [pickingFolder, pickingFolderActions] = useBoolean(false);
   const [showSendEmailForm, showSendEmailFormActions] = useBoolean(false);
-  const { triggerRenameDocument, showForm, showFormActions, isUpdating } = useRenameItem(document);
+  const { triggerRenameDocument, showForm, showFormActions, isUpdating } = useRenameItem(document, close);
   const itemEndpoint = document.is_folder ? `folders/${document.id}` : `documents/${document.id}`;
   const itemContext = document.is_folder ? FolderContext : DocumentContext;
-  const { deleteItem, isDeleting } = useDeleteData(itemContext, itemEndpoint, document.id);
-  const { isMovingOut, triggerMoveDocumentOutOfFolder } = useMoveDocumentOutOfFolder(document);
+  const { deleteItem, isDeleting } = useDeleteData(itemContext, itemEndpoint, document.id, close);
+  const { isMovingOut, triggerMoveDocumentOutOfFolder } = useMoveDocumentOutOfFolder(document, close);
   const isLoading = isMovingOut || isUpdating || isDeleting;
-
-  const hasUpdating = React.useRef<boolean>(false);
-
-  useEffect(() => {
-    if (isUpdating) {
-      hasUpdating.current = true;
-    }
-  }, [isUpdating]);
-
-  if (hasUpdating.current && !isUpdating) {
-    close();
-  }
 
   const actions = {
     delete: deleteItem,
@@ -59,11 +46,11 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
   };
 
   if (showSendEmailForm) {
-    return <SendByEmailForm document={document} onSubmit={showSendEmailFormActions.setFalse} />;
+    return <SendByEmailForm document={document} close={close} onSubmit={showSendEmailFormActions.setFalse} />;
   }
 
   if (!document.is_folder) {
-    actions.view = () => Linking.openURL(documentUrl);
+    actions.view = () => Linking.openURL(documentUrl).then(() => close());
   }
 
   if (showForm) {
