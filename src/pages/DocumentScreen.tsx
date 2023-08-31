@@ -1,6 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import * as React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, Modal, StyleSheet, View } from 'react-native';
 import DocumentCardActions from '../components/Documents/DocumentCardActions';
 import DocumentPreview from '../components/Documents/DocumentPreview';
 import Screen from '../components/Screen';
@@ -9,6 +9,9 @@ import DocumentContext from '../context/DocumentContext';
 import { getTruncatedText } from '../helpers/dataHelper';
 import { findNestedDocument } from '../helpers/documentsHelper';
 import { colors } from '../style';
+import { AnyDataInterface } from '../types/Data';
+import { useBoolean } from 'react-hanger/array';
+import DocumentActionsModal from '../components/Documents/DocumentActionsModal';
 
 const styles = StyleSheet.create({
   container: {
@@ -55,6 +58,8 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
   const { list } = React.useContext(DocumentContext);
   const { width } = Dimensions.get('window');
   const document = findNestedDocument(!list ? [] : list, id);
+  const [isModalOpen, openModalActions] = useBoolean(false);
+  const [currentDocument, setCurrentDocument] = React.useState<AnyDataInterface | null>(null);
   React.useEffect(() => {
     navigation.setOptions({ title: getTruncatedText(!document ? '' : document.nom) });
   });
@@ -67,10 +72,23 @@ const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
 
   return (
     <Screen>
+      {currentDocument && (
+        <Modal
+          visible={isModalOpen}
+          animationType='fade'
+          transparent
+          onRequestClose={() => openModalActions.setFalse()}>
+          <DocumentActionsModal document={currentDocument} close={openModalActions.setFalse} />
+        </Modal>
+      )}
       <View style={styles.container}>
         <DocumentPreview document={document} />
         <View style={styles.actionsContainer}>
-          <DocumentCardActions document={document} />
+          <DocumentCardActions
+            document={document}
+            setCurrentDocument={setCurrentDocument}
+            openModalActions={openModalActions}
+          />
         </View>
         <View style={{ ...styles.switchContainer, width }}>
           <TogglePrivacySwitch
