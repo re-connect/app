@@ -127,7 +127,7 @@ const LoginForm: React.FC = () => {
             <TouchableOpacity
               style={styles.resetPasswordButton}
               onPress={() => {
-                Linking.openURL(`${backendUrl}/reinitialiser-mot-de-passe`);
+                Linking.openURL(`${backendUrl}/public/reset-password/choose`);
               }}>
               <Text
                 style={{
