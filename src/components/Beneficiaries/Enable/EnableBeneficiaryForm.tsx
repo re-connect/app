@@ -1,7 +1,6 @@
 import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
 import { View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import UserContext from '../../../context/UserContext';
 import enableBeneficiaryShape from '../../../helpers/forms/enableBeneficiaryShape';
 import { useEnableBeneficiary } from '../../../hooks/BeneficiariesHooks';
@@ -25,7 +24,7 @@ const EnableBeneficiaryForm: React.FC = () => {
   const { user } = React.useContext(UserContext);
 
   return (
-    <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
+    <>
       <Separator height={2} />
       <Formik
         enableReinitialize={true}
@@ -122,7 +121,7 @@ const EnableBeneficiaryForm: React.FC = () => {
           );
         }}
       </Formik>
-    </KeyboardAwareScrollView>
+    </>
   );
 };
 

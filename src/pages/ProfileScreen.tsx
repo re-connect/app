@@ -10,7 +10,8 @@ import BeneficiaryContext from '../context/BeneficiaryContext';
 import UserContext from '../context/UserContext';
 import { useDeleteBeneficiary } from '../hooks/BeneficiariesHooks';
 import { colors } from '../style';
-import { View } from 'react-native';
+import { Linking, View } from 'react-native';
+import { backendUrl } from '../appConstants';
 
 interface Props {
   navigation: NavigationProp<any>;
@@ -54,14 +55,18 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
     },
   ];
 
+  const handlePressReset = () => {
+    !isMember ? navigation.navigate('ResetPassword') : Linking.openURL(`${backendUrl}/public/reset-password/choose`);
+  };
+
   return (
     <Screen>
       <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
-        {items.map((item: ProfileItemInterface) => (
-          <ProfileItem item={item} />
+        {items.map((item: ProfileItemInterface, key: number) => (
+          <ProfileItem item={item} key={key} />
         ))}
         <View style={{ marginHorizontal: 32, marginTop: 15 }}>
-          <RoundedButton text='new_password' onPress={() => navigation.navigate('ResetPassword')} />
+          <RoundedButton text='new_password' onPress={handlePressReset} />
           <Separator height={2} />
           {!current || !current.subject_id || isMember ? null : (
             <RoundedButton
