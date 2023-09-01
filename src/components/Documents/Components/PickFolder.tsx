@@ -1,13 +1,13 @@
-import { Center, Divider, HStack, Pressable, VStack } from 'native-base'
-import * as React from 'react'
-import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import FolderContext from '../../../context/FolderContext'
-import { useMoveDocumentInFolder } from '../../../hooks/DocumentsHooks'
-import { colors } from '../../../style'
-import { DocumentInterface } from '../../../types/Documents'
-import H3 from '../../UI/H3'
-import Text from '../../UI/Text'
+import { Center, Divider, HStack, Pressable, VStack } from 'native-base';
+import * as React from 'react';
+import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import FolderContext from '../../../context/FolderContext';
+import { useMoveDocumentInFolder } from '../../../hooks/DocumentsHooks';
+import { colors } from '../../../style';
+import { DocumentInterface } from '../../../types/Documents';
+import H3 from '../../UI/H3';
+import Text from '../../UI/Text';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,17 +20,18 @@ const styles = StyleSheet.create({
   },
   menuIcon: { fontSize: 20, marginRight: 16 },
   text: { fontSize: 18 },
-})
+});
 
 interface Props {
-  document: DocumentInterface
-  close: () => void
-  onPick: () => void
+  document: DocumentInterface;
+  close: () => void;
+  onPick: () => void;
 }
 
 const PickFolder: React.FC<Props> = ({ document, close, onPick }) => {
-  const { list: folders } = React.useContext(FolderContext)
-  const { isMovingIn, triggerMoveDocumentIntoFolder } = useMoveDocumentInFolder()
+  const { list: folders } = React.useContext(FolderContext);
+  const { isMovingIn, triggerMoveDocumentIntoFolder, hasMoved } = useMoveDocumentInFolder();
+  hasMoved && close();
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={close}>
@@ -48,9 +49,8 @@ const PickFolder: React.FC<Props> = ({ document, close, onPick }) => {
               <Pressable
                 key={folder.id}
                 onPress={() => {
-                  triggerMoveDocumentIntoFolder(document, folder)
-                }}
-              >
+                  triggerMoveDocumentIntoFolder(document, folder);
+                }}>
                 <HStack py='2'>
                   <Icon style={styles.menuIcon} color={colors.blue} name='folder' solid />
                   <Text style={styles.text}>{folder.nom}</Text>
@@ -69,7 +69,7 @@ const PickFolder: React.FC<Props> = ({ document, close, onPick }) => {
         )}
       </VStack>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default PickFolder
+export default PickFolder;

@@ -170,6 +170,7 @@ export const useRenameItem = (item: DocumentInterface | FolderInterface) => {
   const { list: foldersList, setList: setFoldersList } = React.useContext(FolderContext);
   const [showForm, showFormActions] = useBooleanArray(false);
   const [isUpdating, isUpdatingActions] = useBooleanArray(false);
+  const hasBeenRenamed = useBoolean(false);
 
   const triggerRenameDocument = async (name: string): Promise<void> => {
     try {
@@ -184,6 +185,7 @@ export const useRenameItem = (item: DocumentInterface | FolderInterface) => {
       }
       isUpdatingActions.setFalse();
       showFormActions.setFalse();
+      hasBeenRenamed.setTrue();
     } catch {
       Alert.alert(t.t('error_renaming_document'));
       isUpdatingActions.setFalse();
@@ -195,12 +197,14 @@ export const useRenameItem = (item: DocumentInterface | FolderInterface) => {
     showForm,
     showFormActions,
     isUpdating,
+    hasBeenRenamed: hasBeenRenamed.value,
   };
 };
 
 export const useMoveDocumentInFolder = () => {
   const { list, setList } = React.useContext(DocumentContext);
   const [isMovingIn, isMovingActions] = useBooleanArray(false);
+  const hasMoved = useBoolean(false);
   const openItem = useOpenItem();
 
   const triggerMoveDocumentIntoFolder = async (document: DocumentInterface, folder: DocumentInterface) => {
@@ -214,19 +218,21 @@ export const useMoveDocumentInFolder = () => {
       ]);
       openItem(folder);
       isMovingActions.setFalse();
+      hasMoved.setTrue();
     } catch {
       isMovingActions.setFalse();
       Alert.alert(t.t('error_generic'));
     }
   };
 
-  return { isMovingIn, triggerMoveDocumentIntoFolder };
+  return { isMovingIn, triggerMoveDocumentIntoFolder, hasMoved: hasMoved.value };
 };
 
 export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
   const { list, setList } = React.useContext(DocumentContext);
   const navigation = useNavigation<any>();
   const [isMovingOut, setIsMovingOut] = React.useState<boolean>(false);
+  const hasBeenMoved = useBoolean(false);
 
   const triggerMoveDocumentOutOfFolder = async () => {
     try {
@@ -240,6 +246,7 @@ export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
           }),
         ]);
         setIsMovingOut(false);
+        hasBeenMoved.setTrue();
       }
       navigation.goBack();
     } catch {
@@ -248,11 +255,12 @@ export const useMoveDocumentOutOfFolder = (document: DocumentInterface) => {
     }
   };
 
-  return { isMovingOut, triggerMoveDocumentOutOfFolder };
+  return { isMovingOut, triggerMoveDocumentOutOfFolder, hasBeenMoved: hasBeenMoved.value };
 };
 
 export const useSendDocumentByEmail = (document: DocumentInterface) => {
   const [isSending, isSendingActions] = useBooleanArray(false);
+  const isSent = useBoolean(false);
 
   const triggerSendDocumentByEmail = async (email: string) => {
     try {
@@ -261,11 +269,12 @@ export const useSendDocumentByEmail = (document: DocumentInterface) => {
       await makeRequestv2(`/documents/${document.id}/share`, 'POST', { email });
       isSendingActions.setFalse();
       Alert.alert(t.t('document_successfully_sent_by_email') + email);
+      isSent.setTrue();
     } catch {
       isSendingActions.setFalse();
       Alert.alert(t.t('error_generic'));
     }
   };
 
-  return { isSending, triggerSendDocumentByEmail };
+  return { isSending, triggerSendDocumentByEmail, isSent: isSent.value };
 };
