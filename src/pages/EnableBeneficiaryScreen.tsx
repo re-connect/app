@@ -5,6 +5,7 @@ import Screen from '../components/Screen';
 import Separator from '../components/UI/Separator';
 import Text from '../components/UI/Text';
 import { colors } from '../style';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const styles = StyleSheet.create({
   textContainer: {
@@ -24,12 +25,14 @@ const styles = StyleSheet.create({
 
 const EnableBeneficiaryScreen: React.FC = () => (
   <Screen>
-    <Separator height={2} />
-    <View style={styles.textContainer}>
-      <Text style={styles.text}>enable_beneficiary_text</Text>
-    </View>
-    <Separator height={2} />
-    <EnableBeneficiaryForm />
+    <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
+      <Separator height={2} />
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>enable_beneficiary_text</Text>
+      </View>
+      <Separator height={2} />
+      <EnableBeneficiaryForm />
+    </KeyboardAwareScrollView>
   </Screen>
 );
 

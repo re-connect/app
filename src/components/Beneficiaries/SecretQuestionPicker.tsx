@@ -1,19 +1,25 @@
 import { Select } from 'native-base';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useFetchSecretQuestions } from '../../hooks/BeneficiariesHooks';
 import { colors } from '../../style';
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingLeft: 16,
+    paddingLeft: 32,
     backgroundColor: colors.white,
     borderRadius: 48,
     height: 48,
     borderColor: colors.darkGray,
     borderWidth: 1,
+    justifyContent: 'center',
+  },
+  icon: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
   },
 });
 
@@ -28,7 +34,7 @@ const SecretQuestionPicker: React.FC<Props> = ({ value, onChange }) => {
 
   return (
     <View style={styles.wrapper}>
-      <Icon name='question' color={colors.darkGray} />
+      <Icon name='question' color={colors.darkGray} style={styles.icon} />
       <Select
         selectedValue={value}
         minWidth='200'
