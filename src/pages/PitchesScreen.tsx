@@ -38,6 +38,9 @@ const tracks: Array<Track> = [
   { key: 'albanian', name: 'shqip', flag: 'AL', player: createPlayer('albanian') },
   { key: 'peul', name: 'Poular ', flag: 'SN', player: createPlayer('peul') },
   { key: 'spanish', name: 'Español', flag: 'ES', player: createPlayer('spanish') },
+  { key: 'pakistan', name: 'اُردُو', flag: 'PK', player: createPlayer('pakistan') },
+  { key: 'somalia', name: 'اف سومالى', flag: 'SO', player: createPlayer('somalia') },
+  { key: 'srilanka', name: 'தமிழ்', flag: 'LK', player: createPlayer('srilanka') },
 ];
 
 const getCurrentPlayerFromKey = (key: string | null): Sound | null => {
