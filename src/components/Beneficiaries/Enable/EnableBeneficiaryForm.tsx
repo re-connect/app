@@ -75,13 +75,7 @@ const EnableBeneficiaryForm: React.FC = () => {
                 </>
               )}
               <Separator height={3} />
-              <SecretQuestionPicker
-                value={props.values.question_secrete}
-                onChange={(newQuestion: string) => {
-                  props.setFieldValue('question_secrete', newQuestion);
-                  props.handleBlur('question_secrete');
-                }}
-              />
+              <SecretQuestionPicker fieldName={'question_secrete'} />
               {props.values.question_secrete && props.values.question_secrete === 'Autre' ? (
                 <>
                   <Separator height={3} />
