@@ -1,7 +1,6 @@
 import { ArrayHelpers } from 'formik';
-import { Row, View } from 'native-base';
 import * as React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { colors } from '../../style';
 import DateTimePicker from '../UI/DateTimePicker';
 import IconButton from '../UI/IconButton';
@@ -21,31 +20,35 @@ const ReminderForm: React.FC<Props> = ({ reminder, arrayHelpers, index, handleBl
   };
 
   return (
-    <View>
-      <Row>
-        <Row style={styles.reminder}>
-          <DateTimePicker value={reminder} handleChange={onChange} />
-          <Separator width={1} />
-        </Row>
-        <IconButton
-          backgroundColor='transparent'
-          size={40}
-          iconName='trash-alt'
-          iconColor={colors.red}
-          onPress={() => arrayHelpers.remove(index)}
-        />
-      </Row>
+    <View style={styles.wrapper}>
+      <View style={styles.reminder}>
+        <DateTimePicker value={reminder} handleChange={onChange} />
+        <Separator width={1} />
+      </View>
+      <IconButton
+        backgroundColor='transparent'
+        size={40}
+        iconName='trash-alt'
+        iconColor={colors.red}
+        onPress={() => arrayHelpers.remove(index)}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   reminder: {
-    justifyContent: 'space-around',
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     marginBottom: 4,
-    width: '90%',
     marginLeft: Platform.OS === 'ios' ? 0 : 5,
+    width: '90%',
+  },
+  wrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 
