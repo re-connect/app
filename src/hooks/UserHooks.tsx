@@ -265,14 +265,14 @@ export const useUserLocale = (): {
   const updateLocale = async (locale: string) => {
     try {
       if (locale) {
-        const newData = await makeRequestv3(`/user/switch-locale/${locale}`, 'GET');
+        const newData = await makeRequestv3(`/user/switch-locale/`, 'PATCH', { locale });
         if (newData) {
           setCurrentLanguageCode(locale);
-          AsyncStorage.setItem('lastLanguage', locale);
-          i18n.changeLanguage(locale);
         } else {
           Alert.alert(t.t('error_updating_locale'));
         }
+        AsyncStorage.setItem('lastLanguage', locale);
+        i18n.changeLanguage(locale);
       }
     } catch (error) {
       Alert.alert(t.t('error_updating_locale'));
