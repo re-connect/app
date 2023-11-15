@@ -73,7 +73,6 @@ export default {
   error_updating_password:
     "Si è verificato un errore durante l'aggiornamento della password, la preghiamo di riprovare",
   error_updating_user: "Si è verificato un errore durante l'aggiornamento del utente, la preghiamo di riprovare",
-  error_updating_locale: "Si è verificato un errore durante l'aggiornamento della lingua, la preghiamo di riprovare",
   event: 'Evento',
   events: 'Eventi',
   file_added: 'File aggiunto ! ',

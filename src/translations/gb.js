@@ -62,7 +62,6 @@ export default {
   error_updating_data: 'Error updating element, please retry',
   error_updating_password: 'Error updating password, please retry',
   error_updating_user: 'Error updating user, please retry',
-  error_updating_locale: 'Error updating locale, please retry',
   event: 'Event',
   events: 'Events',
   file_added: 'File added !',

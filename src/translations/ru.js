@@ -62,7 +62,6 @@ export default {
   error_updating_data: 'Ошибка обновления элемента. Повторите попытку.',
   error_updating_password: 'Ошибка обновления пароля. Повторите попытку.',
   error_updating_user: 'Ошибка обновления пользователя. Повторите попытку.',
-  error_updating_locale: 'Ошибка обновления языка. Повторите попытку.',
   event: 'событие',
   events: 'события',
   file_added: 'Файл добавлен!',

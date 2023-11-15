@@ -63,7 +63,6 @@ export default {
   error_updating_data: 'Eroare la actualizarea elementului, încercați din nou',
   error_updating_password: 'Eroare la actualizarea parolei, va rugam sa reîncercați',
   error_updating_user: 'Eroare la actualizarea utilizatorului, va rugam sa reincercati',
-  error_updating_locale: 'Eroare la actualizarea limbii, va rugam sa reincercati',
   event: 'Eveniment',
   events: 'Evenimente',
   file_added: 'Fișier adăugat!',

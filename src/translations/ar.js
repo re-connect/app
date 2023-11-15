@@ -62,7 +62,6 @@ export default {
   error_updating_data: 'حدث خطأ أثناء تحديث العنصر، يرجى إعادة المحاولة',
   error_updating_password: 'حدث خطأ أثناء تحديث كلمة السر، يرجى إعادة المحاولة',
   error_updating_user: 'حدث خطأ أثناء تحديث المستخدم، يرجى إعادة المحاولة',
-  error_updating_locale: 'حدث خطأ أثناء تحديث اللغة، يرجى إعادة المحاولة',
   event: 'حدث',
   events: 'أحداث',
   file_added: 'تم إضافة الملف',
