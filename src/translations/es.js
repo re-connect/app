@@ -64,6 +64,7 @@ export default {
   error_updating_data: 'Error al actualizar el elemento, por favor vuelva a intentarlo',
   error_updating_password: 'Error al actualizar la contraseña, por favor vuelva a intentarlo',
   error_updating_user: 'Error al actualizar el usuario, por favor vuelva a intentarlo',
+  error_updating_locale: 'Error al actualizar el idioma, por favor vuelva a intentarlo',
   event: 'Evento',
   events: 'Eventos',
   file_added: '¡Archivo añadido!',

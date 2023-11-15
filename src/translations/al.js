@@ -66,6 +66,7 @@ export default {
   error_updating_data: 'Një gabim ndodhi gjatë perditësimit të elementit, ju lutem provoni përsëri',
   error_updating_password: 'Një gabim ndodhi gjatë përditësimit të fjalëkalimit, ju lutem riprovoni',
   error_updating_user: 'Një gabim ndodhi gjatë përditësimit të përdoruesit, ju lutem riprovoni',
+  error_updating_locale: 'Një gabim ndodhi gjatë përditësimit të gjuhës, ju lutem riprovoni',
   event: 'Event',
   events: 'Evente',
   file_added: 'Dokumenti u shtua',

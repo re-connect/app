@@ -17,10 +17,11 @@ import UserContext from '../context/UserContext';
 import { getTruncatedFullName } from '../helpers/userHelpers';
 import { login } from '../services/authentication';
 import { LoginFormValues } from '../services/forms';
-import { fetchCurrentUser, makeRequestv2 } from '../services/requests';
+import { fetchCurrentUser, makeRequestv2, makeRequestv3 } from '../services/requests';
 import t from '../services/translation';
 import { UserField } from '../types/Users';
 import { useFetchInvitations } from './CentersHooks';
+import { useTranslation } from 'react-i18next';
 
 export const useGetLastUsername = () => {
   const { lastUsername, setLastUsername } = React.useContext(UserContext);
@@ -249,4 +250,34 @@ export const useResetPassword = () => {
   );
 
   return { isResetting, reset };
+};
+
+export const useUserLocale = (): {
+  updateLocale: (locale: string) => Promise<void>;
+  currentLanguageCode: string;
+} => {
+  const { i18n } = useTranslation();
+  const [currentLanguageCode, setCurrentLanguageCode] = React.useState<string>('fr');
+  AsyncStorage.getItem('lastLanguage').then((lastLanguage: string | null): void => {
+    setCurrentLanguageCode(lastLanguage !== null ? lastLanguage : 'fr');
+  });
+
+  const updateLocale = async (locale: string) => {
+    try {
+      if (locale) {
+        const newData = await makeRequestv3(`/user/switch-locale/${locale}`, 'GET');
+        if (newData) {
+          setCurrentLanguageCode(locale);
+          AsyncStorage.setItem('lastLanguage', locale);
+          i18n.changeLanguage(locale);
+        } else {
+          Alert.alert(t.t('error_updating_locale'));
+        }
+      }
+    } catch (error) {
+      Alert.alert(t.t('error_updating_locale'));
+    }
+  };
+
+  return { updateLocale, currentLanguageCode };
 };

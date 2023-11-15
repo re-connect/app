@@ -66,6 +66,7 @@ export default {
   error_updating_data: 'Il y a eu une erreur lors de la mise à jour, veuillez réessayer',
   error_updating_password: 'Il y a eu une erreur lors de la mise à jour du mot de passe, veuillez réessayer',
   error_updating_user: "Il y a eu une erreur lors de la mise à jour de l'utilisateur, veuillez réessayer",
+  error_updating_locale: 'Il y a eu une erreur lors de la mise à jour de la langue, veuillez réessayer',
   event: 'Évènement',
   events: 'Évènements',
   file_added: 'Fichier ajouté !',

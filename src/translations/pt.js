@@ -66,6 +66,7 @@ export default {
   error_updating_data: 'Ocorreu um erro na atualização, por favor tente novamente',
   error_updating_password: 'Ocorreu um erro ao atualizar a senha, por favor tente novamente',
   error_updating_user: 'Ocorreu um erro ao atualizar o utilizador, por favor tente novamente',
+  error_updating_locale: 'Ocorreu um erro ao atualizar o idioma, por favor tente novamente',
   event: 'Evento',
   events: 'Eventos',
   file_added: 'Arquivo adicionado',

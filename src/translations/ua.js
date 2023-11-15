@@ -63,6 +63,7 @@ export default {
   error_updating_data: 'Помилка під час оновлення, спробуйте ще раз',
   error_updating_password: 'Помилка під час оновлення паролю, спробуйте ще раз',
   error_updating_user: 'Помилка під час оновлення користувача, спробуйте ще раз',
+  error_updating_locale: 'Помилка під час оновлення мови, спробуйте ще раз',
   event: 'Подія',
   events: 'Події',
   file_added: 'Файл було додано',

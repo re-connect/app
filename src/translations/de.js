@@ -64,6 +64,7 @@ export default {
   error_updating_data: 'Fehler beim Aktualisieren der Daten, bitte erneut versuchen',
   error_updating_password: 'Fehler beim Aktualisieren des Passworts, bitte erneut versuchen',
   error_updating_user: 'Fehler beim Aktualisieren des Nutzers, bitte erneut versuchen',
+  error_updating_locale: 'Fehler beim Aktualisieren der Sprache, bitte erneut versuchen',
   event: 'Termin',
   events: 'Termine',
   file_added: 'Datei hinzugefügt!',
