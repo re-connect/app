@@ -253,7 +253,7 @@ export const useResetPassword = () => {
 };
 
 export const useUserLocale = (): {
-  updateLocale: (locale: string) => Promise<void>;
+  updateLocale: (locale: string) => void;
   currentLanguageCode: string;
 } => {
   const { i18n } = useTranslation();
@@ -262,20 +262,12 @@ export const useUserLocale = (): {
     setCurrentLanguageCode(lastLanguage !== null ? lastLanguage : 'fr');
   });
 
-  const updateLocale = async (locale: string) => {
-    try {
-      if (locale) {
-        const newData = await makeRequestv3(`/user/switch-locale/`, 'PATCH', { locale });
-        if (newData) {
-          setCurrentLanguageCode(locale);
-        } else {
-          Alert.alert(t.t('error_updating_locale'));
-        }
-        AsyncStorage.setItem('lastLanguage', locale);
-        i18n.changeLanguage(locale);
-      }
-    } catch (error) {
-      Alert.alert(t.t('error_updating_locale'));
+  const updateLocale = (locale: string) => {
+    if (locale) {
+      setCurrentLanguageCode(locale);
+      AsyncStorage.setItem('lastLanguage', locale);
+      i18n.changeLanguage(locale);
+      makeRequestv3(`/user/switch-locale/`, 'PATCH', { locale }); //saving last language in backend is not mandatory, it's a bonus
     }
   };
 
