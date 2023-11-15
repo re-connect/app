@@ -267,7 +267,7 @@ export const useUserLocale = (): {
       setCurrentLanguageCode(locale);
       AsyncStorage.setItem('lastLanguage', locale);
       i18n.changeLanguage(locale);
-      makeRequestv3(`/user/switch-locale/`, 'PATCH', { locale }); //saving last language in backend is not mandatory, it's a bonus
+      makeRequestv3(`/users/switch-locale`, 'PATCH', { locale }); //saving last language in backend is not mandatory, it's a bonus
     }
   };
 
