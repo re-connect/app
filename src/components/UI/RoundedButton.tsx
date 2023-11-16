@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ThemeContext from '../../context/ThemeContext';
 import { colors } from '../../style';
@@ -14,6 +14,8 @@ interface Props {
   onPress?: (event: any) => void;
   text: string;
   fontSize?: number;
+  wrapperStyle?: ViewStyle;
+  textStyle?: TextStyle;
 }
 const styles = StyleSheet.create({
   container: {
@@ -47,6 +49,8 @@ const RoundedButton: React.FC<Props> = ({
   disabled,
   color,
   fontSize,
+  wrapperStyle,
+  textStyle,
 }) => {
   const theme = React.useContext(ThemeContext);
   const userColor = theme.value ? colors.primaryPro : colors.primary;
@@ -58,10 +62,11 @@ const RoundedButton: React.FC<Props> = ({
         styles.container,
         { backgroundColor: color ? color : userColor },
         isLoading || disabled ? styles.loading : {},
+        wrapperStyle,
       ]}
       onPress={onPress}>
       {!iconName ? null : <Icon style={styles.icon} color={!iconColor ? colors.white : iconColor} name={iconName} />}
-      <Text style={[styles.text, fontSizeStyle]}>{text}</Text>
+      <Text style={[styles.text, fontSizeStyle, textStyle]}>{text}</Text>
       {isLoading ? <ActivityIndicator style={styles.loader} size='small' color={colors.black} /> : null}
     </TouchableOpacity>
   );
