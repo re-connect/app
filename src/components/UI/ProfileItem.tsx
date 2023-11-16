@@ -1,7 +1,7 @@
 import * as Formik from 'formik';
 import { FormikProps } from 'formik';
-import { Box, VStack } from 'native-base';
 import * as React from 'react';
+import { StyleSheet, View } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import UserContext from '../../context/UserContext';
 import userShape from '../../helpers/forms/userShape';
@@ -25,6 +25,20 @@ interface Props {
   item: ProfileItemInterface;
 }
 
+const styles = StyleSheet.create({
+  wrapper: {
+    justifyContent: 'center',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    backgroundColor: colors.white,
+    marginBottom: 10,
+    shadowColor: colors.black,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    elevation: 2,
+  },
+});
+
 const ProfileItem: React.FC<Props> = ({ item }) => {
   const { field, value, beneficiaryField } = item;
   const { user } = React.useContext(UserContext);
@@ -45,29 +59,27 @@ const ProfileItem: React.FC<Props> = ({ item }) => {
   };
 
   return (
-    <Box>
-      <Formik.Formik onSubmit={onSave} initialValues={initialValues} validationSchema={userShape}>
-        {(formikBag: FormikProps<Record<UserField, string>>) => (
-          <VStack justifyContent='center' rounded='md' bg={colors.white} shadow={3} mb='2'>
-            <ProfileItemHeader
-              handleSubmit={formikBag.handleSubmit}
-              item={item}
-              showForm={showForm}
-              showFormActions={showFormActions}
-              userColor={userColor}
-              isUpdating={isUpdating}
-            />
-            <ProfileItemBody
-              item={item}
-              showForm={showForm}
-              formikBag={formikBag}
-              userColor={userColor}
-              isUpdating={isUpdating}
-            />
-          </VStack>
-        )}
-      </Formik.Formik>
-    </Box>
+    <Formik.Formik onSubmit={onSave} initialValues={initialValues} validationSchema={userShape}>
+      {(formikBag: FormikProps<Record<UserField, string>>) => (
+        <View style={styles.wrapper}>
+          <ProfileItemHeader
+            handleSubmit={formikBag.handleSubmit}
+            item={item}
+            showForm={showForm}
+            showFormActions={showFormActions}
+            userColor={userColor}
+            isUpdating={isUpdating}
+          />
+          <ProfileItemBody
+            item={item}
+            showForm={showForm}
+            formikBag={formikBag}
+            userColor={userColor}
+            isUpdating={isUpdating}
+          />
+        </View>
+      )}
+    </Formik.Formik>
   );
 };
 
