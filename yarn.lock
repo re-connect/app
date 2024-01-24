@@ -2636,10 +2636,10 @@
   dependencies:
     pretty-format "^27.0.0"
 
-"@thegrizzlylabs/react-native-genius-scan@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.npmjs.org/@thegrizzlylabs/react-native-genius-scan/-/react-native-genius-scan-4.5.3.tgz"
-  integrity sha512-T+p5gXV+6Q07c5XypgXVo/JmHeAT45tiJ87VjBmNWV6DHBCw1AeCQs/22trxMjSPfTO+apu0P/ZT+CcKVyHhrw==
+"@thegrizzlylabs/react-native-genius-scan@^4.21.0":
+  version "4.21.0"
+  resolved "https://registry.yarnpkg.com/@thegrizzlylabs/react-native-genius-scan/-/react-native-genius-scan-4.21.0.tgz#ceaf4727af31ce93494a3aefa864016675627788"
+  integrity sha512-UKHy+XJnaxVw2lD7rcL1rkbq/MzZu9wkz2eld3dKCa24O3Ps1MpkZBt9S1pVPI/qL/Si+nzTwu8Er2i7uxH2dQ==
 
 "@tootallnate/once@1":
   version "1.1.2"
