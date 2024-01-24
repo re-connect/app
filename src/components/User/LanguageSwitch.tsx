@@ -1,9 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Text, View } from 'native-base';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger/array';
 import { useTranslation } from 'react-i18next';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
 import Flag from 'react-native-flags';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -94,8 +93,7 @@ const LanguageSwitch: React.FC = () => {
                   i18n.changeLanguage(code);
                   setCurrentLanguageCode(code);
                   openActions.setFalse();
-                }}
-              >
+                }}>
                 {'ar' === code ? (
                   <Image source={ArabLeagueFlag} style={{ top: 6, height: 20, width: 32 }} />
                 ) : (

@@ -42,7 +42,7 @@ export const useFetchDocuments = (beneficiaryId?: number) => {
 
 export const useScanDocument = () => {
   const triggerScanDocument = async (): Promise<ScannedGeniusDocumentInterface> => {
-    await RNGeniusScan.setLicenceKey(geniusSdkLicense);
+    await RNGeniusScan.setLicenseKey(geniusSdkLicense, /* autoRefresh = */ true);
     const geniusImageScanned: ScannedGeniusDocumentInterface = await RNGeniusScan.scanWithConfiguration({
       source: 'camera',
       jpegQuality: 100,

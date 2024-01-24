@@ -29,7 +29,7 @@ const DocumentUploadModal: React.FC<{
 
   const handleScanPicture = async () => {
     setVisible(false);
-    await RNGeniusScan.setLicenceKey(geniusSdkLicense);
+    await RNGeniusScan.setLicenseKey(geniusSdkLicense, /* autoRefresh = */ true);
     const res = await launchImageLibrary({
       mediaType: 'photo',
       maxWidth: 2000,

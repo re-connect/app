@@ -21,4 +21,5 @@ export const colors = {
   darkGrayMoreTransparent: 'rgba(44,62,80, 0.2)',
   black: '#2f3640',
   red: '#e74c3c',
+  chat: '#23baf6',
 };
