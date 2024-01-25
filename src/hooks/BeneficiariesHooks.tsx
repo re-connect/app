@@ -10,7 +10,7 @@ import DocumentContext from '../context/DocumentContext';
 import EventContext from '../context/EventContext';
 import NoteContext from '../context/NoteContext';
 import { formatEnableBeneficiaryErrors } from '../middlewares/dataTransformer';
-import { makeRequestv2 } from '../services/requests';
+import { makeRequestv2, makeRequestv3 } from '../services/requests';
 import t from '../services/translation';
 import {
   BeneficiaryInterface,
@@ -187,4 +187,38 @@ export const useDeleteBeneficiary = () => {
   );
 
   return { isDeleting, isDeletingActions, triggerDeleteBeneficiary };
+};
+
+export const useRequestDataForBeneficiary = () => {
+  const { t } = useTranslation();
+  const [isGetingData, isGetingDataActions] = useBoolean(false);
+  const navigation = useNavigation<any>();
+
+  const triggerRequestDataBeneficiary = useCallback(
+    async (id: number) => {
+      try {
+        isGetingDataActions.setTrue();
+        Alert.alert(t('get_my_data_confirm'), t('get_my_data_text'), [
+          {
+            text: t('yes'),
+            onPress: async () => {
+              await makeRequestv3(`/users/request-personal-account-data/`, 'POST');
+              isGetingDataActions.setFalse();
+            },
+            style: 'cancel',
+          },
+          {
+            text: t('cancel'),
+            onPress: isGetingDataActions.setFalse,
+          },
+        ]);
+      } catch (error) {
+        isGetingDataActions.setFalse();
+        Alert.alert(t('error_generic'));
+      }
+    },
+    [isGetingDataActions, navigation],
+  );
+
+  return { isGetingData, isGetingDataActions, triggerRequestDataBeneficiary };
 };

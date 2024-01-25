@@ -167,6 +167,10 @@ export default {
   refuse: 'Отказаться',
   delete_my_account_confirm: 'Вы уверены, что хотите удалить свой аккаунт навсегда?',
   delete_my_account: 'Удалите мой аккаунт',
+  get_my_data: 'Получить мои данные',
+  get_my_data_confirm: 'Вы хотите запросить восстановление ваших данных?',
+  get_my_data_text:
+    'Запрос будет передан специальной команде. Вам будет предоставлена информация по этому вопросу в кратчайшие сроки.',
   this_action_is_irreversible: 'Это действие необратимо',
   ios_app_udpate_available_title: 'Доступно обновление',
   ios_app_udpate_available_message: 'В AppStore доступна новая версия Reconnect, установить ее?',
