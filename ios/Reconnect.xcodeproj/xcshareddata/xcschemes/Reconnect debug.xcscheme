@@ -15,7 +15,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "B6546FEC2943E0840082A976"
-                     BuildableName = "Reconnect debug.app"
+                     BuildableName = "Reconnect debug"
                      BlueprintName = "Reconnect debug"
                      ReferencedContainer = "container:Reconnect.xcodeproj">
                   </BuildableReference>
@@ -31,7 +31,7 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "B6546FEC2943E0840082A976"
-                     BuildableName = "Reconnect debug.app"
+                     BuildableName = "Reconnect debug"
                      BlueprintName = "Reconnect debug"
                      ReferencedContainer = "container:Reconnect.xcodeproj">
                   </BuildableReference>
@@ -49,7 +49,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B6546FEC2943E0840082A976"
-               BuildableName = "Reconnect debug.app"
+               BuildableName = "Reconnect debug"
                BlueprintName = "Reconnect debug"
                ReferencedContainer = "container:Reconnect.xcodeproj">
             </BuildableReference>
@@ -79,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B6546FEC2943E0840082A976"
-            BuildableName = "Reconnect debug.app"
+            BuildableName = "Reconnect debug"
             BlueprintName = "Reconnect debug"
             ReferencedContainer = "container:Reconnect.xcodeproj">
          </BuildableReference>
@@ -96,7 +96,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B6546FEC2943E0840082A976"
-            BuildableName = "Reconnect debug.app"
+            BuildableName = "Reconnect debug"
             BlueprintName = "Reconnect debug"
             ReferencedContainer = "container:Reconnect.xcodeproj">
          </BuildableReference>

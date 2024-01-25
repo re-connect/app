@@ -1,4 +1,4 @@
 module.exports = {
-  ENV: 'preprod',
+  ENV: 'prod',
   CODEPUSH: false,
 };
