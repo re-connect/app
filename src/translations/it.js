@@ -178,6 +178,10 @@ export default {
   refuse: 'Rifiuto',
   delete_my_account_confirm: 'Sicuro di volere cancellare il tuo account per sempre ?',
   delete_my_account: 'Cancella il mio account',
+  get_my_data: 'Ottieni i miei dati',
+  get_my_data_confirm: 'Sicuro di volere ottenere i tuoi dati ?',
+  get_my_data_text:
+    'La richiesta verrà inviata al team dedicato. Sarai contattato al più presto in merito a questo argomento.',
   this_action_is_irreversible: 'Questa azione è irreversibile',
   ios_app_udpate_available_title: 'Nuova versione disponibile',
   ios_app_udpate_available_message: 'Su AppStore è disponibile una nuova versione di Reconnect, vuoi installarla?',

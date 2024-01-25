@@ -165,12 +165,16 @@ export default {
   yyyy: 'aaaa',
   // From here, some translation will be missing
   eastern: 'Arabe du levant',
-  folder_name: 'Nom du dossier',
-  not_connected_error: "Il semble que vous n'êtes pas connecté à Internet",
-  refuse: 'Refuser',
-  delete_my_account_confirm: 'Êtes vous sur de vouloir supprimer votre compte ?',
-  delete_my_account: 'Supprimer mon compte',
-  this_action_is_irreversible: 'Cette action est irréversible',
+  folder_name: 'Nome do arquivo',
+  not_connected_error: 'Você não está conectado à internet',
+  refuse: 'Recusar',
+  delete_my_account_confirm: 'Tem a certeza de que deseja excluir a sua conta permanentemente?',
+  delete_my_account: 'Excluir a minha conta',
+  get_my_data: 'Obter os meus dados',
+  get_my_data_confirm: 'Deseja solicitar a recuperação dos seus dados?',
+  get_my_data_text:
+    'A solicitação será enviada para a equipe responsável. Você será contatado o mais breve possível sobre isso.',
+  this_action_is_irreversible: 'Esta ação é irreversível',
   ios_app_udpate_available_title: 'Atualização disponível',
   ios_app_udpate_available_message: 'Uma nova versão do Reconnect está disponível na AppStore, deseja instalá-la?',
 };
