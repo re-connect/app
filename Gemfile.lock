@@ -157,6 +157,7 @@ GEM
       xcodeproj (>= 1.13.0, < 2.0.0)
       xcpretty (~> 0.3.0)
       xcpretty-travis-formatter (>= 0.0.3)
+    fastlane-plugin-appcenter (2.1.1)
     ffi (1.16.3)
     fourflusher (2.3.1)
     fuzzy_match (2.0.4)
@@ -278,6 +279,7 @@ DEPENDENCIES
   activesupport (>= 6.1.7.3, < 7.1.0)
   cocoapods (~> 1.13)
   fastlane
+  fastlane-plugin-appcenter
 
 RUBY VERSION
    ruby 2.6.10p210
