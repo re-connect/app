@@ -1,7 +1,8 @@
-import { Text, View } from 'native-base';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger/array';
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
 import Flag from 'react-native-flags';
 import Icon from 'react-native-vector-icons/FontAwesome5';

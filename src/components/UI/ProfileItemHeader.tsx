@@ -1,17 +1,22 @@
-import { Center, Flex, HStack, Pressable } from 'native-base';
 import * as React from 'react';
 import { UseBooleanActions } from 'react-hanger/array';
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import UserContext from '../../context/UserContext';
-import { useUpdateUser } from '../../hooks/UserHooks';
 import { colors } from '../../style';
 import { ProfileItemInterface } from './ProfileItem';
 import Text from './Text';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   icon: { fontSize: 20, marginHorizontal: 16, color: colors.white },
   label: { fontSize: 18, color: colors.white, textAlign: 'center', fontWeight: 'bold' },
+  wrapper: {
+    opacity: 0.6,
+    paddingVertical: 17,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    flexDirection: 'row',
+  },
 });
 
 interface Props {
@@ -34,25 +39,23 @@ const ProfileItemHeader: React.FC<Props> = ({
   const onPress = showForm ? handleSubmit : showFormActions.setTrue;
 
   return (
-    <HStack bg={userColor} opacity='0.6' p='4' roundedTop='md'>
-      <Center>{!iconName ? null : <Icon style={styles.icon} name={iconName} color={colors.gray} />}</Center>
-      <Flex flex='1'>
-        <Center>
-          <Text style={styles.label}>{label}</Text>
-        </Center>
-      </Flex>
-      {!readOnly ? (
-        <Pressable onPress={onPress} disabled={isUpdating}>
-          <Center>
-            {isUpdating ? (
-              <ActivityIndicator size='small' color={colors.white} />
-            ) : (
-              <Icon style={styles.icon} name={showForm ? 'save' : 'pen'} />
-            )}
-          </Center>
-        </Pressable>
-      ) : null}
-    </HStack>
+    <View style={[styles.wrapper, { backgroundColor: userColor }]}>
+      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+        <>{!iconName ? null : <Icon style={styles.icon} name={iconName} color={colors.gray} />}</>
+        <Text style={[styles.label, readOnly && { marginRight: '33%' }]}>{label}</Text>
+        {!readOnly ? (
+          <TouchableOpacity onPress={onPress} disabled={isUpdating}>
+            <>
+              {isUpdating ? (
+                <ActivityIndicator size='small' color={colors.white} style={{ marginHorizontal: 16 }} />
+              ) : (
+                <Icon style={[styles.icon, showForm && { marginLeft: 18 }]} name={showForm ? 'save' : 'pen'} />
+              )}
+            </>
+          </TouchableOpacity>
+        ) : null}
+      </View>
+    </View>
   );
 };
 

@@ -1,4 +1,6 @@
 export interface ImageInterface {
+  filename?: string | null;
   path: string;
-  filename?: string;
+  size?: number | null;
+  type?: string | null;
 }

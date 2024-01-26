@@ -1,7 +1,6 @@
 import { FormikProps } from 'formik';
-import { Center, HStack, View } from 'native-base';
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { colors } from '../../style';
 import { UserField } from '../../types/Users';
 import { ProfileItemInterface } from './ProfileItem';
@@ -10,6 +9,9 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   label: { fontSize: 18, textAlign: 'center', color: colors.darkGray },
+  wrapper: {
+    padding: 15,
+  },
 });
 
 interface Props {
@@ -26,23 +28,19 @@ const ProfileItemBody: React.FC<Props> = ({ item, formikBag, showForm, userColor
   initialValues[field] = !value ? '' : value;
 
   return (
-    <HStack p='4' bg={colors.white}>
-      <View style={{ flex: 1 }}>
-        {isUpdating ? (
-          <Center>
-            <ActivityIndicator size='small' color={userColor} />
-          </Center>
-        ) : (
-          <>
-            {showForm ? (
-              <ProfileItemForm item={item} formikBag={formikBag} />
-            ) : (
-              <Text style={styles.label}>{field === 'reponse_secrete' ? '*******' : value}</Text>
-            )}
-          </>
-        )}
-      </View>
-    </HStack>
+    <View style={styles.wrapper}>
+      {isUpdating ? (
+        <ActivityIndicator size='small' color={userColor} />
+      ) : (
+        <>
+          {showForm ? (
+            <ProfileItemForm item={item} formikBag={formikBag} />
+          ) : (
+            <Text style={styles.label}>{field === 'reponse_secrete' ? '*******' : value}</Text>
+          )}
+        </>
+      )}
+    </View>
   );
 };
 

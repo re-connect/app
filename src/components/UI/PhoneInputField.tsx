@@ -1,4 +1,3 @@
-import { Stack } from 'native-base';
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Platform, StyleSheet, View } from 'react-native';
@@ -45,29 +44,27 @@ const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, val
   };
 
   return (
-    <Stack mt={3} space={4} w="100%" backgroundColor={colors.white} borderRadius="24">
-      <View style={[styles.wrapper, !!error && { borderColor: colors.red }]}>
-        {displayedValue !== null && (
-          <>
-            <PhoneInput
-              filterProps={{ placeholder: t('choose_a_country'), style: { width: '100%' } }}
-              placeholder={t('phone')}
-              ref={phoneInput}
-              defaultValue={displayedValue}
-              //@ts-ignore
-              defaultCode={defaultCode}
-              layout="first"
-              onChangeFormattedText={handleChange}
-              textContainerStyle={styles.textContainer}
-              containerStyle={styles.container}
-              textInputStyle={[style, styles.textInput]}
-              codeTextStyle={[style, styles.textInput]}
-            />
-            <RightElement />
-          </>
-        )}
-      </View>
-    </Stack>
+    <View style={[styles.wrapper, !!error && { borderColor: colors.red }]}>
+      {displayedValue !== null && (
+        <>
+          <PhoneInput
+            filterProps={{ placeholder: t('choose_a_country'), style: { width: '100%' } }}
+            placeholder={t('phone')}
+            ref={phoneInput}
+            defaultValue={displayedValue}
+            //@ts-ignore
+            defaultCode={defaultCode}
+            layout='first'
+            onChangeFormattedText={handleChange}
+            textContainerStyle={styles.textContainer}
+            containerStyle={styles.container}
+            textInputStyle={[style, styles.textInput]}
+            codeTextStyle={[style, styles.textInput]}
+          />
+          <RightElement />
+        </>
+      )}
+    </View>
   );
 };
 

@@ -9,7 +9,14 @@ const ItemModal: React.FC<{ label: string; onPress: () => void; iconName: string
 }) => {
   return (
     <View style={styles.wrapper}>
-      <RoundedButton text={label} onPress={onPress} iconName={iconName} fontSize={17} />
+      <RoundedButton
+        text={label}
+        onPress={onPress}
+        iconName={iconName}
+        fontSize={16}
+        wrapperStyle={styles.button}
+        textStyle={styles.text}
+      />
     </View>
   );
 };
@@ -17,6 +24,13 @@ const ItemModal: React.FC<{ label: string; onPress: () => void; iconName: string
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: 10,
+  },
+  button: {
+    paddingHorizontal: 30,
+    alignContent: 'center',
+  },
+  text: {
+    textAlign: 'center',
   },
 });
 

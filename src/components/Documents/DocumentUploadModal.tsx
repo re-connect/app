@@ -16,20 +16,32 @@ const DocumentUploadModal: React.FC<{
   triggerDocumentUpload: (files: ImageInterface[]) => void;
 }> = ({ visible, setVisible, handleScanDocument, triggerDocumentUpload }) => {
   const handleChooseFile = async () => {
-    setVisible(false);
-    const res = await DocumentPicker.pickSingle({ type: [DocumentPicker.types.allFiles] });
-    const file = {
-      filename: res.name,
-      path: res.uri,
-      size: res.size,
-      type: res.type, // mime type
-    };
-    triggerDocumentUpload([file]);
+    await DocumentPicker.pickSingle({
+      type: [DocumentPicker.types.allFiles],
+    })
+      .then(res => {
+        if (res) {
+          const file = {
+            filename: res.name,
+            path: res.uri,
+            size: res.size,
+            type: res.type, // mime type
+          };
+          triggerDocumentUpload([file]);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(() => {
+        //prevent autoclosing the modal before user has selected a file
+        setVisible(false);
+      });
   };
 
   const handleScanPicture = async () => {
     setVisible(false);
-    await RNGeniusScan.setLicenceKey(geniusSdkLicense);
+    await RNGeniusScan.setLicenseKey(geniusSdkLicense, /* autoRefresh = */ true);
     const res = await launchImageLibrary({
       mediaType: 'photo',
       maxWidth: 2000,
