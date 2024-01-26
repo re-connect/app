@@ -168,9 +168,13 @@ export default {
   refuse: 'Refuzoj',
   folder_name: 'Emri i dosjes',
   not_connected_error: 'Ju nuk jeni të lidhur me internet',
-  delete_my_account_confirm: 'Êtes vous sur de vouloir supprimer votre compte ?',
-  delete_my_account: 'Supprimer mon compte',
-  this_action_is_irreversible: 'Cette action est irréversible',
+  delete_my_account_confirm: 'A jeni të sigurt që doni të fshini llogarinë tuaj?',
+  delete_my_account: 'Fshi llogarinë time',
+  get_my_data: 'Merr të dhënat e mia',
+  get_my_data_confirm: 'A jeni të sigurt që doni të merrni të dhënat tuaja?',
+  get_my_data_text:
+    'Ju do të merrni një email me të dhënat tuaja të përdoruesit, të dhënat e përfituesit dhe të dhënat e kontaktit tuaj.',
+  this_action_is_irreversible: 'Ky veprim është i pandryshueshëm',
   ios_app_udpate_available_title: 'Ofrohet përditësim',
   ios_app_udpate_available_message:
     'Një version i ri i Reconnect është i disponueshëm në AppStore, dëshironi ta instaloni?',

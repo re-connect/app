@@ -169,6 +169,10 @@ export default {
   not_connected_error: 'Du hast derzeit keine Internetverbindung',
   delete_my_account_confirm: 'Sind Sie sicher, dieses Element zu entfernen ?',
   delete_my_account: 'Mein Konto löschen',
+  get_my_data: 'Meine Daten erhalten',
+  get_my_data_confirm: 'Sind Sie sicher, dass Sie Ihre Daten erhalten möchten ?',
+  get_my_data_text:
+    'Die Anfrage wird an das spezialisierte Team weitergeleitet. Sie werden in Kürze zu diesem Thema kontaktiert.',
   this_action_is_irreversible: 'Diese Aktion ist irreversibel',
   ios_app_udpate_available_title: 'Update verfügbar',
   ios_app_udpate_available_message:
