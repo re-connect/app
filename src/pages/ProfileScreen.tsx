@@ -8,7 +8,7 @@ import RoundedButton from '../components/UI/RoundedButton';
 import Separator from '../components/UI/Separator';
 import BeneficiaryContext from '../context/BeneficiaryContext';
 import UserContext from '../context/UserContext';
-import { useDeleteBeneficiary } from '../hooks/BeneficiariesHooks';
+import { useDeleteBeneficiary, useRequestDataForBeneficiary } from '../hooks/BeneficiariesHooks';
 import { colors } from '../style';
 import { Linking, View } from 'react-native';
 import { backendUrl } from '../appConstants';
@@ -21,6 +21,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const { user } = React.useContext(UserContext);
   const { current } = React.useContext(BeneficiaryContext);
   const { isDeleting, triggerDeleteBeneficiary } = useDeleteBeneficiary();
+  const { isGetingData, triggerRequestDataBeneficiary } = useRequestDataForBeneficiary();
   const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
   if (!user) return null;
 
@@ -75,6 +76,17 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
               text='delete_my_account'
               onPress={() => {
                 triggerDeleteBeneficiary(current.subject_id);
+              }}
+            />
+          )}
+          <Separator height={2} />
+          {!current || !current.subject_id || isMember ? null : (
+            <RoundedButton
+              isLoading={isGetingData}
+              color={colors.darkGrayTransparent}
+              text='get_my_data'
+              onPress={() => {
+                triggerRequestDataBeneficiary(current.subject_id);
               }}
             />
           )}

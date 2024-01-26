@@ -168,6 +168,10 @@ export default {
   refuse: 'Rechazar',
   delete_my_account_confirm: '¿Está seguro de que quiere eliminar su cuenta para siempre?',
   delete_my_account: 'Eliminar mi cuenta',
+  get_my_data: 'Obtener mis datos',
+  get_my_data_confirm: '¿Está seguro de que quiere obtener sus datos?',
+  get_my_data_text:
+    'La solicitud se enviará al equipo correspondiente. Serás contactado a la brevedad posible sobre este asunto.',
   this_action_is_irreversible: 'Esta acción es irreversible',
   ios_app_udpate_available_title: 'Actualización de la aplicación disponible',
   ios_app_udpate_available_message:

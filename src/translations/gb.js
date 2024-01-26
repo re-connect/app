@@ -166,6 +166,10 @@ export default {
   refuse: 'Refuse',
   delete_my_account_confirm: 'Are you sure that you want to delete your account forever ?',
   delete_my_account: 'Delete my account',
+  get_my_data: 'Get my data',
+  get_my_data_confirm: 'You want to get your data ?',
+  get_my_data_text:
+    'The request will be forwarded to the dedicated team. You will be contacted as soon as possible regarding this matter.',
   this_action_is_irreversible: 'This action is irreversible',
   ios_app_udpate_available_title: 'Update available',
   ios_app_udpate_available_message: 'There is a new version available on the AppStore. Would you like to upgrade?',
