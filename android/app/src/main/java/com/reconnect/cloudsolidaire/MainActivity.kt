@@ -4,7 +4,6 @@ import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
-//TODO : uncomment this line to use splash screen
 import org.devio.rn.splashscreen.SplashScreen;
 
 
