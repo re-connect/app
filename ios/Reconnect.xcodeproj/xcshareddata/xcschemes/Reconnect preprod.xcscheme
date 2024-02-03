@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1340"
+   LastUpgradeVersion = "1520"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -10,12 +10,12 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cp ${PROJECT_DIR}/../.env.preprod ${PROJECT_DIR}/../.env&#10;">
+               scriptText = "# Type a script or drag a script file from your workspace to insert its path.&#10;cp ${PROJECT_DIR}/../.env.preprod ${PROJECT_DIR}/../.env&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "B6546FC62943DF270082A976"
-                     BuildableName = "Reconnect preprod"
+                     BlueprintIdentifier = "B66DFD312B6AB45900B13305"
+                     BuildableName = "Reconnect preprod.app"
                      BlueprintName = "Reconnect preprod"
                      ReferencedContainer = "container:Reconnect.xcodeproj">
                   </BuildableReference>
@@ -26,12 +26,12 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "&quot;${SRCROOT}/../node_modules/react-native-config/ios/ReactNativeConfig/BuildXCConfig.rb&quot; &quot;${SRCROOT}/..&quot; &quot;${SRCROOT}/tmp.xcconfig&quot;&#10;">
+               scriptText = "# Type a script or drag a script file from your workspace to insert its path.&#10;&quot;${SRCROOT}/../node_modules/react-native-config/ios/ReactNativeConfig/BuildXCConfig.rb&quot; &quot;${SRCROOT}/..&quot; &quot;${SRCROOT}/tmp.xcconfig&quot;&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "B6546FC62943DF270082A976"
-                     BuildableName = "Reconnect preprod"
+                     BlueprintIdentifier = "B66DFD312B6AB45900B13305"
+                     BuildableName = "Reconnect preprod.app"
                      BlueprintName = "Reconnect preprod"
                      ReferencedContainer = "container:Reconnect.xcodeproj">
                   </BuildableReference>
@@ -48,8 +48,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B6546FC62943DF270082A976"
-               BuildableName = "Reconnect preprod"
+               BlueprintIdentifier = "B66DFD312B6AB45900B13305"
+               BuildableName = "Reconnect preprod.app"
                BlueprintName = "Reconnect preprod"
                ReferencedContainer = "container:Reconnect.xcodeproj">
             </BuildableReference>
@@ -60,9 +60,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -78,8 +77,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B6546FC62943DF270082A976"
-            BuildableName = "Reconnect preprod"
+            BlueprintIdentifier = "B66DFD312B6AB45900B13305"
+            BuildableName = "Reconnect preprod.app"
             BlueprintName = "Reconnect preprod"
             ReferencedContainer = "container:Reconnect.xcodeproj">
          </BuildableReference>
@@ -95,8 +94,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B6546FC62943DF270082A976"
-            BuildableName = "Reconnect preprod"
+            BlueprintIdentifier = "B66DFD312B6AB45900B13305"
+            BuildableName = "Reconnect preprod.app"
             BlueprintName = "Reconnect preprod"
             ReferencedContainer = "container:Reconnect.xcodeproj">
          </BuildableReference>
