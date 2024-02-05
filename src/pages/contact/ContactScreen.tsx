@@ -1,7 +1,6 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native'
-import { Button, HStack, Pressable, View, VStack } from 'native-base'
 import * as React from 'react'
-import { ActivityIndicator, Linking, StyleSheet } from 'react-native'
+import { ActivityIndicator, Linking, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import Screen from '../../components/Screen'
 import Text from '../../components/UI/Text'
@@ -10,6 +9,7 @@ import ContactContext from '../../context/ContactContext'
 import { useDeleteData } from '../../hooks/DataHooks'
 import { colors } from '../../style'
 import { ContactInterface } from '../../types/Contact'
+import Section from '../../components/UI/Section'
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },
@@ -38,15 +38,15 @@ const Field: React.FC<{ value?: string; action?: () => void; icon: string }> = (
   if (!value) return null
 
   return (
-    <HStack my='2'>
+    <View style={{flexDirection: 'row', marginVertical: 8}}>
       {!action ? (
         <FieldContent value={value} icon={icon} />
       ) : (
-        <Pressable style={styles.actions} onPress={action}>
+        <TouchableOpacity style={styles.actions} onPress={action}>
           <FieldContent value={value} icon={icon} />
-        </Pressable>
+        </TouchableOpacity>
       )}
-    </HStack>
+    </View>
   )
 }
 
@@ -75,38 +75,34 @@ const ContactScreen: React.FC<Props> = ({ route, navigation }) => {
 
   return (
     <Screen>
-      <VStack justifyContent='center' rounded='2xl' bg={colors.white} shadow={3} m='2' p='4'>
-        <HStack justifyContent='flex-end'>
+      <Section>
+        <View style={{flexDirection: 'row',justifyContent: 'flex-end'}}>
           <TogglePrivacySwitch
             Context={ContactContext}
             isPrivate={contact.b_prive}
             itemId={contactId}
             endpoint={`contacts/${contactId}`}
           />
-        </HStack>
-        <HStack my='2'>
+        </View>
+        <View style={{marginVertical: 8}}>
           <Text style={styles.title}>{`${contact?.prenom} ${contact?.nom}`}</Text>
-        </HStack>
+        </View>
         {fields.map(({ value, action, icon }) => (
           <Field value={value} action={action} icon={icon} key={value} />
         ))}
-        <HStack justifyContent='space-between'>
-          <View>
-            <Button onPress={() => navigation.navigate('EditContact', { contactId: contact.id })}>
+        <View style={{flexDirection:'row',justifyContent: 'space-between', marginTop: 16}}>
+            <TouchableOpacity  onPress={() => navigation.navigate('EditContact', { contactId: contact.id })}>
               <Icon style={styles.icon} name='pen' color={colors.darkGray} />
-            </Button>
-          </View>
-          <View>
-            <Button onPress={() => deleteItem(true)} disabled={isDeleting}>
+            </TouchableOpacity  >
+            <TouchableOpacity  onPress={() => deleteItem(true)} disabled={isDeleting}>
               {isDeleting ? (
                 <ActivityIndicator size='small' color={colors.primary} />
               ) : (
                 <Icon style={styles.icon} name='trash' color={colors.red} />
               )}
-            </Button>
-          </View>
-        </HStack>
-      </VStack>
+            </TouchableOpacity>
+        </View>
+      </Section>
     </Screen>
   )
 }

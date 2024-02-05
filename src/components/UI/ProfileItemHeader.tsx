@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { UseBooleanActions } from 'react-hanger/array';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import { ProfileItemInterface } from './ProfileItem';
 import Text from './Text';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   icon: { fontSize: 20, marginHorizontal: 16, color: colors.white },

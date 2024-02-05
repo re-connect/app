@@ -1,7 +1,6 @@
 import { FormikErrors, FormikTouched } from 'formik';
-import { Input, Stack } from 'native-base';
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import { useTranslation } from 'react-i18next';
 import { KeyboardType, StyleSheet } from 'react-native';
@@ -9,12 +8,24 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 
 const styles = StyleSheet.create({
-  icon: {
-    marginLeft: 16,
-    marginRight: 16,
+  icon: { marginHorizontal: 16 },
+  error: { color: colors.red },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingHorizontal: 16,
+    marginTop: 3,
+    width: '100%',
+    backgroundColor: colors.white,
+    borderRadius: 24,
+    borderWidth: 1,
   },
-  error: {
-    color: colors.secondaryPro,
+  input: {
+    paddingLeft: 24,
+    width: '100%',
+    height:48,
+    fontSize:18,
   },
 });
 
@@ -22,7 +33,6 @@ export interface TextFieldProps {
   autocompleteType?: string;
   contentType?: any;
   disabled?: boolean;
-  editable?: boolean;
   error?: string | string[] | FormikErrors<any> | FormikErrors<any>[];
   fieldLabel?: string;
   handleBlur?: any;
@@ -43,7 +53,6 @@ const TextField: React.FC<TextFieldProps> = ({
   autocompleteType,
   contentType,
   disabled,
-  editable,
   error,
   displayError,
   fieldLabel,
@@ -62,48 +71,24 @@ const TextField: React.FC<TextFieldProps> = ({
   const { t } = useTranslation();
   const [showPassword, showPasswordActions] = useBoolean(false);
   error = !error ? '' : Array.isArray(error) ? error.join(', ') : error;
-  if (!style) {
-    style = { color: colors.darkGray };
-  }
+  style = { color: colors.darkGray, borderColor: !error ? colors.darkGray : colors.red, ...style };
 
-  const getRightIconName = () => {
-    return !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
-  };
-
-  const getIconColor = () => {
-    if (contentType === 'password') return colors.darkGray;
-    if (okIcon) {
-      return !!value && !!touched && !error ? colors.green : colors.red;
-    }
-
-    return 'transparent';
-  };
-
-  const LeftElement = leftElement ? (
-    leftElement
-  ) : !iconName ? undefined : (
-    <Icon style={{ ...styles.icon, color: colors.darkGray, ...iconSyle }} name={iconName} />
-  );
-
-  const RightElement =
-    contentType === 'password' ? (
-      <Icon name='eye' style={{ ...styles.icon, color: getIconColor() }} onPress={showPasswordActions.toggle} />
-    ) : !touched ? undefined : (
-      <Icon name={getRightIconName()} style={{ ...styles.icon, color: getIconColor() }} />
-    );
-
+  const leftIconStyle = { ...styles.icon, color: colors.darkGray, ...iconSyle };
+  const rightIconColor = contentType === 'password'
+    ? colors.darkGray
+    : okIcon ? !!value && !!touched && !error ? colors.green : colors.red : 'transparent';
+  const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
+  const rightIconStyle = { ...styles.icon, color: rightIconColor};
+;
   return (
-    <>
-      <Stack mt={3} space={4} w='100%' backgroundColor={colors.white} borderRadius='24'>
-        <Input
-          borderColor={colors.darkGray}
-          h='48px'
-          size='xl'
+    <View>
+      <View style={[styles.inputContainer, style]}>
+        { leftElement ? leftElement : !iconName ? null : <Icon style={leftIconStyle} name={iconName} />}
+        <TextInput
+          style={[styles.input, style]}
           autoCapitalize='none'
-          autoCompleteType={!autocompleteType ? contentType : autocompleteType}
-          isDisabled={disabled}
-          isInvalid={!!error}
-          editable={editable}
+          autoComplete={!autocompleteType ? contentType : autocompleteType}
+          editable={!disabled}
           keyboardType={keyboardType}
           onBlur={handleBlur}
           onChangeText={handleChange}
@@ -111,21 +96,21 @@ const TextField: React.FC<TextFieldProps> = ({
           placeholder={t(fieldLabel ?? '')}
           placeholderTextColor={colors.darkGray}
           secureTextEntry={contentType === 'password' && !showPassword}
-          style={style}
           textContentType={contentType}
           value={!value ? '' : value}
-          variant='rounded'
-          isFullWidth
-          leftElement={LeftElement}
-          rightElement={RightElement}
         />
-      </Stack>
+        {
+          contentType === 'password'
+          ? <Icon name='eye' style={rightIconStyle} onPress={showPasswordActions.toggle} />
+          : !touched ? null : <Icon name={rightIconName} style={rightIconStyle} />
+        }
+      </View>
       {displayError && !!error && (
-        <Stack mt={2} space={4} w='100%' paddingLeft={2} paddingRight={2}>
+        <View style={{marginTop: 16, paddingHorizontal: 16}}>
           <Text style={styles.error}>{error}</Text>
-        </Stack>
+        </View>
       )}
-    </>
+    </View>
   );
 };
 

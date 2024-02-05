@@ -2,6 +2,7 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:jest/recommended",
     "eslint:recommended",
     "plugin:react/recommended",
     "@react-native"

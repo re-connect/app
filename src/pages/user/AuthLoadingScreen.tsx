@@ -5,7 +5,7 @@ import Screen from '../../components/Screen';
 import Text from '../../components/UI/Text';
 import environments from '../../environment';
 import { useGetUser } from '../../hooks/UserHooks';
-import Logo from '../images/logo.png';
+import Logo from '../../images/logo.png';
 import { colors } from '../../style';
 
 const styles = StyleSheet.create({

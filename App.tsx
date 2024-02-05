@@ -1,5 +1,4 @@
 import * as Sentry from '@sentry/react-native';
-import { extendTheme, NativeBaseProvider } from 'native-base';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger/array';
 import { StatusBar } from 'react-native';
@@ -17,7 +16,6 @@ import LoginTemporisationContext from './src/context/LoginTemporisationContext';
 // import { isCodePushEnabled } from './src/helpers/codePushHelper';
 import Routes from './src/Routes';
 import './src/services/translation';
-import { colors } from './src/style';
 import { BeneficiaryInterface } from './src/types/Beneficiaries';
 import { UserCenterInterface } from './src/types/Centers';
 import { ContactInterface } from './src/types/Contact';
@@ -55,16 +53,6 @@ const App: React.FC = () => {
 
   const isTemporarlyBlocked = () => attempts.value === MAX_LOGIN_ATTEMPTS;
 
-  const MyTheme = extendTheme({
-    colors: {
-      primary: colors.white,
-      background: colors.white,
-      card: !theme ? colors.primary : colors.primaryPro,
-      text: colors.white,
-      border: colors.black,
-    },
-  });
-
   useCheckAndUpdateApp();
 
   return (
@@ -80,10 +68,8 @@ const App: React.FC = () => {
                   <DocumentContext.Provider value={{ list: documents, setList: setDocuments }}>
                     <FolderContext.Provider value={{ list: folders, setList: setFolders }}>
                       <ThemeContext.Provider value={{ value: theme, actions: themeActions }}>
-                        <NativeBaseProvider theme={MyTheme}>
-                          <StatusBar barStyle='light-content' />
-                          <Routes user={user} />
-                        </NativeBaseProvider>
+                        <StatusBar barStyle='light-content' />
+                        <Routes user={user} />
                       </ThemeContext.Provider>
                     </FolderContext.Provider>
                   </DocumentContext.Provider>

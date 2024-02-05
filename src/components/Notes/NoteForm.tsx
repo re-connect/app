@@ -53,7 +53,6 @@ const NoteForm: React.FC<Props> = ({ note, onSubmit, isSubmitting }) => (
           fieldLabel='content'
           handleChange={handleChange('contenu')}
           handleBlur={handleBlur('contenu')}
-          iconName='file-alt'
           okIcon
           value={values.contenu}
         />

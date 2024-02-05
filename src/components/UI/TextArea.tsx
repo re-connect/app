@@ -1,15 +1,29 @@
-import { TextArea as BaseTextArea } from 'native-base';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import { TextFieldProps } from './TextField';
 
 const styles = StyleSheet.create({
-  icon: {
-    marginLeft: 16,
-    marginRight: 16,
+  style: {
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.darkGray,
+    borderRadius: 24,
+    height: 150,
+    padding: 16,
+    fontSize: 16,
+  },
+  validityIcon: {
+    position: 'absolute',
+    right: 16,
+    top: 16,
+    zIndex: 1,
+    color: colors.red,
+  },
+  invalidStyle: {
+    borderColor: colors.red,
   },
 });
 
@@ -19,9 +33,6 @@ const TextArea: React.FC<TextFieldProps> = ({
   fieldLabel,
   handleBlur,
   handleChange,
-  iconName,
-  iconSyle,
-  leftElement,
   okIcon,
   onFocus,
   touched,
@@ -30,54 +41,29 @@ const TextArea: React.FC<TextFieldProps> = ({
   const { t } = useTranslation();
   error = !error ? '' : Array.isArray(error) ? error.join(', ') : error;
 
-  const getRightIconName = () => {
-    return !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
-  };
+  const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
+  const rightIconColor = !!value && !!okIcon && !!touched && !error ? colors.green : colors.red;
 
-  const getIconColor = () => {
-    if (okIcon) {
-      return !!value && !!touched && !error ? colors.green : colors.red;
-    }
-
-    return 'transparent';
-  };
-
-  const LeftElement = leftElement ? (
-    leftElement
-  ) : !iconName ? (
-    undefined
-  ) : (
-    <Icon style={{ ...styles.icon, color: colors.darkGray, ...iconSyle }} name={iconName} />
-  );
-
-  const RightElement = !touched ? (
-    undefined
-  ) : (
-    <Icon name={getRightIconName()} style={{ ...styles.icon, color: getIconColor() }} />
-  );
+  const inputStyle = [styles.style, !!error ? styles.invalidStyle: {}];
 
   return (
-    <BaseTextArea
-      size='2xl'
-      h='150'
-      autoCapitalize='none'
-      numberOfLines={100}
-      autoCompleteType='off'
-      isDisabled={disabled}
-      isInvalid={!!error}
-      multiline={true}
-      backgroundColor={colors.white}
-      borderColor={colors.darkGray}
-      onBlur={handleBlur}
-      borderRadius={24}
-      onChangeText={handleChange}
-      onFocus={onFocus}
-      placeholder={t(fieldLabel ?? '')}
-      placeholderTextColor={colors.darkGray}
-      value={value ?? ''}
-      leftElement={LeftElement}
-      rightElement={RightElement}
-    />
+    <View>
+      <TextInput
+        style={inputStyle}
+        autoCapitalize='none'
+        numberOfLines={100}
+        autoComplete='off'
+        editable={!disabled}
+        multiline={true}
+        onBlur={handleBlur}
+        onChangeText={handleChange}
+        onFocus={onFocus}
+        placeholder={t(fieldLabel ?? '')}
+        placeholderTextColor={colors.darkGray}
+        value={value ?? ''}
+        />
+        { !touched ? null : <Icon name={rightIconName} style={{...styles.validityIcon, color: rightIconColor}}/> }
+      </View>
   );
 };
 

@@ -46,7 +46,6 @@
     "jetifier": "^2.0.0",
     "libphonenumber-js": "^1.10.9",
     "mock-async-storage": "^2.2.0",
-    "native-base": "^3.4.9",
     "react": "18.2.0",
     "react-hanger": "^2.4.4",
     "react-i18next": "^14.0.1",

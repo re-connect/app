@@ -1,9 +1,7 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { compareAsc, format } from 'date-fns';
-import { Box, Button, Center, Divider, Flex, HStack, View, VStack } from 'native-base';
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import Separator from '../../components/UI/Separator';
@@ -14,6 +12,8 @@ import { getDateColour, getReadableDate } from '../../helpers/dateHelpers';
 import { useDeleteData } from '../../hooks/DataHooks';
 import { colors } from '../../style';
 import { EventInterface, ReminderInterface } from '../../types/Event';
+import Section from '../../components/UI/Section';
+import Divider from '../../components/UI/Divider';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },
@@ -43,79 +43,71 @@ const EventScreen: React.FC<Props> = ({ route, navigation }) => {
   const date = !event.date ? new Date() : new Date(event.date);
 
   return (
-    <ScrollView>
-      <Screen>
-        <VStack justifyContent='center' rounded='2xl' bg={colors.white} shadow={3} m='2' p='4'>
-          <HStack justifyContent='flex-end'>
+    <Screen>
+      <ScrollView>
+        <Section>
+          <View style={{flexDirection:'row', justifyContent: 'flex-end'}}>
             <TogglePrivacySwitch
               Context={EventContext}
               isPrivate={event.b_prive}
               itemId={eventId}
               endpoint={`events/${eventId}`}
             />
-          </HStack>
-          <HStack m='2'>
+          </View>
+          <View style={{margin: 8}}>
             <Text style={styles.title}>{event?.nom}</Text>
-          </HStack>
-          <HStack my='2'>
+          </View>
+          <View style={{flexDirection: 'row', marginVertical: 8}}>
             <Icon style={styles.icon} name='calendar-day' color={getDateColour(date)} />
             <Text style={{ ...styles.dateText, color: colors.darkGray }}>{format(date, 'dd/MM/yyyy HH:mm')}</Text>
             <Separator width={1} />
             <Text style={{ ...styles.dateText, color: getDateColour(date) }}>{getReadableDate(date)}</Text>
-          </HStack>
+          </View>
           {!event.commentaire ? null : (
-            <HStack my='2'>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Icon style={styles.icon} name='comment-alt' color={colors.gray} />
-                <Center>
-                  <Text style={{ maxWidth: '90%' }}>{event.commentaire}</Text>
-                </Center>
-              </View>
-            </HStack>
+            <View style={{flexDirection: 'row', marginVertical: 8}}>
+              <Icon style={styles.icon} name='comment-alt' color={colors.gray} />
+              <Text style={{ }}>{event.commentaire}</Text>
+            </View>
           )}
           {!event.lieu ? null : (
-            <HStack my='2'>
+            <View style={{flexDirection: 'row', marginVertical: 8}}>
               <Icon style={styles.icon} name='map-marker-alt' color={colors.gray} />
               <Text>{event.lieu}</Text>
-            </HStack>
+            </View>
           )}
           <Separator height={1} />
           <Text style={{ fontSize: 18, fontWeight: 'bold', color: colors.darkGray }}>Rappels: </Text>
-          <HStack>
+          <View style={{flexDirection: 'row', marginVertical: 8}}>
             {!event.rappels || event.rappels.length === 0 ? null : (
               <>
                 <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name='bell' solid color={colors.gray} />
-                <Flex flex='1' />
-                <Box>
-                  {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) => (
-                    <Center alignItems='center' key={reminder.id}>
-                      <Text style={{ color: colors.gray }}>{format(new Date(reminder.date), 'dd/MM/yyyy HH:mm')}</Text>
-                    </Center>
-                  ))}
-                </Box>
+                <View style={{flex: 1}}/>
+                <View>
+                  {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) => 
+                    <Text key={reminder.id} style={{ color: colors.gray }}>
+                      {format(new Date(reminder.date), 'dd/MM/yyyy HH:mm')}
+                    </Text>
+                  )}
+                </View>
               </>
             )}
-          </HStack>
-          <Divider my='5' />
-          <HStack justifyContent='space-between'>
-            <Center>
-              <Button onPress={() => navigation.navigate('EditEvent', { eventId: event.id })}>
+          </View>
+          <Divider />
+          <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+              <TouchableOpacity onPress={() => navigation.navigate('EditEvent', { eventId: event.id })}>
                 <Icon style={styles.icon} name='pen' color={colors.darkGray} />
-              </Button>
-            </Center>
-            <Center>
-              <Button onPress={() => deleteItem(true)} disabled={isDeleting}>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => deleteItem(true)} disabled={isDeleting}>
                 {isDeleting ? (
                   <ActivityIndicator size='small' color={colors.primary} />
                 ) : (
                   <Icon style={styles.icon} name='trash' color={colors.red} />
                 )}
-              </Button>
-            </Center>
-          </HStack>
-        </VStack>
-      </Screen>
-    </ScrollView>
+              </TouchableOpacity>
+          </View>
+        </Section>
+      </ScrollView>
+    </Screen>
   );
 };
 

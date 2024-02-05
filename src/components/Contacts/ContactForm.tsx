@@ -106,7 +106,6 @@ const ContactForm: React.FC<Props> = ({ contact, onSubmit, isSubmitting }) => (
             fieldLabel='comment'
             handleChange={handleChange('commentaire')}
             handleBlur={handleBlur('commentaire')}
-            iconName='comment-alt'
             okIcon
             value={values.commentaire}
           />
