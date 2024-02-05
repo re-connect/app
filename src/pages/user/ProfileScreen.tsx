@@ -23,7 +23,9 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const { isDeleting, triggerDeleteBeneficiary } = useDeleteBeneficiary();
   const { isGetingData, triggerRequestDataBeneficiary } = useRequestDataForBeneficiary();
   const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
-  if (!user) return null;
+  if (!user) {
+    return null;
+  }
 
   const { nom, prenom, email, username, telephone, date_naissance, reponse_secrete, question_secrete } = user;
 

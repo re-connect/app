@@ -55,8 +55,7 @@ const IconButton: React.FC<Props> = ({
         ...sizedStyle,
         backgroundColor: computedBackgroundColor,
       }}
-      onPress={onPress}
-    >
+      onPress={onPress}>
       {!isLoading ? (
         <>
           {!iconName ? null : (

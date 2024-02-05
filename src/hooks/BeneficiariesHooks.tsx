@@ -26,8 +26,10 @@ export const useFetchBeneficiaries = () => {
   const triggerFetchBeneficiaries = useCallback(async () => {
     try {
       setIsFetchingBeneficiaries(true);
-      const beneficiaries = await makeRequestv2(`/beneficiaires`, 'GET');
-      if (beneficiaries && JSON.stringify(beneficiaries) !== JSON.stringify(list)) setList(beneficiaries);
+      const beneficiaries = await makeRequestv2('/beneficiaires', 'GET');
+      if (beneficiaries && JSON.stringify(beneficiaries) !== JSON.stringify(list)) {
+        setList(beneficiaries);
+      }
 
       setIsFetchingBeneficiaries(false);
     } catch (error) {
@@ -81,7 +83,7 @@ export const useCreateBeneficiary = () => {
     async (data: CreateBeneficiaryDataInterface) => {
       try {
         isCreatingActions.setTrue();
-        const createdBeneficiary = await makeRequestv2(`/beneficiaries`, 'POST', data);
+        const createdBeneficiary = await makeRequestv2('/beneficiaries', 'POST', data);
         isCreatingActions.setFalse();
         if (createdBeneficiary && createdBeneficiary.centres && createdBeneficiary.centres.length > 0) {
           Alert.alert(
@@ -111,7 +113,7 @@ export const useFetchSecretQuestions = () => {
 
   const triggerFetchSecretQuestions = useCallback(async () => {
     try {
-      const secretQuestions = await makeRequestv2(`/get-secret-questions`, 'GET');
+      const secretQuestions = await makeRequestv2('/get-secret-questions', 'GET');
       setSecretQuestionList(Object.keys(secretQuestions).map(question => secretQuestions[question]));
     } catch (error) {
       Alert.alert(t.t('error_fetching_secret_answers'));
@@ -136,7 +138,9 @@ export const useEnableBeneficiary = () => {
         isCreatingActions.setTrue();
 
         const updatedBeneficiary = await makeRequestv2('/beneficiary/enable', 'PATCH', data);
-        if (updatedBeneficiary) navigation.navigate('Home');
+        if (updatedBeneficiary) {
+          navigation.navigate('Home');
+        }
         isCreatingActions.setFalse();
       } catch (error) {
         if (error instanceof Error) {
@@ -202,7 +206,7 @@ export const useRequestDataForBeneficiary = () => {
           {
             text: t('yes'),
             onPress: async () => {
-              await makeRequestv3(`/users/request-personal-account-data/`, 'POST');
+              await makeRequestv3('/users/request-personal-account-data/', 'POST');
               isGetingDataActions.setFalse();
             },
             style: 'cancel',

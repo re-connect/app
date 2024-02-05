@@ -62,13 +62,17 @@ export const useGetUser = () => {
       }
       // await registerToNotificationsService();
       const newUser = await fetchCurrentUser();
-      if (JSON.stringify(user) !== JSON.stringify(newUser)) setUser(newUser);
+      if (JSON.stringify(user) !== JSON.stringify(newUser)) {
+        setUser(newUser);
+      }
       if ((!newUser || !newUser.type_user) && route && route.name !== 'Login') {
         navigation.navigate('Auth');
         navigation.reset({ routes: [{ name: 'Auth' }] });
         return;
       }
-      if (!newUser) return;
+      if (!newUser) {
+        return;
+      }
       const userType = newUser.type_user;
       if (userType === 'ROLE_BENEFICIAIRE') {
         setCurrent(newUser);
@@ -155,7 +159,9 @@ export const useUpdateUser = () => {
           }
           const newData = await makeRequestv2(`/users/${user?.id}`, 'PUT', updatedUser);
           if (newData) {
-            if (newData.type_user === 'ROLE_BENEFICIAIRE') setCurrent(newData);
+            if (newData.type_user === 'ROLE_BENEFICIAIRE') {
+              setCurrent(newData);
+            }
             setUser(newData);
           }
         }
@@ -267,7 +273,7 @@ export const useUserLocale = (): {
       setCurrentLanguageCode(locale);
       AsyncStorage.setItem('lastLanguage', locale);
       i18n.changeLanguage(locale);
-      makeRequestv3(`/users/switch-locale`, 'PATCH', { locale }); //saving last language in backend is not mandatory, it's a bonus
+      makeRequestv3('/users/switch-locale', 'PATCH', { locale }); //saving last language in backend is not mandatory, it's a bonus
     }
   };
 

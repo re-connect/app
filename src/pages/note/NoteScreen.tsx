@@ -1,7 +1,7 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
 import * as React from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, useWindowDimensions, View } from 'react-native';
-import HTML from "react-native-render-html";
+import HTML from 'react-native-render-html';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import Text from '../../components/UI/Text';
@@ -34,15 +34,19 @@ const NoteScreen: React.FC<Props> = ({ route, navigation }) => {
   const { list } = React.useContext(NoteContext);
   const { noteId } = route.params;
   const { isDeleting, deleteItem } = useDeleteData(NoteContext, `notes/${noteId}`, noteId);
-  if (!list) return null;
+  if (!list) {
+    return null;
+  }
   const note = list.find((note: NoteInterface) => note.id === noteId);
-  if (!note) return null;
+  if (!note) {
+    return null;
+  }
 
   return (
     <Screen>
       <ScrollView contentContainerStyle={styles.container}>
         <Section>
-          <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <TogglePrivacySwitch
               Context={NoteContext}
               isPrivate={note.b_prive}
@@ -50,26 +54,26 @@ const NoteScreen: React.FC<Props> = ({ route, navigation }) => {
               endpoint={`notes/${noteId}`}
             />
           </View>
-          <View style={{flexDirection: 'row', marginVertical: 8}}>
+          <View style={{ flexDirection: 'row', marginVertical: 8 }}>
             <Text style={styles.title}>{note?.nom}</Text>
           </View>
-          <View style={{flexDirection: 'row', marginVertical: 16}}>
+          <View style={{ flexDirection: 'row', marginVertical: 16 }}>
             <Icon style={styles.icon} name="clipboard" color={colors.gray} />
             <HTML source={{ html: note.contenu }} contentWidth={contentWidth} />
           </View>
-          <Divider/>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 8}}>
-              <TouchableOpacity onPress={() => navigation.navigate('EditNote', { noteId: note.id })}>
-                <Icon style={styles.icon} name="pen" color={colors.darkGray} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => deleteItem(true)} disabled={isDeleting}>
-                {isDeleting ? (
-                  <ActivityIndicator size="small" color={colors.primary} />
-                ) : (
-                  <Icon style={styles.icon} name="trash" color={colors.red} />
-                )}
-              </TouchableOpacity>
-            </View>
+          <Divider />
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('EditNote', { noteId: note.id })}>
+              <Icon style={styles.icon} name='pen' color={colors.darkGray} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => deleteItem(true)} disabled={isDeleting}>
+              {isDeleting ? (
+                <ActivityIndicator size='small' color={colors.primary} />
+              ) : (
+                <Icon style={styles.icon} name='trash' color={colors.red} />
+              )}
+            </TouchableOpacity>
+          </View>
         </Section>
       </ScrollView>
     </Screen>

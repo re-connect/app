@@ -37,7 +37,9 @@ const EditContactScreen: React.FC<Props> = ({ route }) => {
   const { isUpdating, update } = useUpdateData(`contacts/${contactId}`, contactId, ContactContext);
   const contact = list.find((contact: ContactInterface) => contact.id === contactId);
 
-  if (!contact) return null;
+  if (!contact) {
+    return null;
+  }
 
   return (
     <Screen>

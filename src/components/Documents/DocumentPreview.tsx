@@ -8,7 +8,9 @@ const DocumentPreview: React.FC<{ document: DocumentInterface }> = ({ document }
   const { previewUrl } = useShowDocument(document.id);
   const isPreviewUrlEmpty = previewUrl === '';
 
-  if (isPreviewUrlEmpty) return null;
+  if (isPreviewUrlEmpty) {
+    return null;
+  }
 
   return document.extension !== 'pdf' ? (
     <Image style={styles.imageWrapper} source={{ uri: previewUrl }} />

@@ -1,10 +1,8 @@
 import { RectangleCoordinates } from '../types/Crop';
 
-const viewXCoordinateToImageCoordinate = (value: number, imageWidth: number): number =>
-  (value / 100) * imageWidth;
+const viewXCoordinateToImageCoordinate = (value: number, imageWidth: number): number => (value / 100) * imageWidth;
 
-const viewYCoordinateToImageCoordinate = (value: number, imageHeight: number): number =>
-  (value / 100) * imageHeight;
+const viewYCoordinateToImageCoordinate = (value: number, imageHeight: number): number => (value / 100) * imageHeight;
 
 export const getInitialCropCoordinates = (width: number, height: number): RectangleCoordinates => ({
   bottomLeft: {

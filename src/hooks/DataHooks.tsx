@@ -23,9 +23,11 @@ export const useFetchData = (
   const triggerFetch = React.useCallback(async () => {
     try {
       actions.setTrue();
-      if (null !== endpoint) {
+      if (endpoint !== null) {
         const data = await makeRequestv2(`/${endpoint}`, 'GET');
-        if (data) setList(data);
+        if (data) {
+          setList(data);
+        }
       }
       actions.setFalse();
     } catch (error) {
@@ -59,7 +61,9 @@ export const usePostData = (
       try {
         actions.setTrue();
         const createdData = await makeRequestv2(`/${endpoint}`, 'POST', data);
-        if (createdData) setList([createdData, ...list]);
+        if (createdData) {
+          setList([createdData, ...list]);
+        }
         navigation.goBack();
         actions.setFalse();
       } catch (error) {
@@ -140,10 +144,14 @@ export const useDeleteData = (
             onPress: async () => {
               actions.setTrue();
               const deletedItem = await makeRequestv2(`/${endpoint}`, 'DELETE');
-              if (deletedItem !== undefined) setList(list.filter((item: DataInterface) => item.id !== itemId));
+              if (deletedItem !== undefined) {
+                setList(list.filter((item: DataInterface) => item.id !== itemId));
+              }
               actions.setFalse();
               actionDelete.setTrue();
-              if (goBackAfter && true === goBackAfter) navigation.goBack();
+              if (goBackAfter && goBackAfter === true) {
+                navigation.goBack();
+              }
             },
           },
         ]);
@@ -181,13 +189,17 @@ export const usePatchData = (
         if (newData) {
           if (newData.b_prive && !!user && user.type_user !== 'ROLE_BENEFICIAIRE') {
             setList(removeDatumInList(list, itemId));
-            if (goBackAfter) navigation.goBack();
+            if (goBackAfter) {
+              navigation.goBack();
+            }
           } else {
             setList(updateDatumInList(list, itemId, newData));
           }
         } else if (newData === null || newData === '') {
           setList(removeDatumInList(list, itemId));
-          if (goBackAfter) navigation.goBack();
+          if (goBackAfter) {
+            navigation.goBack();
+          }
         }
         actions.setFalse();
       } catch (error) {

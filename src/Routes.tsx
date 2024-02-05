@@ -59,7 +59,7 @@ const getBeneficiaryHeader =
       backgroundColor: colors.green,
     },
     headerTintColor: colors.white,
-    headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
+    headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
   });
 
 const getMemberHeader =
@@ -70,7 +70,7 @@ const getMemberHeader =
       backgroundColor: colors.blue,
     },
     headerTintColor: colors.white,
-    headerRight: 'Support' === title ? undefined : () => <SettingsButton navigation={navigation} />,
+    headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
   });
 
 let getHeader = getBeneficiaryHeader;

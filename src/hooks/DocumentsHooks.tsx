@@ -24,7 +24,9 @@ export const useFetchDocuments = (beneficiaryId?: number) => {
       setIsFetching(true);
       if (beneficiaryId) {
         const documents = await makeRequestv2(`/beneficiaries/${beneficiaryId}/documents`, 'GET');
-        if (documents && JSON.stringify(documents) !== JSON.stringify(list)) setList(documents);
+        if (documents && JSON.stringify(documents) !== JSON.stringify(list)) {
+          setList(documents);
+        }
       }
       setIsFetching(false);
     } catch (error) {
@@ -264,7 +266,9 @@ export const useSendDocumentByEmail = (document: DocumentInterface) => {
 
   const triggerSendDocumentByEmail = async (email: string) => {
     try {
-      if (!email) return;
+      if (!email) {
+        return;
+      }
       isSendingActions.setTrue();
       await makeRequestv2(`/documents/${document.id}/share`, 'POST', { email });
       isSendingActions.setFalse();

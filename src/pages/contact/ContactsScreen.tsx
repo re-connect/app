@@ -37,26 +37,25 @@ type Props = {
 
 const getContactDetails =
   (contact: AnyDataInterface): React.FC =>
-  () =>
-    (
+  () => (
       <View style={styles.contactInfos}>
         {!contact.telephone ? null : (
-          <TouchableOpacity
+        <TouchableOpacity
             style={styles.contactInfo}
-            onPress={() => {
+          onPress={() => {
               if (contact && contact.telephone && Linking.canOpenURL(`tel:${contact.telephone}`)) {
-                Linking.openURL(`tel:${contact.telephone}`);
-              }
+              Linking.openURL(`tel:${contact.telephone}`);
+            }
             }}>
             <Icon style={styles.icon} name='phone' color={colors.gray} />
-          </TouchableOpacity>
+        </TouchableOpacity>
         )}
-        {!contact.email ? null : (
+      {!contact.email ? null : (
           <View style={styles.contactInfo}>
-            <Icon style={styles.icon} name='at' color={colors.gray} />
+            <Icon style={styles.icon} name="at" color={colors.gray} />
           </View>
         )}
-      </View>
+    </View>
     );
 
 const getContactName = (contact: AnyDataInterface) => `${contact.prenom} ${contact.nom}`;

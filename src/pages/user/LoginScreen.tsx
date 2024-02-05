@@ -42,7 +42,8 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
           backgroundColor: theme.value ? colors.primaryPro : colors.primary,
           height: screenHeight / 2,
           width: screenWidth,
-        }}></View>
+        }}
+      />
       <View style={styles.languageSwitchContainer}>
         <LanguageSwitch />
       </View>

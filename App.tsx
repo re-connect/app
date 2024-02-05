@@ -29,7 +29,7 @@ import { MAX_LOGIN_ATTEMPTS } from './src/appConstants';
 import { useNumber } from 'react-hanger';
 import { useCheckAndUpdateApp } from './src/hooks/UpdateHooks';
 SplashScreen.hide();
-// eslint-disable-next-line
+
 // const whyDidYouRender = require('@welldone-software/why-did-you-render');
 // whyDidYouRender(React, {
 //   // trackAllPureComponents: true,

@@ -55,7 +55,7 @@ const Pitch: React.FC<Props> = ({ track, currentTrack, play, pause, stop }) => {
   return (
     <View style={styles.item}>
       <View style={styles.text}>
-        {'AR' === track.flag ? (
+        {track.flag === 'AR' ? (
           <Image source={ArabLeagueFlag} style={{ top: 6, height: 20, width: 32 }} />
         ) : (
           <Flag type='flat' code={track.flag} size={32} />

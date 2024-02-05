@@ -24,7 +24,7 @@ const CentersList: React.FC<Props> = ({ data, isFetchingCenters, triggerFetchCen
         />
       }
       renderItem={({ item }: CenterCardInterface) => {
-        return <CenterCard center={item} />
+        return <CenterCard center={item} />;
       }}
     />
   );

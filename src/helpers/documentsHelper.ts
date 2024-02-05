@@ -4,28 +4,32 @@ const removeDocumentById = (list: DocumentInterface[], documentId: number) => [
   ...list.filter((item: DocumentInterface) => item.id !== documentId),
 ];
 
-export const findNestedDocument = (list: DocumentInterface[], documentId: number) => ([
-  ...list.filter((document: DocumentInterface) => !document.is_folder),
-  ...list
-    .filter((document: DocumentInterface) => document.is_folder)
-    .map((document: DocumentInterface) => document.documents || [])
-    .flat(1),
-].find((document: DocumentInterface) => document.id === documentId));
+export const findNestedDocument = (list: DocumentInterface[], documentId: number) =>
+  [
+    ...list.filter((document: DocumentInterface) => !document.is_folder),
+    ...list
+      .filter((document: DocumentInterface) => document.is_folder)
+      .map((document: DocumentInterface) => document.documents || [])
+      .flat(1),
+  ].find((document: DocumentInterface) => document.id === documentId);
 
-export const findNestedItem = (list: DocumentInterface[], documentId: number) => ([
-  ...list,
-  ...list
-    .filter((document: DocumentInterface) => document.is_folder)
-    .map((document: DocumentInterface) => document.documents || [])
-    .flat(1),
-].find((document: DocumentInterface) => document.id === documentId));
+export const findNestedItem = (list: DocumentInterface[], documentId: number) =>
+  [
+    ...list,
+    ...list
+      .filter((document: DocumentInterface) => document.is_folder)
+      .map((document: DocumentInterface) => document.documents || [])
+      .flat(1),
+  ].find((document: DocumentInterface) => document.id === documentId);
 
 const findDocumentById = (list: DocumentInterface[], id: number) =>
   list.find((item: DocumentInterface) => item.id === id);
 
 const findDocumentInFolderById = (list: DocumentInterface[], id: number, folderId: number) => {
   const folder = list.find((document: DocumentInterface) => document.id === folderId);
-  if (!folder || !folder.documents) return null;
+  if (!folder || !folder.documents) {
+    return null;
+  }
 
   return folder.documents.find((document: DocumentInterface) => document.id === id);
 };

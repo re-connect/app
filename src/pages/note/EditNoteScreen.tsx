@@ -37,7 +37,9 @@ const EditNoteScreen: React.FC<Props> = ({ route }) => {
   const { isUpdating, update } = useUpdateData(`notes/${noteId}`, noteId, NoteContext);
   const note = list.find((note: NoteInterface) => note.id === noteId);
 
-  if (!note) return null;
+  if (!note) {
+    return null;
+  }
 
   return (
     <Screen>

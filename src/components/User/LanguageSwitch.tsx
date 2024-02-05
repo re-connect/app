@@ -48,20 +48,22 @@ const LanguageSwitch: React.FC = () => {
   return (
     <TouchableOpacity style={styles.container} onPress={openActions.toggle}>
       <TouchableOpacity style={styles.flag} onPress={openActions.toggle}>
-        {'ar' === currentLanguageCode ? (
+        {currentLanguageCode === 'ar' ? (
           <Image source={ArabLeagueFlag} style={styles.bitmapFlag} />
         ) : (
           <Flag type='flat' code={currentLanguage?.flag} size={32} />
         )}
         <View style={styles.languageCodeContainer}>
           <Text style={styles.languageCode}>{currentLanguage?.name}</Text>
-          <Icon name={`chevron-${open ? 'up' : 'down'}`} color={colors.darkGray} size={16}></Icon>
+          <Icon name={`chevron-${open ? 'up' : 'down'}`} color={colors.darkGray} size={16} />
         </View>
       </TouchableOpacity>
       {!open ? null : (
         <View>
           {allLanguages.map(({ code, flag, name }: Language) => {
-            if (code === currentLanguageCode) return null;
+            if (code === currentLanguageCode) {
+              return null;
+            }
 
             return (
               <TouchableOpacity
@@ -71,7 +73,7 @@ const LanguageSwitch: React.FC = () => {
                   updateLocale(code);
                   openActions.setFalse();
                 }}>
-                {'ar' === code ? (
+                {code === 'ar' ? (
                   <Image source={ArabLeagueFlag} style={styles.bitmapFlag} />
                 ) : (
                   <Flag type='flat' code={flag} size={32} />

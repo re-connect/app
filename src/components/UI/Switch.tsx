@@ -60,8 +60,7 @@ const Switch: React.FC<Props> = ({ disabled, isOn, onToggle, isToggling }) => {
       onPress={() => {
         actions.toggle();
         onToggle();
-      }}
-    >
+      }}>
       <Text style={styles.text}>shared</Text>
       <View style={styles.switch}>
         <View style={styles.switchBar} />
@@ -70,8 +69,7 @@ const Switch: React.FC<Props> = ({ disabled, isOn, onToggle, isToggling }) => {
             ...styles.switchIndicator,
             left: !on ? 0 : 100,
             backgroundColor: !on ? colors.blue : colors.red,
-          }}
-        >
+          }}>
           {isToggling ? (
             <ActivityIndicator size="small" color={colors.white} />
           ) : (

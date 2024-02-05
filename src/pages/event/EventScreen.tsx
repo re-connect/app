@@ -37,16 +37,16 @@ const EventScreen: React.FC<Props> = ({ route, navigation }) => {
   const { list } = React.useContext(EventContext);
   const { eventId } = route.params;
   const { isDeleting, deleteItem } = useDeleteData(EventContext, `events/${eventId}`, eventId);
-  if (!list) return null;
+  if (!list) {return null;}
   const event = list.find((event: EventInterface) => event.id === eventId);
-  if (!event) return null;
+  if (!event) {return null;}
   const date = !event.date ? new Date() : new Date(event.date);
 
   return (
     <Screen>
       <ScrollView>
         <Section>
-          <View style={{flexDirection:'row', justifyContent: 'flex-end'}}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
             <TogglePrivacySwitch
               Context={EventContext}
               isPrivate={event.b_prive}
@@ -54,36 +54,36 @@ const EventScreen: React.FC<Props> = ({ route, navigation }) => {
               endpoint={`events/${eventId}`}
             />
           </View>
-          <View style={{margin: 8}}>
+          <View style={{ margin: 8 }}>
             <Text style={styles.title}>{event?.nom}</Text>
           </View>
-          <View style={{flexDirection: 'row', marginVertical: 8}}>
-            <Icon style={styles.icon} name='calendar-day' color={getDateColour(date)} />
+          <View style={{ flexDirection: 'row', marginVertical: 8 }}>
+            <Icon style={styles.icon} name="calendar-day" color={getDateColour(date)} />
             <Text style={{ ...styles.dateText, color: colors.darkGray }}>{format(date, 'dd/MM/yyyy HH:mm')}</Text>
             <Separator width={1} />
             <Text style={{ ...styles.dateText, color: getDateColour(date) }}>{getReadableDate(date)}</Text>
           </View>
           {!event.commentaire ? null : (
-            <View style={{flexDirection: 'row', marginVertical: 8}}>
-              <Icon style={styles.icon} name='comment-alt' color={colors.gray} />
-              <Text style={{ }}>{event.commentaire}</Text>
+            <View style={{ flexDirection: 'row', marginVertical: 8 }}>
+              <Icon style={styles.icon} name="comment-alt" color={colors.gray} />
+              <Text style={{}}>{event.commentaire}</Text>
             </View>
           )}
           {!event.lieu ? null : (
-            <View style={{flexDirection: 'row', marginVertical: 8}}>
-              <Icon style={styles.icon} name='map-marker-alt' color={colors.gray} />
+            <View style={{ flexDirection: 'row', marginVertical: 8 }}>
+              <Icon style={styles.icon} name="map-marker-alt" color={colors.gray} />
               <Text>{event.lieu}</Text>
             </View>
           )}
           <Separator height={1} />
           <Text style={{ fontSize: 18, fontWeight: 'bold', color: colors.darkGray }}>Rappels: </Text>
-          <View style={{flexDirection: 'row', marginVertical: 8}}>
+          <View style={{ flexDirection: 'row', marginVertical: 8 }}>
             {!event.rappels || event.rappels.length === 0 ? null : (
               <>
-                <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name='bell' solid color={colors.gray} />
-                <View style={{flex: 1}}/>
+                <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name="bell" solid color={colors.gray} />
+                <View style={{ flex: 1 }} />
                 <View>
-                  {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) => 
+                  {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) =>
                     <Text key={reminder.id} style={{ color: colors.gray }}>
                       {format(new Date(reminder.date), 'dd/MM/yyyy HH:mm')}
                     </Text>
@@ -93,17 +93,17 @@ const EventScreen: React.FC<Props> = ({ route, navigation }) => {
             )}
           </View>
           <Divider />
-          <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
-              <TouchableOpacity onPress={() => navigation.navigate('EditEvent', { eventId: event.id })}>
-                <Icon style={styles.icon} name='pen' color={colors.darkGray} />
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => deleteItem(true)} disabled={isDeleting}>
-                {isDeleting ? (
-                  <ActivityIndicator size='small' color={colors.primary} />
-                ) : (
-                  <Icon style={styles.icon} name='trash' color={colors.red} />
-                )}
-              </TouchableOpacity>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('EditEvent', { eventId: event.id })}>
+              <Icon style={styles.icon} name="pen" color={colors.darkGray} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => deleteItem(true)} disabled={isDeleting}>
+              {isDeleting ? (
+                <ActivityIndicator size="small" color={colors.primary} />
+              ) : (
+                <Icon style={styles.icon} name="trash" color={colors.red} />
+              )}
+            </TouchableOpacity>
           </View>
         </Section>
       </ScrollView>

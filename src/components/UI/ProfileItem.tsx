@@ -48,7 +48,9 @@ const ProfileItem: React.FC<Props> = ({ item }) => {
   const { update, isUpdating } = useUpdateUser();
   const initialValues: Record<string, string> = { [field]: value ?? '' };
 
-  if (isMember && beneficiaryField) return null;
+  if (isMember && beneficiaryField) {
+    return null;
+  }
 
   const onSave = (values: Record<UserField, string>) => {
     if (values.telephone) {

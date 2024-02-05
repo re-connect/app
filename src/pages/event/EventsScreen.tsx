@@ -37,7 +37,9 @@ const getEndpoint = () => 'events';
 const getEventSubtitle =
   (item: AnyDataInterface): React.FC =>
   () => {
-    if (!item.date) return null;
+    if (!item.date) {
+      return null;
+    }
     const date = new Date(item.date);
     return (
       <View>
@@ -50,8 +52,12 @@ const getEventSubtitle =
 const getEventDetails =
   (event: AnyDataInterface): React.FC =>
   () => {
-    if (!event.rappels) return null;
-    if (event.rappels && event.rappels.length === 0) return null;
+    if (!event.rappels) {
+      return null;
+    }
+    if (event.rappels && event.rappels.length === 0) {
+      return null;
+    }
     return <Icon style={styles.icon} name='bell' solid color={colors.gray} />;
   };
 

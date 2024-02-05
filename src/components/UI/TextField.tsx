@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   input: {
     paddingLeft: 24,
     width: '100%',
-    height:48,
-    fontSize:18,
+    height: 48,
+    fontSize: 18,
   },
 });
 
@@ -74,19 +74,23 @@ const TextField: React.FC<TextFieldProps> = ({
   style = { color: colors.darkGray, borderColor: !error ? colors.darkGray : colors.red, ...style };
 
   const leftIconStyle = { ...styles.icon, color: colors.darkGray, ...iconSyle };
-  const rightIconColor = contentType === 'password'
-    ? colors.darkGray
-    : okIcon ? !!value && !!touched && !error ? colors.green : colors.red : 'transparent';
+  const rightIconColor =
+    contentType === 'password'
+      ? colors.darkGray
+      : okIcon
+        ? !!value && !!touched && !error
+          ? colors.green
+          : colors.red
+        : 'transparent';
   const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
-  const rightIconStyle = { ...styles.icon, color: rightIconColor};
-;
+  const rightIconStyle = { ...styles.icon, color: rightIconColor };
   return (
     <View>
       <View style={[styles.inputContainer, style]}>
-        { leftElement ? leftElement : !iconName ? null : <Icon style={leftIconStyle} name={iconName} />}
+        {leftElement ? leftElement : !iconName ? null : <Icon style={leftIconStyle} name={iconName} />}
         <TextInput
           style={[styles.input, style]}
-          autoCapitalize='none'
+          autoCapitalize="none"
           autoComplete={!autocompleteType ? contentType : autocompleteType}
           editable={!disabled}
           keyboardType={keyboardType}
@@ -99,14 +103,13 @@ const TextField: React.FC<TextFieldProps> = ({
           textContentType={contentType}
           value={!value ? '' : value}
         />
-        {
-          contentType === 'password'
-          ? <Icon name='eye' style={rightIconStyle} onPress={showPasswordActions.toggle} />
-          : !touched ? null : <Icon name={rightIconName} style={rightIconStyle} />
+        {contentType === 'password'
+            ? <Icon name="eye" style={rightIconStyle} onPress={showPasswordActions.toggle} />
+            : !touched ? null : <Icon name={rightIconName} style={rightIconStyle} />
         }
       </View>
       {displayError && !!error && (
-        <View style={{marginTop: 16, paddingHorizontal: 16}}>
+        <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <Text style={styles.error}>{error}</Text>
         </View>
       )}

@@ -28,7 +28,9 @@ const EditEventScreen: React.FC<Props> = ({ route }) => {
   const { isUpdating, update } = useUpdateData(`events/${eventId}`, eventId, EventContext);
   const event: any = list.find((event: EventInterface) => event.id === eventId);
 
-  if (!event) return null;
+  if (!event) {
+    return null;
+  }
 
   return (
     <Screen>

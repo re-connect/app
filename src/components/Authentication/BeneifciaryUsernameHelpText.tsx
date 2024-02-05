@@ -45,7 +45,9 @@ const BeneficiaryUsernameHelpText: React.FC<Props> = ({ username }) => {
 
   let isEverythingValid = true;
   Object.values(usernameValidity).map((value: boolean): void => {
-    if (!value) isEverythingValid = false;
+    if (!value) {
+      isEverythingValid = false;
+    }
   });
 
   React.useEffect((): void => {

@@ -14,7 +14,7 @@ describe('request service', () => {
     it('should call the endpoint with GET verb and token stored in AsyncStorage', async () => {
       const scope = nock('https://preprod.reconnect.fr/api/v2')
         .get(`/user?access_token=${accessToken}`)
-        .reply(200, {status: 'OK'});
+        .reply(200, { status: 'OK' });
       const endpoint = '/user';
       const response: any = await makeRequestv2(endpoint, 'GET');
 
@@ -26,8 +26,8 @@ describe('request service', () => {
     it('should call the endpoint with POST verb and token stored in AsyncStorage', async () => {
       const scope = nock('https://preprod.reconnect.fr/api/v2')
         .post(`/user?access_token=${accessToken}`)
-        .reply(200, {status: 'OK', user: {id: 3}});
-      const data = {id: 3};
+        .reply(200, { status: 'OK', user: { id: 3 } });
+      const data = { id: 3 };
       const endpoint = '/user';
       const response: any = await makeRequestv2(endpoint, 'POST', data);
 

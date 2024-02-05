@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/core';
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet, TouchableOpacity, View , FlatList} from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Text from '../../components/UI/Text';
 import LanguageSwitch from '../../components/User/LanguageSwitch';
@@ -12,9 +12,9 @@ import { colors } from '../../style';
 const styles = StyleSheet.create({
   item: {
     padding: 16,
-    borderBottomWidth:1,
+    borderBottomWidth: 1,
     borderColor: colors.darkGrayMoreTransparent,
-  }
+  },
 });
 
 const SettingsScreen: React.FC = () => {
@@ -27,7 +27,7 @@ const SettingsScreen: React.FC = () => {
   };
   if (isLoggingOut) {
     return (
-      <View style={{flex: 1, justifyContent: 'center'}}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <ActivityIndicator size='large' color={colors.red} />
       </View>
     );
@@ -46,9 +46,9 @@ const SettingsScreen: React.FC = () => {
   ];
 
   return (
-    <View style={{padding: 8}}>
-      <Text style={{ fontSize: 20, textAlign: 'center', marginVertical: 16}}>{getTruncatedFullName(user)}</Text>
-      <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+    <View style={{ padding: 8 }}>
+      <Text style={{ fontSize: 20, textAlign: 'center', marginVertical: 16 }}>{getTruncatedFullName(user)}</Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
         <LanguageSwitch />
       </View>
       <FlatList
@@ -56,7 +56,7 @@ const SettingsScreen: React.FC = () => {
         renderItem={({ item: { onPress, name, color = colors.black, label } }) => (
           <TouchableOpacity onPress={onPress}>
             <View style={styles.item}>
-              <View style={{ flexDirection: 'row', justifyContent:'space-between', alignItems:'center'}}>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Icon name={name} color={color} solid />
                 <Text style={{ color, marginLeft: 16, textAlign: 'left', flex: 1 }}>{label}</Text>
                 <Icon name='chevron-right' color={color} />

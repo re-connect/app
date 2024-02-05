@@ -10,11 +10,11 @@ export const basicResponseError: ExtendedResponseError = {
   data: {},
   headers: {},
   config: {},
-  statusText: "",
+  statusText: '',
   status: 200,
   text: 'OK',
   method: 'GET',
-  path: '/'
+  path: '/',
 };
 
 const xmlHttpRequest: XMLHttpRequest = {

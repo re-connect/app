@@ -39,7 +39,9 @@ export const addBase64ToFormData = (data: any, image: string): FormData => {
 export const uploadBase64 = async (image: string, beneficiaryId: number) => {
   try {
     const isConnected = await checkNetworkConnection();
-    if (!isConnected) return;
+    if (!isConnected) {
+      return;
+    }
 
     const token = await AsyncStorage.getItem('accessToken');
     const data = new FormData();
@@ -58,7 +60,9 @@ export const uploadBase64 = async (image: string, beneficiaryId: number) => {
 export const uploadDocuments = async (images: ImageInterface[], beneficiaryId: number, folderId?: number) => {
   try {
     const isConnected = await checkNetworkConnection();
-    if (!isConnected) return;
+    if (!isConnected) {
+      return;
+    }
 
     const token = await AsyncStorage.getItem('accessToken');
     const data = new FormData();
@@ -103,7 +107,9 @@ export const findFolderDocuments = (documents: DocumentInterface[], folderId: nu
   const folder = documents.find(
     (document: DocumentInterface): boolean => document.id === folderId && !!document.is_folder,
   );
-  if (!folder || !folder.documents) return [];
+  if (!folder || !folder.documents) {
+    return [];
+  }
 
   return folder.documents;
 };
