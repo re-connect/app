@@ -69,7 +69,9 @@ const Card: React.FC<Props> = ({
     }, 1000);
   };
 
-  if (disabled) return null;
+  if (disabled) {
+    return null;
+  }
 
   return (
     <TouchableHighlight

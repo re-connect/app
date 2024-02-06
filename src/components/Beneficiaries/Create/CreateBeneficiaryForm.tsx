@@ -144,7 +144,7 @@ const CreateBeneficiaryForm: React.FC = () => {
               <Separator height={2} />
               <FakeTextField
                 onPress={showDatepickerActions.toggle}
-                value={'' === formikBag.values.birth_date ? t('birth_date') : formikBag.values.birth_date}
+                value={formikBag.values.birth_date === '' ? t('birth_date') : formikBag.values.birth_date}
                 iconName='calendar-alt'
                 touched={isFormTouched}
                 error={allErrors.birth_date}

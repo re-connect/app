@@ -67,12 +67,16 @@ export const getStringFutureDateTimeSchema = (): Yup.StringSchema => {
     .min(12, t.t('form_field_datetime_invalid'))
     .max(12, t.t('form_field_datetime_invalid'))
     .test('is-valid', t.t('form_field_datetime_invalid'), value => {
-      if (!value) return false;
+      if (!value) {
+        return false;
+      }
       const date = parse(value, 'ddMMyyyyHHmm', new Date());
       return isValid(date);
     })
     .test('is-posterior', t.t('form_field_date_must_be_future'), value => {
-      if (!value) return false;
+      if (!value) {
+        return false;
+      }
       const now = new Date();
       const date = parse(value, 'ddMMyyyyHHmm', new Date());
       return differenceInMinutes(date, now) > 5;

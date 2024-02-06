@@ -22,10 +22,10 @@ export interface AnyDataInterface extends DataInterface {
   big_thumb?: string;
   commentaire?: string;
   contenu?: string;
-  date?: Date|string|null;
+  date?: Date | string | null;
   dateToString?: string;
   documents?: DocumentInterface[];
-  beneficiaire_id?: number
+  beneficiaire_id?: number;
   sous_dossiers?: FolderInterface[];
   dossier_image?: string;
   email?: string;
@@ -35,7 +35,7 @@ export interface AnyDataInterface extends DataInterface {
   lieu?: string;
   nom: string;
   prenom?: string;
-  rappels?: ReminderInterface[]|string[];
+  rappels?: ReminderInterface[] | string[];
   telephone?: string;
   thumb?: string;
   url?: string;

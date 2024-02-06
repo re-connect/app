@@ -16,7 +16,9 @@ export const useFetchCenters = () => {
     try {
       actions.setTrue();
       const centers = await makeRequestv2('/centers', 'GET');
-      if (centers) setList(centers);
+      if (centers) {
+        setList(centers);
+      }
       actions.setFalse();
     } catch (error) {
       actions.setFalse();
@@ -40,7 +42,9 @@ export const useAcceptCenterInvitation = () => {
       try {
         actions.setTrue();
         const newCenter = await makeRequestv2(`/centers/${center.id}/accept`, 'PATCH');
-        if (newCenter) setList(acceptCenterInList(list, center));
+        if (newCenter) {
+          setList(acceptCenterInList(list, center));
+        }
         actions.setFalse();
       } catch (error) {
         actions.setFalse();

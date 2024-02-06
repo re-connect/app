@@ -24,10 +24,11 @@ interface Props {
 const UsernameHelpTextPart: React.FC<Props> = ({ text, validity }) => {
   const { t } = useTranslation();
 
-  return(
+  return (
     <Text style={[styles.text, validity ? styles.valid : {}]}>
       {t(text)}
     </Text>
-  )};
+  );
+};
 
 export default UsernameHelpTextPart;

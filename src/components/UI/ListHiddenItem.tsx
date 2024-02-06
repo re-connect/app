@@ -30,7 +30,11 @@ const ListHiddenItem: React.FC<Props> = ({ datum, getLeftActionEndpoint, getRigh
   const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
   const userLeftActionEndpoint = `${getLeftActionEndpoint(item)}/${item.id}/toggle-access`;
   const { patch, isPatching } = usePatchData(userLeftActionEndpoint, item.id, getDataContext(item));
-  const { deleteItem, isDeleting } = useDeleteData(getDataContext(item), `${getRightActionEndpoint(item)}/${item.id}`, item.id);
+  const { deleteItem, isDeleting } = useDeleteData(
+    getDataContext(item),
+    `${getRightActionEndpoint(item)}/${item.id}`,
+    item.id,
+  );
   const toggleItemText = isMember ? 'make_private' : `make_${!item.b_prive ? 'private' : 'shared'}`;
   const toggleItemColor = !item.b_prive ? colors.red : colors.blue;
 

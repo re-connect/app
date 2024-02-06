@@ -9,7 +9,9 @@ type HTTPVerb = 'POST' | 'GET' | 'DELETE' | 'PUT' | 'PATCH';
 
 export const makeAuthenticatedUrlv2 = async (endpoint: string) => {
   const isConnected = await checkNetworkConnection();
-  if (!isConnected) return;
+  if (!isConnected) {
+    return;
+  }
 
   const token = await AsyncStorage.getItem('accessToken');
   if (!token) {
@@ -23,7 +25,9 @@ export const makeAuthenticatedUrlv2 = async (endpoint: string) => {
 
 export const makeAuthenticatedUrlv3 = async (endpoint: string) => {
   const isConnected = await checkNetworkConnection();
-  if (!isConnected) return;
+  if (!isConnected) {
+    return;
+  }
 
   const token = await AsyncStorage.getItem('accessToken');
   if (!token) {
@@ -90,7 +94,9 @@ export const makePostFormRequest = async (
   data: Record<string, any>,
 ): Promise<AxiosResponse | undefined> => {
   const isConnected = await checkNetworkConnection();
-  if (!isConnected) return;
+  if (!isConnected) {
+    return;
+  }
 
   const token = await AsyncStorage.getItem('accessToken');
 

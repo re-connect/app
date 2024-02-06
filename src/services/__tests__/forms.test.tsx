@@ -2,14 +2,12 @@ import { validateLoginForm } from '../forms';
 
 let formValues;
 describe('validateLoginForm', (): void => {
-  beforeEach(
-    (): void => {
-      formValues = {
-        username: 'gandalf@theshire.com',
-        password: 'You $hall N0t P@ss',
-      };
-    },
-  );
+  beforeEach((): void => {
+    formValues = {
+      username: 'gandalf@theshire.com',
+      password: 'You $hall N0t P@ss',
+    };
+  });
   it('Should return no error if password and username are filled', (): void => {
     const errors = validateLoginForm(formValues);
     expect(errors).toEqual({});

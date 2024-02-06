@@ -21,7 +21,6 @@ const FormikTextField: React.FC<Props & TextFieldProps> = props => {
         fieldLabel={props.label}
         handleChange={props.formikBag.handleChange(props.name)}
         handleBlur={props.formikBag.handleBlur(props.name)}
-        iconName={props.icon}
         okIcon
         value={props.formikBag.values[props.name]}
       />

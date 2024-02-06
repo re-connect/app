@@ -36,8 +36,7 @@ const HiddenItemButton: React.FC<Props> = ({ isLoading, onPress, text, color, ic
   <TouchableOpacity
     style={{ ...styles.btn, backgroundColor: !color ? colors.red : color }}
     disabled={isLoading}
-    onPress={onPress}
-  >
+    onPress={onPress}>
     {!isLoading ? (
       <>
         {!iconName ? null : <Icon style={styles.icon} name={iconName} />}

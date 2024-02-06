@@ -15,6 +15,6 @@ interface Props {
   text: FormikErrors<Date> | string;
 }
 
-const ErrorText: React.FC<Props> = ({ text }) => <Text style={style.text}>{text}</Text>
+const ErrorText: React.FC<Props> = ({ text }) => <Text style={style.text}>{text}</Text>;
 
 export default ErrorText;

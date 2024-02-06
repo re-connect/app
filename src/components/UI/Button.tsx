@@ -47,7 +47,7 @@ const Button: React.FC<Props> = ({
   iconColor,
   fullWidth,
   backgroundColor,
-}) =>  (
+}) => (
   <TouchableOpacity
     disabled={disabled || isLoading}
     style={[
@@ -56,8 +56,7 @@ const Button: React.FC<Props> = ({
       fullWidth ? styles.fullWidth : {},
       !backgroundColor ? {} : { backgroundColor },
     ]}
-    onPress={onPress}
-  >
+    onPress={onPress}>
     {!iconName ? null : <Icon style={styles.icon} color={!iconColor ? colors.black : iconColor} name={iconName} />}
     <Text style={styles.text}>{text}</Text>
     {isLoading ? <ActivityIndicator style={styles.loader} size="small" color={colors.black} /> : null}

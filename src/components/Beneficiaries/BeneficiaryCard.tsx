@@ -25,11 +25,8 @@ const BeneficiaryCard: React.FC<BeneficiaryCardInterface> = ({ beneficiary }) =>
   const goToBeneficiary = useGoToBeneficiary();
 
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() => goToBeneficiary(beneficiary)}
-    >
-      <BeneficiaryCardContent beneficiary={{...beneficiary, ...beneficiary.user, subject_id: beneficiary.id}} />
+    <TouchableOpacity style={styles.container} onPress={() => goToBeneficiary(beneficiary)}>
+      <BeneficiaryCardContent beneficiary={{ ...beneficiary, ...beneficiary.user, subject_id: beneficiary.id }} />
     </TouchableOpacity>
   );
 };

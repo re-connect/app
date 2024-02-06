@@ -22,9 +22,10 @@ const getRightComponent =
     setCurrentDocument: (document: AnyDataInterface) => void,
     openModalActions: UseBooleanActions,
   ) =>
-  () =>
-    <DocumentCardActions document={item} setCurrentDocument={setCurrentDocument} openModalActions={openModalActions} />;
-const getEndpoint = (item?: AnyDataInterface) => (item && item.is_folder ? `folders` : `documents`);
+  () => (
+    <DocumentCardActions document={item} setCurrentDocument={setCurrentDocument} openModalActions={openModalActions} />
+    );
+const getEndpoint = (item?: AnyDataInterface) => (item && item.is_folder ? 'folders' : 'documents');
 const getDataContext = (item?: AnyDataInterface) => (item && item.is_folder ? FolderContext : DocumentContext);
 
 const DocumentsListWrapper: React.FC<DocumentsListWrapperProps> = ({ folderId }) => {

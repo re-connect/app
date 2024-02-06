@@ -10,8 +10,12 @@ export const getDateColour = (date: Date) => {
 };
 
 export const getReadableDate = (date: Date) => {
-  if (isToday(date)) return `${t.t('today')} ${format(date, 'HH:mm')}`;
-  if (isTomorrow(date)) return t.t('tomorow');
+  if (isToday(date)) {
+    return `${t.t('today')} ${format(date, 'HH:mm')}`;
+  }
+  if (isTomorrow(date)) {
+    return t.t('tomorow');
+  }
 
   const today = new Date();
   const daysToDate = differenceInDays(date, today);
@@ -21,7 +25,7 @@ export const getReadableDate = (date: Date) => {
 
 export const stringToDate = (string: string) => {
   let date = new Date();
-  if ('' !== string) {
+  if (string !== '') {
     date = parse(string, 'dd/MM/yyyy', new Date());
   }
 
@@ -30,6 +34,6 @@ export const stringToDate = (string: string) => {
 
 export const dateToString = (date: Date) => format(date, 'dd/MM/yyyy');
 
-export const dateToIso = (date?: Date):string => formatISO(date ?? new Date());
+export const dateToIso = (date?: Date): string => formatISO(date ?? new Date());
 
-export const isoToDate = (iso?: string): Date => iso ? parseISO(iso) : new Date();
+export const isoToDate = (iso?: string): Date => (iso ? parseISO(iso) : new Date());

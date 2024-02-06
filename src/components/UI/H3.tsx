@@ -9,7 +9,9 @@ const H3: React.FC<TextProps> = props => {
     return null;
   }
   const text = props.children;
-  if (!(typeof text === 'string' || text instanceof String)) return null;
+  if (!(typeof text === 'string' || text instanceof String)) {
+    return null;
+  }
   const stringText = text as string;
   return (
     <Text style={[h3Styles.text, props.style]} {...props}>

@@ -1,7 +1,7 @@
 import { getTabStackIcon } from '../navigation';
 
 describe('getTabStackIcon', () => {
-  xit('Should get the documents Icon', () => {
+  it.skip('Should get the documents Icon', () => {
     const results = {
       documents: {
         inactive: getTabStackIcon({ name: 'Documents' })({ focused: false, color: 'blue' }),
