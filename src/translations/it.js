@@ -185,4 +185,9 @@ export default {
   this_action_is_irreversible: 'Questa azione è irreversibile',
   ios_app_udpate_available_title: 'Nuova versione disponibile',
   ios_app_udpate_available_message: 'Su AppStore è disponibile una nuova versione di Reconnect, vuoi installarla?',
+  strong_password: 'Password sicura',
+  lowercase: 'Minuscola',
+  uppercase: 'Maiuscola',
+  special_number: 'Speciale/Numero',
+  length: 'Lunghezza',
 };

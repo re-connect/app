@@ -22,10 +22,14 @@ import TextField from '../../UI/TextField';
 import RNSwitch from '../../UI/RNSwitch';
 import i18n from '../../../services/translation';
 import SecretQuestionPicker from '../SecretQuestionPicker';
+import PasswordValidityWidget from '../../User/PasswordValidityWidget';
 
 const styles = StyleSheet.create({
   form: { paddingHorizontal: 8 },
   errorText: { color: 'red', textAlign: 'center' },
+  wrapperCenters: { padding: 10, marginBottom: 15 },
+  wrapperSwitch: { marginRight: 8 },
+  wrapperSwitches: { alignItems: 'center', flexDirection: 'row', marginTop: 5 },
   selectWrapper: {
     paddingLeft: 16,
     backgroundColor: colors.white,
@@ -35,18 +39,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
     marginTop: 18,
-  },
-  wrapperCenters: {
-    padding: 10,
-    marginBottom: 15,
-  },
-  wrapperSwitch: {
-    marginRight: 8,
-  },
-  wrapperSwitches: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: 5,
   },
 });
 
@@ -94,12 +86,7 @@ const CreateBeneficiaryForm: React.FC = () => {
         enableReinitialize={true}
         initialValues={initialFormValues}
         validationSchema={Shape}
-        onSubmit={values =>
-          triggerCreateBeneficiary({
-            ...values,
-            centers,
-          })
-        }>
+        onSubmit={values => triggerCreateBeneficiary({ ...values, centers })}>
         {(formikBag: FormikProps<CreateBeneficiaryDataInterface>) => {
           const allErrors = { ...formikBag.errors, ...createErrors };
           if (formikBag.values.birth_date === '') {
@@ -171,9 +158,10 @@ const CreateBeneficiaryForm: React.FC = () => {
                 value={formikBag.values.password}
                 okIcon
               />
-              {formikBag.touched.password && allErrors.password ? <ErrorText text={allErrors.password} /> : null}
               {!formikBag.values.password ? null : (
                 <>
+                  <Separator height={1} />
+                  <PasswordValidityWidget password={formikBag.values.password} />
                   <Separator height={1} />
                   <TextField
                     contentType='password'

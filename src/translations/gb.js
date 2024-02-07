@@ -173,4 +173,9 @@ export default {
   this_action_is_irreversible: 'This action is irreversible',
   ios_app_udpate_available_title: 'Update available',
   ios_app_udpate_available_message: 'There is a new version available on the AppStore. Would you like to upgrade?',
+  strong_password: 'Strong password',
+  lowercase: 'Lowercase',
+  uppercase: 'Uppercase',
+  special_number: 'Special/Number',
+  length: 'Length',
 };

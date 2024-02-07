@@ -71,18 +71,19 @@ const TextField: React.FC<TextFieldProps> = ({
   const { t } = useTranslation();
   const [showPassword, showPasswordActions] = useBoolean(false);
   error = !error ? '' : Array.isArray(error) ? error.join(', ') : error;
-  style = { color: colors.darkGray, borderColor: !error ? colors.darkGray : colors.red, ...style };
+  const hasError = !!touched && !!error;
+  let showRightIcon = !!touched && okIcon;
+  style = { color: colors.darkGray, borderColor: hasError ? colors.red : colors.darkGray, ...style };
 
   const leftIconStyle = { ...styles.icon, color: colors.darkGray, ...iconSyle };
-  const rightIconColor =
-    contentType === 'password'
-      ? colors.darkGray
-      : okIcon
-        ? !!value && !!touched && !error
-          ? colors.green
-          : colors.red
-        : 'transparent';
-  const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
+  let rightIconColor = !hasError ? colors.green : colors.red;
+
+  let rightIconName = !!okIcon && !hasError ? 'check' : 'times';
+  if (contentType === 'password') {
+    rightIconColor = colors.darkGray;
+    rightIconName = 'eye';
+    showRightIcon = true;
+  }
   const rightIconStyle = { ...styles.icon, color: rightIconColor };
   return (
     <View>
@@ -103,12 +104,9 @@ const TextField: React.FC<TextFieldProps> = ({
           textContentType={contentType}
           value={!value ? '' : value}
         />
-        {contentType === 'password'
-            ? <Icon name="eye" style={rightIconStyle} onPress={showPasswordActions.toggle} />
-            : !touched ? null : <Icon name={rightIconName} style={rightIconStyle} />
-        }
+        <Icon name={showRightIcon ? rightIconName : ''} style={rightIconStyle} onPress={showPasswordActions.toggle} />
       </View>
-      {displayError && !!error && (
+      {displayError && hasError && (
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
           <Text style={styles.error}>{error}</Text>
         </View>

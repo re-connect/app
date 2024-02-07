@@ -177,4 +177,9 @@ export default {
   ios_app_udpate_available_title: 'Update verfügbar',
   ios_app_udpate_available_message:
     'Eine neue Version von Reconnect ist im AppStore verfügbar, möchten Sie sie installieren?',
+  strong_password: 'Sicheres Passwort',
+  lowercase: 'Kleinbuchstabe',
+  uppercase: 'Großbuchstabe',
+  special_number: 'Sonderzeichen/Nummer',
+  length: 'Länge',
 };

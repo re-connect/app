@@ -58,10 +58,6 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
     },
   ];
 
-  const handlePressReset = () => {
-    !isMember ? navigation.navigate('ResetPassword') : Linking.openURL(`${backendUrl}/public/reset-password/choose`);
-  };
-
   return (
     <Screen>
       <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
@@ -69,7 +65,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
           <ProfileItem item={item} key={key} />
         ))}
         <View style={{ marginHorizontal: 32, marginTop: 15 }}>
-          <RoundedButton text='new_password' onPress={handlePressReset} />
+          <RoundedButton text='new_password' onPress={() => navigation.navigate('ResetPassword')} />
           <Separator height={2} />
           {!current || !current.subject_id || isMember ? null : (
             <RoundedButton

@@ -172,4 +172,9 @@ export default {
   this_action_is_irreversible: 'هذا العمل لا رجوع فيه',
   ios_app_udpate_available_title: 'تحديث متوفر',
   ios_app_udpate_available_message: 'تحديث متوفر للتطبيق. هل تريد تحديثه الآن؟',
+  strong_password: 'كلمة سر قوية',
+  lowercase: 'أحرف صغيرة',
+  uppercase: '.حرف كبير',
+  special_number: 'حرف خاص/رقم',
+  length: 'طول',
 };

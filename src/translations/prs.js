@@ -172,4 +172,9 @@ export default {
   this_action_is_irreversible: 'هذا العمل لا رجوع فيه',
   ios_app_udpate_available_title: 'به روز رسانی موجود است',
   ios_app_udpate_available_message: 'نسخه جدیدی از Reconnect در AppStore موجود است، آیا می خواهید آن را نصب کنید؟',
+  strong_password: 'رمز عبور قوی',
+  lowercase: 'حروف کوچک',
+  uppercase: 'حرف بزرگ',
+  special_number: 'ویژه/عدد',
+  length: 'طول',
 };
