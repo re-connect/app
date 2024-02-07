@@ -12,7 +12,7 @@ module.exports = {
     '!src/Routes.tsx',
     '!App.tsx',
   ],
-  transformIgnorePatterns: ['node_modules/(?!@react-native|react-native|native-base-shoutem-theme|native-base)'],
+  transformIgnorePatterns: ['node_modules/(?!@react-native|react-native)'],
   coverageThreshold: {
     global: {
       statements: 15,
