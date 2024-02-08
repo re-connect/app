@@ -174,4 +174,9 @@ export default {
   this_action_is_irreversible: 'Это действие необратимо',
   ios_app_udpate_available_title: 'Доступно обновление',
   ios_app_udpate_available_message: 'В AppStore доступна новая версия Reconnect, установить ее?',
+  strong_password: 'Надежный пароль',
+  lowercase: 'Строчная буква',
+  uppercase: 'прописная буква',
+  special_number: 'Особенный/число',
+  length: 'Длина',
 };

@@ -173,4 +173,9 @@ export default {
   this_action_is_irreversible: 'Această acțiune este ireversibilă',
   ios_app_udpate_available_title: 'Actualizare disponibila',
   ios_app_udpate_available_message: 'O nouă versiune de Reconnect este disponibilă pe AppStore, doriți să o instalați?',
+  strong_password: 'Parola puternica',
+  lowercase: 'Mica',
+  uppercase: 'Majusculă',
+  special_number: 'Special/Număr',
+  length: 'Lungime',
 };

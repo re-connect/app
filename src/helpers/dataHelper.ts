@@ -12,7 +12,8 @@ export const findById = (list: AnyDataInterface[], itemId: number) => {
   return list.find((item: AnyDataInterface) => item.id === itemId);
 };
 
-export const findBy = (list: AnyDataInterface[], criteria: any) => list.filter((item: any) => {
+export const findBy = (list: AnyDataInterface[], criteria: any) =>
+  list.filter((item: any) => {
     let itemMatches = true;
     Object.keys(criteria).forEach((criterion: string) => {
       const itemValue = item[criterion];
@@ -28,6 +29,5 @@ export const findBy = (list: AnyDataInterface[], criteria: any) => list.filter((
 
     return itemMatches;
   });
-;
 
 export const getTruncatedText = (text: string) => (text.length > 20 ? `${text.substring(0, 20)}...` : text);

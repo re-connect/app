@@ -175,4 +175,9 @@ export default {
   this_action_is_irreversible: 'دا کار له منځه وړل شوي نه ده',
   ios_app_udpate_available_title: 'به روز رسانی موجود است',
   ios_app_udpate_available_message: 'نسخه جدیدی از Reconnect در AppStore موجود است، آیا می خواهید آن را نصب کنید؟',
+  strong_password: 'قوي پټنوم',
+  lowercase: 'کوچني توري',
+  uppercase: 'لوی لیک',
+  special_number: 'ځانګړې/شمیره',
+  length: 'اوږدوالی',
 };

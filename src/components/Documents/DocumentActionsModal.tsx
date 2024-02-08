@@ -34,14 +34,6 @@ const DocumentActionsModal: React.FC<Props> = ({ document, close }) => {
 
   const actions = {
     delete: deleteItem,
-    // download: () => {
-    //   ReactNativeBlobUtil
-    //     .config({fileCache: true})
-    //     .fetch('GET', documentUrl, {})
-    //     .then((res) => {
-    //       console.log('The file saved to ', res.path())
-    //     });
-    // },
     view: () => {},
     moveOut: triggerMoveDocumentOutOfFolder,
     pickFolder: pickingFolderActions.setTrue,

@@ -37,9 +37,13 @@ const EventScreen: React.FC<Props> = ({ route, navigation }) => {
   const { list } = React.useContext(EventContext);
   const { eventId } = route.params;
   const { isDeleting, deleteItem } = useDeleteData(EventContext, `events/${eventId}`, eventId);
-  if (!list) {return null;}
+  if (!list) {
+    return null;
+  }
   const event = list.find((event: EventInterface) => event.id === eventId);
-  if (!event) {return null;}
+  if (!event) {
+    return null;
+  }
   const date = !event.date ? new Date() : new Date(event.date);
 
   return (
@@ -83,11 +87,11 @@ const EventScreen: React.FC<Props> = ({ route, navigation }) => {
                 <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name="bell" solid color={colors.gray} />
                 <View style={{ flex: 1 }} />
                 <View>
-                  {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) =>
+                  {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) => (
                     <Text key={reminder.id} style={{ color: colors.gray }}>
                       {format(new Date(reminder.date), 'dd/MM/yyyy HH:mm')}
                     </Text>
-                  )}
+                  ))}
                 </View>
               </>
             )}

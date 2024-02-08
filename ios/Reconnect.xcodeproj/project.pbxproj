@@ -595,12 +595,6 @@
 			isa = PBXGroup;
 			children = (
 				F27D66CAD5E64E26809381C3 /* FontAwesome5_Brands.ttf */,
-				C2CDECFE1D4B47E1B42DA07F /* FontAwesome.ttf */,
-				FCDA6D78B2784970BA6DFC78 /* FontAwesome5_Solid.ttf */,
-				32BECE72D24C42E68FBFB6BF /* Roboto_medium.ttf */,
-				5325F56B07B8422EBFEEED7D /* Roboto.ttf */,
-				AF60560A724E412E863D9573 /* rubicon-icon-font.ttf */,
-				E886056FDD0C4805AB0FDDD9 /* FontAwesome5_Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

@@ -31,6 +31,17 @@ export const addMinAndMaxNotEmpty = (
   return addNonEmpty(addMinAndMax(schema, field, min, max), field);
 };
 
+export const getPasswordShema = (): Yup.StringSchema<string | null | undefined> =>
+  addMinAndMaxNotEmpty(
+    Yup.string()
+      .matches(/.*[A-Z].*/, 'please enter a uppercase')
+      .matches(/.*[a-z].*/, 'please enter a lowercase')
+      .matches(/.*[^A-Za-z].*/, 'please enter a special character or number'),
+    'password',
+    9,
+    255,
+  );
+
 export const getEmailSchema = (): Yup.StringSchema<string | null | undefined> => {
   return Yup.string()
     .email(t.t('form_field_invalid', { field: t.t('email') }))

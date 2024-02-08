@@ -6,6 +6,7 @@ import {
   getEmailSchema,
   getItlPhoneSchema,
   getPasswordConfirmSchema,
+  getPasswordShema,
   getStringDateSchema,
 } from './yupHelpers';
 
@@ -13,7 +14,7 @@ export default (): Yup.ObjectSchema<any> =>
   Yup.object().shape({
     first_name: addOnlyLetters(addMinAndMaxNotEmpty(Yup.string(), 'first_name', 2, 254)),
     last_name: addOnlyLetters(addMinAndMaxNotEmpty(Yup.string(), 'last_name', 2, 254)),
-    password: addMinAndMaxNotEmpty(Yup.string(), 'password', 5, 255),
+    password: getPasswordShema(),
     confirmPassword: getPasswordConfirmSchema(),
     email: getEmailSchema().nullable(),
     phone: getItlPhoneSchema().nullable(),

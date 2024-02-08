@@ -44,7 +44,7 @@ const TextArea: React.FC<TextFieldProps> = ({
   const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
   const rightIconColor = !!value && !!okIcon && !!touched && !error ? colors.green : colors.red;
 
-  const inputStyle = [styles.style, !!error ? styles.invalidStyle : {}];
+  const inputStyle = [styles.style, error ? styles.invalidStyle : {}];
 
   return (
     <View>

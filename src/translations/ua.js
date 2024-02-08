@@ -174,4 +174,9 @@ export default {
   this_action_is_irreversible: 'Ця дія незворотна',
   ios_app_udpate_available_title: 'Доступне оновлення',
   ios_app_udpate_available_message: 'Нова версія Reconnect доступна в AppStore, чи варто її інсталювати?',
+  strong_password: 'Надійний пароль',
+  lowercase: 'мала',
+  uppercase: 'прописна',
+  special_number: 'спеціальні/номер',
+  length: 'довжина',
 };
