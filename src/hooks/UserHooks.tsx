@@ -229,18 +229,15 @@ export const useLogout = () => {
 };
 
 export const useResetPassword = () => {
-  const { user } = React.useContext(UserContext);
   const [isResetting, resetActions] = useBoolean(false);
   const navigation = useNavigation<any>();
 
   const reset = React.useCallback(
-    async (values: ResetPasswordData) => {
+    async ({password, confirm}: ResetPasswordData) => {
       try {
-        if (user && user.subject_id && values.password && values.password === values.confirm) {
+        if (password && password === confirm) {
           resetActions.setTrue();
-          const newData = await makeRequestv2(`/beneficiaries/${user.subject_id}/password`, 'PATCH', {
-            password: values.password,
-          });
+          const newData = await makeRequestv2(`/user/password`, 'PATCH', { password });
           if (newData) {
             Alert.alert(t.t('password_successfully_updated'));
             navigation.goBack();
@@ -252,7 +249,7 @@ export const useResetPassword = () => {
         Alert.alert(t.t('error_updating_password'));
       }
     },
-    [resetActions, navigation, user],
+    [resetActions, navigation],
   );
 
   return { isResetting, reset };
