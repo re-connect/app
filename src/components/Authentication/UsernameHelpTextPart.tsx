@@ -13,7 +13,8 @@ interface Props {
   validity?: boolean;
 }
 
-const UsernameHelpTextPart: React.FC<Props> = ({ text, validity }) => <Text style={[styles.text, validity ? styles.valid : {}]}>{text}</Text>;
-
+const UsernameHelpTextPart: React.FC<Props> = ({ text, validity }) => (
+  <Text style={[styles.text, validity ? styles.valid : {}]}>{text}</Text>
+);
 
 export default UsernameHelpTextPart;
