@@ -6,6 +6,7 @@ import EventContext from '../../context/EventContext';
 import UserContext from '../../context/UserContext';
 import { usePostData } from '../../hooks/DataHooks';
 import { CreateEventData } from '../../types/Event';
+import { dateToIso } from '../../helpers/dateHelpers';
 
 const CreateEventScreen: React.FC = () => {
   const { current } = React.useContext(BeneficiaryContext);
@@ -15,7 +16,7 @@ const CreateEventScreen: React.FC = () => {
   const event: CreateEventData = {
     b_prive: user?.type_user === 'ROLE_BENEFICIAIRE',
     commentaire: '',
-    date: '',
+    date: dateToIso(new Date()),
     lieu: '',
     nom: '',
     rappels: [],

@@ -104,7 +104,9 @@ const TextField: React.FC<TextFieldProps> = ({
           textContentType={contentType}
           value={!value ? '' : value}
         />
-        <Icon name={showRightIcon ? rightIconName : ''} style={rightIconStyle} onPress={showPasswordActions.toggle} />
+        {showRightIcon && rightIconName ? (
+          <Icon name={rightIconName} style={rightIconStyle} onPress={showPasswordActions.toggle} />
+        ) : null}
       </View>
       {displayError && hasError && (
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>

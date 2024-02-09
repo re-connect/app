@@ -18,47 +18,54 @@ const ResetPasswordForm: React.FC = () => {
 
   return (
     <Formik validationSchema={Shape} onSubmit={values => reset(values)} initialValues={{ password: '', confirm: '' }}>
-      {({ errors, isValid, handleBlur, handleChange, handleSubmit, touched, values }: FormikProps<ResetPasswordData>) => (
-          <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
-            <Separator height={2} />
-            <TextField
-              contentType='password'
-              error={errors.password}
-              fieldLabel='new_password'
-              handleBlur={handleBlur('password')}
-              handleChange={handleChange('password')}
-              iconName='key'
-              okIcon
-              touched={touched.password}
-              value={values.password}
-              displayError
-            />
-            <Separator height={2} />
-            <PasswordValidityWidget password={values.password} />
-            <Separator height={2} />
-            <TextField
-              contentType='password'
-              error={errors.confirm}
-              fieldLabel='confirm_password'
-              handleBlur={handleBlur('confirm')}
-              handleChange={handleChange('confirm')}
-              iconName='key'
-              okIcon
-              touched={touched.confirm}
-              value={values.confirm}
-              displayError
-            />
-            <Separator height={2} />
-            <RoundedButton
-              isLoading={isResetting}
-              disabled={!isValid}
-              iconName='save'
-              text='update'
-              onPress={() => handleSubmit()}
-            />
-          </KeyboardAwareScrollView>
-        )
-      }
+      {({
+        errors,
+        isValid,
+        handleBlur,
+        handleChange,
+        handleSubmit,
+        touched,
+        values,
+      }: FormikProps<ResetPasswordData>) => (
+        <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
+          <Separator height={2} />
+          <TextField
+            contentType='password'
+            error={errors.password}
+            fieldLabel='new_password'
+            handleBlur={handleBlur('password')}
+            handleChange={handleChange('password')}
+            iconName='key'
+            okIcon
+            touched={touched.password}
+            value={values.password}
+            displayError
+          />
+          <Separator height={2} />
+          <PasswordValidityWidget password={values.password} />
+          <Separator height={2} />
+          <TextField
+            contentType='password'
+            error={errors.confirm}
+            fieldLabel='confirm_password'
+            handleBlur={handleBlur('confirm')}
+            handleChange={handleChange('confirm')}
+            iconName='key'
+            okIcon
+            touched={touched.confirm}
+            value={values.confirm}
+            displayError
+          />
+          <Separator height={2} />
+          <RoundedButton
+            isLoading={isResetting}
+            disabled={!isValid}
+            iconName='save'
+            text='update'
+            onPress={() => handleSubmit()}
+          />
+        </KeyboardAwareScrollView>
+      )}
     </Formik>
   );
 };

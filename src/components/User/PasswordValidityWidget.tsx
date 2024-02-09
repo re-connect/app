@@ -57,11 +57,11 @@ const criteria = [
 
 const isPasswordValid = (password: string) => criteria.every(criteria => criteria.test.test(password));
 
-const PasswordValidityWidget: React.FC<Props> = ({ password }) =>
+const PasswordValidityWidget: React.FC<Props> = ({ password }) => (
   <View style={styles.container}>
     {isPasswordValid(password) ? (
       <View style={styles.validPasswordContainer}>
-        <Icon name="lock" color={colors.white} size={16}/>
+        <Icon name="lock" color={colors.white} size={16} />
         <TranslatedText style={styles.validPasswordText}>strong_password</TranslatedText>
       </View>
     ) : (
@@ -77,6 +77,5 @@ const PasswordValidityWidget: React.FC<Props> = ({ password }) =>
       </>
     )}
   </View>
-;
-
+);
 export default PasswordValidityWidget;

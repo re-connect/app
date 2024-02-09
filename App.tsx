@@ -30,11 +30,6 @@ import { useNumber } from 'react-hanger';
 import { useCheckAndUpdateApp } from './src/hooks/UpdateHooks';
 SplashScreen.hide();
 
-// const whyDidYouRender = require('@welldone-software/why-did-you-render');
-// whyDidYouRender(React, {
-//   // trackAllPureComponents: true,
-// });
-
 Sentry.init({ dsn: config.sentrySecret });
 
 const App: React.FC = () => {

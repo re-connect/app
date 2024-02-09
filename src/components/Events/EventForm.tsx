@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import eventShape from '../../helpers/forms/eventShape';
 import { colors } from '../../style';
 import { CreateEventData, ReminderInterface } from '../../types/Event';
+import { dateToIso } from '../../helpers/dateHelpers';
 import DateTimePicker from '../UI/DateTimePicker';
 import FormikTextField from '../UI/FormikTextField';
 import RNSwitch from '../UI/RNSwitch';
@@ -54,7 +55,14 @@ const EventForm: React.FC<Props> = ({ event, onSubmit, isSubmitting }) => {
           </View>
           <FormikTextField formikBag={formikBag} name='nom' icon='tag' label='name' />
           <Separator height={2} />
-          <DateTimePicker value={formikBag.values.date} handleChange={date => formikBag.setFieldValue('date', date)} />
+          <DateTimePicker
+            value={formikBag.values.date}
+            handleChange={date => {
+              if (formikBag.values.date !== dateToIso(date)) {
+                formikBag.setFieldValue('date', dateToIso(date));
+              }
+            }}
+          />
           <FormikTextField formikBag={formikBag} name='lieu' icon='map-marker-alt' label='place' />
           <Separator height={2} />
           <FormikTextField formikBag={formikBag} name='commentaire' icon='comment-alt' label='comment' isTextArea />
