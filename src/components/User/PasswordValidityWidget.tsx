@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
   chip: {
     flexDirection: 'row',
     borderRadius: 16,
-    color: colors.white,
     padding: 4,
     paddingHorizontal: 4,
     margin: 2,
@@ -71,7 +70,7 @@ const PasswordValidityWidget: React.FC<Props> = ({ password }) => (
             <View style={styles.hint}>
               <Text>{getHint(password.length)}</Text>
             </View>
-            <TranslatedText>{name}</TranslatedText>
+            <TranslatedText style={{color: colors.white}}>{name}</TranslatedText>
           </View>
         ))}
       </>

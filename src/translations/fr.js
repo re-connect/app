@@ -191,4 +191,6 @@ export default {
   uppercase: 'Majuscule',
   special_number: 'Spécial/Chiffre',
   length: 'Longueur',
+  mfa_code_sent: 'Un code de connexion à usage unique vous a été envoyé, veuillez le saisir dans le champ ci-dessous',
+  mfa_code_not_recived: "Vous n'avez pas reçu le code ? Cliquez ici pour le renvoyer",
 };

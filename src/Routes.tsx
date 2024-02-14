@@ -55,9 +55,7 @@ const getBeneficiaryHeader =
   (title: string) =>
   ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
     title,
-    headerStyle: {
-      backgroundColor: colors.green,
-    },
+    headerStyle: { backgroundColor: colors.green },
     headerTintColor: colors.white,
     headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
   });
