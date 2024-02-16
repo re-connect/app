@@ -11,6 +11,7 @@ import Shape from '../../helpers/forms/resetPasswordShape';
 export interface ResetPasswordData {
   password: string;
   confirm: string;
+  previousPassword?: string;
 }
 
 const ResetPasswordForm: React.FC = () => {

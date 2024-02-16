@@ -38,6 +38,8 @@ import { navigationRef } from './RootNavigation';
 import { getTabStackIcon } from './services/navigation';
 import { colors } from './style';
 import { UserInterface } from './types/Users';
+import PublicResetPasswordForm from './components/User/PublicResetPasswordForm';
+import PublicResetPasswordScreen from './pages/user/PublicResetPasswordScreen';
 
 let activeTheme = false;
 
@@ -109,14 +111,14 @@ const Settings = () => {
       <SettingsStack.Screen name='SettingsIndex' component={SettingsScreen} options={getHeader(t('settings'))} />
       <SettingsStack.Screen name='Profile' component={ProfileScreen} options={getHeader(t('profil'))} />
       <SettingsStack.Screen
-        name='ResetPassword'
+        name="ResetPassword"
         component={ResetPasswordScreen}
         options={getHeader(t('new_password'))}
       />
       <SettingsStack.Screen name='TermsOfUse' component={TermsOfUseScreen} options={getHeader(t('terms_of_use'))} />
       <SettingsStack.Screen name='LegalNotices' component={LegalNoticesScreen} options={getHeader(t('legal_notice'))} />
       <SettingsStack.Screen
-        name='PrivacyPolicy'
+        name="PrivacyPolicy"
         component={PrivacyPolicyScreen}
         options={getHeader(t('privacy_policy'))}
       />
@@ -146,7 +148,7 @@ const Contacts = () => {
     <ContactsStack.Navigator initialRouteName='ContactsList'>
       <ContactsStack.Screen name='ContactsList' component={ContactsScreen} options={getHeader(t('contacts'))} />
       <ContactsStack.Screen
-        name='CreateContact'
+        name="CreateContact"
         component={CreateContactScreen}
         options={getHeader(t('new_contact'))}
       />
@@ -204,6 +206,7 @@ const Auth = () => {
   return (
     <AuthStack.Navigator initialRouteName='Login'>
       <AuthStack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
+      <AuthStack.Screen name='PublicResetPassword' component={PublicResetPasswordScreen} options={{ headerShown: false }} />
       <AuthStack.Screen name='Chat' component={ChatScreen} options={getHeader(t('loading'))} />
     </AuthStack.Navigator>
   );
@@ -229,17 +232,17 @@ const MemberHome = () => {
   return (
     <MemberBeneficiariesStack.Navigator initialRouteName='Beneficiaries'>
       <MemberBeneficiariesStack.Screen
-        name='Beneficiaries'
+        name="Beneficiaries"
         component={BeneficiariesScreen}
         options={getHeader(t('beneficiaries'))}
       />
       <MemberBeneficiariesStack.Screen
-        name='Beneficiary'
+        name="Beneficiary"
         component={BeneficiaryHome}
         options={{ headerShown: false }}
       />
       <MemberBeneficiariesStack.Screen
-        name='CreateBeneficiary'
+        name="CreateBeneficiary"
         component={CreateBeneficiaryScreen}
         options={getHeader(t('create_beneficiary'))}
       />
@@ -250,7 +253,7 @@ const MemberHome = () => {
 const ActivationScreen = () => (
   <ActivationStack.Navigator>
     <ActivationStack.Screen
-      name='EnableBeneficiary'
+      name="EnableBeneficiary"
       component={EnableBeneficiaryScreen}
       options={{ headerShown: false }}
     />

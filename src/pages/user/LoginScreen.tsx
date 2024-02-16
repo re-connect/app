@@ -42,16 +42,15 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
         <LanguageSwitch />
       </View>
       <ChatButton />
-      <View style={{left: 16, bottom: 16}}>
+      <View style={{ left: 16, bottom: 16 }}>
         <Text>v1.0.{config.version}</Text>
-        {environments && environments.ENV === 'prod'
-          ? null
-          : <>
+        {environments && environments.ENV === 'prod' ? null : (
+          <>
             <Text>{environments && environments.ENV}</Text>
             <Text>{backendUrl}</Text>
           </>
-        }
-    </View>
+        )}
+      </View>
     </Screen>
   );
 };

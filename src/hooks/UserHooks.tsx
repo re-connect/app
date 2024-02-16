@@ -22,6 +22,7 @@ import t from '../services/translation';
 import { UserField } from '../types/Users';
 import { useFetchInvitations } from './CentersHooks';
 import { useTranslation } from 'react-i18next';
+import { resetPassword } from '../services/passwordResetter';
 
 export const useGetLastUsername = () => {
   const { lastUsername, setLastUsername } = React.useContext(UserContext);
@@ -228,20 +229,17 @@ export const useLogout = () => {
   return { isoLggingOutActions, isLoggingOut, logout };
 };
 
-export const useResetPassword = () => {
+export const useResetPassword = (username?: string) => {
   const [isResetting, resetActions] = useBoolean(false);
   const navigation = useNavigation<any>();
 
   const reset = React.useCallback(
-    async ({password, confirm}: ResetPasswordData) => {
+    async ({ password, confirm, previousPassword }: ResetPasswordData) => {
       try {
         if (password && password === confirm) {
           resetActions.setTrue();
-          const newData = await makeRequestv2(`/user/password`, 'PATCH', { password });
-          if (newData) {
-            Alert.alert(t.t('password_successfully_updated'));
-            navigation.goBack();
-          }
+          await resetPassword(password, username, previousPassword);
+          navigation.reset({ routes: [{ name: 'Home' }, { name: 'Settings' }] });
           resetActions.setFalse();
         }
       } catch (error) {
