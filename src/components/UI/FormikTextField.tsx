@@ -14,35 +14,36 @@ export interface Props {
 
 const FormikTextField: React.FC<Props & TextFieldProps> = props => {
   if (props.isTextArea) {
-    return <>
-      <TextArea
+    return (
+      <>
+        <TextArea
+          error={props.formikBag.errors[props.name]}
+          touched={props.formikBag.touched[props.name]}
+          fieldLabel={props.label}
+          handleChange={props.formikBag.handleChange(props.name)}
+          handleBlur={props.formikBag.handleBlur(props.name)}
+          okIcon
+          value={props.formikBag.values[props.name]}
+          {...props}
+        />
+        <Separator height={2} />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <TextField
+        contentType={props.name}
         error={props.formikBag.errors[props.name]}
         touched={props.formikBag.touched[props.name]}
         fieldLabel={props.label}
         handleChange={props.formikBag.handleChange(props.name)}
         handleBlur={props.formikBag.handleBlur(props.name)}
+        iconName={props.icon}
         okIcon
         value={props.formikBag.values[props.name]}
         {...props}
-        />
-      <Separator height={2} />
-    </>
-    ;
-  }
-
-  return (
-    <>
-    <TextField
-      contentType={props.name}
-      error={props.formikBag.errors[props.name]}
-      touched={props.formikBag.touched[props.name]}
-      fieldLabel={props.label}
-      handleChange={props.formikBag.handleChange(props.name)}
-      handleBlur={props.formikBag.handleBlur(props.name)}
-      iconName={props.icon}
-      okIcon
-      value={props.formikBag.values[props.name]}
-      {...props}
       />
       <Separator height={2} />
     </>

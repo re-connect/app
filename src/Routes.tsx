@@ -38,7 +38,6 @@ import { navigationRef } from './RootNavigation';
 import { getTabStackIcon } from './services/navigation';
 import { colors } from './style';
 import { UserInterface } from './types/Users';
-import PublicResetPasswordForm from './components/User/PublicResetPasswordForm';
 import PublicResetPasswordScreen from './pages/user/PublicResetPasswordScreen';
 
 let activeTheme = false;
@@ -206,7 +205,11 @@ const Auth = () => {
   return (
     <AuthStack.Navigator initialRouteName='Login'>
       <AuthStack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }} />
-      <AuthStack.Screen name='PublicResetPassword' component={PublicResetPasswordScreen} options={{ headerShown: false }} />
+      <AuthStack.Screen
+        name="PublicResetPassword"
+        component={PublicResetPasswordScreen}
+        options={{ headerShown: false }}
+      />
       <AuthStack.Screen name='Chat' component={ChatScreen} options={getHeader(t('loading'))} />
     </AuthStack.Navigator>
   );

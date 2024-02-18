@@ -5,7 +5,7 @@ import { colors } from '../../style';
 import TranslatedText from '../UI/Text';
 
 const styles = StyleSheet.create({
-  container: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16},
+  container: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16 },
   chip: {
     flexDirection: 'row',
     borderRadius: 16,

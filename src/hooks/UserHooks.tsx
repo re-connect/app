@@ -234,11 +234,11 @@ export const useResetPassword = (username?: string) => {
   const navigation = useNavigation<any>();
 
   const reset = React.useCallback(
-    async ({ password, confirm, previousPassword }: ResetPasswordData) => {
+    async ({ password, currentPassword, confirm }: ResetPasswordData) => {
       try {
         if (password && password === confirm) {
           resetActions.setTrue();
-          await resetPassword(password, username, previousPassword);
+          await resetPassword(password, username, currentPassword);
           navigation.reset({ routes: [{ name: 'Home' }, { name: 'Settings' }] });
           resetActions.setFalse();
         }

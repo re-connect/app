@@ -49,12 +49,11 @@ const handleMfa = async (params: LoginParams, success: boolean, resolve: () => P
 };
 
 const handleWeakPassword = async (params: LoginParams): Promise<void> => {
-  RootNavigation.navigate('PublicResetPassword');
+  RootNavigation.navigate('PublicResetPassword', { username: params.username });
 };
 
-const handlePartialAuth = async (params: LoginParams, response: PartialAuthBody): Promise<void> => 
+const handlePartialAuth = async (params: LoginParams, response: PartialAuthBody): Promise<void> =>
   new Promise((resolve: any) => {
-    console.log(response);
     if (response.two_factor_complete === false) {
       handleMfa(params, response.login === 'success', resolve);
     } else if (response.weak_password === true) {
@@ -67,10 +66,7 @@ const handlePartialAuth = async (params: LoginParams, response: PartialAuthBody)
 
 const retryLogin = async (params: LoginParams): Promise<void> => {
   const response = await axios.get(loginApiEndpoint, { params, timeout: 15000 });
-  response.data={"login": "success", "weak_password": true};
   const token = response.data.access_token;
-
-console.log(response.data);
 
   if (token) {
     await setTokenInStorage(token);
