@@ -182,4 +182,8 @@ export default {
   uppercase: 'Maiúscula',
   special_number: 'Especial/Número',
   length: 'Comprimento',
+  mfa_code_sent: 'Código de login enviado',
+  wrong_code: 'Código errado',
+  current_password: 'Senha atual',
+  reset_password_title: 'Atualize sua senha',
 };

@@ -21,7 +21,7 @@ const PublicResetPasswordForm: React.FC<Props> = ({ username }) => {
     <Formik validationSchema={Shape} onSubmit={values => reset(values)} initialValues={initialValues}>
       {(formikBag: FormikProps<ResetPasswordData>) => (
         <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
-          <Separator height={10} />
+          <Separator height={4} />
           <FormikTextField
             formikBag={formikBag}
             name="currentPassword"

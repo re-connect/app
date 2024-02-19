@@ -33,7 +33,7 @@ const handleMfa = async (params: LoginParams, success: boolean, resolve: () => P
 
   prompt(
     t.t('mfa_code_sent'),
-    t.t('mfa_code_not_recived'),
+    '',
     [
       { text: t.t('cancel'), onPress: () => resolve(), style: 'cancel' },
       {

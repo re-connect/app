@@ -179,4 +179,8 @@ export default {
   uppercase: 'прописная буква',
   special_number: 'Особенный/число',
   length: 'Длина',
+  mfa_code_sent: 'Код входа отправлен',
+  wrong_code: 'Неверный код',
+  current_password: 'Текущий пароль',
+  reset_password_title: 'Обновите свой пароль',
 };

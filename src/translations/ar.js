@@ -177,4 +177,8 @@ export default {
   uppercase: '.حرف كبير',
   special_number: 'حرف خاص/رقم',
   length: 'طول',
+  mfa_code_sent: 'تم إرسال رمز الدخول',
+  wrong_code: 'رمز خاطئ',
+  current_password: 'كلمة السر الحالية',
+  reset_password_title: 'ترقية كلمة المرور الخاصة بك',
 };

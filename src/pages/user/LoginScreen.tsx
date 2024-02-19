@@ -18,6 +18,7 @@ interface LoginScreenProps {
 const styles = StyleSheet.create({
   content: { flex: 1, zIndex: 1 },
   languageSwitchContainer: { position: 'absolute', top: Platform.OS === 'ios' ? 40 : 20, right: 32, zIndex: 2 },
+  versionsContainer: { left: 16, bottom: 16 },
 });
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {
@@ -42,7 +43,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
         <LanguageSwitch />
       </View>
       <ChatButton />
-      <View style={{ left: 16, bottom: 16 }}>
+      <View style={styles.versionsContainer}>
         <Text>v1.0.{config.version}</Text>
         {environments && environments.ENV === 'prod' ? null : (
           <>

@@ -208,7 +208,7 @@ const Auth = () => {
       <AuthStack.Screen
         name="PublicResetPassword"
         component={PublicResetPasswordScreen}
-        options={{ headerShown: false }}
+        options={getHeader(t('reset_password_title'))}
       />
       <AuthStack.Screen name='Chat' component={ChatScreen} options={getHeader(t('loading'))} />
     </AuthStack.Navigator>

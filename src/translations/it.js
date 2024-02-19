@@ -190,4 +190,8 @@ export default {
   uppercase: 'Maiuscola',
   special_number: 'Speciale/Numero',
   length: 'Lunghezza',
+  mfa_code_sent: 'Codice di accesso inviato',
+  wrong_code: 'Codice errato',
+  current_password: 'Password attuale',
+  reset_password_title: 'Aggiorna la tua password',
 };

@@ -183,4 +183,8 @@ export default {
   uppercase: 'madhe',
   special_number: 'e veçantë/Numri',
   length: 'Gjatësia',
+  mfa_code_sent: 'Kodi i hyrjes u dërgua',
+  wrong_code: 'Kodi i gabuar',
+  current_password: 'Fjalëkalimi aktual',
+  reset_password_title: 'Përmirësoni fjalëkalimin tuaj',
 };
