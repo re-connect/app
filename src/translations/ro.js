@@ -178,4 +178,8 @@ export default {
   uppercase: 'Majusculă',
   special_number: 'Special/Număr',
   length: 'Lungime',
+  mfa_code_sent: 'Codul de conectare a fost trimis',
+  wrong_code: 'Cod greșit',
+  current_password: 'Parola actuală',
+  reset_password_title: 'Actualizați-vă parola',
 };

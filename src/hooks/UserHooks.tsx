@@ -22,6 +22,7 @@ import t from '../services/translation';
 import { UserField } from '../types/Users';
 import { useFetchInvitations } from './CentersHooks';
 import { useTranslation } from 'react-i18next';
+import { resetPassword } from '../services/passwordResetter';
 
 export const useGetLastUsername = () => {
   const { lastUsername, setLastUsername } = React.useContext(UserContext);
@@ -38,7 +39,7 @@ export const useGetLastUsername = () => {
   return lastUsername;
 };
 
-export const useGetUser = () => {
+export const useTriggerGetUser = () => {
   const navigation = useNavigation<any>();
   const route = useRoute();
   const { user, setUser } = React.useContext(UserContext);
@@ -88,6 +89,12 @@ export const useGetUser = () => {
       }
     }
   }, [navigation, setUser, theme.actions, user, setCurrent, route]);
+
+  return triggerGetUser;
+}
+
+export const useGetUser = () => {
+  const triggerGetUser = useTriggerGetUser();
 
   React.useEffect(() => {
     triggerGetUser();
@@ -228,20 +235,19 @@ export const useLogout = () => {
   return { isoLggingOutActions, isLoggingOut, logout };
 };
 
-export const useResetPassword = () => {
+export const useResetPassword = (username?: string) => {
   const [isResetting, resetActions] = useBoolean(false);
   const navigation = useNavigation<any>();
+  const getUser = useTriggerGetUser();
 
   const reset = React.useCallback(
-    async ({password, confirm}: ResetPasswordData) => {
+    async ({ password, currentPassword, confirm }: ResetPasswordData) => {
       try {
         if (password && password === confirm) {
           resetActions.setTrue();
-          const newData = await makeRequestv2(`/user/password`, 'PATCH', { password });
-          if (newData) {
-            Alert.alert(t.t('password_successfully_updated'));
-            navigation.goBack();
-          }
+          await resetPassword(password, username, currentPassword);
+          await getUser();
+          navigation.reset({ routes: [{ name: 'Home' }] });
           resetActions.setFalse();
         }
       } catch (error) {

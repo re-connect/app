@@ -179,4 +179,8 @@ export default {
   uppercase: 'прописна',
   special_number: 'спеціальні/номер',
   length: 'довжина',
+  mfa_code_sent: 'Код входу надіслано',
+  wrong_code: 'Невірний код',
+  current_password: 'Поточний пароль',
+  reset_password_title: 'Оновіть свій пароль',
 };

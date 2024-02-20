@@ -1,8 +1,8 @@
 import { config } from '../src/config';
+import environments from './environment';
 
 export const crispUri = `https://go.crisp.chat/chat/embed/?website_id=${config.crispWebsiteId}`;
-
-export const backendUrl = config.backendUrl;
+export const backendUrl = `https://${environments.ENV === 'prod' ? '' : 'preprod.'}reconnect.fr`;
 export const apiEndpoint = `${backendUrl}/api`;
 export const apiv2Endpoint = `${apiEndpoint}/v2`;
 export const apiv3Endpoint = `${apiEndpoint}/v3`;

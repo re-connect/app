@@ -9,6 +9,5 @@ export const config = {
     grant_type: Config.GRANT_TYPE,
   },
   geniusSdkLicense: Config.GENIUS_SDK_LICENSE,
-  backendUrl: Config.BACKEND_URL,
   version: Config.APP_VERSION,
 };

@@ -5,25 +5,20 @@ import LoginForm from '../../components/Authentication/LoginForm';
 import Screen from '../../components/Screen';
 import LanguageSwitch from '../../components/User/LanguageSwitch';
 import { config } from '../../config';
+import environments from '../../environment';
 import ThemeContext from '../../context/ThemeContext';
 import { colors } from '../../style';
 import ChatButton from '../../components/UI/ChatButton';
+import { backendUrl } from '../../appConstants';
 
 interface LoginScreenProps {
   navigation: NavigationProp<any, any>;
 }
 
 const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    zIndex: 1,
-  },
-  languageSwitchContainer: {
-    position: 'absolute',
-    top: Platform.OS === 'ios' ? 40 : 20,
-    right: 32,
-    zIndex: 2,
-  },
+  content: { flex: 1, zIndex: 1 },
+  languageSwitchContainer: { position: 'absolute', top: Platform.OS === 'ios' ? 40 : 20, right: 32, zIndex: 2 },
+  versionsContainer: { left: 16, bottom: 16 },
 });
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {
@@ -48,7 +43,15 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
         <LanguageSwitch />
       </View>
       <ChatButton />
-      <Text>{config.version}</Text>
+      <View style={styles.versionsContainer}>
+        <Text>v1.0.{config.version}</Text>
+        {environments && environments.ENV === 'prod' ? null : (
+          <>
+            <Text>{environments && environments.ENV}</Text>
+            <Text>{backendUrl}</Text>
+          </>
+        )}
+      </View>
     </Screen>
   );
 };

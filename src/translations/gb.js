@@ -178,4 +178,8 @@ export default {
   uppercase: 'Uppercase',
   special_number: 'Special/Number',
   length: 'Length',
+  mfa_code_sent: 'Login code sent',
+  wrong_code: 'Wrong code',
+  current_password: 'Current password',
+  reset_password_title: 'Upgrade your password',
 };

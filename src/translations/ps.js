@@ -180,4 +180,8 @@ export default {
   uppercase: 'لوی لیک',
   special_number: 'ځانګړې/شمیره',
   length: 'اوږدوالی',
+  mfa_code_sent: 'د ننوتلو کوډ لیږل شوی',
+  wrong_code: 'غلط کوډ',
+  current_password: 'اوسنی رمز',
+  reset_password_title: 'خپل پټنوم لوړ کړئ',
 };

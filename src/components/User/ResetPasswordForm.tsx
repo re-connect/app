@@ -7,17 +7,14 @@ import Separator from '../UI/Separator';
 import TextField from '../UI/TextField';
 import PasswordValidityWidget from './PasswordValidityWidget';
 import Shape from '../../helpers/forms/resetPasswordShape';
-
-export interface ResetPasswordData {
-  password: string;
-  confirm: string;
-}
+import { ResetPasswordData } from '../../types/Users';
 
 const ResetPasswordForm: React.FC = () => {
   const { isResetting, reset } = useResetPassword();
+  const initialValues = { password: '', confirm: '' };
 
   return (
-    <Formik validationSchema={Shape} onSubmit={values => reset(values)} initialValues={{ password: '', confirm: '' }}>
+    <Formik validationSchema={Shape} onSubmit={values => reset(values)} initialValues={initialValues}>
       {({
         errors,
         isValid,

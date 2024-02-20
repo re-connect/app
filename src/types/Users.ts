@@ -36,3 +36,9 @@ export type UserField =
   | 'date_naissance'
   | 'question_secrete'
   | 'reponse_secrete';
+
+export interface ResetPasswordData {
+  password: string;
+  confirm: string;
+  currentPassword?: string;
+}

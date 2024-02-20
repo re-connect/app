@@ -5,15 +5,10 @@ import { colors } from '../../style';
 import TranslatedText from '../UI/Text';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
+  container: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16 },
   chip: {
     flexDirection: 'row',
     borderRadius: 16,
-    color: colors.white,
     padding: 4,
     paddingHorizontal: 4,
     margin: 2,
@@ -37,11 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingHorizontal: 32,
   },
-  validPasswordText: {
-    color: colors.white,
-    fontSize: 18,
-    marginLeft: 8,
-  },
+  validPasswordText: { color: colors.white, fontSize: 18, marginLeft: 8 },
 });
 
 interface Props {
@@ -71,7 +62,7 @@ const PasswordValidityWidget: React.FC<Props> = ({ password }) => (
             <View style={styles.hint}>
               <Text>{getHint(password.length)}</Text>
             </View>
-            <TranslatedText>{name}</TranslatedText>
+            <TranslatedText style={{ color: colors.white }}>{name}</TranslatedText>
           </View>
         ))}
       </>

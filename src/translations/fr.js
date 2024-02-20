@@ -191,4 +191,8 @@ export default {
   uppercase: 'Majuscule',
   special_number: 'Spécial/Chiffre',
   length: 'Longueur',
+  mfa_code_sent: 'Code de connexion reçu',
+  wrong_code: 'Code incorrect',
+  current_password: 'Mot de passe actuel',
+  reset_password_title: 'Changez votre mot de passe',
 };

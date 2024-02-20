@@ -177,4 +177,8 @@ export default {
   uppercase: 'حرف بزرگ',
   special_number: 'ویژه/عدد',
   length: 'طول',
+  mfa_code_sent: 'کد ورود ارسال شد',
+  wrong_code: 'کد اشتباه',
+  current_password: 'رمز عبور فعلی',
+  reset_password_title: 'رمز عبور خود را ارتقا دهید',
 };
