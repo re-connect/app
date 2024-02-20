@@ -39,7 +39,7 @@ export const useGetLastUsername = () => {
   return lastUsername;
 };
 
-export const useGetUser = () => {
+export const useTriggerGetUser = () => {
   const navigation = useNavigation<any>();
   const route = useRoute();
   const { user, setUser } = React.useContext(UserContext);
@@ -89,6 +89,12 @@ export const useGetUser = () => {
       }
     }
   }, [navigation, setUser, theme.actions, user, setCurrent, route]);
+
+  return triggerGetUser;
+}
+
+export const useGetUser = () => {
+  const triggerGetUser = useTriggerGetUser();
 
   React.useEffect(() => {
     triggerGetUser();
@@ -232,6 +238,7 @@ export const useLogout = () => {
 export const useResetPassword = (username?: string) => {
   const [isResetting, resetActions] = useBoolean(false);
   const navigation = useNavigation<any>();
+  const getUser = useTriggerGetUser();
 
   const reset = React.useCallback(
     async ({ password, currentPassword, confirm }: ResetPasswordData) => {
@@ -239,7 +246,8 @@ export const useResetPassword = (username?: string) => {
         if (password && password === confirm) {
           resetActions.setTrue();
           await resetPassword(password, username, currentPassword);
-          navigation.reset({ routes: [{ name: 'Home' }, { name: 'Settings' }] });
+          await getUser();
+          navigation.reset({ routes: [{ name: 'Home' }] });
           resetActions.setFalse();
         }
       } catch (error) {

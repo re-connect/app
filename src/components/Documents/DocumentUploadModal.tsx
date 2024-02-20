@@ -16,9 +16,8 @@ const DocumentUploadModal: React.FC<{
   triggerDocumentUpload: (files: ImageInterface[]) => void;
 }> = ({ visible, setVisible, handleScanDocument, triggerDocumentUpload }) => {
   const handleChooseFile = async () => {
-    await DocumentPicker.pickSingle({
-      type: [DocumentPicker.types.allFiles],
-    })
+    await DocumentPicker
+      .pickSingle({type: [DocumentPicker.types.allFiles]})
       .then(res => {
         if (res) {
           const file = {
@@ -31,7 +30,7 @@ const DocumentUploadModal: React.FC<{
         }
       })
       .catch(err => {
-        console.log(err);
+        // Do nothing
       })
       .finally(() => {
         //prevent autoclosing the modal before user has selected a file

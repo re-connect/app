@@ -1610,7 +1610,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.preprod;
 				PRODUCT_NAME = Reconnect;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
@@ -1844,9 +1844,9 @@
 				CODE_SIGN_ENTITLEMENTS = Reconnect/Reconnect.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 100000141;
-				DEVELOPMENT_TEAM = 8BKBA8SNQV;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods",
