@@ -16,8 +16,7 @@ const DocumentUploadModal: React.FC<{
   triggerDocumentUpload: (files: ImageInterface[]) => void;
 }> = ({ visible, setVisible, handleScanDocument, triggerDocumentUpload }) => {
   const handleChooseFile = async () => {
-    await DocumentPicker
-      .pickSingle({type: [DocumentPicker.types.allFiles]})
+    await DocumentPicker.pickSingle({ type: [DocumentPicker.types.allFiles] })
       .then(res => {
         if (res) {
           const file = {

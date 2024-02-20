@@ -6,23 +6,13 @@ import Screen from '../../components/Screen';
 import EventContext from '../../context/EventContext';
 import { useUpdateData } from '../../hooks/DataHooks';
 import { CreateEventData, EventInterface } from '../../types/Event';
+import { EditEventScreenProps } from '../../routing/routes/types/Event';
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 16,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
+  container: { paddingBottom: 16, justifyContent: 'flex-start', alignItems: 'stretch' },
 });
 
-type CreateEventScreenParams = {
-  Event: { eventId: number };
-};
-type Props = {
-  route: RouteProp<CreateEventScreenParams, 'Event'>;
-};
-
-const EditEventScreen: React.FC<Props> = ({ route }) => {
+const EditEventScreen: React.FC<EditEventScreenProps> = ({ route }) => {
   const { eventId } = route.params;
   const { list } = React.useContext(EventContext);
   const { isUpdating, update } = useUpdateData(`events/${eventId}`, eventId, EventContext);

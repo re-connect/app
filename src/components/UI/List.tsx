@@ -23,8 +23,8 @@ interface Props {
   itemIconName?: string;
   getLeftActionEndpoint: (item?: AnyDataInterface) => string;
   onItemPress: (item: AnyDataInterface) => void;
-  isModalOpen: boolean;
-  openModalActions: UseBooleanActions;
+  isModalOpen?: boolean;
+  openModalActions?: UseBooleanActions;
   getRightActionEndpoint: (item?: AnyDataInterface) => string;
   triggerFetchData: () => Promise<void>;
   currentDocument?: AnyDataInterface | null;

@@ -34,9 +34,9 @@ export const addMinAndMaxNotEmpty = (
 export const getPasswordShema = (): Yup.StringSchema<string | null | undefined> =>
   addMinAndMaxNotEmpty(
     Yup.string()
-    .matches(/.*[A-Z].*/, ' ')
-    .matches(/.*[a-z].*/, ' ')
-    .matches(/.*[^A-Za-z].*/, ' '),
+      .matches(/.*[A-Z].*/, ' ')
+      .matches(/.*[a-z].*/, ' ')
+      .matches(/.*[^A-Za-z].*/, ' '),
     'password',
     9,
     255,

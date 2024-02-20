@@ -41,12 +41,12 @@ const getContactDetails =
       <View style={styles.contactInfos}>
         {!contact.telephone ? null : (
         <TouchableOpacity
-            style={styles.contactInfo}
+          style={styles.contactInfo}
           onPress={() => {
-              if (contact && contact.telephone && Linking.canOpenURL(`tel:${contact.telephone}`)) {
-              Linking.openURL(`tel:${contact.telephone}`);
+            if (contact && contact.telephone) {
+              Linking.canOpenURL(`tel:${contact.telephone}`).then(() => Linking.openURL(`tel:${contact.telephone}`));
             }
-            }}>
+          }}>
             <Icon style={styles.icon} name='phone' color={colors.gray} />
         </TouchableOpacity>
         )}

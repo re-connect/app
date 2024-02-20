@@ -91,7 +91,7 @@ export const useTriggerGetUser = () => {
   }, [navigation, setUser, theme.actions, user, setCurrent, route]);
 
   return triggerGetUser;
-}
+};
 
 export const useGetUser = () => {
   const triggerGetUser = useTriggerGetUser();
