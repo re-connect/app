@@ -9,7 +9,7 @@ export default (): Yup.ObjectSchema<any> =>
     email: getEmailSchema().nullable(),
     question_secrete: addMinAndMaxNotEmpty(Yup.string(), 'secret_question', 0, 255),
     reponse_secrete: addMinAndMaxNotEmpty(Yup.string(), 'secret_question_answer', 2, 255),
-    autre_question_secrete: Yup.string().when('secret_question', (value: string, schema: Yup.StringSchema) => {
+    autre_question_secrete: Yup.string().when('secret_question', ([value], schema: Yup.StringSchema) => {
       return value === 'Autre'
         ? schema.required(t.t('form_field_empty', { field: t.t('secret_question_answer') }))
         : schema.notRequired();

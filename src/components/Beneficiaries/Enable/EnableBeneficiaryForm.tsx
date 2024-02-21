@@ -11,12 +11,12 @@ import TextField from '../../UI/TextField';
 import SecretQuestionPicker from '../SecretQuestionPicker';
 
 const initialFormValues = {
-  password: '',
+  autre_question_secrete: '',
   confirmPassword: '',
   email: '',
+  password: '',
   question_secrete: '',
   reponse_secrete: '',
-  autre_question_secrete: '',
 };
 
 const EnableBeneficiaryForm: React.FC = () => {

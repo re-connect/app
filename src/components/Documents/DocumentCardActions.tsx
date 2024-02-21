@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
 
 interface DocumentCardActionsProps {
   document: DocumentInterface;
-  openModalActions: UseBooleanActions;
-  setCurrentDocument: (document: DocumentInterface) => void;
+  openModalActions?: UseBooleanActions;
+  setCurrentDocument?: (document: DocumentInterface) => void;
 }
 
 const DocumentCardActions: React.FC<DocumentCardActionsProps> = ({
@@ -26,8 +26,12 @@ const DocumentCardActions: React.FC<DocumentCardActionsProps> = ({
   setCurrentDocument,
 }) => {
   const onPress = () => {
-    setCurrentDocument(document);
-    openModalActions.setTrue();
+    if (setCurrentDocument) {
+      setCurrentDocument(document);
+    }
+    if (openModalActions) {
+      openModalActions.setTrue();
+    }
   };
 
   return (

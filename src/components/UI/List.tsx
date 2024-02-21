@@ -59,8 +59,11 @@ const List: React.FC<Props> = ({
           visible={isModalOpen}
           animationType='fade'
           transparent
-          onRequestClose={() => openModalActions.setFalse()}>
-          <DocumentActionsModal document={currentDocument} close={openModalActions.setFalse} />
+          onRequestClose={openModalActions ? () => openModalActions.setFalse() : () => {}}>
+          <DocumentActionsModal
+            document={currentDocument}
+            close={openModalActions ? openModalActions.setFalse : () => {}}
+          />
         </Modal>
       )}
       <SearchBar onChange={setSearch} />

@@ -20,15 +20,7 @@ const ProfileItemForm: React.FC<Props> = ({ item: { field, iconName, label }, fo
   const handleChange = formikBag.handleChange(field);
 
   if (field === 'question_secrete') {
-    return (
-      <SecretQuestionPicker
-        value={value}
-        onChange={(newQuestion: string) => {
-          formikBag.setFieldValue(field, newQuestion);
-          formikBag.handleBlur(field);
-        }}
-      />
-    );
+    return <SecretQuestionPicker fieldName='question_secrete' />;
   }
 
   if (field === 'telephone') {

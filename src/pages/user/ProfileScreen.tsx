@@ -10,8 +10,7 @@ import BeneficiaryContext from '../../context/BeneficiaryContext';
 import UserContext from '../../context/UserContext';
 import { useDeleteBeneficiary, useRequestDataForBeneficiary } from '../../hooks/BeneficiariesHooks';
 import { colors } from '../../style';
-import { Linking, View } from 'react-native';
-import { backendUrl } from '../../appConstants';
+import { View } from 'react-native';
 
 interface Props {
   navigation: NavigationProp<any>;

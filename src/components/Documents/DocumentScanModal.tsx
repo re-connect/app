@@ -8,12 +8,12 @@ import { ScannedGeniusDocumentInterface } from '../../types/Documents';
 const DocumentScanModal: React.FC<{
   visible: boolean;
   setVisible: (visible: boolean) => void;
-  triggerDocumentUpload: (images: ImageInterface[]) => void;
+  triggerDocumentUpload: (images: Partial<ImageInterface & File>[]) => void;
   geniusScannedDocument: ScannedGeniusDocumentInterface;
 }> = ({ visible, setVisible, geniusScannedDocument, triggerDocumentUpload }) => {
   const handleDocumentUpload = (singleFile: boolean) => {
     setVisible(false);
-    const images: ImageInterface[] = [];
+    const images: Partial<ImageInterface & File>[] = [];
     if (singleFile) {
       images.push({ path: geniusScannedDocument.multiPageDocumentUrl, filename: `${new Date().getTime()}.pdf` });
     } else {
