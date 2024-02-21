@@ -1,3 +1,4 @@
+import { roleBeneficiary } from '../helpers/userHelpers';
 import { EnableBeneficiaryInterface } from '../types/Beneficiaries';
 import { UserInterface } from '../types/Users';
 
@@ -11,14 +12,14 @@ export const basicBeneficiary: UserInterface = {
   enabled: true,
   last_login: '2019-09-05T11:17:12+02:00',
   groups: {},
-  roles: ['ROLE_BENEFICIAIRE'],
+  roles: [roleBeneficiary],
   created_at: '2019-03-11T07:26:35+01:00',
   updated_at: '2019-09-05T11:17:13+02:00',
   prenom: 'mathias',
   nom: 'duchossoy',
   telephone: '+33685876953',
   b_actif: false,
-  type_user: 'ROLE_BENEFICIAIRE',
+  type_user: roleBeneficiary,
   b_first_mobile_connexion: false,
   date_naissance: '1989-10-06T00:00:00+01:00',
   total_file_size: 36180473,
@@ -126,14 +127,14 @@ export const basicBeneficiariesList: UserInterface[] = [
     enabled: true,
     last_login: '2019-09-05T11:17:12+02:00',
     groups: {},
-    roles: ['ROLE_BENEFICIAIRE'],
+    roles: [roleBeneficiary],
     created_at: '2019-03-11T07:26:35+01:00',
     updated_at: '2019-09-05T11:17:13+02:00',
     prenom: 'thibaut',
     nom: 'cheymol',
     telephone: '+33612345678',
     b_actif: false,
-    type_user: 'ROLE_BENEFICIAIRE',
+    type_user: roleBeneficiary,
     b_first_mobile_connexion: false,
     date_naissance: '1989-10-06T00:00:00+01:00',
     total_file_size: 36180473,

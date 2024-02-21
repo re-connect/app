@@ -1,5 +1,9 @@
+import { colors } from '../style';
 import { UserInterface } from '../types/Users';
 import { getTruncatedText } from './dataHelper';
+
+export const roleBeneficiary = 'ROLE_BENEFICIAIRE';
+export const rolePro = 'ROLE_MEMBER';
 
 export const getFullName = (user: UserInterface | null) => {
   if (!user) {
@@ -27,3 +31,9 @@ export const formatPhoneForApi = (phone: string) => {
   }
   return phone;
 };
+
+export const isPro = (user: UserInterface|null) => !!user && user.type_user !== roleBeneficiary;
+
+export const isBeneficiary = (user: UserInterface|null) => !!user && user.type_user === roleBeneficiary;
+
+export const getUserColor = (user: UserInterface|null) => isPro(user) ? colors.blue : colors.primary;

@@ -13,7 +13,7 @@ import LoginTemporisationContext from '../context/LoginTemporisationContext';
 import NoteContext from '../context/NoteContext';
 import ThemeContext from '../context/ThemeContext';
 import UserContext from '../context/UserContext';
-import { getTruncatedFullName } from '../helpers/userHelpers';
+import { getTruncatedFullName, isBeneficiary, isPro } from '../helpers/userHelpers';
 import { login } from '../services/authentication';
 import { LoginFormValues } from '../services/forms';
 import { fetchCurrentUser, makeRequestv2, makeRequestv3 } from '../services/requests';
@@ -73,8 +73,7 @@ export const useTriggerGetUser = () => {
       if (!newUser) {
         return;
       }
-      const userType = newUser.type_user;
-      if (userType === 'ROLE_BENEFICIAIRE') {
+      if (isBeneficiary(newUser)) {
         setCurrent(newUser);
         theme.actions.setFalse();
         navigation.reset({ routes: [{ name: !newUser.question_secrete ? 'Activation' : 'Home' }] });
@@ -136,7 +135,7 @@ export const useSetTitleToBenefName = () => {
   const navigation = useNavigation<any>();
   const { current } = React.useContext(BeneficiaryContext);
   const { user } = React.useContext(UserContext);
-  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
+  const isMember = isPro(user);
 
   const set = React.useCallback(() => {
     if (isMember) {
@@ -165,7 +164,7 @@ export const useUpdateUser = () => {
           }
           const newData = await makeRequestv2(`/users/${user?.id}`, 'PUT', updatedUser);
           if (newData) {
-            if (newData.type_user === 'ROLE_BENEFICIAIRE') {
+            if (isBeneficiary(newData)) {
               setCurrent(newData);
             }
             setUser(newData);

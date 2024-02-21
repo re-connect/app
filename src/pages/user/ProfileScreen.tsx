@@ -11,6 +11,7 @@ import UserContext from '../../context/UserContext';
 import { useDeleteBeneficiary, useRequestDataForBeneficiary } from '../../hooks/BeneficiariesHooks';
 import { colors } from '../../style';
 import { View } from 'react-native';
+import { isPro } from '../../helpers/userHelpers';
 
 interface Props {
   navigation: NavigationProp<any>;
@@ -21,10 +22,10 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const { current } = React.useContext(BeneficiaryContext);
   const { isDeleting, triggerDeleteBeneficiary } = useDeleteBeneficiary();
   const { isGetingData, triggerRequestDataBeneficiary } = useRequestDataForBeneficiary();
-  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
   if (!user) {
     return null;
   }
+  const isMember = isPro(user);
 
   const { nom, prenom, email, username, telephone, date_naissance, reponse_secrete, question_secrete } = user;
 

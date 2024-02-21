@@ -7,6 +7,7 @@ import UserContext from '../../context/UserContext';
 import { usePostData } from '../../hooks/DataHooks';
 import { CreateEventData } from '../../types/Event';
 import { dateToIso } from '../../helpers/dateHelpers';
+import { isBeneficiary } from '../../helpers/userHelpers';
 
 const CreateEventScreen: React.FC = () => {
   const { current } = React.useContext(BeneficiaryContext);
@@ -14,7 +15,7 @@ const CreateEventScreen: React.FC = () => {
   const { isPosting, post } = usePostData(`beneficiaries/${current?.subject_id}/events`, EventContext);
 
   const event: CreateEventData = {
-    b_prive: user?.type_user === 'ROLE_BENEFICIAIRE',
+    b_prive: isBeneficiary(user),
     commentaire: '',
     date: dateToIso(new Date()),
     lieu: '',

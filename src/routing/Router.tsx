@@ -7,12 +7,13 @@ import { Settings } from './routes/Settings';
 import { UserHome } from './routes/Home';
 import { Auth, AuthLoading } from './routes/Auth';
 import { Activation } from './routes/Activation';
+import { isPro } from '../helpers/userHelpers';
 
 export let isMember = false;
 const Root = createStackNavigator();
 
 const Router = ({ user }: { user: UserInterface | null }) => {
-  isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
+  isMember = isPro(user);
 
   return (
     <NavigationContainer ref={navigationRef}>
