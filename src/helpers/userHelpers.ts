@@ -3,7 +3,7 @@ import { UserInterface } from '../types/Users';
 import { getTruncatedText } from './dataHelper';
 
 export const roleBeneficiary = 'ROLE_BENEFICIAIRE';
-export const rolePro = 'ROLE_MEMBER';
+export const rolePro = 'ROLE_MEMBRE';
 
 export const getFullName = (user: UserInterface | null) => {
   if (!user) {

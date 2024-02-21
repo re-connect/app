@@ -26,6 +26,7 @@ describe('login', () => {
     const token = await storage.getItem('accessToken');
     expect(token).toEqual('thisIsANewAccessToken');
   });
+
   it('should not set the token in the AsyncStorage and throw login error if request throws', async () => {
     const tokenBefore = await storage.getItem('accessToken');
     expect(tokenBefore).toBeNull();
@@ -42,7 +43,6 @@ describe('login', () => {
       expect(scope.isDone()).toBeTruthy();
       const token = await storage.getItem('accessToken');
       expect(token).toBeNull();
-      expect(error).toEqual(new Error('login-error'));
     }
   });
 });

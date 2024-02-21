@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigatorScreenParams, createNavigationContainerRef } from '@react-navigation/native';
+import { createNavigationContainerRef } from '@react-navigation/native';
 
 export const navigationRef = createNavigationContainerRef<any>();
 
