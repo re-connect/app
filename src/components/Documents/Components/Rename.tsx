@@ -88,7 +88,7 @@ const Rename: React.FC<Props> = ({ document, close, closeModal, onSubmit }) => (
             <View style={styles.buttonsWrapper}>
               <TouchableOpacity onPress={close}>
                 <View style={styles.menuIconContainer}>
-                  <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
+                  <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                 </View>
                 <Text>cancel</Text>
               </TouchableOpacity>

@@ -4,28 +4,28 @@ describe('getTabStackIcon', () => {
   it.skip('Should get the documents Icon', () => {
     const results = {
       documents: {
-        inactive: getTabStackIcon({ name: 'Documents' })({ focused: false, color: 'blue' }),
-        focused: getTabStackIcon({ name: 'Documents' })({ focused: true, color: 'blue' }),
+        inactive: getTabStackIcon({ name: 'Documents' })({ color: 'blue' }),
+        focused: getTabStackIcon({ name: 'Documents' })({ color: 'blue' }),
       },
       chat: {
-        inactive: getTabStackIcon({ name: 'Chat' })({ focused: false, color: 'blue' }),
-        focused: getTabStackIcon({ name: 'Chat' })({ focused: true, color: 'blue' }),
+        inactive: getTabStackIcon({ name: 'Chat' })({ color: 'blue' }),
+        focused: getTabStackIcon({ name: 'Chat' })({ color: 'blue' }),
       },
       contacts: {
-        inactive: getTabStackIcon({ name: 'Contacts' })({ focused: false, color: 'blue' }),
-        focused: getTabStackIcon({ name: 'Contacts' })({ focused: true, color: 'blue' }),
+        inactive: getTabStackIcon({ name: 'Contacts' })({ color: 'blue' }),
+        focused: getTabStackIcon({ name: 'Contacts' })({ color: 'blue' }),
       },
       notes: {
-        inactive: getTabStackIcon({ name: 'Notes' })({ focused: false, color: 'blue' }),
-        focused: getTabStackIcon({ name: 'Notes' })({ focused: true, color: 'blue' }),
+        inactive: getTabStackIcon({ name: 'Notes' })({ color: 'blue' }),
+        focused: getTabStackIcon({ name: 'Notes' })({ color: 'blue' }),
       },
       events: {
-        inactive: getTabStackIcon({ name: 'Events' })({ focused: false, color: 'blue' }),
-        focused: getTabStackIcon({ name: 'Events' })({ focused: true, color: 'blue' }),
+        inactive: getTabStackIcon({ name: 'Events' })({ color: 'blue' }),
+        focused: getTabStackIcon({ name: 'Events' })({ color: 'blue' }),
       },
       unknown: {
-        inactive: getTabStackIcon({ name: 'UnknownTab' })({ focused: false, color: 'blue' }),
-        focused: getTabStackIcon({ name: 'UnknownTab' })({ focused: true, color: 'blue' }),
+        inactive: getTabStackIcon({ name: 'UnknownTab' })({ color: 'blue' }),
+        focused: getTabStackIcon({ name: 'UnknownTab' })({ color: 'blue' }),
       },
     };
     Object.keys(results).forEach((screenKey: string) => {

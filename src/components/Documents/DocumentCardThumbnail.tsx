@@ -41,7 +41,7 @@ const DocumentCardThumbnail: React.FC<Props> = ({ document, thumbnailUrl }) => {
   if (document.is_folder) {
     return (
       <View style={styles.folderIconContainer}>
-        <Icon style={{ ...styles.folderIcon }} name="folder-open" solid />
+        <Icon style={{ ...styles.folderIcon }} name="folder-open" />
       </View>
     );
   } else if (!thumbnailUrl) {

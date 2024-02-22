@@ -67,7 +67,7 @@ const EventScreen: React.FC<EventScreenProps> = ({ route, navigation }) => {
           )}
           {!event.lieu ? null : (
             <View style={{ flexDirection: 'row', marginVertical: 8 }}>
-              <Icon style={styles.icon} name="map-marker-alt" color={colors.gray} />
+              <Icon style={styles.icon} name="map-pin" color={colors.gray} />
               <Text>{event.lieu}</Text>
             </View>
           )}
@@ -76,7 +76,7 @@ const EventScreen: React.FC<EventScreenProps> = ({ route, navigation }) => {
           <View style={{ flexDirection: 'row', marginVertical: 8 }}>
             {!event.rappels || event.rappels.length === 0 ? null : (
               <>
-                <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name="bell" solid color={colors.gray} />
+                <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name="bell" color={colors.gray} />
                 <View style={{ flex: 1 }} />
                 <View>
                   {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) => (

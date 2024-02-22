@@ -67,7 +67,7 @@ const FakeTextField: React.FC<Props> = ({ iconName, onPress, value, touched, err
         {!!value && touched ? (
           <Icon
             color={showErrors ? colors.red : colors.primary}
-            name={showErrors ? 'times' : 'check'}
+            name={showErrors ? 'xmark' : 'check'}
             style={{ ...styles.rightIcon, color: showErrors ? colors.red : colors.green }}
           />
         ) : null}

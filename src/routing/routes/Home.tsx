@@ -4,13 +4,13 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import BeneficiariesScreen from '../../pages/benficiary/BeneficiariesScreen';
 import CreateBeneficiaryScreen from '../../pages/benficiary/CreateBeneficiaryScreen';
-import { isMember } from '../Router';
 import { getHeader, getTabScreenOptions } from '../helpers';
 import Document from './Document';
 import Event from './Event';
 import Contact from './Contact';
 import Note from './Note';
 import { Chat } from './Chat';
+import { isMember } from '../../helpers/userHelpers';
 
 const MemberBeneficiariesStack = createStackNavigator();
 const HomeTab = createBottomTabNavigator();
@@ -53,4 +53,4 @@ const MemberHome = () => {
   );
 };
 
-export const UserHome = isMember ? MemberHome : BeneficiaryHome;
+export const getHome = () => isMember ? MemberHome : BeneficiaryHome;

@@ -1,22 +1,32 @@
 import * as React from 'react';
-import { StyleProp, StyleSheet } from 'react-native';
-import FAIcon, { FontAwesome5IconProps } from 'react-native-vector-icons/FontAwesome5';
+import { GestureResponderEvent, StyleProp, StyleSheet } from 'react-native';
 import { colors } from '../../style';
+import FaIcon from '@expo/vector-icons/FontAwesome6';
+import { FontAwesome6IconProps } from 'react-native-vector-icons/FontAwesome6';
 
-type Props =  Omit<FontAwesome5IconProps, 'name'> & {
+type Props =  Omit<FontAwesome6IconProps, 'name'> & {
   style?: StyleProp<any>;
   color?: string;
-  name?: string;
+  size?: number;
+  name?: any;
+  onPress?: (_event: GestureResponderEvent) => void;
 }
 
 const styles = StyleSheet.create({
-  icon: { fontSize: 20, marginHorizontal: 16 },
+  icon: { fontSize: 15, marginHorizontal: 16 },
 });
 
 
-const Icon: React.FC<Props> = ({ style, color, name }) => !name
+const Icon: React.FC<Props> = ({ style, color, name, size, onPress}) => !name
     ? null
-    : <FAIcon style={[styles.icon, style]} color={!color ? colors.white : undefined} name={name}/>
+    : <FaIcon
+      style={[styles.icon, style]}
+      color={!color ? colors.white : color}
+      name={name}
+      size={size}
+      solid
+      onPress={onPress}
+    />
   ;
 
 export default Icon;

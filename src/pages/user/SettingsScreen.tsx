@@ -39,10 +39,10 @@ const SettingsScreen: React.FC = () => {
     { onPress: navigate('Centers'), name: 'hotel', label: 'my_centers' },
     { onPress: navigate('TermsOfUse'), name: 'scroll', label: 'terms_of_use' },
     { onPress: navigate('PrivacyPolicy'), name: 'user-shield', label: 'privacy' },
-    { onPress: navigate('LegalNotices'), name: 'balance-scale', label: 'legal' },
+    { onPress: navigate('LegalNotices'), name: 'scale-balanced', label: 'legal' },
     { onPress: navigate('Pitches'), name: 'bullhorn', color: colors.yellow, label: 'pitches' },
-    { onPress: navigate('Chat'), name: 'comment-alt', color: colors.blue, label: 'support' },
-    { onPress: startLogout, name: 'sign-out-alt', color: colors.red, label: 'log_out' },
+    { onPress: navigate('Chat'), name: 'comment', color: colors.blue, label: 'support' },
+    { onPress: startLogout, name: 'right-from-bracket', color: colors.red, label: 'log_out' },
   ];
 
   return (
@@ -57,7 +57,7 @@ const SettingsScreen: React.FC = () => {
           <TouchableOpacity onPress={onPress}>
             <View style={styles.item}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Icon name={name} color={color} solid />
+                <Icon name={name} color={color} />
                 <Text style={{ color, marginLeft: 16, textAlign: 'left', flex: 1 }}>{label}</Text>
                 <Icon name='chevron-right' color={color} />
               </View>

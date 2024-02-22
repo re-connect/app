@@ -78,7 +78,7 @@ const TextField: React.FC<TextFieldProps> = ({
   const leftIconStyle = { ...styles.icon, color: colors.darkGray, ...iconSyle };
   let rightIconColor = !hasError ? colors.green : colors.red;
 
-  let rightIconName = !!okIcon && !hasError ? 'check' : 'times';
+  let rightIconName = !!okIcon && !hasError ? 'check' : 'xmark';
   if (contentType === 'password') {
     rightIconColor = colors.darkGray;
     rightIconName = 'eye';

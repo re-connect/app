@@ -66,14 +66,14 @@ const PickFolder: React.FC<Props> = ({ document, close, onPick }) => {
                   triggerMoveDocumentIntoFolder(document, folder);
                 }}>
                 <View style={styles.hstack}>
-                  <Icon style={styles.menuIcon} color={colors.blue} name='folder' solid />
+                  <Icon style={styles.menuIcon} color={colors.blue} name='folder' />
                   <Text style={styles.text}>{folder.nom}</Text>
                 </View>
               </TouchableOpacity>
             ))}
             <TouchableOpacity onPress={() => onPick()} style={styles.cancelButton}>
               <View style={styles.hstack}>
-                <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
+                <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                 <Text>cancel</Text>
               </View>
             </TouchableOpacity>

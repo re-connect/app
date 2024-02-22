@@ -57,7 +57,7 @@ const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, val
   }, [value]);
 
   const getRightIconName = () => {
-    return !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
+    return !!value && !!okIcon && !!touched && !error ? 'check' : 'xmark';
   };
 
   const getIconColor = () => {

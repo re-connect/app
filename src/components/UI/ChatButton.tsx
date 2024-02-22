@@ -10,7 +10,6 @@ const ChatButton = () => {
     <View style={styles.chatIconContainer}>
       <IconButton
         iconName='comment-alt'
-        solid
         onPress={() => navigation.navigate('Chat')}
         size={60}
         backgroundColor={colors.chat}

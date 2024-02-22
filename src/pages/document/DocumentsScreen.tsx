@@ -6,11 +6,7 @@ import Screen from '../../components/Screen';
 import { useSetTitleToBenefName } from '../../hooks/UserHooks';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
+  container: { flex: 1, justifyContent: 'flex-start', alignItems: 'stretch' },
 });
 
 const DocumentsScreen: React.FC = () => {

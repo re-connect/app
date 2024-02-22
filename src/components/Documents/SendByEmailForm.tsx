@@ -97,13 +97,13 @@ const SendByEmailForm: React.FC<Props> = ({ document, onSubmit, close }) => {
                 <View style={styles.wrapperButtons}>
                   <Pressable onPress={onSubmit}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
+                      <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                     </View>
                     <Text>cancel</Text>
                   </Pressable>
                   <Pressable onPress={() => handleSubmit()}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.blue} name='paper-plane' solid />
+                      <Icon style={styles.menuIcon} color={colors.blue} name='paper-plane' />
                     </View>
                     <Text>send</Text>
                   </Pressable>
