@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import ThemeContext from '../../context/ThemeContext';
 import { colors } from '../../style';
 import Text from './Text';
+import Icon from './Icon';
 
 interface Props {
   disabled?: boolean;
@@ -26,17 +26,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    color: colors.white,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  loader: {
-    marginLeft: 16,
-  },
-  loading: {
-    backgroundColor: colors.gray,
-  },
+  text: { color: colors.white, fontSize: 20, fontWeight: 'bold' },
+  loader: { marginLeft: 16 },
+  loading: { backgroundColor: colors.gray },
   icon: { fontSize: 20, marginHorizontal: 16 },
 });
 
@@ -65,7 +57,7 @@ const RoundedButton: React.FC<Props> = ({
         wrapperStyle,
       ]}
       onPress={onPress}>
-      {!iconName ? null : <Icon style={styles.icon} color={!iconColor ? colors.white : iconColor} name={iconName} />}
+      <Icon style={styles.icon} color={iconColor} name={iconName} />
       <Text style={[styles.text, fontSizeStyle, textStyle]}>{text}</Text>
       {isLoading ? <ActivityIndicator style={styles.loader} size='small' color={colors.black} /> : null}
     </TouchableOpacity>

@@ -2,7 +2,6 @@ import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import noteShape from '../../helpers/forms/noteShape';
 import { colors } from '../../style';
 import { CreateNoteData, NoteInterface } from '../../types/Note';
@@ -11,6 +10,7 @@ import RoundedButton from '../UI/RoundedButton';
 import Separator from '../UI/Separator';
 import TextArea from '../UI/TextArea';
 import TextField from '../UI/TextField';
+import Icon from '../UI/Icon';
 
 interface Props {
   note: CreateNoteData | NoteInterface;

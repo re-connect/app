@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import { DocumentInterface } from '../../types/Documents';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   thumbnail: {

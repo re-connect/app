@@ -1,34 +1,20 @@
 import * as React from 'react';
 import { useBoolean } from 'react-hanger';
 import { StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { emailValidator } from '../../helpers/validators';
 import { checkProUsernameValidity } from '../../services/usernameValidation';
 import { colors } from '../../style';
 import Separator from '../UI/Separator';
 import Text from '../UI/Text';
 import UsernameHelpTextPart from './UsernameHelpTextPart';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
-  usernameHelp: {
-    marginTop: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  usernameHelpText: {
-    fontSize: 16,
-  },
-  usernameHelpTextOk: {
-    color: colors.white,
-  },
-  validIcon: {
-    fontSize: 15,
-    color: colors.primary,
-  },
-  invalidIcon: {
-    fontSize: 15,
-    color: colors.red,
-  },
+  usernameHelp: { marginTop: 5, flexDirection: 'row', justifyContent: 'center' },
+  usernameHelpText: { fontSize: 16 },
+  usernameHelpTextOk: { color: colors.white },
+  validIcon: { fontSize: 15, color: colors.primary },
+  invalidIcon: { fontSize: 15, color: colors.red },
   validIconContainer: {
     marginLeft: 16,
     height: 20,

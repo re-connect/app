@@ -1,7 +1,6 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as React from 'react';
 import { Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import IconButton from '../../components/UI/IconButton';
 import List from '../../components/UI/List';
@@ -11,17 +10,11 @@ import { useFetchData } from '../../hooks/DataHooks';
 import { useSetTitleToBenefName } from '../../hooks/UserHooks';
 import { colors } from '../../style';
 import { AnyDataInterface } from '../../types/Data';
+import Icon from '../../components/UI/Icon';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
-  contactInfo: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-  },
+  container: { flex: 1, justifyContent: 'flex-start', alignItems: 'stretch' },
+  contactInfo: { flexDirection: 'row', alignItems: 'flex-start' },
   contactInfos: {
     flex: 1,
     marginTop: 8,

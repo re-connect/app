@@ -2,7 +2,6 @@ import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import eventShape from '../../helpers/forms/eventShape';
 import { colors } from '../../style';
 import { CreateEventData, ReminderInterface } from '../../types/Event';
@@ -13,6 +12,7 @@ import RNSwitch from '../UI/RNSwitch';
 import RoundedButton from '../UI/RoundedButton';
 import Separator from '../UI/Separator';
 import RemindersForm from './RemindersForm';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   icons: { flexDirection: 'row', justifyContent: 'flex-end', padding: 8 },
