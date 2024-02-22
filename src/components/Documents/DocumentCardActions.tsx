@@ -37,7 +37,7 @@ const DocumentCardActions: React.FC<DocumentCardActionsProps> = ({
   return (
     <View style={{ position: 'relative' }}>
       <TouchableOpacity onPress={onPress} style={styles.icon}>
-        <Icon style={{ fontSize: 20 }} color={colors.black} name='ellipsis-v' />
+        <Icon style={{ fontSize: 20 }} color={colors.black} name='ellipsis-vertical' />
       </TouchableOpacity>
     </View>
   );

@@ -52,7 +52,7 @@ const getEventDetails =
     if (event.rappels && event.rappels.length === 0) {
       return null;
     }
-    return <Icon style={styles.icon} name='bell' solid color={colors.gray} />;
+    return <Icon style={styles.icon} name='bell' color={colors.gray} />;
   };
 
 const EventsScreen: React.FC<Props> = ({ navigation }) => {

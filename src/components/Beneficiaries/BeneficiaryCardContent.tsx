@@ -40,7 +40,7 @@ interface BeneficiaryCardContentProps {
 const BeneficiaryCardContent: React.FC<BeneficiaryCardContentProps> = ({ beneficiary }) => (
   <View style={styles.content}>
     <View style={styles.iconconContainer}>
-      <Icon style={styles.icon} name='user' solid />
+      <Icon style={styles.icon} name='user' />
     </View>
     <View>
       <Text style={styles.fullName}>

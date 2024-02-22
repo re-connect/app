@@ -39,7 +39,7 @@ const TextArea: React.FC<TextFieldProps> = ({
   const { t } = useTranslation();
   error = !error ? '' : Array.isArray(error) ? error.join(', ') : error;
 
-  const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
+  const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'xmark';
   const rightIconColor = !!value && !!okIcon && !!touched && !error ? colors.green : colors.red;
 
   const inputStyle = [styles.style, error ? styles.invalidStyle : {}];

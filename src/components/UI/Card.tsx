@@ -83,7 +83,7 @@ const Card: React.FC<Props> = ({
         <ActivityIndicator size='large' color={colors.black} />
       ) : (
         <>
-          <Icon style={styles.icon} solid color={colors.darkGray} name={iconName} />
+          <Icon style={styles.icon} color={colors.darkGray} name={iconName} />
           {!hasThumbnail ? null : <Thumbnail documentId={item.id} />}
           <View style={styles.content}>
             <Text>{title}</Text>

@@ -10,7 +10,6 @@ import DateTimePicker from '../UI/DateTimePicker';
 import FormikTextField from '../UI/FormikTextField';
 import RNSwitch from '../UI/RNSwitch';
 import RoundedButton from '../UI/RoundedButton';
-import Separator from '../UI/Separator';
 import RemindersForm from './RemindersForm';
 import Icon from '../UI/Icon';
 
@@ -27,22 +26,11 @@ interface Props {
 
 const EventForm: React.FC<Props> = ({ event, onSubmit, isSubmitting }) => {
   const stringArrayReminder: string[] = [];
-  //Format the reminder object array (comes from api) to string array (for formik)s
-  event.rappels.map((reminder: ReminderInterface | string) => {
-    if (typeof reminder !== 'string') {
-      stringArrayReminder.push(reminder.date);
-    } else {
-      stringArrayReminder.push(reminder);
-    }
-  });
-
-  const initialValues = {
-    ...event,
-    rappels: stringArrayReminder,
-  };
+  // Format the reminder object array (comes from api) to string array (for formik)s
+  event.rappels.map((reminder: ReminderInterface | string) => stringArrayReminder.push(typeof reminder !== 'string' ? reminder.date : reminder));
 
   return (
-    <Formik initialValues={initialValues} validationSchema={eventShape} onSubmit={onSubmit}>
+    <Formik initialValues={{ ...event, rappels: stringArrayReminder }} validationSchema={eventShape} onSubmit={onSubmit}>
       {(formikBag: FormikProps<CreateEventData>) => (
         <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
           <View style={styles.icons}>
@@ -62,7 +50,7 @@ const EventForm: React.FC<Props> = ({ event, onSubmit, isSubmitting }) => {
               }
             }}
           />
-          <FormikTextField formikBag={formikBag} name='lieu' icon='map-marker-alt' label='place' />
+          <FormikTextField formikBag={formikBag} name='lieu' icon='map-pin' label='place' />
           <FormikTextField formikBag={formikBag} name='commentaire' icon='comment-alt' label='comment' isTextArea />
           <RemindersForm reminders={formikBag.values.rappels} handleBlur={formikBag.handleBlur} />
           <RoundedButton

@@ -15,15 +15,7 @@ const styles = StyleSheet.create({
   usernameHelpTextOk: { color: colors.white },
   validIcon: { fontSize: 15, color: colors.primary },
   invalidIcon: { fontSize: 15, color: colors.red },
-  validIconContainer: {
-    marginLeft: 16,
-    height: 20,
-    width: 20,
-    borderRadius: 20,
-    backgroundColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  validIconContainer: { justifyContent: 'center' },
 });
 
 interface Props {
@@ -51,7 +43,7 @@ const UsernameHelpText: React.FC<Props> = ({ username }) => {
         {isEmailValid.value || isUsernameValid.value ? (
           <Icon name='check' style={styles.validIcon} />
         ) : (
-          <Icon name='times' style={styles.invalidIcon} />
+          <Icon name='xmark' style={styles.invalidIcon} />
         )}
       </View>
     </View>

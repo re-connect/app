@@ -58,7 +58,7 @@ const PasswordValidityWidget: React.FC<Props> = ({ password }) => (
     ) : (
       <>
         {criteria.map(({ name, test, getHint }) => (
-          <View style={[styles.chip, test.test(password) ? styles.validCriterion : styles.invalidCriterion]}>
+          <View key={name} style={[styles.chip, test.test(password) ? styles.validCriterion : styles.invalidCriterion]}>
             <View style={styles.hint}>
               <Text>{getHint(password.length)}</Text>
             </View>

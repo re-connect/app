@@ -26,7 +26,7 @@ const SearchBar: React.FC<Props> = ({ onChange }) => {
 
   return (
     <View style={styles.container}>
-      <Icon style={styles.leftIcon} color={colors.darkGray} name='search' />
+      <Icon style={styles.leftIcon} color={colors.darkGray} name='magnifying-glass' />
       <TextInput
         style={styles.input}
         placeholder={t('search')}

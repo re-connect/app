@@ -4,6 +4,11 @@ import { getTruncatedText } from './dataHelper';
 
 export const roleBeneficiary = 'ROLE_BENEFICIAIRE';
 export const rolePro = 'ROLE_MEMBRE';
+export let isMember = false;
+
+export const setIsMember = (newValue: boolean) =>{
+  isMember = newValue;
+}
 
 export const getFullName = (user: UserInterface | null) => {
   if (!user) {

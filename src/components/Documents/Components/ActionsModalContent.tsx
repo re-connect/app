@@ -66,7 +66,7 @@ const ActionItem: React.FC<ActionItemProps> = ({ action, label, icon, color = co
   !condition ? null : (
     <TouchableOpacity onPress={action}>
       <View style={{ flexDirection: 'row', padding: 10 }}>
-        <Icon style={styles.menuIcon} color={color} name={icon} solid />
+        <Icon style={styles.menuIcon} color={color} name={icon} />
         <Text style={styles.text}>{label}</Text>
       </View>
     </TouchableOpacity>
@@ -80,7 +80,7 @@ const ActionsModalContent: React.FC<Props> = ({ document, close, isLoading, acti
     { action: actions.moveOut, label: 'move_out_of_folder', icon: 'folder', condition: !!document.folder_id },
     { action: actions.showRenameForm, color: colors.green, label: 'rename', icon: 'pen' },
     { action: actions.delete, color: colors.red, label: 'delete', icon: 'trash' },
-    { action: close, color: colors.black, label: 'cancel', icon: 'times' },
+    { action: close, color: colors.black, label: 'cancel', icon: 'xmark' },
   ];
 
   if (!document.is_folder) {

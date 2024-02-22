@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginBottom: 4,
     marginLeft: Platform.OS === 'ios' ? 0 : 5,
-    width: '90%',
   },
   wrapper: {
     flexDirection: 'row',

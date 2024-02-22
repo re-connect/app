@@ -46,14 +46,14 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
       field: 'reponse_secrete',
       value: reponse_secrete ?? '',
       label: 'secret_answer',
-      iconName: 'question',
+      iconName: 'circle-question',
       beneficiaryField: true,
     },
     {
       field: 'date_naissance',
       value: !date_naissance ? '' : format(new Date(date_naissance), 'dd/MM/yyyy'),
       label: 'birth_date',
-      iconName: 'birthday-cake',
+      iconName: 'cake-candles',
       beneficiaryField: true,
     },
   ];
