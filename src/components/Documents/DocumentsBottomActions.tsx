@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useBoolean } from 'react-hanger';
 import { StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import BeneficiaryContext from '../../context/BeneficiaryContext';
 import { useScanDocument, useUploadDocument } from '../../hooks/DocumentsHooks';
 import { useCreateFolder } from '../../hooks/FoldersHooks';
@@ -10,6 +9,7 @@ import { ScannedGeniusDocumentInterface } from '../../types/Documents';
 import IconButton from '../UI/IconButton';
 import DocumentScanModal from './DocumentScanModal';
 import DocumentUploadModal from './DocumentUploadModal';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   leftButton: { position: 'absolute', right: 70, bottom: 5, zIndex: 1 },

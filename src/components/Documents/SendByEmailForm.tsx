@@ -1,13 +1,13 @@
 import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import emailShape from '../../helpers/forms/emailShape';
 import { useSendDocumentByEmail } from '../../hooks/DocumentsHooks';
 import { colors } from '../../style';
 import { DocumentInterface } from '../../types/Documents';
 import Text from '../UI/Text';
 import TextField from '../UI/TextField';
+import Icon from '../UI/Icon';
 
 interface Props {
   document: DocumentInterface;

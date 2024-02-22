@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ActivityIndicator, GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import UserContext from '../../context/UserContext';
 import { colors } from '../../style';
 import { getUserColor } from '../../helpers/userHelpers';
+import Icon from './Icon';
 
 interface Props {
   backgroundColor?: string;
@@ -57,16 +57,12 @@ const IconButton: React.FC<Props> = ({
       }}
       onPress={onPress}>
       {!isLoading ? (
-        <>
-          {!iconName ? null : (
-            <Icon
-              solid={solid}
-              style={{ fontSize: iconSize }}
-              color={!iconColor ? colors.white : iconColor}
-              name={iconName}
-            />
-          )}
-        </>
+        <Icon
+          solid={solid}
+          style={{ fontSize: iconSize }}
+          color={!iconColor ? colors.white : iconColor}
+          name={iconName}
+        />
       ) : (
         <ActivityIndicator size="small" color={colors.black} />
       )}

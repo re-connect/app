@@ -1,7 +1,6 @@
 import { FieldArray } from 'formik';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import BeneficiaryContext from '../../context/BeneficiaryContext';
 import { dateToIso } from '../../helpers/dateHelpers';
 import { colors } from '../../style';
@@ -10,6 +9,7 @@ import IconButton from '../UI/IconButton';
 import Separator from '../UI/Separator';
 import Text from '../UI/Text';
 import ReminderForm from './ReminderForm';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   text: { color: colors.darkGray, fontSize: 18, fontWeight: 'bold' },

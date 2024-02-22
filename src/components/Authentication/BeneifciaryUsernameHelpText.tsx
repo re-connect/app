@@ -1,30 +1,16 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { checkUserNameValidity, UsernameValidityInterface } from '../../services/usernameValidation';
 import { colors } from '../../style';
 import UsernameHelpTextPart from './UsernameHelpTextPart';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
-  usernameHelp: {
-    marginTop: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  usernameHelpText: {
-    fontSize: 16,
-  },
-  usernameHelpTextOk: {
-    color: colors.white,
-  },
-  validIcon: {
-    fontSize: 15,
-    color: colors.primary,
-  },
-  invalidIcon: {
-    fontSize: 15,
-    color: colors.red,
-  },
+  usernameHelp: { marginTop: 5, flexDirection: 'row', justifyContent: 'center' },
+  usernameHelpText: { fontSize: 16 },
+  usernameHelpTextOk: { color: colors.white },
+  validIcon: { fontSize: 15, color: colors.primary },
+  invalidIcon: { fontSize: 15, color: colors.red },
   validIconContainer: {
     marginLeft: 16,
     height: 20,
@@ -36,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Props {
+type Props = {
   username: string;
 }
 

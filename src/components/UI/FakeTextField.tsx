@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import ErrorText from './ErrorText';
 import Text from './Text';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   container: {

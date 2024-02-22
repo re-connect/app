@@ -1,7 +1,6 @@
 import { compareAsc, format } from 'date-fns';
 import * as React from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import Separator from '../../components/UI/Separator';
 import Text from '../../components/UI/Text';
@@ -14,6 +13,7 @@ import { EventInterface, ReminderInterface } from '../../types/Event';
 import Section from '../../components/UI/Section';
 import Divider from '../../components/UI/Divider';
 import { EventScreenProps } from '../../routing/routes/types/Event';
+import Icon from '../../components/UI/Icon';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },

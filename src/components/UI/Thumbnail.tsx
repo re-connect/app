@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Image, StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import DocumentContext from '../../context/DocumentContext';
 import { findNestedDocument } from '../../helpers/documentsHelper';
 import { useShowPreview } from '../../hooks/DocumentsHooks';
 import { colors } from '../../style';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   thumbnail: {

@@ -1,12 +1,12 @@
 import * as Formik from 'formik';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import renameShape from '../../../helpers/forms/renameShape';
 import { colors } from '../../../style';
 import { DocumentInterface } from '../../../types/Documents';
 import Text from '../../UI/Text';
 import TextField from '../../UI/TextField';
+import Icon from '../../UI/Icon';
 
 const styles = StyleSheet.create({
   container: {

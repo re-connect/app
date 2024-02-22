@@ -1,7 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import * as React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import SvgIcon from '../components/UI/SvgIcon';
+import Icon from '../components/UI/Icon';
 
 export const getTabStackIcon =
   (route: RouteProp<any, any>) =>

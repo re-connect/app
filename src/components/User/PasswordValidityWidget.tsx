@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import TranslatedText from '../UI/Text';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   container: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16 },

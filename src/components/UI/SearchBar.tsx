@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, TextInput, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
+import Icon from './Icon';
 
 interface Props {
   onChange: React.SetStateAction<any>;
@@ -17,13 +17,8 @@ const styles = StyleSheet.create({
     height: 45,
     alignItems: 'center',
   },
-  input: {
-    fontSize: 18,
-  },
-  leftIcon: {
-    marginHorizontal: 8,
-    fontSize: 20,
-  },
+  input: { fontSize: 18 },
+  leftIcon: { marginHorizontal: 8, fontSize: 20 },
 });
 
 const SearchBar: React.FC<Props> = ({ onChange }) => {

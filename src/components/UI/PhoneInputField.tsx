@@ -4,9 +4,37 @@ import { Platform, StyleSheet, View } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import { colors } from '../../style';
 import { TextFieldProps } from './TextField';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import parsePhoneNumber from 'libphonenumber-js';
+import Icon from './Icon';
 export type PhoneNumberType = Omit<TextFieldProps, 'fieldLabel'>;
+
+const styles = StyleSheet.create({
+  phoneIndicator: { fontSize: 18, marginLeft: 16 },
+  wrapper: {
+    flex: 1,
+    height: 50,
+    borderRadius: 30,
+    borderColor: colors.darkGray,
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+  },
+  icon: {
+    position: 'absolute',
+    right: 16,
+    top: 16,
+  },
+  container: { height: 50 },
+  textContainer: {
+    backgroundColor: colors.white,
+    height: Platform.OS === 'ios' ? 60 : 66,
+    paddingTop: Platform.OS === 'ios' ? 4 : 0,
+  },
+  textInput: {
+    fontSize: 15.5,
+    alignSelf: 'center',
+  },
+});
 
 const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, value, error, okIcon, style }) => {
   const { t } = useTranslation();
@@ -67,33 +95,5 @@ const PhoneInputField: React.FC<PhoneNumberType> = ({ handleChange, touched, val
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  phoneIndicator: { fontSize: 18, marginLeft: 16 },
-  wrapper: {
-    flex: 1,
-    height: 50,
-    borderRadius: 30,
-    borderColor: colors.darkGray,
-    borderWidth: 1,
-    backgroundColor: '#fff',
-    overflow: 'hidden',
-  },
-  icon: {
-    position: 'absolute',
-    right: 16,
-    top: 16,
-  },
-  container: { height: 50 },
-  textContainer: {
-    backgroundColor: colors.white,
-    height: Platform.OS === 'ios' ? 60 : 66,
-    paddingTop: Platform.OS === 'ios' ? 4 : 0,
-  },
-  textInput: {
-    fontSize: 15.5,
-    alignSelf: 'center',
-  },
-});
 
 export default PhoneInputField;

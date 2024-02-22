@@ -1,9 +1,9 @@
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { colors } from '../../../style';
 import { DocumentInterface } from '../../../types/Documents';
 import Text from '../../UI/Text';
+import Icon from '../../UI/Icon';
 
 const styles = StyleSheet.create({
   container: {

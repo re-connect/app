@@ -2,7 +2,6 @@ import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import contactShape from '../../helpers/forms/contactShape';
 import { colors } from '../../style';
 import { ContactInterface, CreateContactData } from '../../types/Contact';
@@ -11,6 +10,7 @@ import RoundedButton from '../UI/RoundedButton';
 import Separator from '../UI/Separator';
 import TextArea from '../UI/TextArea';
 import TextField from '../UI/TextField';
+import Icon from '../UI/Icon';
 
 interface Props {
   contact: ContactInterface | CreateContactData;

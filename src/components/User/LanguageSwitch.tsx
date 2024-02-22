@@ -3,11 +3,11 @@ import { useBoolean } from 'react-hanger/array';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 // @ts-ignore
 import Flag from 'react-native-flags';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import ArabLeagueFlag from '../../images/arab-league-flag.png';
 import { colors } from '../../style';
 import { Language, allLanguages } from '../../services/translation';
 import { useUserLocale } from '../../hooks/UserHooks';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   bitmapFlag: {

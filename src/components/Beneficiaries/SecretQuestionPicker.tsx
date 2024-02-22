@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useFetchSecretQuestions } from '../../hooks/BeneficiariesHooks';
 import { colors } from '../../style';
 import RNPickerSelect from 'react-native-picker-select';
 import { useField } from 'formik';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -17,11 +17,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
   },
-  icon: {
-    position: 'absolute',
-    top: 16,
-    left: 16,
-  },
+  icon: { position: 'absolute', top: 16, left: 16 },
 });
 
 const SecretQuestionPicker: React.FC<{ fieldName: string }> = ({ fieldName }) => {

@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/core';
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View, FlatList } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Text from '../../components/UI/Text';
 import LanguageSwitch from '../../components/User/LanguageSwitch';
 import UserContext from '../../context/UserContext';
 import { getTruncatedFullName } from '../../helpers/userHelpers';
 import { useLogout } from '../../hooks/UserHooks';
 import { colors } from '../../style';
+import Icon from '../../components/UI/Icon';
 
 const styles = StyleSheet.create({
   item: {
