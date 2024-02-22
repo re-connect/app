@@ -10,6 +10,7 @@ export interface Props {
   name: string;
   label: string;
   isTextArea?: boolean;
+  contentType?: string;
 }
 
 const FormikTextField: React.FC<Props & TextFieldProps> = props => {
@@ -34,7 +35,7 @@ const FormikTextField: React.FC<Props & TextFieldProps> = props => {
   return (
     <>
       <TextField
-        contentType={props.name}
+        contentType={props.contentType ?? 'none'}
         error={props.formikBag.errors[props.name]}
         touched={props.formikBag.touched[props.name]}
         fieldLabel={props.label}

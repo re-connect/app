@@ -93,7 +93,7 @@ const CreateBeneficiaryForm: React.FC = () => {
             allErrors.birth_date = t('required_field');
           }
 
-          const onChangeDate = (_event: Event, selectedDate?: Date) => {
+          const onChangeDate = (selectedDate?: Date) => {
             const currentDate = selectedDate || parse(formikBag.values.birth_date, 'ddMMyyyy', new Date());
             showDatepickerActions.setFalse();
             formikBag.handleChange('birth_date')(dateToString(currentDate));
@@ -142,7 +142,7 @@ const CreateBeneficiaryForm: React.FC = () => {
                   value={stringToDate(formikBag.values.birth_date)}
                   mode='date'
                   display='inline'
-                  onChange={onChangeDate}
+                  onChange={(_event, date) => onChangeDate(date)}
                   locale={locale}
                 />
               )}

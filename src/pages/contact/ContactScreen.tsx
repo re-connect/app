@@ -1,4 +1,3 @@
-import { NavigationProp, RouteProp } from '@react-navigation/native';
 import * as React from 'react';
 import { ActivityIndicator, Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -10,6 +9,7 @@ import { useDeleteData } from '../../hooks/DataHooks';
 import { colors } from '../../style';
 import { ContactInterface } from '../../types/Contact';
 import Section from '../../components/UI/Section';
+import { ContactScreenProps } from '../../routing/routes/types/Contact';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },
@@ -18,14 +18,6 @@ const styles = StyleSheet.create({
   form: { paddingHorizontal: 32, flex: 1, alignSelf: 'stretch' },
   icon: { fontSize: 20, marginLeft: 8, marginRight: 16 },
 });
-
-type ContactScreenParams = {
-  Contact: { contactId: number; beneficiaryId: number };
-};
-type Props = {
-  route: RouteProp<ContactScreenParams, 'Contact'>;
-  navigation: NavigationProp<any, any>;
-};
 
 const FieldContent: React.FC<{ value: string; icon: string }> = ({ value, icon }) => (
   <>
@@ -52,7 +44,7 @@ const Field: React.FC<{ value?: string; action?: () => void; icon: string }> = (
   );
 };
 
-const ContactScreen: React.FC<Props> = ({ route, navigation }) => {
+const ContactScreen: React.FC<ContactScreenProps> = ({ route, navigation }) => {
   const { list } = React.useContext(ContactContext);
   const { contactId } = route.params;
   const { isDeleting, deleteItem } = useDeleteData(ContactContext, `contacts/${contactId}`, contactId);
@@ -65,13 +57,13 @@ const ContactScreen: React.FC<Props> = ({ route, navigation }) => {
   }
 
   const openEmail = () => {
-    if (contact && contact.email && Linking.canOpenURL(contact.email)) {
-      Linking.openURL(`mailto: ${contact.email}`);
+    if (contact && contact.email) {
+      Linking.canOpenURL(contact.email).then(() => Linking.openURL(`mailto: ${contact.email}`));
     }
   };
   const openPhone = () => {
-    if (contact && contact.telephone && Linking.canOpenURL(`tel:${contact.telephone}`)) {
-      Linking.openURL(`tel:${contact.telephone}`);
+    if (contact && contact.telephone) {
+      Linking.canOpenURL(`tel:${contact.telephone}`).then(() => Linking.openURL(`tel:${contact.telephone}`));
     }
   };
 

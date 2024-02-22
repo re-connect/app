@@ -1,4 +1,3 @@
-import { NavigationProp, RouteProp } from '@react-navigation/native';
 import * as React from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import HTML from 'react-native-render-html';
@@ -12,6 +11,7 @@ import { colors } from '../../style';
 import { NoteInterface } from '../../types/Note';
 import Section from '../../components/UI/Section';
 import Divider from '../../components/UI/Divider';
+import { NoteScreenProps } from '../../routing/routes/types/Note';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },
@@ -21,15 +21,7 @@ const styles = StyleSheet.create({
   icon: { fontSize: 20, marginLeft: 8, marginRight: 16 },
 });
 
-type NoteScreenParams = {
-  Note: { noteId: number; beneficiaryId: number };
-};
-type Props = {
-  route: RouteProp<NoteScreenParams, 'Note'>;
-  navigation: NavigationProp<any, any>;
-};
-
-const NoteScreen: React.FC<Props> = ({ route, navigation }) => {
+const NoteScreen: React.FC<NoteScreenProps> = ({ route, navigation }) => {
   const contentWidth = useWindowDimensions().width;
   const { list } = React.useContext(NoteContext);
   const { noteId } = route.params;

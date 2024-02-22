@@ -7,22 +7,12 @@ import ContactContext from '../../context/ContactContext';
 import UserContext from '../../context/UserContext';
 import { usePostData } from '../../hooks/DataHooks';
 import { CreateContactData } from '../../types/Contact';
+import { isBeneficiary } from '../../helpers/userHelpers';
 
 const styles = StyleSheet.create({
-  container: {
-    paddingBottom: 16,
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-  },
-  actions: {
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-  },
-  form: {
-    paddingHorizontal: 32,
-    flex: 1,
-    alignSelf: 'stretch',
-  },
+  container: { paddingBottom: 16, justifyContent: 'flex-start', alignItems: 'stretch' },
+  actions: { flexDirection: 'row', alignSelf: 'stretch' },
+  form: { paddingHorizontal: 32, flex: 1, alignSelf: 'stretch' },
 });
 
 const CreateContactScreen: React.FC = () => {
@@ -32,7 +22,7 @@ const CreateContactScreen: React.FC = () => {
 
   const contact: CreateContactData = {
     association: '',
-    b_prive: user?.type_user === 'ROLE_BENEFICIAIRE',
+    b_prive: isBeneficiary(user),
     commentaire: '',
     email: '',
     nom: '',

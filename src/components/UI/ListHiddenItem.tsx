@@ -5,6 +5,7 @@ import { useDeleteData, usePatchData } from '../../hooks/DataHooks';
 import { colors } from '../../style';
 import { AnyDataInterface, ListContextInterface } from '../../types/Data';
 import HiddenItemButton from './HiddenItemButton';
+import { isPro } from '../../helpers/userHelpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,7 +28,6 @@ interface Props {
 const ListHiddenItem: React.FC<Props> = ({ datum, getLeftActionEndpoint, getRightActionEndpoint, getDataContext }) => {
   const { user } = React.useContext(UserContext);
   const { item } = datum;
-  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
   const userLeftActionEndpoint = `${getLeftActionEndpoint(item)}/${item.id}/toggle-access`;
   const { patch, isPatching } = usePatchData(userLeftActionEndpoint, item.id, getDataContext(item));
   const { deleteItem, isDeleting } = useDeleteData(
@@ -35,7 +35,7 @@ const ListHiddenItem: React.FC<Props> = ({ datum, getLeftActionEndpoint, getRigh
     `${getRightActionEndpoint(item)}/${item.id}`,
     item.id,
   );
-  const toggleItemText = isMember ? 'make_private' : `make_${!item.b_prive ? 'private' : 'shared'}`;
+  const toggleItemText = isPro(user) ? 'make_private' : `make_${!item.b_prive ? 'private' : 'shared'}`;
   const toggleItemColor = !item.b_prive ? colors.red : colors.blue;
 
   return (

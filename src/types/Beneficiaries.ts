@@ -52,12 +52,12 @@ export interface EnableBeneficiaryErrorsInterface {
 }
 
 export interface EnableBeneficiaryDataInterface {
-  email?: string;
-  password: string;
+  autre_question_secrete: string;
   confirmPassword: string;
-  question_secrete?: string;
-  autre_question_secrete?: string;
-  reponse_secrete?: string;
+  email: string;
+  password: string;
+  question_secrete: string;
+  reponse_secrete: string;
 }
 
 export interface BeneficiaryInterface {

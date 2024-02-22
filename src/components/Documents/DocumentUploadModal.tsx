@@ -13,18 +13,17 @@ const DocumentUploadModal: React.FC<{
   visible: boolean;
   setVisible: (visible: boolean) => void;
   handleScanDocument: () => void;
-  triggerDocumentUpload: (files: ImageInterface[]) => void;
+  triggerDocumentUpload: (files: Partial<ImageInterface & File>[]) => void;
 }> = ({ visible, setVisible, handleScanDocument, triggerDocumentUpload }) => {
   const handleChooseFile = async () => {
-    await DocumentPicker
-      .pickSingle({type: [DocumentPicker.types.allFiles]})
+    await DocumentPicker.pickSingle({ type: [DocumentPicker.types.allFiles] })
       .then(res => {
         if (res) {
-          const file = {
+          const file: Partial<ImageInterface & File> = {
             filename: res.name,
             path: res.uri,
-            size: res.size,
-            type: res.type, // mime type
+            size: res.size ?? 0,
+            type: res.type ?? '', // mime type
           };
           triggerDocumentUpload([file]);
         }
@@ -53,7 +52,7 @@ const DocumentUploadModal: React.FC<{
       multiPage: false,
       defaultFilter: 'none',
     });
-    const images: ImageInterface[] = [];
+    const images: Partial<ImageInterface & File>[] = [];
     geniusImageScanned.scans.map((enhancedImage: any) => {
       images.push({
         path: enhancedImage.enhancedUrl,

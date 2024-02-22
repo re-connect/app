@@ -25,7 +25,12 @@ export interface TitleModalProps {
   closeModal: () => void;
 }
 
-export const ModalContainer: React.FunctionComponent<{ header?: React.ReactNode }> = ({ header, children }) => {
+type ModalContainerProps = {
+  header?: React.ReactNode;
+  children?: React.ReactNode;
+};
+
+export const ModalContainer: React.FunctionComponent<ModalContainerProps> = ({ header, children }) => {
   const marginInPx = 10;
   return (
     <View style={{ flex: 1 }}>

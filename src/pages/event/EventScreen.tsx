@@ -1,4 +1,3 @@
-import { NavigationProp, RouteProp } from '@react-navigation/native';
 import { compareAsc, format } from 'date-fns';
 import * as React from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
@@ -14,6 +13,7 @@ import { colors } from '../../style';
 import { EventInterface, ReminderInterface } from '../../types/Event';
 import Section from '../../components/UI/Section';
 import Divider from '../../components/UI/Divider';
+import { EventScreenProps } from '../../routing/routes/types/Event';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },
@@ -23,17 +23,9 @@ const styles = StyleSheet.create({
   icon: { fontSize: 20, marginLeft: 8, marginRight: 16 },
 });
 
-type EventScreenParams = {
-  Event: { eventId: number; beneficiaryId: number };
-};
-type Props = {
-  route: RouteProp<EventScreenParams, 'Event'>;
-  navigation: NavigationProp<any, any>;
-};
-
 const sortEvents = (a: ReminderInterface, b: ReminderInterface) => compareAsc(new Date(a.date), new Date(b.date));
 
-const EventScreen: React.FC<Props> = ({ route, navigation }) => {
+const EventScreen: React.FC<EventScreenProps> = ({ route, navigation }) => {
   const { list } = React.useContext(EventContext);
   const { eventId } = route.params;
   const { isDeleting, deleteItem } = useDeleteData(EventContext, `events/${eventId}`, eventId);

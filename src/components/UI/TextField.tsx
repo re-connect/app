@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 });
 
 export interface TextFieldProps {
-  autocompleteType?: string;
+  autocompleteType?: any;
   contentType?: any;
   disabled?: boolean;
   error?: string | string[] | FormikErrors<any> | FormikErrors<any>[];
@@ -92,7 +92,7 @@ const TextField: React.FC<TextFieldProps> = ({
         <TextInput
           style={[styles.input, style]}
           autoCapitalize="none"
-          autoComplete={!autocompleteType ? contentType : autocompleteType}
+          autoComplete={!autocompleteType ? 'off' : autocompleteType}
           editable={!disabled}
           keyboardType={keyboardType}
           onBlur={handleBlur}
@@ -110,7 +110,7 @@ const TextField: React.FC<TextFieldProps> = ({
       </View>
       {displayError && hasError && (
         <View style={{ marginTop: 16, paddingHorizontal: 16 }}>
-          <Text style={styles.error}>{error}</Text>
+          <Text style={styles.error}>{error as string}</Text>
         </View>
       )}
     </View>

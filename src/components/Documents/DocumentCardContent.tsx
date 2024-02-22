@@ -6,13 +6,8 @@ import DocumentCardActions from './DocumentCardActions';
 import DocumentCardThumbnail from './DocumentCardThumbnail';
 
 const styles = StyleSheet.create({
-  content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  name: {
-    flex: 1,
-  },
+  content: { flexDirection: 'row', alignItems: 'center' },
+  name: { flex: 1 },
 });
 
 interface DocumentCardContentProps {

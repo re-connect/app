@@ -57,7 +57,11 @@ export const uploadBase64 = async (image: string, beneficiaryId: number) => {
   }
 };
 
-export const uploadDocuments = async (images: ImageInterface[], beneficiaryId: number, folderId?: number) => {
+export const uploadDocuments = async (
+  images: Partial<ImageInterface & File>[],
+  beneficiaryId: number,
+  folderId?: number,
+) => {
   try {
     const isConnected = await checkNetworkConnection();
     if (!isConnected) {

@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import UserContext from '../../context/UserContext';
 import userShape from '../../helpers/forms/userShape';
-import { formatPhoneForApi } from '../../helpers/userHelpers';
+import { formatPhoneForApi, getUserColor, isPro } from '../../helpers/userHelpers';
 import { useUpdateUser } from '../../hooks/UserHooks';
 import { colors } from '../../style';
 import { UserField } from '../../types/Users';
@@ -42,13 +42,12 @@ const styles = StyleSheet.create({
 const ProfileItem: React.FC<Props> = ({ item }) => {
   const { field, value, beneficiaryField } = item;
   const { user } = React.useContext(UserContext);
-  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
-  const userColor = isMember ? colors.blue : colors.primary;
+  const userColor = getUserColor(user);
   const [showForm, showFormActions] = useBoolean(false);
   const { update, isUpdating } = useUpdateUser();
   const initialValues: Record<string, string> = { [field]: value ?? '' };
 
-  if (isMember && beneficiaryField) {
+  if (isPro(user) && beneficiaryField) {
     return null;
   }
 

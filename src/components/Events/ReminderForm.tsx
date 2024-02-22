@@ -5,6 +5,7 @@ import { colors } from '../../style';
 import DateTimePicker from '../UI/DateTimePicker';
 import IconButton from '../UI/IconButton';
 import Separator from '../UI/Separator';
+import { dateToIso } from '../../helpers/dateHelpers';
 
 interface Props {
   reminder: string;
@@ -22,7 +23,7 @@ const ReminderForm: React.FC<Props> = ({ reminder, arrayHelpers, index, handleBl
   return (
     <View style={styles.wrapper}>
       <View style={styles.reminder}>
-        <DateTimePicker value={reminder} handleChange={onChange} />
+        <DateTimePicker value={reminder} handleChange={(value: Date) => onChange(dateToIso(value))} />
         <Separator width={1} />
       </View>
       <IconButton

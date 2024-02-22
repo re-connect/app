@@ -4,7 +4,6 @@ import { format } from 'date-fns';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger/array';
 import { Alert } from 'react-native';
-import { ResetPasswordData } from '../components/User/ResetPasswordForm';
 import BeneficiaryContext from '../context/BeneficiaryContext';
 import CenterContext from '../context/CenterContext';
 import ContactContext from '../context/ContactContext';
@@ -14,12 +13,12 @@ import LoginTemporisationContext from '../context/LoginTemporisationContext';
 import NoteContext from '../context/NoteContext';
 import ThemeContext from '../context/ThemeContext';
 import UserContext from '../context/UserContext';
-import { getTruncatedFullName } from '../helpers/userHelpers';
+import { getTruncatedFullName, isBeneficiary, isPro } from '../helpers/userHelpers';
 import { login } from '../services/authentication';
 import { LoginFormValues } from '../services/forms';
 import { fetchCurrentUser, makeRequestv2, makeRequestv3 } from '../services/requests';
 import t from '../services/translation';
-import { UserField } from '../types/Users';
+import { ResetPasswordData, UserField } from '../types/Users';
 import { useFetchInvitations } from './CentersHooks';
 import { useTranslation } from 'react-i18next';
 import { resetPassword } from '../services/passwordResetter';
@@ -74,8 +73,7 @@ export const useTriggerGetUser = () => {
       if (!newUser) {
         return;
       }
-      const userType = newUser.type_user;
-      if (userType === 'ROLE_BENEFICIAIRE') {
+      if (isBeneficiary(newUser)) {
         setCurrent(newUser);
         theme.actions.setFalse();
         navigation.reset({ routes: [{ name: !newUser.question_secrete ? 'Activation' : 'Home' }] });
@@ -91,7 +89,7 @@ export const useTriggerGetUser = () => {
   }, [navigation, setUser, theme.actions, user, setCurrent, route]);
 
   return triggerGetUser;
-}
+};
 
 export const useGetUser = () => {
   const triggerGetUser = useTriggerGetUser();
@@ -137,7 +135,7 @@ export const useSetTitleToBenefName = () => {
   const navigation = useNavigation<any>();
   const { current } = React.useContext(BeneficiaryContext);
   const { user } = React.useContext(UserContext);
-  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
+  const isMember = isPro(user);
 
   const set = React.useCallback(() => {
     if (isMember) {
@@ -166,7 +164,7 @@ export const useUpdateUser = () => {
           }
           const newData = await makeRequestv2(`/users/${user?.id}`, 'PUT', updatedUser);
           if (newData) {
-            if (newData.type_user === 'ROLE_BENEFICIAIRE') {
+            if (isBeneficiary(newData)) {
               setCurrent(newData);
             }
             setUser(newData);

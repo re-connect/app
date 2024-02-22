@@ -7,6 +7,7 @@ import { removeDatumInList, updateDatumInList } from '../helpers/dataHelper';
 import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
 import { CreateAnyDataInterface, CreateDataInterface, DataInterface, ListContextInterface } from '../types/Data';
+import { isPro } from '../helpers/userHelpers';
 
 interface FetchDataInformation {
   isFetching: boolean;
@@ -97,7 +98,7 @@ export const useUpdateData = (
         actions.setTrue();
         const updatedData = await makeRequestv2(`/${endpoint}`, 'PUT', data);
         if (updatedData) {
-          if (updatedData.b_prive && !!user && user.type_user !== 'ROLE_BENEFICIAIRE') {
+          if (updatedData.b_prive && isPro(user)) {
             setList(removeDatumInList(list, itemId));
             navigation.goBack();
           } else {
@@ -187,7 +188,7 @@ export const usePatchData = (
         actions.setTrue();
         const newData = await makeRequestv2(`/${endpoint}`, 'PATCH');
         if (newData) {
-          if (newData.b_prive && !!user && user.type_user !== 'ROLE_BENEFICIAIRE') {
+          if (newData.b_prive && isPro(user)) {
             setList(removeDatumInList(list, itemId));
             if (goBackAfter) {
               navigation.goBack();

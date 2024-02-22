@@ -25,6 +25,7 @@ const PublicResetPasswordForm: React.FC<Props> = ({ username }) => {
           <FormikTextField
             formikBag={formikBag}
             name="currentPassword"
+            contentType="password"
             label="current_password"
             icon="key"
             displayError

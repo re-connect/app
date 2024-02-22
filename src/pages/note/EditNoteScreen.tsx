@@ -1,4 +1,3 @@
-import { RouteProp } from '@react-navigation/native';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import NoteForm from '../../components/Notes/NoteForm';
@@ -6,6 +5,7 @@ import Screen from '../../components/Screen';
 import NoteContext from '../../context/NoteContext';
 import { useUpdateData } from '../../hooks/DataHooks';
 import { CreateNoteData, NoteInterface } from '../../types/Note';
+import { EditNoteScreenProps } from '../../routing/routes/types/Note';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,14 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-type CreateNoteScreenParams = {
-  Notes: { noteId: number };
-};
-type Props = {
-  route: RouteProp<CreateNoteScreenParams, 'Notes'>;
-};
-
-const EditNoteScreen: React.FC<Props> = ({ route }) => {
+const EditNoteScreen: React.FC<EditNoteScreenProps> = ({ route }) => {
   const { noteId } = route.params;
   const { list } = React.useContext(NoteContext);
   const { isUpdating, update } = useUpdateData(`notes/${noteId}`, noteId, NoteContext);

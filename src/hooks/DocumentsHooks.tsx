@@ -62,7 +62,7 @@ export const useUploadDocument = (beneficiaryId?: number, folderId?: number) => 
   const isUploadingDocument = useBoolean(false);
   const { list, setList } = React.useContext(DocumentContext);
 
-  const triggerDocumentUpload = async (images: ImageInterface[]) => {
+  const triggerDocumentUpload = async (images: Partial<ImageInterface & File>[]) => {
     isUploadingDocument.setTrue();
     if (!beneficiaryId) {
       isUploadingDocument.setFalse();

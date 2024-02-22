@@ -1,4 +1,3 @@
-import { NavigationProp, RouteProp } from '@react-navigation/native';
 import * as React from 'react';
 import { Dimensions, Modal, StyleSheet, View } from 'react-native';
 import DocumentCardActions from '../../components/Documents/DocumentCardActions';
@@ -12,6 +11,7 @@ import { colors } from '../../style';
 import { AnyDataInterface } from '../../types/Data';
 import { useBoolean } from 'react-hanger/array';
 import DocumentActionsModal from '../../components/Documents/DocumentActionsModal';
+import { DocumentScreenProps } from '../../routing/routes/types/Document';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,15 +45,7 @@ const styles = StyleSheet.create({
   },
 });
 
-type DocumentScreenParams = {
-  Document: { id: number };
-};
-type Props = {
-  route: RouteProp<DocumentScreenParams, 'Document'>;
-  navigation: NavigationProp<any>;
-};
-
-const DocumentScreen: React.FC<Props> = ({ navigation, route }) => {
+const DocumentScreen: React.FC<DocumentScreenProps> = ({ navigation, route }) => {
   const { id } = route.params;
   const { list } = React.useContext(DocumentContext);
   const { width } = Dimensions.get('window');

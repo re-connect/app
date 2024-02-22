@@ -7,6 +7,7 @@ import NoteContext from '../../context/NoteContext';
 import UserContext from '../../context/UserContext';
 import { usePostData } from '../../hooks/DataHooks';
 import { CreateNoteData } from '../../types/Note';
+import { isBeneficiary } from '../../helpers/userHelpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +35,7 @@ const CreateNoteScreen: React.FC = () => {
     <Screen>
       <View style={styles.container}>
         <NoteForm
-          note={{ b_prive: user?.type_user === 'ROLE_BENEFICIAIRE', contenu: '', nom: '' }}
+          note={{ b_prive: isBeneficiary(user), contenu: '', nom: '' }}
           isSubmitting={isPosting}
           onSubmit={(note: CreateNoteData) => post(note)}
         />

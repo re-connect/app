@@ -23,8 +23,8 @@ interface Props {
   itemIconName?: string;
   getLeftActionEndpoint: (item?: AnyDataInterface) => string;
   onItemPress: (item: AnyDataInterface) => void;
-  isModalOpen: boolean;
-  openModalActions: UseBooleanActions;
+  isModalOpen?: boolean;
+  openModalActions?: UseBooleanActions;
   getRightActionEndpoint: (item?: AnyDataInterface) => string;
   triggerFetchData: () => Promise<void>;
   currentDocument?: AnyDataInterface | null;
@@ -59,8 +59,11 @@ const List: React.FC<Props> = ({
           visible={isModalOpen}
           animationType='fade'
           transparent
-          onRequestClose={() => openModalActions.setFalse()}>
-          <DocumentActionsModal document={currentDocument} close={openModalActions.setFalse} />
+          onRequestClose={openModalActions ? () => openModalActions.setFalse() : () => {}}>
+          <DocumentActionsModal
+            document={currentDocument}
+            close={openModalActions ? openModalActions.setFalse : () => {}}
+          />
         </Modal>
       )}
       <SearchBar onChange={setSearch} />

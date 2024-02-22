@@ -3,6 +3,7 @@ import { ActivityIndicator, GestureResponderEvent, StyleSheet, TouchableOpacity 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import UserContext from '../../context/UserContext';
 import { colors } from '../../style';
+import { getUserColor } from '../../helpers/userHelpers';
 
 interface Props {
   backgroundColor?: string;
@@ -36,8 +37,7 @@ const IconButton: React.FC<Props> = ({
   solid,
 }) => {
   const { user } = React.useContext(UserContext);
-  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
-  const userColor = isMember ? colors.blue : colors.primary;
+  const userColor = getUserColor(user);
 
   const sizedStyle = {
     height: !size ? 50 : size,
