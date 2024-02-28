@@ -25,7 +25,7 @@ export const getTabStackIcon =
         if (route.name === 'Chat' || route.name === 'Support') {
           iconName = 'comment-alt';
         } else if (route.name === 'Enabling') {
-          iconName = 'user';
+          iconName = 'user-large';
         } else {
           iconName = 'question';
         }

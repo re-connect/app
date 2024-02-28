@@ -52,6 +52,7 @@ export const useScanDocument = () => {
       pdfPageSize: 'a4',
       defaultFilter: 'none',
     });
+
     return geniusImageScanned;
   };
 

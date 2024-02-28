@@ -9,7 +9,7 @@ export const SettingsButton = ({ navigation }: { navigation: NavigationProp<any,
     onPress={() => navigation.navigate('Settings')}
     iconColor={colors.white}
     text=''
-    iconName='user'
+    iconName='user-large'
     backgroundColor='transparent'
   />
 );

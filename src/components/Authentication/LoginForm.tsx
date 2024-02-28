@@ -100,7 +100,7 @@ const LoginForm: React.FC = () => {
             <TextField
               contentType='username'
               fieldLabel='username'
-              iconName='user'
+              iconName='user-large'
               error={props.errors.username}
               handleBlur={props.handleBlur('username')}
               handleChange={props.handleChange('username')}

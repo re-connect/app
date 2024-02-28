@@ -43,7 +43,7 @@ const ContactForm: React.FC<Props> = ({ contact, onSubmit, isSubmitting }) => (
             fieldLabel='first_name'
             handleChange={handleChange('prenom')}
             handleBlur={handleBlur('prenom')}
-            iconName='user'
+            iconName='user-large'
             okIcon
             value={values.prenom}
           />

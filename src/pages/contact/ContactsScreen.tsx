@@ -71,7 +71,7 @@ const ContactsScreen: React.FC<Props> = ({ navigation }) => {
           onItemPress={(item: AnyDataInterface) => navigation.navigate('Contact', { contactId: item.id })}
           isFetchingData={isFetching}
           triggerFetchData={triggerFetch}
-          itemIconName='user'
+          itemIconName='user-large'
           getName={getContactName}
           getItemRightComponent={getContactDetails}
           getDataContext={() => ContactContext}

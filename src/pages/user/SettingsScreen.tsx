@@ -35,7 +35,7 @@ const SettingsScreen: React.FC = () => {
   const navigate = (routeName: string) => () => navigation.navigate(routeName);
 
   const items = [
-    { onPress: navigate('Profile'), name: 'user', label: 'my_information' },
+    { onPress: navigate('Profile'), name: 'user-large', label: 'my_information' },
     { onPress: navigate('Centers'), name: 'hotel', label: 'my_centers' },
     { onPress: navigate('TermsOfUse'), name: 'scroll', label: 'terms_of_use' },
     { onPress: navigate('PrivacyPolicy'), name: 'user-shield', label: 'privacy' },

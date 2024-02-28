@@ -30,9 +30,9 @@ const ProfileScreen: React.FC<Props> = ({ navigation }) => {
   const { nom, prenom, email, username, telephone, date_naissance, reponse_secrete, question_secrete } = user;
 
   const items: ProfileItemInterface[] = [
-    { field: 'username', value: username, label: 'username', iconName: 'user', readOnly: true },
+    { field: 'username', value: username, label: 'username', iconName: 'user-large', readOnly: true },
     { field: 'nom', value: nom, label: 'last_name', iconName: 'users' },
-    { field: 'prenom', value: prenom, label: 'first_name', iconName: 'user' },
+    { field: 'prenom', value: prenom, label: 'first_name', iconName: 'user-large' },
     { field: 'email', value: email, label: 'email', iconName: 'at' },
     { field: 'telephone', value: telephone, label: 'phone', iconName: 'phone' },
     {

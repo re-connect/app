@@ -78,7 +78,7 @@ const Rename: React.FC<Props> = ({ document, close, closeModal, onSubmit }) => (
               fieldLabel='new_name'
               handleChange={handleChange('name')}
               handleBlur={handleBlur('name')}
-              iconName='user'
+              iconName='user-large'
               iconSyle={{ color: colors.darkGray }}
               style={{ color: colors.darkGray }}
               touched={touched.name}
