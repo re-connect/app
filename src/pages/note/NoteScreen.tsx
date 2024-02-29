@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import HTML from 'react-native-render-html';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import Text from '../../components/UI/Text';
 import TogglePrivacySwitch from '../../components/UI/TogglePrivacySwitch';
@@ -12,6 +11,7 @@ import { NoteInterface } from '../../types/Note';
 import Section from '../../components/UI/Section';
 import Divider from '../../components/UI/Divider';
 import { NoteScreenProps } from '../../routing/routes/types/Note';
+import Icon from '../../components/UI/Icon';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },

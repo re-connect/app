@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useBoolean } from 'react-hanger';
 import { StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import BeneficiaryContext from '../../context/BeneficiaryContext';
 import { useScanDocument, useUploadDocument } from '../../hooks/DocumentsHooks';
 import { useCreateFolder } from '../../hooks/FoldersHooks';
-import { colors } from '../../style';
 import { ScannedGeniusDocumentInterface } from '../../types/Documents';
 import IconButton from '../UI/IconButton';
 import DocumentScanModal from './DocumentScanModal';
@@ -14,8 +12,6 @@ import DocumentUploadModal from './DocumentUploadModal';
 const styles = StyleSheet.create({
   leftButton: { position: 'absolute', right: 70, bottom: 5, zIndex: 1 },
   rightButton: { position: 'absolute', right: 5, bottom: 5, zIndex: 1 },
-  smallIcon: { position: 'absolute', right: 6, top: 6 },
-  bigIcon: { position: 'absolute', fontSize: 16, right: 10, top: 10 },
 });
 
 interface Props {
@@ -40,11 +36,7 @@ const DocumentsBottomActions: React.FC<Props> = ({ folderId }) => {
     if (scannedPictures.scans.length > 1) {
       isModalScanVisible.setTrue();
     } else {
-      scannedPictures.scans.map((enhancedImage: any) => {
-        images.push({
-          path: enhancedImage.enhancedUrl,
-        });
-      });
+      scannedPictures.scans.map((enhancedImage: any) => images.push({ path: enhancedImage.enhancedUrl }));
       triggerDocumentUpload(images);
     }
   };
@@ -66,18 +58,16 @@ const DocumentsBottomActions: React.FC<Props> = ({ folderId }) => {
         />
       )}
       <View style={styles.leftButton}>
-        <IconButton size={40} isLoading={isCreatingFolder} solid iconName='folder-open' onPress={triggerCreateFolder} />
-        {isCreatingFolder ? null : <Icon name='plus' color={colors.white} style={styles.smallIcon} />}
+        <IconButton size={40} isLoading={isCreatingFolder} iconName='folder-open' onPress={triggerCreateFolder} addPlusIcon />
       </View>
       <View style={styles.rightButton}>
         <IconButton
           isLoading={isUploadingDocument.value}
-          solid
           size={60}
           iconName='file'
           onPress={() => isModalDocumentVisible.setTrue()}
+          addPlusIcon
         />
-        {isUploadingDocument.value ? null : <Icon name='plus' color={colors.white} style={styles.bigIcon} />}
       </View>
     </>
   );

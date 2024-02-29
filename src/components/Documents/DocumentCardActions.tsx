@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import { DocumentInterface } from '../../types/Documents';
 import { UseBooleanActions } from 'react-hanger/array';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   icon: {
@@ -37,7 +37,7 @@ const DocumentCardActions: React.FC<DocumentCardActionsProps> = ({
   return (
     <View style={{ position: 'relative' }}>
       <TouchableOpacity onPress={onPress} style={styles.icon}>
-        <Icon style={{ fontSize: 20 }} color={colors.black} name='ellipsis-v' />
+        <Icon style={{ fontSize: 20 }} color={colors.black} name='ellipsis-vertical' />
       </TouchableOpacity>
     </View>
   );

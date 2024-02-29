@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { usePatchData } from '../../hooks/DataHooks';
 import { colors } from '../../style';
 import RNSwitch from './RNSwitch';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   icon: { fontSize: 20 },

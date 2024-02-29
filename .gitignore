@@ -80,3 +80,8 @@ coverage
 
 # Firebase
 GoogleService-Info.plist
+
+# Expo
+.expo
+dist/
+web-build/

@@ -1,12 +1,12 @@
 import * as Formik from 'formik';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import renameShape from '../../../helpers/forms/renameShape';
 import { colors } from '../../../style';
 import { DocumentInterface } from '../../../types/Documents';
 import Text from '../../UI/Text';
 import TextField from '../../UI/TextField';
+import Icon from '../../UI/Icon';
 
 const styles = StyleSheet.create({
   container: {
@@ -78,7 +78,7 @@ const Rename: React.FC<Props> = ({ document, close, closeModal, onSubmit }) => (
               fieldLabel='new_name'
               handleChange={handleChange('name')}
               handleBlur={handleBlur('name')}
-              iconName='user'
+              iconName='user-large'
               iconSyle={{ color: colors.darkGray }}
               style={{ color: colors.darkGray }}
               touched={touched.name}
@@ -88,7 +88,7 @@ const Rename: React.FC<Props> = ({ document, close, closeModal, onSubmit }) => (
             <View style={styles.buttonsWrapper}>
               <TouchableOpacity onPress={close}>
                 <View style={styles.menuIconContainer}>
-                  <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
+                  <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                 </View>
                 <Text>cancel</Text>
               </TouchableOpacity>

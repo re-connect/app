@@ -1,7 +1,6 @@
 import { compareAsc, format } from 'date-fns';
 import * as React from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import Separator from '../../components/UI/Separator';
 import Text from '../../components/UI/Text';
@@ -14,6 +13,7 @@ import { EventInterface, ReminderInterface } from '../../types/Event';
 import Section from '../../components/UI/Section';
 import Divider from '../../components/UI/Divider';
 import { EventScreenProps } from '../../routing/routes/types/Event';
+import Icon from '../../components/UI/Icon';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },
@@ -67,7 +67,7 @@ const EventScreen: React.FC<EventScreenProps> = ({ route, navigation }) => {
           )}
           {!event.lieu ? null : (
             <View style={{ flexDirection: 'row', marginVertical: 8 }}>
-              <Icon style={styles.icon} name="map-marker-alt" color={colors.gray} />
+              <Icon style={styles.icon} name="map-pin" color={colors.gray} />
               <Text>{event.lieu}</Text>
             </View>
           )}
@@ -76,7 +76,7 @@ const EventScreen: React.FC<EventScreenProps> = ({ route, navigation }) => {
           <View style={{ flexDirection: 'row', marginVertical: 8 }}>
             {!event.rappels || event.rappels.length === 0 ? null : (
               <>
-                <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name="bell" solid color={colors.gray} />
+                <Icon style={{ ...styles.icon, marginTop: 8, marginRight: 0 }} name="bell" color={colors.gray} />
                 <View style={{ flex: 1 }} />
                 <View>
                   {event.rappels.sort(sortEvents).map((reminder: ReminderInterface) => (

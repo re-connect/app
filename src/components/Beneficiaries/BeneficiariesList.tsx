@@ -8,9 +8,7 @@ import Text from '../UI/Text';
 import BeneficiaryCard from './BeneficiaryCard';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -22,11 +20,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 16,
   },
-  noDataMessage: {
-    marginTop: 32,
-    color: colors.white,
-    textAlign: 'center',
-  },
+  noDataMessage: { marginTop: 32, color: colors.white, textAlign: 'center' },
 });
 
 export interface BeneficiariesListProps {

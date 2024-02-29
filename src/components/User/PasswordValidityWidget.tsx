@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import TranslatedText from '../UI/Text';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   container: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16 },
@@ -58,7 +58,7 @@ const PasswordValidityWidget: React.FC<Props> = ({ password }) => (
     ) : (
       <>
         {criteria.map(({ name, test, getHint }) => (
-          <View style={[styles.chip, test.test(password) ? styles.validCriterion : styles.invalidCriterion]}>
+          <View key={name} style={[styles.chip, test.test(password) ? styles.validCriterion : styles.invalidCriterion]}>
             <View style={styles.hint}>
               <Text>{getHint(password.length)}</Text>
             </View>

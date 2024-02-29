@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import FolderContext from '../../../context/FolderContext';
 import { useMoveDocumentInFolder } from '../../../hooks/DocumentsHooks';
 import { colors } from '../../../style';
@@ -8,6 +7,7 @@ import { DocumentInterface } from '../../../types/Documents';
 import H3 from '../../UI/H3';
 import Text from '../../UI/Text';
 import Divider from '../../UI/Divider';
+import Icon from '../../UI/Icon';
 
 const styles = StyleSheet.create({
   container: {
@@ -66,14 +66,14 @@ const PickFolder: React.FC<Props> = ({ document, close, onPick }) => {
                   triggerMoveDocumentIntoFolder(document, folder);
                 }}>
                 <View style={styles.hstack}>
-                  <Icon style={styles.menuIcon} color={colors.blue} name='folder' solid />
+                  <Icon style={styles.menuIcon} color={colors.blue} name='folder' />
                   <Text style={styles.text}>{folder.nom}</Text>
                 </View>
               </TouchableOpacity>
             ))}
             <TouchableOpacity onPress={() => onPick()} style={styles.cancelButton}>
               <View style={styles.hstack}>
-                <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
+                <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                 <Text>cancel</Text>
               </View>
             </TouchableOpacity>

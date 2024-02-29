@@ -1,8 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import Text from './Text';
+import Icon from './Icon';
 
 interface Props {
   backgroundColor?: string;
@@ -22,19 +22,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    color: colors.black,
-    fontSize: 20,
-  },
-  loader: {
-    marginLeft: 16,
-  },
-  loading: {
-    backgroundColor: colors.gray,
-  },
-  fullWidth: {
-    flex: 1,
-  },
+  text: { color: colors.black, fontSize: 20 },
+  loader: { marginLeft: 16 },
+  loading: { backgroundColor: colors.gray },
+  fullWidth: { flex: 1 },
   icon: { fontSize: 20, marginHorizontal: 16 },
 });
 
@@ -57,7 +48,7 @@ const Button: React.FC<Props> = ({
       !backgroundColor ? {} : { backgroundColor },
     ]}
     onPress={onPress}>
-    {!iconName ? null : <Icon style={styles.icon} color={!iconColor ? colors.black : iconColor} name={iconName} />}
+    <Icon style={styles.icon} color={!iconColor ? colors.white : iconColor} name={iconName} />
     <Text style={styles.text}>{text}</Text>
     {isLoading ? <ActivityIndicator style={styles.loader} size="small" color={colors.black} /> : null}
   </TouchableOpacity>

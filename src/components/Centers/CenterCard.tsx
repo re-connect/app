@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { useAcceptCenterInvitation, useLeaveCenter } from '../../hooks/CentersHooks';
 import { colors } from '../../style';
 import { UserCenterInterface } from '../../types/Centers';
 import Text from '../UI/Text';
+import Icon from '../UI/Icon';
 
 interface CenterCardProps {
   center: UserCenterInterface;

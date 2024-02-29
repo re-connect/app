@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dimensions, Modal, StyleSheet, ScrollView, Text, View } from 'react-native';
 import { colors } from '../../style';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from './Icon';
 
 const CustomModal: React.FC<{
   visible: boolean;
@@ -67,7 +67,7 @@ export const ModalHeaderTitle: React.FunctionComponent<TitleModalProps> = ({ tit
         ]}>
         <Text style={styles.mainTitle}>{title}</Text>
       </View>
-      <Icon name='times' size={38} color={colors.darkGrayTransparent} style={styles.closeButton} onPress={closeModal} />
+      <Icon name='xmark' color={colors.darkGrayTransparent} style={styles.closeButton} onPress={closeModal} />
     </>
   );
 };
@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
+    fontSize: 32,
     right: 0,
     top: 2,
     padding: 10,

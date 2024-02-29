@@ -2,7 +2,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { format } from 'date-fns';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import IconButton from '../../components/UI/IconButton';
 import List from '../../components/UI/List';
@@ -14,16 +13,11 @@ import { useFetchData } from '../../hooks/DataHooks';
 import { useSetTitleToBenefName } from '../../hooks/UserHooks';
 import { colors } from '../../style';
 import { AnyDataInterface } from '../../types/Data';
+import Icon from '../../components/UI/Icon';
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    flex: 1,
-  },
-  dateText: {
-    fontSize: 14,
-  },
+  container: { justifyContent: 'flex-start', alignItems: 'stretch', flex: 1 },
+  dateText: { fontSize: 14 },
   icon: { fontSize: 20, marginHorizontal: 16 },
 });
 
@@ -58,7 +52,7 @@ const getEventDetails =
     if (event.rappels && event.rappels.length === 0) {
       return null;
     }
-    return <Icon style={styles.icon} name='bell' solid color={colors.gray} />;
+    return <Icon style={styles.icon} name='bell' color={colors.gray} />;
   };
 
 const EventsScreen: React.FC<Props> = ({ navigation }) => {

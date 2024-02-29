@@ -3,27 +3,7 @@ import * as React from 'react';
 import { colors } from '../style';
 import { SettingsButton, TabBarButton } from './Components';
 import { getTabStackIcon } from '../services/navigation';
-import { isMember } from './Router';
-
-export const getBeneficiaryHeader =
-  (title: string) =>
-  ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
-    title,
-    headerStyle: { backgroundColor: colors.green },
-    headerTintColor: colors.white,
-    headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
-  });
-
-export const getMemberHeader =
-  (title: string) =>
-  ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
-    title,
-    headerStyle: {
-      backgroundColor: colors.blue,
-    },
-    headerTintColor: colors.white,
-    headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
-  });
+import { isMember } from '../helpers/userHelpers';
 
 export const getTabScreenOptions =
   (t: any) =>
@@ -38,4 +18,10 @@ export const getTabScreenOptions =
       },
     });
 
-export const getHeader = isMember ? getMemberHeader : getBeneficiaryHeader;
+export const getHeader = (title: string) =>
+({ navigation }: { navigation: NavigationProp<any, any> }) => ({
+  title,
+  headerStyle: { backgroundColor: isMember ? colors.blue : colors.green },
+  headerTintColor: colors.white,
+  headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
+});

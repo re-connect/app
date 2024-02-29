@@ -4,8 +4,8 @@ import { Text, TextInput, View } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import { useTranslation } from 'react-i18next';
 import { KeyboardType, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   icon: { marginHorizontal: 16 },
@@ -78,7 +78,7 @@ const TextField: React.FC<TextFieldProps> = ({
   const leftIconStyle = { ...styles.icon, color: colors.darkGray, ...iconSyle };
   let rightIconColor = !hasError ? colors.green : colors.red;
 
-  let rightIconName = !!okIcon && !hasError ? 'check' : 'times';
+  let rightIconName = !!okIcon && !hasError ? 'check' : 'xmark';
   if (contentType === 'password') {
     rightIconColor = colors.darkGray;
     rightIconName = 'eye';
@@ -104,7 +104,7 @@ const TextField: React.FC<TextFieldProps> = ({
           textContentType={contentType}
           value={!value ? '' : value}
         />
-        {showRightIcon && rightIconName ? (
+        {showRightIcon ? (
           <Icon name={rightIconName} style={rightIconStyle} onPress={showPasswordActions.toggle} />
         ) : null}
       </View>

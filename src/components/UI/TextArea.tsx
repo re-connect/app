@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, TextInput, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import { TextFieldProps } from './TextField';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   style: {
@@ -22,9 +22,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     color: colors.red,
   },
-  invalidStyle: {
-    borderColor: colors.red,
-  },
+  invalidStyle: { borderColor: colors.red },
 });
 
 const TextArea: React.FC<TextFieldProps> = ({
@@ -41,7 +39,7 @@ const TextArea: React.FC<TextFieldProps> = ({
   const { t } = useTranslation();
   error = !error ? '' : Array.isArray(error) ? error.join(', ') : error;
 
-  const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'times';
+  const rightIconName = !!value && !!okIcon && !!touched && !error ? 'check' : 'xmark';
   const rightIconColor = !!value && !!okIcon && !!touched && !error ? colors.green : colors.red;
 
   const inputStyle = [styles.style, error ? styles.invalidStyle : {}];

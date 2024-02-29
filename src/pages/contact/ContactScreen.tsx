@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ActivityIndicator, Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Screen from '../../components/Screen';
 import Text from '../../components/UI/Text';
 import TogglePrivacySwitch from '../../components/UI/TogglePrivacySwitch';
@@ -10,6 +9,7 @@ import { colors } from '../../style';
 import { ContactInterface } from '../../types/Contact';
 import Section from '../../components/UI/Section';
 import { ContactScreenProps } from '../../routing/routes/types/Contact';
+import Icon from '../../components/UI/Icon';
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontWeight: 'bold' },

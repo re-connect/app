@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet, TouchableHighlight, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import Text from '../UI/Text';
 import Thumbnail from './Thumbnail';
 import { useBoolean } from 'react-hanger/array';
 import { AnyDataInterface } from '../../types/Data';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   container: {
@@ -83,7 +83,7 @@ const Card: React.FC<Props> = ({
         <ActivityIndicator size='large' color={colors.black} />
       ) : (
         <>
-          {!iconName ? null : <Icon style={styles.icon} solid color={colors.darkGray} name={iconName} />}
+          <Icon style={styles.icon} color={colors.darkGray} name={iconName} />
           {!hasThumbnail ? null : <Thumbnail documentId={item.id} />}
           <View style={styles.content}>
             <Text>{title}</Text>

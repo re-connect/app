@@ -1,13 +1,13 @@
 import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import emailShape from '../../helpers/forms/emailShape';
 import { useSendDocumentByEmail } from '../../hooks/DocumentsHooks';
 import { colors } from '../../style';
 import { DocumentInterface } from '../../types/Documents';
 import Text from '../UI/Text';
 import TextField from '../UI/TextField';
+import Icon from '../UI/Icon';
 
 interface Props {
   document: DocumentInterface;
@@ -97,13 +97,13 @@ const SendByEmailForm: React.FC<Props> = ({ document, onSubmit, close }) => {
                 <View style={styles.wrapperButtons}>
                   <Pressable onPress={onSubmit}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
+                      <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                     </View>
                     <Text>cancel</Text>
                   </Pressable>
                   <Pressable onPress={() => handleSubmit()}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.blue} name='paper-plane' solid />
+                      <Icon style={styles.menuIcon} color={colors.blue} name='paper-plane' />
                     </View>
                     <Text>send</Text>
                   </Pressable>

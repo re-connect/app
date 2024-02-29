@@ -105,7 +105,7 @@ const CreateBeneficiaryForm: React.FC = () => {
               <TextField
                 contentType='name'
                 fieldLabel='first_name_required'
-                iconName='user'
+                iconName='user-large'
                 error={allErrors.first_name}
                 handleBlur={formikBag.handleBlur('first_name')}
                 handleChange={formikBag.handleChange('first_name')}
