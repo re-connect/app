@@ -11,7 +11,11 @@ const ActivationStack = createStackNavigator();
 
 export const ActivationScreen = () => (
   <ActivationStack.Navigator>
-    <ActivationStack.Screen name='EnableBeneficiary' component={EnableBeneficiaryScreen} options={{ headerShown: false }} />
+    <ActivationStack.Screen
+      name="EnableBeneficiary"
+      component={EnableBeneficiaryScreen}
+      options={{ headerShown: false }}
+    />
   </ActivationStack.Navigator>
 );
 

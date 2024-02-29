@@ -6,9 +6,9 @@ export const roleBeneficiary = 'ROLE_BENEFICIAIRE';
 export const rolePro = 'ROLE_MEMBRE';
 export let isMember = false;
 
-export const setIsMember = (newValue: boolean) =>{
+export const setIsMember = (newValue: boolean) => {
   isMember = newValue;
-}
+};
 
 export const getFullName = (user: UserInterface | null) => {
   if (!user) {
@@ -37,8 +37,8 @@ export const formatPhoneForApi = (phone: string) => {
   return phone;
 };
 
-export const isPro = (user: UserInterface|null) => !!user && user.type_user !== roleBeneficiary;
+export const isPro = (user: UserInterface | null) => !!user && user.type_user !== roleBeneficiary;
 
-export const isBeneficiary = (user: UserInterface|null) => !!user && user.type_user === roleBeneficiary;
+export const isBeneficiary = (user: UserInterface | null) => !!user && user.type_user === roleBeneficiary;
 
-export const getUserColor = (user: UserInterface|null) => isPro(user) ? colors.blue : colors.primary;
+export const getUserColor = (user: UserInterface | null) => (isPro(user) ? colors.blue : colors.primary);

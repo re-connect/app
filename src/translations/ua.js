@@ -183,4 +183,6 @@ export default {
   wrong_code: 'Невірний код',
   current_password: 'Поточний пароль',
   reset_password_title: 'Оновіть свій пароль',
+  reset_password_weak_subtitle: 'Ваш поточний пароль недостатньо міцний, будь ласка, оновіть його',
+  reset_password_expired_subtitle: 'Ваш пароль закінчився, будь ласка, оновіть його',
 };

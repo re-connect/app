@@ -58,7 +58,13 @@ const DocumentsBottomActions: React.FC<Props> = ({ folderId }) => {
         />
       )}
       <View style={styles.leftButton}>
-        <IconButton size={40} isLoading={isCreatingFolder} iconName='folder-open' onPress={triggerCreateFolder} addPlusIcon />
+        <IconButton
+          size={40}
+          isLoading={isCreatingFolder}
+          iconName="folder-open"
+          onPress={triggerCreateFolder}
+          addPlusIcon
+        />
       </View>
       <View style={styles.rightButton}>
         <IconButton

@@ -53,4 +53,4 @@ const MemberHome = () => {
   );
 };
 
-export const getHome = () => isMember ? MemberHome : BeneficiaryHome;
+export const getHome = () => (isMember ? MemberHome : BeneficiaryHome);

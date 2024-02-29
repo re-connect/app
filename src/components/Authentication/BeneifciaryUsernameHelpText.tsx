@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 type Props = {
   username: string;
-}
+};
 
 const BeneficiaryUsernameHelpText: React.FC<Props> = ({ username }) => {
   const [usernameValidity, setUsernameValidity] = React.useState<UsernameValidityInterface>({});

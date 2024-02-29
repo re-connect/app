@@ -195,4 +195,6 @@ export default {
   wrong_code: 'Code incorrect',
   current_password: 'Mot de passe actuel',
   reset_password_title: 'Changez votre mot de passe',
+  reset_password_weak_subtitle: 'Votre mot de passe actuel est trop faible, veuillez le mettre à jour',
+  reset_password_expired_subtitle: 'Votre mot de passe a expiré, veuillez le mettre à jour',
 };

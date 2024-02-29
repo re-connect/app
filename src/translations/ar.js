@@ -181,4 +181,6 @@ export default {
   wrong_code: 'رمز خاطئ',
   current_password: 'كلمة السر الحالية',
   reset_password_title: 'ترقية كلمة المرور الخاصة بك',
+  reset_password_weak_subtitle: 'كلمة المرور الحالية غير قوية بما يكفي، يرجى تحديثها',
+  reset_password_expired_subtitle: 'انتهت صلاحية كلمة المرور الخاصة بك، يرجى تحديثها',
 };

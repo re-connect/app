@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   container: { position: 'absolute', right: 16, bottom: 16, zIndex: 1 },
 });
 
-
 const BeneficiariesScreen: React.FC = () => {
   const { isFetchingBeneficiaries, triggerFetchBeneficiaries } = useFetchBeneficiaries();
   const navigation = useNavigation<any>();

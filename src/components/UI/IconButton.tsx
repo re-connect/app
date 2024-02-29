@@ -16,12 +16,21 @@ interface Props {
   size?: number;
 }
 const styles = StyleSheet.create({
-  container: { backgroundColor: colors.blue, alignItems: 'center', justifyContent: 'center', position: 'relative'},
+  container: { backgroundColor: colors.blue, alignItems: 'center', justifyContent: 'center', position: 'relative' },
   loading: { backgroundColor: colors.gray },
-  plusIcon: { position: 'absolute', right: -8, top: 4},
+  plusIcon: { position: 'absolute', right: -8, top: 4 },
 });
 
-const IconButton: React.FC<Props> = ({ onPress, isLoading, iconName, disabled, iconColor, backgroundColor, size, addPlusIcon }) => {
+const IconButton: React.FC<Props> = ({
+  onPress,
+  isLoading,
+  iconName,
+  disabled,
+  iconColor,
+  backgroundColor,
+  size,
+  addPlusIcon,
+}) => {
   const { user } = React.useContext(UserContext);
   const userColor = getUserColor(user);
 
@@ -49,7 +58,9 @@ const IconButton: React.FC<Props> = ({ onPress, isLoading, iconName, disabled, i
             color={!iconColor ? colors.white : iconColor}
             name={iconName}
           />
-          {!addPlusIcon ? null : <Icon name='plus' color={colors.white} style={[styles.plusIcon, {fontSize: iconSize * .7}]} />}
+          {!addPlusIcon ? null : (
+            <Icon name="plus" color={colors.white} style={[styles.plusIcon, { fontSize: iconSize * 0.7 }]} />
+          )}
         </>
       ) : (
         <ActivityIndicator size="small" color={colors.black} />

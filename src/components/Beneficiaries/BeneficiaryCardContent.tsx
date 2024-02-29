@@ -29,7 +29,9 @@ const BeneficiaryCardContent: React.FC<BeneficiaryCardContentProps> = ({ benefic
       <Icon style={styles.icon} name='user-large' />
     </View>
     <View>
-      <Text style={styles.fullName}>{beneficiary.prenom} {beneficiary.nom}</Text>
+      <Text style={styles.fullName}>
+        {beneficiary.prenom} {beneficiary.nom}
+      </Text>
       <Text style={styles.username}>{beneficiary.username}</Text>
     </View>
   </View>
