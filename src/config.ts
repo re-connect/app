@@ -1,13 +1,14 @@
-import Config from 'react-native-config';
+import React from 'react';
+import {CLIENT_ID, CLIENT_SECRET, CRISP_WEBSITE_ID, SENTRY_SECRET, GENIUS_SDK_LICENSE, APP_VERSION} from '@env';
 
 export const config = {
-  crispWebsiteId: Config.CRISP_WEBSITE_ID,
-  sentrySecret: Config.SENTRY_SECRET,
+  crispWebsiteId: CRISP_WEBSITE_ID,
+  sentrySecret: SENTRY_SECRET,
   connexionInformation: {
-    client_id: Config.CLIENT_ID,
-    client_secret: Config.CLIENT_SECRET,
-    grant_type: Config.GRANT_TYPE,
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_SECRET,
+    grant_type: 'password',
   },
-  geniusSdkLicense: Config.GENIUS_SDK_LICENSE,
-  version: Config.APP_VERSION,
+  geniusSdkLicense: GENIUS_SDK_LICENSE,
+  version: APP_VERSION,
 };
