@@ -182,4 +182,6 @@ export default {
   wrong_code: 'Cod greșit',
   current_password: 'Parola actuală',
   reset_password_title: 'Actualizați-vă parola',
+  reset_password_weak_subtitle: 'Parola dvs. curentă nu este destul de puternică, vă rugăm să o actualizați',
+  reset_password_expired_subtitle: 'Parola dvs. a expirat, vă rugăm să o actualizați',
 };

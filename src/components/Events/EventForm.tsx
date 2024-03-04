@@ -27,10 +27,15 @@ interface Props {
 const EventForm: React.FC<Props> = ({ event, onSubmit, isSubmitting }) => {
   const stringArrayReminder: string[] = [];
   // Format the reminder object array (comes from api) to string array (for formik)s
-  event.rappels.map((reminder: ReminderInterface | string) => stringArrayReminder.push(typeof reminder !== 'string' ? reminder.date : reminder));
+  event.rappels.map((reminder: ReminderInterface | string) =>
+    stringArrayReminder.push(typeof reminder !== 'string' ? reminder.date : reminder),
+  );
 
   return (
-    <Formik initialValues={{ ...event, rappels: stringArrayReminder }} validationSchema={eventShape} onSubmit={onSubmit}>
+    <Formik
+      initialValues={{ ...event, rappels: stringArrayReminder }}
+      validationSchema={eventShape}
+      onSubmit={onSubmit}>
       {(formikBag: FormikProps<CreateEventData>) => (
         <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
           <View style={styles.icons}>

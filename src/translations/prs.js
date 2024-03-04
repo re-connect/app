@@ -181,4 +181,6 @@ export default {
   wrong_code: 'کد اشتباه',
   current_password: 'رمز عبور فعلی',
   reset_password_title: 'رمز عبور خود را ارتقا دهید',
+  reset_password_weak_subtitle: 'رمزعبور فعلی شما کافی قوی نیست، لطفاً آن را به‌روزرسانی کنید',
+  reset_password_expired_subtitle: 'رمزعبور شما منقضی شده است، لطفاً آن را به‌روزرسانی کنید',
 };

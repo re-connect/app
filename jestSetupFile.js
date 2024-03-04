@@ -12,9 +12,8 @@ jest.mock('@react-navigation/native', () => ({
   createNavigationContainerRef: jest.fn().mockReturnValue({
     isReady: () => true,
     navigate: () => {},
-  })
+  }),
 }));
 
 global.FormData = FormData;
 global.fetch = jest.fn();
-

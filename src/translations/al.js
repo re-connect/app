@@ -187,4 +187,6 @@ export default {
   wrong_code: 'Kodi i gabuar',
   current_password: 'Fjalëkalimi aktual',
   reset_password_title: 'Ndryshoni fjalëkalimin tuaj',
+  reset_password_weak_subtitle: 'Fjalëkalimi juaj aktual nuk është mjaft i fortë, ju lutemi përditësoni',
+  reset_password_expired_subtitle: 'Fjalëkalimi juaj është skaduar, ju lutemi përditësoni',
 };

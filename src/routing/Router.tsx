@@ -12,7 +12,7 @@ import { isPro, setIsMember } from '../helpers/userHelpers';
 const Root = createStackNavigator();
 
 const Router = ({ user }: { user: UserInterface | null }) => {
-  setIsMember(isPro(user))
+  setIsMember(isPro(user));
 
   return (
     <NavigationContainer ref={navigationRef}>

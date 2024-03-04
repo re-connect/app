@@ -184,4 +184,6 @@ export default {
   wrong_code: 'غلط کوډ',
   current_password: 'اوسنی رمز',
   reset_password_title: 'خپل پټنوم لوړ کړئ',
+  reset_password_weak_subtitle: 'ستاسو د موجودي پټ نوم پورته نه کولای شوی دی، خواهشمند شمه د اوسني تازه کړه',
+  reset_password_expired_subtitle: 'ستاسو پټ نوم سره اخیستل شوی دی، خواهشمند شمه د تازه کولو ته',
 };

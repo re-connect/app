@@ -22,6 +22,7 @@ interface PartialAuthBody {
   login: 'success' | 'failure';
   two_factor_complete?: boolean;
   weak_password?: boolean;
+  expired_password?: boolean;
 }
 
 const setTokenInStorage = async (token: string) => await AsyncStorage.setItem('accessToken', token);
@@ -49,8 +50,8 @@ const handleMfa = async (params: LoginParams, success: boolean, resolve: () => P
   );
 };
 
-const handleWeakPassword = async (params: LoginParams): Promise<void> => {
-  RootNavigation.navigate('PublicResetPassword', { username: params.username });
+const handleResetPassword = async (params: LoginParams, subtitle: string): Promise<void> => {
+  RootNavigation.navigate('PublicResetPassword', { username: params.username, subtitle });
 };
 
 const handlePartialAuth = async (params: LoginParams, response: PartialAuthBody): Promise<void> =>
@@ -58,7 +59,10 @@ const handlePartialAuth = async (params: LoginParams, response: PartialAuthBody)
     if (response.two_factor_complete === false) {
       handleMfa(params, response.login === 'success', resolve);
     } else if (response.weak_password === true) {
-      handleWeakPassword(params);
+      handleResetPassword(params, 'reset_password_weak_subtitle');
+      resolve();
+    } else if (response.expired_password === true) {
+      handleResetPassword(params, 'reset_password_expired_subtitle');
       resolve();
     } else {
       resolve();

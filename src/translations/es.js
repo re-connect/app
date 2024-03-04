@@ -185,4 +185,6 @@ export default {
   wrong_code: 'Código equivocado',
   current_password: 'Contraseña actual',
   reset_password_title: 'Actualiza tu contraseña',
+  reset_password_weak_subtitle: 'Su contraseña actual no es lo suficientemente fuerte, por favor actualícela',
+  reset_password_expired_subtitle: 'Su contraseña ha caducado, por favor actualícela',
 };

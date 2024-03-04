@@ -18,10 +18,11 @@ export const getTabScreenOptions =
       },
     });
 
-export const getHeader = (title: string) =>
-({ navigation }: { navigation: NavigationProp<any, any> }) => ({
-  title,
-  headerStyle: { backgroundColor: isMember ? colors.blue : colors.green },
-  headerTintColor: colors.white,
-  headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
-});
+export const getHeader =
+  (title: string) =>
+    ({ navigation }: { navigation: NavigationProp<any, any> }) => ({
+      title,
+      headerStyle: { backgroundColor: isMember ? colors.blue : colors.green },
+      headerTintColor: colors.white,
+      headerRight: title === 'Support' ? undefined : () => <SettingsButton navigation={navigation} />,
+    });

@@ -182,4 +182,6 @@ export default {
   wrong_code: 'Wrong code',
   current_password: 'Current password',
   reset_password_title: 'Upgrade your password',
+  reset_password_weak_subtitle: 'Your current password is not strong enough, please update it',
+  reset_password_expired_subtitle: 'Your password is expired, please update it',
 };
