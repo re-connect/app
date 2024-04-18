@@ -53,6 +53,7 @@
 		B8F9C4C6282D03E200EE6797 /* ukrainian.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B8F9C4C5282D03E200EE6797 /* ukrainian.mp3 */; };
 		C0558F11FBE7DB925AE39CBC /* libPods-Reconnect.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90110D103058A62F58E93024 /* libPods-Reconnect.a */; };
 		F00D1EB57BE6D5B0AE390541 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6E222D9B97CDD1A8A5F589 /* ExpoModulesProvider.swift */; };
+		F26F68A3CB7E4A34BA1CB65D /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5557B4F2954CF4B06C815C /* noop-file.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +379,7 @@
 		1C6E222D9B97CDD1A8A5F589 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Reconnect/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		6C5557B4F2954CF4B06C815C /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "Reconnect/noop-file.swift"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		90110D103058A62F58E93024 /* libPods-Reconnect.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reconnect.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -417,6 +419,7 @@
 		B8F9C4BE282D023D00EE6797 /* spanish.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = spanish.mp3; path = ../android/app/src/main/res/raw/spanish.mp3; sourceTree = "<group>"; };
 		B8F9C4C5282D03E200EE6797 /* ukrainian.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ukrainian.mp3; path = ../android/app/src/main/res/raw/ukrainian.mp3; sourceTree = "<group>"; };
 		C9AB60233E013774DA2E6B2F /* Pods-Reconnect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect.release.xcconfig"; path = "Target Support Files/Pods-Reconnect/Pods-Reconnect.release.xcconfig"; sourceTree = "<group>"; };
+		CC352C3065CB4306AD0D4276 /* SplashScreen.storyboard */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SplashScreen.storyboard; path = Reconnect/SplashScreen.storyboard; sourceTree = "<group>"; };
 		E63A55D44518A5EE759AACDA /* libPods-Reconnect-ReconnectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Reconnect-ReconnectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC597825D83583AC2612A85A /* Pods-Reconnect-ReconnectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect-ReconnectTests.debug.xcconfig"; path = "Target Support Files/Pods-Reconnect-ReconnectTests/Pods-Reconnect-ReconnectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -518,6 +521,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				B8C73779274265B9001B40D9 /* LaunchScreen.storyboard */,
+				6C5557B4F2954CF4B06C815C /* noop-file.swift */,
+				CC352C3065CB4306AD0D4276 /* SplashScreen.storyboard */,
 			);
 			name = Reconnect;
 			sourceTree = "<group>";
@@ -1580,6 +1585,7 @@
 				B6395FAD2B62BFA50043517C /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				F00D1EB57BE6D5B0AE390541 /* ExpoModulesProvider.swift in Sources */,
+				F26F68A3CB7E4A34BA1CB65D /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1629,6 +1635,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reconnect.app/Reconnect";
 			};
 			name = Debug;
@@ -1658,6 +1665,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reconnect.app/Reconnect";
 			};
 			name = Release;
@@ -1673,7 +1681,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 100000141;
+				CURRENT_PROJECT_VERSION = 100000171;
 				DEVELOPMENT_TEAM = 8BKBA8SNQV;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1693,19 +1701,20 @@
 					/usr/lib/swift,
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.0.141;
+				MARKETING_VERSION = 1.0.171;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.preprod;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.debug;
 				PRODUCT_NAME = Reconnect;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1721,7 +1730,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 100000141;
+				CURRENT_PROJECT_VERSION = 100000171;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 8BKBA8SNQV;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1741,19 +1750,20 @@
 					/usr/lib/swift,
 					"$(inherited)",
 				);
-				MARKETING_VERSION = 1.0.141;
+				MARKETING_VERSION = 1.0.171;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.prod;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reconnect.CloudSolidaire.debug;
 				PRODUCT_NAME = Reconnect;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore com.reconnect.CloudSolidaire.prod";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AdHoc com.reconnect.CloudSolidaire.debug";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -1817,6 +1827,7 @@
 				PRODUCT_NAME = Reconnect;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				USE_HERMES = true;
 			};
 			name = Debug;
@@ -1872,6 +1883,7 @@
 				PRODUCT_NAME = Reconnect;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1921,6 +1933,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1967,6 +1980,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Reconnect-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

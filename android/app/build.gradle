@@ -35,14 +35,14 @@ def reactNativeArchitectures() {
 }
 
 android {
-    namespace "com.reconnect.CloudSolidaire"
+    namespace 'com.reconnect.CloudSolidaire'
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
     flavorDimensions "version"
 
     defaultConfig {
-        applicationId "com.reconnect.CloudSolidaire"
+        applicationId 'com.reconnect.CloudSolidaire'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         multiDexEnabled true // ADD THIS LINE
