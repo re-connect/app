@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios, { AxiosResponse } from 'axios';
-import { apiEndpoint, apiv2Endpoint, apiv3Endpoint } from '../appConstants';
+import axios from 'axios';
+import { apiv2Endpoint, apiv3Endpoint } from '../appConstants';
 import { UserInterface } from '../types/Users';
 import { handle401, handleError } from './errors';
 import { checkNetworkConnection } from './networking';
@@ -59,7 +59,7 @@ export const makeRequestv2 = async (endpoint: string, method: HTTPVerb, data?: R
   try {
     const url = await makeAuthenticatedUrlv2(endpoint);
     if (url) {
-      const response = await axios({ method, url, data, timeout: 7000 });
+      const response = await axios({ method, url, data, timeout: 17000 });
 
       return response.data;
     }
@@ -87,23 +87,4 @@ export const makeRequestv3 = async (endpoint: string, method: HTTPVerb, data?: R
 
     return;
   }
-};
-
-export const makePostFormRequest = async (
-  endpoint: string,
-  data: Record<string, any>,
-): Promise<AxiosResponse | undefined> => {
-  const isConnected = await checkNetworkConnection();
-  if (!isConnected) {
-    return;
-  }
-
-  const token = await AsyncStorage.getItem('accessToken');
-
-  if (token) {
-    const url = `${apiEndpoint}${endpoint}?access_token=${token}`;
-
-    return axios.post(url, { data });
-  }
-  return;
 };

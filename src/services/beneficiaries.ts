@@ -1,21 +1,8 @@
-import { serializeBeneficiary } from '../middlewares/dataTransformer';
 import {
   BeneficiaryInterface,
   CreateBeneficiaryDataInterface,
   CreateBeneficiaryErrorsInterface,
 } from '../types/Beneficiaries';
-import { makePostFormRequest } from './requests';
-
-export const createBeneficiary = async (data: CreateBeneficiaryDataInterface) => {
-  try {
-    const beneficiary = serializeBeneficiary(data);
-    const response = await makePostFormRequest('/beneficiaries', beneficiary);
-
-    return response ? response.data : null;
-  } catch (error: any) {
-    throw new Error(JSON.stringify(error.response.body));
-  }
-};
 
 export const searchBeneficiaries = (beneficiaries: BeneficiaryInterface[], search: string) =>
   beneficiaries.filter(item => JSON.stringify(item).toLowerCase().match(search.toLowerCase()));

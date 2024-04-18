@@ -10,6 +10,7 @@ import ThemeContext from '../../context/ThemeContext';
 import { colors } from '../../style';
 import ChatButton from '../../components/UI/ChatButton';
 import { backendUrl } from '../../appConstants';
+import DeviceInfo from "react-native-device-info";
 
 interface LoginScreenProps {
   navigation: NavigationProp<any, any>;
@@ -49,6 +50,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
           <>
             <Text>{environments && environments.ENV}</Text>
             <Text>{backendUrl}</Text>
+            <Text>{DeviceInfo.getBundleId()}</Text>
           </>
         )}
       </View>

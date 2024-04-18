@@ -7,7 +7,6 @@ import prompt from 'react-native-prompt-android';
 import t from './translation';
 import { Alert } from 'react-native';
 import * as RootNavigation from '../RootNavigation';
-import { is } from 'date-fns/locale';
 
 interface LoginParams {
   username: string;

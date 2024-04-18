@@ -1,7 +1,6 @@
 import storage from '@react-native-async-storage/async-storage';
 import nock from 'nock';
-import { basicBeneficiaryCreateDataForm } from '../../fixtures/beneficiaryFixtures';
-import { makeAuthenticatedUrlv2, makePostFormRequest, makeRequestv2 } from '../requests';
+import { makeAuthenticatedUrlv2, makeRequestv2 } from '../requests';
 
 const accessToken = 'ThisIsMyTestAccessToken';
 
@@ -56,22 +55,6 @@ describe('request service', () => {
       const endpoint = '/documents';
       const url = await makeAuthenticatedUrlv2(endpoint);
       expect(url).toBe(expectedUrl);
-    });
-  });
-
-  describe('makePostFormRequest', () => {
-    it('should call the endpoint with POST verb and token stored in AsyncStorage', async () => {
-      const scope = nock('https://preprod.reconnect.fr/api')
-        .post(`/beneficiary?access_token=${accessToken}`)
-        .reply(200, 'OK');
-
-      const endpoint = '/beneficiary';
-
-      const response: any = await makePostFormRequest(endpoint, basicBeneficiaryCreateDataForm);
-      expect(scope.isDone()).toBeTruthy();
-      expect(response.request.method).toBe('POST');
-      expect(JSON.parse(response.config.data).data).toEqual(basicBeneficiaryCreateDataForm);
-      expect(response.data).toBe('OK');
     });
   });
 });
