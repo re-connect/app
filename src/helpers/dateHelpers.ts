@@ -34,6 +34,8 @@ export const stringToDate = (string: string) => {
 
 export const dateToString = (date: Date) => format(date, 'dd/MM/yyyy');
 
+export const dateToOldApiFormat = (date: Date) => format(date, 'yyyy-MM-dd');
+
 export const dateToIso = (date?: Date): string => formatISO(date ?? new Date());
 
 export const isoToDate = (iso?: string): Date => (iso ? parseISO(iso) : new Date());

@@ -1,4 +1,10 @@
 {
   "name": "Reconnect",
-  "displayName": "Reconnect"
+  "displayName": "Reconnect",
+  "android": {
+    "package": "com.reconnect.CloudSolidaire"
+  },
+  "ios": {
+    "bundleIdentifier": "com.reconnect.CloudSolidaire"
+  }
 }

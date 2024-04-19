@@ -7,7 +7,6 @@ import prompt from 'react-native-prompt-android';
 import t from './translation';
 import { Alert } from 'react-native';
 import * as RootNavigation from '../RootNavigation';
-import { is } from 'date-fns/locale';
 
 interface LoginParams {
   username: string;
@@ -56,7 +55,7 @@ const handleResetPassword = async (params: LoginParams, subtitle: string): Promi
 
 const handlePartialAuth = async (params: LoginParams, response: PartialAuthBody): Promise<void> =>
   new Promise((resolve: any) => {
-    if (response.two_factor_complete === false) {
+   if (response.two_factor_complete === false) {
       handleMfa(params, response.login === 'success', resolve);
     } else if (response.weak_password === true) {
       handleResetPassword(params, 'reset_password_weak_subtitle');

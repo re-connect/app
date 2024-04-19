@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { useBoolean } from 'react-hanger/array';
 import UserContext from '../../context/UserContext';
 import userShape from '../../helpers/forms/userShape';
-import { formatPhoneForApi, getUserColor, isPro } from '../../helpers/userHelpers';
+import { formatUserItemsForApi, getUserColor, isPro } from '../../helpers/userHelpers';
 import { useUpdateUser } from '../../hooks/UserHooks';
 import { colors } from '../../style';
 import { UserField } from '../../types/Users';
@@ -52,10 +52,7 @@ const ProfileItem: React.FC<Props> = ({ item }) => {
   }
 
   const onSave = (values: Record<UserField, string>) => {
-    if (values.telephone) {
-      values.telephone = formatPhoneForApi(values.telephone);
-    }
-    update(values);
+    update(formatUserItemsForApi(values));
     showFormActions.setFalse();
   };
 

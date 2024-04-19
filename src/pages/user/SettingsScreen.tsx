@@ -8,6 +8,7 @@ import { getTruncatedFullName } from '../../helpers/userHelpers';
 import { useLogout } from '../../hooks/UserHooks';
 import { colors } from '../../style';
 import Icon from '../../components/UI/Icon';
+import { geniusSdkLicense } from '../../appConstants';
 
 const styles = StyleSheet.create({
   item: {
@@ -66,6 +67,7 @@ const SettingsScreen: React.FC = () => {
         )}
         keyExtractor={item => item.label}
       />
+      <Text>{geniusSdkLicense.slice(-5)}</Text>
     </View>
   );
 };

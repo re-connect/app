@@ -1,6 +1,7 @@
 import { colors } from '../style';
-import { UserInterface } from '../types/Users';
+import { UserField, UserInterface } from '../types/Users';
 import { getTruncatedText } from './dataHelper';
+import { dateToOldApiFormat, stringToDate } from './dateHelpers';
 
 export const roleBeneficiary = 'ROLE_BENEFICIAIRE';
 export const rolePro = 'ROLE_MEMBRE';
@@ -28,13 +29,30 @@ export const getTruncatedFullName = (user: UserInterface | null) => {
   return getTruncatedText(fullName);
 };
 
-export const formatPhoneForApi = (phone: string) => {
+const formatBirthDateForApi = (birthDate: string):string => {
+  return dateToOldApiFormat(stringToDate(birthDate));
+};
+
+const formatPhoneForApi = (phone: string):string => {
   if (phone.length === 9) {
     return `+33${phone}`;
   } else if (phone.length === 10 && phone[0] === '0') {
     return `+33${phone.slice(1)}`;
   }
   return phone;
+};
+
+export const formatUserItemsForApi = (values: Record<UserField, string>): Record<UserField, string> => {
+  const formattedValues = {...values};
+
+  if (values.telephone) {
+    formattedValues.telephone = formatPhoneForApi(values.telephone);
+  }
+  if (values.date_naissance) {
+    formattedValues.date_naissance = formatBirthDateForApi(values.date_naissance);
+  }
+
+  return formattedValues;
 };
 
 export const isPro = (user: UserInterface | null) => !!user && user.type_user !== roleBeneficiary;

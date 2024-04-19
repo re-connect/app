@@ -42,24 +42,6 @@ export const basicBeneficiaryCreateData = {
   centers: [1, 2, 3],
 };
 
-export const basicBeneficiaryCreateDataForm = {
-  're_form_beneficiaire[user][prenom]': 'mathias',
-  're_form_beneficiaire[user][nom]': 'duchossoy',
-  're_form_beneficiaire[user][telephone]': '0111111111',
-  're_form_beneficiaire[user][email]': 'mathias.duchossoy2@reconnect.fr',
-  're_form_beneficiaire[user][plainPassword][first]': 'password',
-  're_form_beneficiaire[user][plainPassword][second]': 'password',
-  're_form_beneficiaire[questionSecrete]': 'Quel est le prenom de la mère du bénéficiaire ?',
-  're_form_beneficiaire[autreQuestionSecrete]': '',
-  're_form_beneficiaire[reponseSecrete]': 'jeanne',
-  're_form_beneficiaire[dateNaissance][day]': 6,
-  're_form_beneficiaire[dateNaissance][month]': 10,
-  're_form_beneficiaire[dateNaissance][year]': 1995,
-  're_form_beneficiaire[centres][0]': 1,
-  're_form_beneficiaire[centres][1]': 2,
-  're_form_beneficiaire[centres][2]': 3,
-};
-
 export const basicSecretQuestions = {
   Autre: 'Autre',
   'Quel est la couleur preferee du beneficiaire ?': 'Quel est la couleur préferée du bénéficiaire ?',

@@ -15,6 +15,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
   },
+  "typeRoots": ["./types"],
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js", "**/*.test.*"]
 }
