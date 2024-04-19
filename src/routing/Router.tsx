@@ -19,9 +19,13 @@ const Router = ({ user }: { user: UserInterface | null }) => {
       <Root.Navigator initialRouteName='AuthLoadingRoot' screenOptions={{ headerShown: false }}>
         <Root.Screen name='AuthLoadingRoot' component={AuthLoading} />
         <Root.Screen name='Auth' component={Auth} />
-        <Root.Screen name='Home' component={getHome()} />
-        <Root.Screen name='Activation' component={Activation} />
-        <Root.Screen name='Settings' component={Settings} />
+        { user === null ? null :
+          <>
+            <Root.Screen name='Home' component={getHome()} />
+            <Root.Screen name='Activation' component={Activation} />
+            <Root.Screen name='Settings' component={Settings} />
+          </>
+        }
       </Root.Navigator>
     </NavigationContainer>
   );
