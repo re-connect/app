@@ -1,11 +1,14 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useShowDocument } from '../../hooks/DocumentsHooks';
 import { DocumentInterface } from '../../types/Documents';
 import PdfComponent from '../UI/Pdf';
+import { useNavigation } from '@react-navigation/native';
 
 const DocumentPreview: React.FC<{ document: DocumentInterface }> = ({ document }) => {
-  const { previewUrl } = useShowDocument(document.id);
+  const { previewUrl, documentUrl } = useShowDocument(document.id);
+  const { navigate } = useNavigation<any>();
+
   const isPreviewUrlEmpty = previewUrl === '';
 
   if (isPreviewUrlEmpty) {
@@ -13,7 +16,9 @@ const DocumentPreview: React.FC<{ document: DocumentInterface }> = ({ document }
   }
 
   return document.extension !== 'pdf' ? (
-    <Image style={styles.imageWrapper} source={{ uri: previewUrl }} />
+    <TouchableOpacity onPress={() => navigate('Image', {uri: documentUrl})}>
+      <Image style={styles.imageWrapper} source={{ uri: previewUrl }} />
+    </TouchableOpacity>
   ) : (
     <View style={styles.pdfWrapper}>{document.url && <PdfComponent uri={document.url} />}</View>
   );
@@ -21,9 +26,7 @@ const DocumentPreview: React.FC<{ document: DocumentInterface }> = ({ document }
 
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
-  pdfWrapper: {
-    flex: 1,
-  },
+  pdfWrapper: { flex: 1 },
   imageWrapper: { height: height - 200, resizeMode: 'contain' },
 });
 
