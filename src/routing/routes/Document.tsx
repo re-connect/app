@@ -6,6 +6,7 @@ import DocumentsScreen from '../../pages/document/DocumentsScreen';
 import FolderScreen from '../../pages/document/FolderScreen';
 import { getHeader } from '../helpers';
 import { DocumentStackParamList } from './types/Document';
+import FullScreenImageScreen from '../../pages/document/FullScreenImageScreen';
 
 const DocumentsStack = createStackNavigator<DocumentStackParamList>();
 
