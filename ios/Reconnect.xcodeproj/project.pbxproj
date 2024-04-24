@@ -378,6 +378,7 @@
 		1AA3543711DD7A203A2CA776 /* Pods-Reconnect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect.debug.xcconfig"; path = "Target Support Files/Pods-Reconnect/Pods-Reconnect.debug.xcconfig"; sourceTree = "<group>"; };
 		1C6E222D9B97CDD1A8A5F589 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Reconnect/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		530EE49D2BD93D7F00B95222 /* tigrinya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tigrinya.mp3; path = ../android/app/src/main/res/raw/tigrinya.mp3; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6C5557B4F2954CF4B06C815C /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "Reconnect/noop-file.swift"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -387,9 +388,9 @@
 		90921B7325D9E04F00F6E306 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Reconnect/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B025BD75B0ECF563DDD25B0E /* Pods-Reconnect-ReconnectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reconnect-ReconnectTests.release.xcconfig"; path = "Target Support Files/Pods-Reconnect-ReconnectTests/Pods-Reconnect-ReconnectTests.release.xcconfig"; sourceTree = "<group>"; };
-		B62BF1E02AD693F7006DF740 /* pakistan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pakistan.mp3; sourceTree = "<group>"; };
-		B62BF1E42AD694BA006DF740 /* somalia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = somalia.mp3; sourceTree = "<group>"; };
-		B62BF1E82AD695F4006DF740 /* srilanka.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = srilanka.mp3; sourceTree = "<group>"; };
+		B62BF1E02AD693F7006DF740 /* pakistan.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = pakistan.mp3; path = ../android/app/src/main/res/raw/pakistan.mp3; sourceTree = "<group>"; };
+		B62BF1E42AD694BA006DF740 /* somalia.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = somalia.mp3; path = ../android/app/src/main/res/raw/somalia.mp3; sourceTree = "<group>"; };
+		B62BF1E82AD695F4006DF740 /* srilanka.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = srilanka.mp3; path = ../android/app/src/main/res/raw/srilanka.mp3; sourceTree = "<group>"; };
 		B6395FAC2B62BFA50043517C /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Reconnect/AppDelegate.mm; sourceTree = "<group>"; };
 		B66DFD552B6AB45900B13305 /* Reconnect preprod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reconnect preprod.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B66DFD562B6AB45900B13305 /* Reconnect copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Reconnect copy2-Info.plist"; path = "/Reconnect copy2-Info.plist"; sourceTree = "<absolute>"; };
@@ -671,6 +672,7 @@
 				B8E4CB0027148F5100E67913 /* romanian.mp3 */,
 				B62BF1E42AD694BA006DF740 /* somalia.mp3 */,
 				B8E4CB0127148F5100E67913 /* russian.mp3 */,
+				530EE49D2BD93D7F00B95222 /* tigrinya.mp3 */,
 				90921B7325D9E04F00F6E306 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* Reconnect */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
