@@ -1,18 +1,18 @@
 import { Formik, FormikProps } from 'formik';
-import { HStack, Pressable, View, VStack } from 'native-base';
 import * as React from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
 import emailShape from '../../helpers/forms/emailShape';
 import { useSendDocumentByEmail } from '../../hooks/DocumentsHooks';
 import { colors } from '../../style';
 import { DocumentInterface } from '../../types/Documents';
 import Text from '../UI/Text';
 import TextField from '../UI/TextField';
+import Icon from '../UI/Icon';
 
 interface Props {
   document: DocumentInterface;
   onSubmit: () => void;
+  close: () => void;
 }
 
 const styles = StyleSheet.create({
@@ -40,26 +40,37 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  wrapper: {
+    backgroundColor: colors.white,
+    alignSelf: 'stretch',
+    padding: 18,
+    borderRadius: 10,
+  },
+  wrapperButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
 });
 
-const SendByEmailForm: React.FC<Props> = ({document, onSubmit}) => {
-  const { isSending, triggerSendDocumentByEmail } = useSendDocumentByEmail(document);
+const SendByEmailForm: React.FC<Props> = ({ document, onSubmit, close }) => {
+  const { isSending, triggerSendDocumentByEmail, isSent } = useSendDocumentByEmail(document);
+  isSent && close();
 
   return (
     <View style={styles.container}>
-      { isSending ? (
+      {isSending ? (
         <View style={styles.content}>
-          <ActivityIndicator size="large" color={colors.primary} />
+          <ActivityIndicator size='large' color={colors.primary} />
         </View>
       ) : (
         <Formik
-          onSubmit={async (values) => {
+          onSubmit={async values => {
             await triggerSendDocumentByEmail(values.email);
             onSubmit();
           }}
           initialValues={{ email: '' }}
-          validationSchema={emailShape}
-        >
+          validationSchema={emailShape}>
           {({
             handleBlur,
             handleChange,
@@ -69,43 +80,41 @@ const SendByEmailForm: React.FC<Props> = ({document, onSubmit}) => {
             touched,
           }: FormikProps<Record<'email', string>>) => {
             return (
-              <VStack alignSelf='stretch' justifyContent="center" rounded="2xl" bg={colors.white} shadow={3} m="2" p="4">
-                <HStack>
-                  <TextField
-                    autocompleteType="email"
-                    contentType="emailAddress"
-                    error={errors.email}
-                    fieldLabel="email"
-                    handleBlur={handleBlur('email')}
-                    handleChange={handleChange('email')}
-                    iconName="at"
-                    keyboardType="email-address"
-                    okIcon
-                    touched={touched.email}
-                    value={values.email}
-                  />
-                </HStack>
-                <HStack justifyContent="space-between" px="2" mt="5">
+              <View style={styles.wrapper}>
+                <TextField
+                  autocompleteType='email'
+                  contentType='emailAddress'
+                  error={errors.email}
+                  fieldLabel='email'
+                  handleBlur={handleBlur('email')}
+                  handleChange={handleChange('email')}
+                  iconName='at'
+                  keyboardType='email-address'
+                  okIcon
+                  touched={touched.email}
+                  value={values.email}
+                />
+                <View style={styles.wrapperButtons}>
                   <Pressable onPress={onSubmit}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.darkGray} name="times" />
+                      <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                     </View>
                     <Text>cancel</Text>
                   </Pressable>
                   <Pressable onPress={() => handleSubmit()}>
                     <View style={styles.menuIconContainer}>
-                      <Icon style={styles.menuIcon} color={colors.blue} name="paper-plane" solid/>
+                      <Icon style={styles.menuIcon} color={colors.blue} name='paper-plane' />
                     </View>
                     <Text>send</Text>
                   </Pressable>
-                </HStack>
-              </VStack>
+                </View>
+              </View>
             );
           }}
         </Formik>
       )}
     </View>
   );
-}
+};
 
 export default SendByEmailForm;

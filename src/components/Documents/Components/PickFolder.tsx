@@ -1,13 +1,13 @@
-import { Center, Divider, HStack, Pressable, VStack } from 'native-base'
-import * as React from 'react'
-import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import FolderContext from '../../../context/FolderContext'
-import { useMoveDocumentInFolder } from '../../../hooks/DocumentsHooks'
-import { colors } from '../../../style'
-import { DocumentInterface } from '../../../types/Documents'
-import H3 from '../../UI/H3'
-import Text from '../../UI/Text'
+import * as React from 'react';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
+import FolderContext from '../../../context/FolderContext';
+import { useMoveDocumentInFolder } from '../../../hooks/DocumentsHooks';
+import { colors } from '../../../style';
+import { DocumentInterface } from '../../../types/Documents';
+import H3 from '../../UI/H3';
+import Text from '../../UI/Text';
+import Divider from '../../UI/Divider';
+import Icon from '../../UI/Icon';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,57 +19,69 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
   },
   menuIcon: { fontSize: 20, marginRight: 16 },
-  text: { fontSize: 18 },
-})
+  text: { fontSize: 18, textAlign: 'center', color: colors.darkGrayTransparent },
+  title: {
+    marginVertical: 8,
+  },
+  wrapper: {
+    backgroundColor: colors.white,
+    borderRadius: 15,
+    padding: 16,
+    alignSelf: 'stretch',
+  },
+  hstack: {
+    flexDirection: 'row',
+    marginVertical: 8,
+  },
+  cancelButton: {
+    marginTop: 16,
+  },
+});
 
 interface Props {
-  document: DocumentInterface
-  close: () => void
-  onPick: () => void
+  document: DocumentInterface;
+  close: () => void;
+  onPick: () => void;
 }
 
 const PickFolder: React.FC<Props> = ({ document, close, onPick }) => {
-  const { list: folders } = React.useContext(FolderContext)
-  const { isMovingIn, triggerMoveDocumentIntoFolder } = useMoveDocumentInFolder()
+  const { list: folders } = React.useContext(FolderContext);
+  const { isMovingIn, triggerMoveDocumentIntoFolder, hasMoved } = useMoveDocumentInFolder();
+  hasMoved && close();
 
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1} onPress={close}>
-      <VStack alignSelf='stretch' justifyContent='center' rounded='2xl' bg={colors.white} shadow={3} p='4'>
+      <View style={styles.wrapper}>
         {isMovingIn ? (
           <ActivityIndicator size='large' color={colors.primary} />
         ) : (
           <>
             <H3>move_to_folder</H3>
-            <Center py='2'>
-              <Text style={styles.text}>{document.nom}</Text>
-            </Center>
-            <Divider my='5' />
+            <Text style={[styles.text, styles.title]}>{document.nom}</Text>
+            <Divider />
             {folders.map((folder: DocumentInterface) => (
-              <Pressable
+              <TouchableOpacity
                 key={folder.id}
                 onPress={() => {
-                  triggerMoveDocumentIntoFolder(document, folder)
-                }}
-              >
-                <HStack py='2'>
-                  <Icon style={styles.menuIcon} color={colors.blue} name='folder' solid />
+                  triggerMoveDocumentIntoFolder(document, folder);
+                }}>
+                <View style={styles.hstack}>
+                  <Icon style={styles.menuIcon} color={colors.blue} name='folder' />
                   <Text style={styles.text}>{folder.nom}</Text>
-                </HStack>
-              </Pressable>
+                </View>
+              </TouchableOpacity>
             ))}
-            <HStack mt='4'>
-              <Pressable onPress={() => onPick()}>
-                <HStack py='2'>
-                  <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
-                  <Text>cancel</Text>
-                </HStack>
-              </Pressable>
-            </HStack>
+            <TouchableOpacity onPress={() => onPick()} style={styles.cancelButton}>
+              <View style={styles.hstack}>
+                <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
+                <Text>cancel</Text>
+              </View>
+            </TouchableOpacity>
           </>
         )}
-      </VStack>
+      </View>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
-export default PickFolder
+export default PickFolder;

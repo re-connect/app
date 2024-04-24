@@ -1,10 +1,10 @@
 import { useKeyboard } from '@react-native-community/hooks';
 import { Formik, FormikProps } from 'formik';
-import { View } from 'native-base';
 import * as React from 'react';
-import { Image, Linking, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { backendUrl } from '../../appConstants';
+import LoginTemporisationContext from '../../context/LoginTemporisationContext';
 import ThemeContext from '../../context/ThemeContext';
 import UserContext from '../../context/UserContext';
 import { useGetLastUsername, useLogin } from '../../hooks/UserHooks';
@@ -17,6 +17,7 @@ import Separator from '../UI/Separator';
 import Text from '../UI/Text';
 import TextField from '../UI/TextField';
 import BeneficiaryUsernameHelpText from './BeneifciaryUsernameHelpText';
+import LoginTemporisation from './LoginTemporisation';
 import ProUsernameHelpText from './ProUsernameHelpText';
 
 const styles = StyleSheet.create({
@@ -64,7 +65,12 @@ const LoginForm: React.FC = () => {
   const { isLoginIn, triggerLogin } = useLogin();
   const theme = React.useContext(ThemeContext);
   const { lastUsername, setLastUsername } = React.useContext(UserContext);
+  const { isTemporarlyBlocked } = React.useContext(LoginTemporisationContext);
   const keyboard = useKeyboard();
+
+  if (isTemporarlyBlocked()) {
+    return <LoginTemporisation />;
+  }
 
   return (
     <Formik
@@ -75,8 +81,7 @@ const LoginForm: React.FC = () => {
         setLastUsername(values.username);
         resetForm({});
         triggerLogin(values);
-      }}
-    >
+      }}>
       {(props: FormikProps<LoginFormValues>) => (
         <KeyboardAwareScrollView keyboardShouldPersistTaps='handled' contentContainerStyle={styles.container}>
           {keyboard.keyboardShown ? null : <Image source={Logo} style={styles.logo} />}
@@ -95,7 +100,7 @@ const LoginForm: React.FC = () => {
             <TextField
               contentType='username'
               fieldLabel='username'
-              iconName='user'
+              iconName='user-large'
               error={props.errors.username}
               handleBlur={props.handleBlur('username')}
               handleChange={props.handleChange('username')}
@@ -122,15 +127,13 @@ const LoginForm: React.FC = () => {
             <TouchableOpacity
               style={styles.resetPasswordButton}
               onPress={() => {
-                Linking.openURL(`${backendUrl}/reinitialiser-mot-de-passe`);
-              }}
-            >
+                Linking.openURL(`${backendUrl}/public/reset-password/choose`);
+              }}>
               <Text
                 style={{
                   ...styles.resetPasswordText,
                   textDecorationColor: theme.value ? colors.primaryPro : colors.primary,
-                }}
-              >
+                }}>
                 reset_password
               </Text>
             </TouchableOpacity>

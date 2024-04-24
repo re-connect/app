@@ -2,8 +2,10 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:jest/recommended",
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "@react-native"
   ],
   "parser": "@typescript-eslint/parser",
   "env": {
@@ -25,6 +27,7 @@
     "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "comma-dangle": "off",
     "max-len": ["error", { "code": 150 }],
     "no-console": "warn",

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import { colors } from '../../style';
 import Text from './Text';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   text: {
@@ -36,11 +36,10 @@ const HiddenItemButton: React.FC<Props> = ({ isLoading, onPress, text, color, ic
   <TouchableOpacity
     style={{ ...styles.btn, backgroundColor: !color ? colors.red : color }}
     disabled={isLoading}
-    onPress={onPress}
-  >
+    onPress={onPress}>
     {!isLoading ? (
       <>
-        {!iconName ? null : <Icon style={styles.icon} name={iconName} />}
+        <Icon style={styles.icon} name={iconName} />
         {!text ? null : <Text style={styles.text}>{text}</Text>}
       </>
     ) : (

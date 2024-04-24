@@ -1,10 +1,11 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet, TouchableHighlight } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { ActivityIndicator, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { colors } from '../../style';
 import Text from '../UI/Text';
 import Thumbnail from './Thumbnail';
+import { useBoolean } from 'react-hanger/array';
+import { AnyDataInterface } from '../../types/Data';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,18 +38,20 @@ const styles = StyleSheet.create({
 });
 
 interface Props {
-  onPress: (itemId: number) => void;
+  onPress: (item: AnyDataInterface) => void;
   title: string;
-  itemId: number;
+  item: AnyDataInterface;
   iconName?: string;
   hasThumbnail?: boolean;
+  disabled?: boolean;
   isPrivate: boolean;
   RightComponent: React.FC | null;
   Subtitle: React.FC | null;
 }
 
 const Card: React.FC<Props> = ({
-  itemId,
+  item,
+  disabled,
   onPress,
   hasThumbnail,
   title,
@@ -56,24 +59,41 @@ const Card: React.FC<Props> = ({
   isPrivate,
   RightComponent,
   Subtitle,
-}) => (
-  <TouchableHighlight
-    onPress={() => onPress(itemId)}
-    underlayColor={colors.secondary}
-    style={{ ...styles.container, borderLeftColor: isPrivate ? colors.red : colors.blue }}
-  >
-    <>
-      {!iconName ? null : <Icon style={styles.icon} solid color={colors.darkGray} name={iconName} />}
-      {!hasThumbnail ? null : <Thumbnail documentId={itemId} />}
-      <View
-        style={styles.content}
-      >
-        <Text>{title}</Text>
-        {Subtitle === null ? null : <Subtitle />}
-      </View>
-      {RightComponent === null ? null : <RightComponent />}
-    </>
-  </TouchableHighlight>
-);
+}) => {
+  const [isLoading, isLoadingActions] = useBoolean(false);
+  const onItemPress = () => {
+    isLoadingActions.setTrue();
+    onPress(item);
+    setTimeout(() => {
+      isLoadingActions.setFalse();
+    }, 1000);
+  };
+
+  if (disabled) {
+    return null;
+  }
+
+  return (
+    <TouchableHighlight
+      disabled={isLoading}
+      onPress={() => onItemPress()}
+      underlayColor={colors.secondary}
+      style={{ ...styles.container, borderLeftColor: isPrivate ? colors.red : colors.blue }}>
+      {isLoading ? (
+        <ActivityIndicator size='large' color={colors.black} />
+      ) : (
+        <>
+          <Icon style={styles.icon} color={colors.darkGray} name={iconName} />
+          {!hasThumbnail ? null : <Thumbnail documentId={item.id} />}
+          <View style={styles.content}>
+            <Text>{title}</Text>
+            {Subtitle === null ? null : <Subtitle />}
+          </View>
+          {RightComponent === null ? null : <RightComponent />}
+        </>
+      )}
+    </TouchableHighlight>
+  );
+};
 
 export default Card;

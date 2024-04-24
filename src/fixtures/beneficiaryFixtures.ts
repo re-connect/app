@@ -1,3 +1,4 @@
+import { roleBeneficiary } from '../helpers/userHelpers';
 import { EnableBeneficiaryInterface } from '../types/Beneficiaries';
 import { UserInterface } from '../types/Users';
 
@@ -11,14 +12,14 @@ export const basicBeneficiary: UserInterface = {
   enabled: true,
   last_login: '2019-09-05T11:17:12+02:00',
   groups: {},
-  roles: ['ROLE_BENEFICIAIRE'],
+  roles: [roleBeneficiary],
   created_at: '2019-03-11T07:26:35+01:00',
   updated_at: '2019-09-05T11:17:13+02:00',
   prenom: 'mathias',
   nom: 'duchossoy',
   telephone: '+33685876953',
   b_actif: false,
-  type_user: 'ROLE_BENEFICIAIRE',
+  type_user: roleBeneficiary,
   b_first_mobile_connexion: false,
   date_naissance: '1989-10-06T00:00:00+01:00',
   total_file_size: 36180473,
@@ -39,24 +40,6 @@ export const basicBeneficiaryCreateData = {
   secret_question_custom_text: '',
   secret_question_answer: 'jeanne',
   centers: [1, 2, 3],
-};
-
-export const basicBeneficiaryCreateDataForm = {
-  're_form_beneficiaire[user][prenom]': 'mathias',
-  're_form_beneficiaire[user][nom]': 'duchossoy',
-  're_form_beneficiaire[user][telephone]': '0111111111',
-  're_form_beneficiaire[user][email]': 'mathias.duchossoy2@reconnect.fr',
-  're_form_beneficiaire[user][plainPassword][first]': 'password',
-  're_form_beneficiaire[user][plainPassword][second]': 'password',
-  're_form_beneficiaire[questionSecrete]': 'Quel est le prenom de la mère du bénéficiaire ?',
-  're_form_beneficiaire[autreQuestionSecrete]': '',
-  're_form_beneficiaire[reponseSecrete]': 'jeanne',
-  're_form_beneficiaire[dateNaissance][day]': 6,
-  're_form_beneficiaire[dateNaissance][month]': 10,
-  're_form_beneficiaire[dateNaissance][year]': 1995,
-  're_form_beneficiaire[centres][0]': 1,
-  're_form_beneficiaire[centres][1]': 2,
-  're_form_beneficiaire[centres][2]': 3,
 };
 
 export const basicSecretQuestions = {
@@ -126,14 +109,14 @@ export const basicBeneficiariesList: UserInterface[] = [
     enabled: true,
     last_login: '2019-09-05T11:17:12+02:00',
     groups: {},
-    roles: ['ROLE_BENEFICIAIRE'],
+    roles: [roleBeneficiary],
     created_at: '2019-03-11T07:26:35+01:00',
     updated_at: '2019-09-05T11:17:13+02:00',
     prenom: 'thibaut',
     nom: 'cheymol',
     telephone: '+33612345678',
     b_actif: false,
-    type_user: 'ROLE_BENEFICIAIRE',
+    type_user: roleBeneficiary,
     b_first_mobile_connexion: false,
     date_naissance: '1989-10-06T00:00:00+01:00',
     total_file_size: 36180473,

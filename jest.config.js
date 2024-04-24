@@ -9,10 +9,10 @@ module.exports = {
     '!src/constants.ts',
     '!src/context/**',
     '!src/pages/**',
-    '!src/Routes.tsx',
+    '!src/routing/Router.tsx',
     '!App.tsx',
   ],
-  transformIgnorePatterns: ['node_modules/(?!@react-native|react-native|native-base-shoutem-theme|native-base)'],
+  transformIgnorePatterns: ['node_modules/(?!@react-native|react-native)'],
   coverageThreshold: {
     global: {
       statements: 15,

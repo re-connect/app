@@ -4,8 +4,8 @@ import * as RootNavigation from '../RootNavigation';
 import t from './translation';
 
 export const handle401 = (): void => {
-  RootNavigation.navigate('Auth')
-}
+  RootNavigation.navigate('Auth');
+};
 
 export const handleError = (error: AxiosError): void => {
   if (error.response?.status == 401) {

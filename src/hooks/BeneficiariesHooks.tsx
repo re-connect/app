@@ -10,7 +10,7 @@ import DocumentContext from '../context/DocumentContext';
 import EventContext from '../context/EventContext';
 import NoteContext from '../context/NoteContext';
 import { formatEnableBeneficiaryErrors } from '../middlewares/dataTransformer';
-import { makeRequest, makeRequestv2 } from '../services/requests';
+import { makeRequestv2, makeRequestv3 } from '../services/requests';
 import t from '../services/translation';
 import {
   BeneficiaryInterface,
@@ -26,8 +26,10 @@ export const useFetchBeneficiaries = () => {
   const triggerFetchBeneficiaries = useCallback(async () => {
     try {
       setIsFetchingBeneficiaries(true);
-      const beneficiaries = await makeRequest(`/beneficiaires`, 'GET');
-      if (beneficiaries && JSON.stringify(beneficiaries) !== JSON.stringify(list)) setList(beneficiaries);
+      const beneficiaries = await makeRequestv2('/beneficiaires', 'GET');
+      if (beneficiaries && JSON.stringify(beneficiaries) !== JSON.stringify(list)) {
+        setList(beneficiaries);
+      }
 
       setIsFetchingBeneficiaries(false);
     } catch (error) {
@@ -81,7 +83,7 @@ export const useCreateBeneficiary = () => {
     async (data: CreateBeneficiaryDataInterface) => {
       try {
         isCreatingActions.setTrue();
-        const createdBeneficiary = await makeRequestv2(`/beneficiaries`, 'POST', data);
+        const createdBeneficiary = await makeRequestv2('/beneficiaries', 'POST', data);
         isCreatingActions.setFalse();
         if (createdBeneficiary && createdBeneficiary.centres && createdBeneficiary.centres.length > 0) {
           Alert.alert(
@@ -111,7 +113,7 @@ export const useFetchSecretQuestions = () => {
 
   const triggerFetchSecretQuestions = useCallback(async () => {
     try {
-      const secretQuestions = await makeRequestv2(`/get-secret-questions`, 'GET');
+      const secretQuestions = await makeRequestv2('/get-secret-questions', 'GET');
       setSecretQuestionList(Object.keys(secretQuestions).map(question => secretQuestions[question]));
     } catch (error) {
       Alert.alert(t.t('error_fetching_secret_answers'));
@@ -136,7 +138,9 @@ export const useEnableBeneficiary = () => {
         isCreatingActions.setTrue();
 
         const updatedBeneficiary = await makeRequestv2('/beneficiary/enable', 'PATCH', data);
-        if (updatedBeneficiary) navigation.navigate('Home');
+        if (updatedBeneficiary) {
+          navigation.navigate('Home');
+        }
         isCreatingActions.setFalse();
       } catch (error) {
         if (error instanceof Error) {
@@ -187,4 +191,38 @@ export const useDeleteBeneficiary = () => {
   );
 
   return { isDeleting, isDeletingActions, triggerDeleteBeneficiary };
+};
+
+export const useRequestDataForBeneficiary = () => {
+  const { t } = useTranslation();
+  const [isGetingData, isGetingDataActions] = useBoolean(false);
+  const navigation = useNavigation<any>();
+
+  const triggerRequestDataBeneficiary = useCallback(
+    async (id: number) => {
+      try {
+        isGetingDataActions.setTrue();
+        Alert.alert(t('get_my_data_confirm'), t('get_my_data_text'), [
+          {
+            text: t('yes'),
+            onPress: async () => {
+              await makeRequestv3('/users/request-personal-account-data/', 'POST');
+              isGetingDataActions.setFalse();
+            },
+            style: 'cancel',
+          },
+          {
+            text: t('cancel'),
+            onPress: isGetingDataActions.setFalse,
+          },
+        ]);
+      } catch (error) {
+        isGetingDataActions.setFalse();
+        Alert.alert(t('error_generic'));
+      }
+    },
+    [isGetingDataActions, navigation],
+  );
+
+  return { isGetingData, isGetingDataActions, triggerRequestDataBeneficiary };
 };

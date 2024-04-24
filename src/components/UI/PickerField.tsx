@@ -1,6 +1,6 @@
 import { Picker } from '@react-native-picker/picker';
-import { View } from 'native-base';
 import * as React from 'react';
+import { View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import TextField from './TextField';
 
@@ -37,10 +37,7 @@ const PickerField: React.FC<PickerFieldProps> = ({
         okIcon
       />
       <View style={{ position: 'absolute', width: '100%' }}>
-        <Picker
-          selectedValue=""
-          onValueChange={handleChange}
-        >
+        <Picker selectedValue='' onValueChange={handleChange}>
           {items.map(item => (
             <Picker.Item key={item} value={item} label={t(item)} />
           ))}

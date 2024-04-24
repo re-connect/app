@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosHeaders, AxiosResponse } from 'axios';
 
 interface ExtendedResponseError extends AxiosResponse<any> {
   text: string;
@@ -9,12 +9,14 @@ interface ExtendedResponseError extends AxiosResponse<any> {
 export const basicResponseError: ExtendedResponseError = {
   data: {},
   headers: {},
-  config: {},
-  statusText: "",
+  config: {
+    headers: new AxiosHeaders(),
+  },
+  statusText: '',
   status: 200,
   text: 'OK',
   method: 'GET',
-  path: '/'
+  path: '/',
 };
 
 const xmlHttpRequest: XMLHttpRequest = {
@@ -48,11 +50,11 @@ const xmlHttpRequest: XMLHttpRequest = {
   overrideMimeType: jest.fn(),
   send: jest.fn(),
   setRequestHeader: jest.fn(),
-  DONE: 1,
-  HEADERS_RECEIVED: 1,
-  LOADING: 1,
+  DONE: 4,
+  HEADERS_RECEIVED: 2,
+  LOADING: 3,
   OPENED: 1,
-  UNSENT: 1,
+  UNSENT: 0,
   onabort: jest.fn(),
   onerror: jest.fn(),
   onload: jest.fn(),

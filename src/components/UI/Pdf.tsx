@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { Dimensions, Platform, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 
 interface PdfProps {
@@ -26,6 +26,7 @@ const PdfComponent: React.FC<PdfProps> = ({ uri }) => (
       onPageChanged={() => {}}
       onError={() => {}}
       style={styles.pdf}
+      trustAllCerts={!(Platform.OS === 'android')} //hack only for android, fix pdf loading
     />
   </View>
 );

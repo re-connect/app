@@ -1,53 +1,42 @@
-import { HStack, Select } from 'native-base';
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View } from 'react-native';
 import { useFetchSecretQuestions } from '../../hooks/BeneficiariesHooks';
 import { colors } from '../../style';
+import RNPickerSelect from 'react-native-picker-select';
+import { useField } from 'formik';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingLeft: 16,
+    paddingLeft: 32,
     backgroundColor: colors.white,
     borderRadius: 48,
     height: 48,
     borderColor: colors.darkGray,
     borderWidth: 1,
+    justifyContent: 'center',
   },
+  icon: { position: 'absolute', top: 16, left: 16 },
 });
 
-interface Props {
-  value?: string;
-  onChange: (itemValue: string) => void;
-}
-
-const SecretQuestionPicker: React.FC<Props> = ({ value, onChange }) => {
+const SecretQuestionPicker: React.FC<{ fieldName: string }> = ({ fieldName }) => {
   const { t } = useTranslation();
   const { secretQuestionList } = useFetchSecretQuestions();
+  const secretQuestionsForPicker = secretQuestionList.map(item => {
+    return { label: item, value: t(item) };
+  });
+  const [, , helpers] = useField(fieldName);
 
   return (
-    <HStack style={styles.wrapper} mt='4' alignItems='center'>
-      <Icon name='question' color={colors.darkGray} />
-      <Select
-        selectedValue={value}
-        minWidth='200'
-        borderWidth='0'
-        color={colors.darkGray}
-        placeholderTextColor={colors.darkGray}
-        accessibilityLabel={t('secret_question_required')}
-        placeholder={t('secret_question_required')}
-        variant='outline'
-        _selectedItem={{ endIcon: <Icon name='check' color={colors.green} /> }}
-        dropdownCloseIcon={<Icon name='chevron-down' color={colors.darkGray} style={{ marginRight: 20 }} />}
-        dropdownOpenIcon={<Icon name='chevron-up' color={colors.darkGray} style={{ marginRight: 20 }} />}
-        onValueChange={onChange}
-      >
-        {secretQuestionList.map(label => (
-          <Select.Item key={label} label={label} value={label} />
-        ))}
-      </Select>
-    </HStack>
+    <View style={styles.wrapper}>
+      <Icon name='question' color={colors.darkGray} style={styles.icon} />
+      <RNPickerSelect
+        onValueChange={value => helpers.setValue(value)}
+        items={secretQuestionsForPicker}
+        placeholder={{ label: t('secret_question'), value: '' }}
+      />
+    </View>
   );
 };
 

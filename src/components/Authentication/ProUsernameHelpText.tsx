@@ -1,44 +1,21 @@
-import { View } from 'native-base';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger';
-import { StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, View } from 'react-native';
 import { emailValidator } from '../../helpers/validators';
 import { checkProUsernameValidity } from '../../services/usernameValidation';
 import { colors } from '../../style';
 import Separator from '../UI/Separator';
 import Text from '../UI/Text';
 import UsernameHelpTextPart from './UsernameHelpTextPart';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
-  usernameHelp: {
-    marginTop: 5,
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  usernameHelpText: {
-    fontSize: 16,
-  },
-  usernameHelpTextOk: {
-    color: colors.white,
-  },
-  validIcon: {
-    fontSize: 15,
-    color: colors.primary,
-  },
-  invalidIcon: {
-    fontSize: 15,
-    color: colors.red,
-  },
-  validIconContainer: {
-    marginLeft: 16,
-    height: 20,
-    width: 20,
-    borderRadius: 20,
-    backgroundColor: colors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  usernameHelp: { marginTop: 5, flexDirection: 'row', justifyContent: 'center' },
+  usernameHelpText: { fontSize: 16 },
+  usernameHelpTextOk: { color: colors.white },
+  validIcon: { fontSize: 15, color: colors.primary },
+  invalidIcon: { fontSize: 15, color: colors.red },
+  validIconContainer: { justifyContent: 'center' },
 });
 
 interface Props {
@@ -55,18 +32,18 @@ const UsernameHelpText: React.FC<Props> = ({ username }) => {
   }, [isEmailValid, isUsernameValid, username]);
   return (
     <View style={styles.usernameHelp}>
-      <UsernameHelpTextPart text="last_name_lower" validity={isUsernameValid.value} />
-      <UsernameHelpTextPart text="." validity={isUsernameValid.value} />
-      <UsernameHelpTextPart text="first_name_lower" validity={isUsernameValid.value} />
+      <UsernameHelpTextPart text='last_name_lower' validity={isUsernameValid.value} />
+      <UsernameHelpTextPart text='.' validity={isUsernameValid.value} />
+      <UsernameHelpTextPart text='first_name_lower' validity={isUsernameValid.value} />
       <Separator width={1} />
       <Text>|</Text>
       <Separator width={1} />
-      <UsernameHelpTextPart text="email" validity={isEmailValid.value} />
+      <UsernameHelpTextPart text='email' validity={isEmailValid.value} />
       <View style={styles.validIconContainer}>
         {isEmailValid.value || isUsernameValid.value ? (
-          <Icon name="check" style={styles.validIcon} />
+          <Icon name='check' style={styles.validIcon} />
         ) : (
-          <Icon name="times" style={styles.invalidIcon} />
+          <Icon name='xmark' style={styles.invalidIcon} />
         )}
       </View>
     </View>

@@ -28,7 +28,9 @@ export const checkUserNameValidity = (username: string) => {
     month: false,
     year: false,
   };
-  if (username === null || username === void [0]) return userNameValidity;
+  if (username === null || username === void [0]) {
+    return userNameValidity;
+  }
   const splittedUserName = username.split('.');
   if (splittedUserName.length >= 0 && splittedUserName[0].length > 1) {
     userNameValidity.firstName = true;

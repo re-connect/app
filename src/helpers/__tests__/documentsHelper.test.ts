@@ -2,7 +2,7 @@ import {
   basicDocument,
   basicDocumentInFolder,
   documentsAndFoldersList,
-  documentsList
+  documentsList,
 } from '../../fixtures/documentsFixtures';
 import { findFolders, updateDocumentInList } from '../documentsHelper';
 

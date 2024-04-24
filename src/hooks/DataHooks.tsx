@@ -4,9 +4,10 @@ import { useBoolean } from 'react-hanger/array';
 import { Alert } from 'react-native';
 import UserContext from '../context/UserContext';
 import { removeDatumInList, updateDatumInList } from '../helpers/dataHelper';
-import { makeRequest, makeRequestv2 } from '../services/requests';
+import { makeRequestv2 } from '../services/requests';
 import t from '../services/translation';
 import { CreateAnyDataInterface, CreateDataInterface, DataInterface, ListContextInterface } from '../types/Data';
+import { isPro } from '../helpers/userHelpers';
 
 interface FetchDataInformation {
   isFetching: boolean;
@@ -23,12 +24,14 @@ export const useFetchData = (
   const triggerFetch = React.useCallback(async () => {
     try {
       actions.setTrue();
-      if (null !== endpoint) {
-        const data = await makeRequest(`/${endpoint}`, 'GET');
-        if (data) setList(data);
+      if (endpoint !== null) {
+        const data = await makeRequestv2(`/${endpoint}`, 'GET');
+        if (data) {
+          setList(data);
+        }
       }
       actions.setFalse();
-    } catch (error: any) {
+    } catch (error) {
       actions.setFalse();
       Alert.alert(t.t('error_fetching_data'));
     }
@@ -58,11 +61,13 @@ export const usePostData = (
     async (data: CreateDataInterface) => {
       try {
         actions.setTrue();
-        const createdData = await makeRequest(`/${endpoint}`, 'POST', data);
-        if (createdData) setList([createdData, ...list]);
+        const createdData = await makeRequestv2(`/${endpoint}`, 'POST', data);
+        if (createdData) {
+          setList([createdData, ...list]);
+        }
         navigation.goBack();
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_creating_data'));
       }
@@ -93,7 +98,7 @@ export const useUpdateData = (
         actions.setTrue();
         const updatedData = await makeRequestv2(`/${endpoint}`, 'PUT', data);
         if (updatedData) {
-          if (updatedData.b_prive && !!user && user.type_user !== 'ROLE_BENEFICIAIRE') {
+          if (updatedData.b_prive && isPro(user)) {
             setList(removeDatumInList(list, itemId));
             navigation.goBack();
           } else {
@@ -102,7 +107,7 @@ export const useUpdateData = (
         }
         navigation.goBack();
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_updating_data'));
       }
@@ -115,6 +120,7 @@ export const useUpdateData = (
 interface DeleteDataInformation {
   isDeleting: boolean;
   deleteItem: (goBackAfter?: boolean) => Promise<void>;
+  hasBeenDeleted: boolean;
 }
 
 export const useDeleteData = (
@@ -125,6 +131,7 @@ export const useDeleteData = (
   const [isDeleting, actions] = useBoolean(false);
   const { list, setList } = React.useContext(context);
   const navigation = useNavigation<any>();
+  const [hasBeenDeleted, actionDelete] = useBoolean(false);
 
   const deleteItem = React.useCallback(
     async (goBackAfter?: boolean) => {
@@ -137,22 +144,27 @@ export const useDeleteData = (
             style: 'default',
             onPress: async () => {
               actions.setTrue();
-              const deletedItem = await makeRequest(`/${endpoint}`, 'DELETE');
-              if (deletedItem !== undefined) setList(list.filter((item: DataInterface) => item.id !== itemId));
+              const deletedItem = await makeRequestv2(`/${endpoint}`, 'DELETE');
+              if (deletedItem !== undefined) {
+                setList(list.filter((item: DataInterface) => item.id !== itemId));
+              }
               actions.setFalse();
-              if (goBackAfter && true === goBackAfter) navigation.goBack();
+              actionDelete.setTrue();
+              if (goBackAfter && goBackAfter === true) {
+                navigation.goBack();
+              }
             },
           },
         ]);
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_deleting_data'));
       }
     },
     [setList, actions, endpoint, list, itemId, navigation],
   );
-  return { isDeleting, deleteItem };
+  return { isDeleting, deleteItem, hasBeenDeleted };
 };
 
 interface PatchDataInformation {
@@ -174,20 +186,24 @@ export const usePatchData = (
     async (goBackAfter?: boolean) => {
       try {
         actions.setTrue();
-        const newData = await makeRequest(`/${endpoint}`, 'PATCH');
+        const newData = await makeRequestv2(`/${endpoint}`, 'PATCH');
         if (newData) {
-          if (newData.b_prive && !!user && user.type_user !== 'ROLE_BENEFICIAIRE') {
+          if (newData.b_prive && isPro(user)) {
             setList(removeDatumInList(list, itemId));
-            if (goBackAfter) navigation.goBack();
+            if (goBackAfter) {
+              navigation.goBack();
+            }
           } else {
             setList(updateDatumInList(list, itemId, newData));
           }
         } else if (newData === null || newData === '') {
           setList(removeDatumInList(list, itemId));
-          if (goBackAfter) navigation.goBack();
+          if (goBackAfter) {
+            navigation.goBack();
+          }
         }
         actions.setFalse();
-      } catch (error: any) {
+      } catch (error) {
         actions.setFalse();
         Alert.alert(t.t('error_updating_data_privacy'));
       }

@@ -3,18 +3,38 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "types": ["react", "jest"],
+    "types": [
+      "react",
+      "jest"
+    ],
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["es2019", "dom", "dom.iterable"],
+    "lib": [
+      "es2019",
+      "dom",
+      "dom.iterable"
+    ],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
     "target": "esnext",
     "skipLibCheck": true,
     "noImplicitAny": true,
-    "noImplicitReturns": true,
+    "noImplicitReturns": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js", "**/*.test.*"]
+  "typeRoots": [
+    "./types"
+  ],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js",
+    "**/*.test.*"
+  ],
+  "extends": "expo/tsconfig.base"
 }

@@ -4,22 +4,24 @@ import { format } from 'date-fns';
 import * as React from 'react';
 import { useBoolean } from 'react-hanger/array';
 import { Alert } from 'react-native';
-import { ResetPasswordData } from '../components/User/ResetPasswordForm';
 import BeneficiaryContext from '../context/BeneficiaryContext';
 import CenterContext from '../context/CenterContext';
 import ContactContext from '../context/ContactContext';
 import DocumentContext from '../context/DocumentContext';
 import EventContext from '../context/EventContext';
+import LoginTemporisationContext from '../context/LoginTemporisationContext';
 import NoteContext from '../context/NoteContext';
 import ThemeContext from '../context/ThemeContext';
 import UserContext from '../context/UserContext';
-import { getTruncatedFullName } from '../helpers/userHelpers';
+import { getTruncatedFullName, isBeneficiary, isPro } from '../helpers/userHelpers';
 import { login } from '../services/authentication';
 import { LoginFormValues } from '../services/forms';
-import { fetchCurrentUser, makeRequest } from '../services/requests';
+import { fetchCurrentUser, makeRequestv2, makeRequestv3 } from '../services/requests';
 import t from '../services/translation';
-import { UserField } from '../types/Users';
+import { ResetPasswordData, UserField } from '../types/Users';
 import { useFetchInvitations } from './CentersHooks';
+import { useTranslation } from 'react-i18next';
+import { resetPassword } from '../services/passwordResetter';
 
 export const useGetLastUsername = () => {
   const { lastUsername, setLastUsername } = React.useContext(UserContext);
@@ -36,7 +38,7 @@ export const useGetLastUsername = () => {
   return lastUsername;
 };
 
-export const useGetUser = () => {
+export const useTriggerGetUser = () => {
   const navigation = useNavigation<any>();
   const route = useRoute();
   const { user, setUser } = React.useContext(UserContext);
@@ -60,15 +62,18 @@ export const useGetUser = () => {
       }
       // await registerToNotificationsService();
       const newUser = await fetchCurrentUser();
-      if (JSON.stringify(user) !== JSON.stringify(newUser)) setUser(newUser);
+      if (JSON.stringify(user) !== JSON.stringify(newUser)) {
+        setUser(newUser);
+      }
       if ((!newUser || !newUser.type_user) && route && route.name !== 'Login') {
         navigation.navigate('Auth');
         navigation.reset({ routes: [{ name: 'Auth' }] });
         return;
       }
-      if (!newUser) return;
-      const userType = newUser.type_user;
-      if (userType === 'ROLE_BENEFICIAIRE') {
+      if (!newUser) {
+        return;
+      }
+      if (isBeneficiary(newUser)) {
         setCurrent(newUser);
         theme.actions.setFalse();
         navigation.reset({ routes: [{ name: !newUser.question_secrete ? 'Activation' : 'Home' }] });
@@ -83,6 +88,12 @@ export const useGetUser = () => {
     }
   }, [navigation, setUser, theme.actions, user, setCurrent, route]);
 
+  return triggerGetUser;
+};
+
+export const useGetUser = () => {
+  const triggerGetUser = useTriggerGetUser();
+
   React.useEffect(() => {
     triggerGetUser();
   }, []);
@@ -95,6 +106,7 @@ export const useLogin = () => {
   const getUser = useGetUser();
   const fetchInvitations = useFetchInvitations();
   // const registerToNotificationsService = useRegisterToNotificationsService();
+  const { setAttempts } = React.useContext(LoginTemporisationContext);
 
   const triggerLogin = React.useCallback(
     async (values: LoginFormValues) => {
@@ -105,11 +117,14 @@ export const useLogin = () => {
         await getUser();
         fetchInvitations();
         isLoginInActions.setFalse();
+        setAttempts(0);
       } catch (error) {
         isLoginInActions.setFalse();
         Alert.alert(t.t('wrong_password_or_email'));
+        setAttempts(attempt => attempt + 1);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [getUser, isLoginInActions, fetchInvitations],
   );
 
@@ -120,7 +135,7 @@ export const useSetTitleToBenefName = () => {
   const navigation = useNavigation<any>();
   const { current } = React.useContext(BeneficiaryContext);
   const { user } = React.useContext(UserContext);
-  const isMember = !!user && user.type_user !== 'ROLE_BENEFICIAIRE';
+  const isMember = isPro(user);
 
   const set = React.useCallback(() => {
     if (isMember) {
@@ -147,9 +162,11 @@ export const useUpdateUser = () => {
           if (updatedUser.date_naissance) {
             updatedUser.date_naissance = format(new Date(updatedUser.date_naissance), 'yyyy-MM-dd');
           }
-          const newData = await makeRequest(`/users/${user?.id}`, 'PUT', updatedUser);
+          const newData = await makeRequestv2(`/users/${user?.id}`, 'PUT', updatedUser);
           if (newData) {
-            if (newData.type_user === 'ROLE_BENEFICIAIRE') setCurrent(newData);
+            if (isBeneficiary(newData)) {
+              setCurrent(newData);
+            }
             setUser(newData);
           }
         }
@@ -216,23 +233,19 @@ export const useLogout = () => {
   return { isoLggingOutActions, isLoggingOut, logout };
 };
 
-export const useResetPassword = () => {
-  const { user } = React.useContext(UserContext);
+export const useResetPassword = (username?: string) => {
   const [isResetting, resetActions] = useBoolean(false);
   const navigation = useNavigation<any>();
+  const getUser = useTriggerGetUser();
 
   const reset = React.useCallback(
-    async (values: ResetPasswordData) => {
+    async ({ password, currentPassword, confirm }: ResetPasswordData) => {
       try {
-        if (user && user.subject_id && values.password && values.password === values.confirm) {
+        if (password && password === confirm) {
           resetActions.setTrue();
-          const newData = await makeRequest(`/beneficiaries/${user.subject_id}/password`, 'PATCH', {
-            password: values.password,
-          });
-          if (newData) {
-            Alert.alert(t.t('password_successfully_updated'));
-            navigation.goBack();
-          }
+          await resetPassword(password, username, currentPassword);
+          await getUser();
+          navigation.reset({ routes: [{ name: 'Home' }] });
           resetActions.setFalse();
         }
       } catch (error) {
@@ -240,8 +253,30 @@ export const useResetPassword = () => {
         Alert.alert(t.t('error_updating_password'));
       }
     },
-    [resetActions, navigation, user],
+    [resetActions, navigation],
   );
 
   return { isResetting, reset };
+};
+
+export const useUserLocale = (): {
+  updateLocale: (locale: string) => void;
+  currentLanguageCode: string;
+} => {
+  const { i18n } = useTranslation();
+  const [currentLanguageCode, setCurrentLanguageCode] = React.useState<string>('fr');
+  AsyncStorage.getItem('lastLanguage').then((lastLanguage: string | null): void => {
+    setCurrentLanguageCode(lastLanguage !== null ? lastLanguage : 'fr');
+  });
+
+  const updateLocale = (locale: string) => {
+    if (locale) {
+      setCurrentLanguageCode(locale);
+      AsyncStorage.setItem('lastLanguage', locale);
+      i18n.changeLanguage(locale);
+      makeRequestv3('/users/switch-locale', 'PATCH', { locale }); //saving last language in backend is not mandatory, it's a bonus
+    }
+  };
+
+  return { updateLocale, currentLanguageCode };
 };

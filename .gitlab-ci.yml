@@ -11,7 +11,7 @@ before_script:
 test:
   only:
     - merge_requests
-    - master
+    - main
   stage: test
   script:
     - echo "Launching jest tests"

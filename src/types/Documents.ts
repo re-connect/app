@@ -1,4 +1,4 @@
-import { AnyDataInterface } from "./Data";
+import { AnyDataInterface } from './Data';
 
 export interface DocumentInterface extends AnyDataInterface {
   b_prive: boolean;
@@ -18,4 +18,17 @@ export interface DocumentInterface extends AnyDataInterface {
 
 export interface DocumentCardInterface {
   item: DocumentInterface;
+}
+
+export interface ScannedGeniusDocumentInterface {
+  multiPageDocumentUrl: string;
+  scans: ScannedGeniusObjectInterface[];
+}
+
+export interface ScannedGeniusObjectInterface {
+  originalUrl: string;
+  enhancedUrl: string;
+  ocrResult: {
+    text: string;
+  };
 }

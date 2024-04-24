@@ -1,13 +1,12 @@
-import * as Formik from 'formik'
-import { HStack, Pressable, VStack } from 'native-base'
-import * as React from 'react'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import renameShape from '../../../helpers/forms/renameShape'
-import { colors } from '../../../style'
-import { DocumentInterface } from '../../../types/Documents'
-import Text from '../../UI/Text'
-import TextField from '../../UI/TextField'
+import * as Formik from 'formik';
+import * as React from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import renameShape from '../../../helpers/forms/renameShape';
+import { colors } from '../../../style';
+import { DocumentInterface } from '../../../types/Documents';
+import Text from '../../UI/Text';
+import TextField from '../../UI/TextField';
+import Icon from '../../UI/Icon';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +16,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
+  },
+  wrapper: {
+    backgroundColor: 'white',
+    padding: 15,
+    borderRadius: 10,
+    width: '95%',
+    zIndex: 50,
   },
   content: {
     backgroundColor: colors.white,
@@ -34,25 +40,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-})
+  buttonsWrapper: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    marginTop: 15,
+    marginHorizontal: '2.5%',
+  },
+});
 
 interface Props {
-  document: DocumentInterface
-  closeModal: () => void
-  close: () => void
-  onSubmit: (name: string) => void
+  document: DocumentInterface;
+  closeModal: () => void;
+  close: () => void;
+  onSubmit: (name: string) => void;
 }
 
 const Rename: React.FC<Props> = ({ document, close, closeModal, onSubmit }) => (
   <TouchableOpacity style={styles.container} activeOpacity={1} onPress={closeModal}>
     <Formik.Formik
       onSubmit={(values: Record<'name', string>) => {
-        onSubmit(values.name)
-        close()
+        onSubmit(values.name);
+        close();
       }}
       initialValues={{ name: document.nom.split('.')[0] }}
-      validationSchema={renameShape}
-    >
+      validationSchema={renameShape}>
       {({
         handleBlur,
         handleChange,
@@ -62,39 +73,37 @@ const Rename: React.FC<Props> = ({ document, close, closeModal, onSubmit }) => (
         touched,
       }: Formik.FormikProps<Record<'name', string>>) => {
         return (
-          <VStack alignSelf='stretch' justifyContent='center' rounded='2xl' bg={colors.white} shadow={3} m='2' p='4'>
-            <HStack>
-              <TextField
-                fieldLabel='new_name'
-                handleChange={handleChange('name')}
-                handleBlur={handleBlur('name')}
-                iconName='user'
-                iconSyle={{ color: colors.darkGray }}
-                style={{ color: colors.darkGray }}
-                touched={touched.name}
-                error={errors.name}
-                value={values.name}
-              />
-            </HStack>
-            <HStack justifyContent='space-between' px='2' mt='5'>
-              <Pressable onPress={close}>
+          <View style={styles.wrapper}>
+            <TextField
+              fieldLabel='new_name'
+              handleChange={handleChange('name')}
+              handleBlur={handleBlur('name')}
+              iconName='user-large'
+              iconSyle={{ color: colors.darkGray }}
+              style={{ color: colors.darkGray }}
+              touched={touched.name}
+              error={errors.name}
+              value={values.name}
+            />
+            <View style={styles.buttonsWrapper}>
+              <TouchableOpacity onPress={close}>
                 <View style={styles.menuIconContainer}>
-                  <Icon style={styles.menuIcon} color={colors.darkGray} name='times' />
+                  <Icon style={styles.menuIcon} color={colors.darkGray} name='xmark' />
                 </View>
                 <Text>cancel</Text>
-              </Pressable>
-              <Pressable onPress={() => handleSubmit()}>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => handleSubmit()}>
                 <View style={styles.menuIconContainer}>
                   <Icon style={styles.menuIcon} color={colors.green} name='check' />
                 </View>
                 <Text>validate</Text>
-              </Pressable>
-            </HStack>
-          </VStack>
-        )
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
       }}
     </Formik.Formik>
   </TouchableOpacity>
-)
+);
 
-export default Rename
+export default Rename;

@@ -13,7 +13,7 @@ export const useUploadScan = (beneficiaryId: number, folderId?: number) => {
   const navigation = useNavigation<any>();
 
   const triggerUpload = React.useCallback(
-    async image => {
+    async (image: string) => {
       try {
         isUploadingActions.setTrue();
         const response = await uploadBase64(image, beneficiaryId);

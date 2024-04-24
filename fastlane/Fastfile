@@ -1,7 +1,7 @@
 fastlane_require 'dotenv'
 fastlane_require 'spaceship'
 release_notes_command = "git log HEAD --pretty=format:\"%s\" -1"
-
+flavor = ENV['ENV'] === 'debug' ? 'Debug' : ENV['ENV'] === 'preprod' ? 'PreProd' : 'Prod'
 # Check Git Status
 
 lane :check_git_status do |options|
@@ -118,7 +118,6 @@ platform :ios do
     profile_env_name = "sigh_#{ENV['IOS_APP_ID']}_#{ENV['MATCH_TYPE']}_profile-name"
     gymOptions = ({
       silent: true,
-      xcargs: "PROVISIONING_PROFILE_SPECIFIER='#{ENV[profile_env_name]}' DEVELOPMENT_TEAM='#{ENV['IOS_TEAM_ID']}'"
     }).merge(
       File.directory?("../#{xcworkspace}") ?
         {workspace: xcworkspace} :
@@ -233,8 +232,8 @@ platform :android do
   lane :build do |options|
     set_keys
     gradle(
-      task: "assemble",
-      flavor: "Prod",
+      task: "bundle",
+      flavor: flavor,
       build_type: "Release",
       project_dir: ENV['ANDROID_PROJECT_DIR']
     )
@@ -244,7 +243,7 @@ platform :android do
   lane :deploy_hockey do |options|
     hockey(
       notify: '0',
-      apk: ENV['ANDROID_APK_PATH']
+      apk: ENV['GRADLE_AAB_OUTPUT_PATH']
     )
   end
 
@@ -253,7 +252,7 @@ platform :android do
       api_token: ENV['FL_APPCENTER_API_TOKEN'],
       owner_name: ENV['APPCENTER_USERNAME'],
       app_name: ENV['ANDROID_APPCENTER_APP_ID'],
-      apk: ENV['ANDROID_APK_PATH'],
+      apk: ENV['GRADLE_AAB_OUTPUT_PATH'],
       release_notes: %x[#{release_notes_command}]
     )
   end
@@ -262,7 +261,7 @@ platform :android do
     supply(
       package_name: "com.reconnect.CloudSolidaire",
       track: 'internal',
-      apk: ENV['ANDROID_APK_PATH'],
+      apk: ENV['GRADLE_AAB_OUTPUT_PATH'],
       json_key: ENV['ANDROID_PLAYSTORE_JSON_KEY_PATH'],
     )
   end

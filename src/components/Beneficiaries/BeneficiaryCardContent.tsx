@@ -1,20 +1,14 @@
-import { Text } from 'native-base';
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors } from '../../style';
 import { UserInterface } from '../../types/Users';
+import Icon from '../UI/Icon';
 
 const styles = StyleSheet.create({
-  content: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingTop: 8,
-  },
-  icon: {
-    fontSize: 40,
-    color: colors.darkGray,
-  },
+  content: { flexDirection: 'row', alignItems: 'center', paddingTop: 8 },
+  fullName: { flex: 1, fontWeight: 'bold', marginTop: 2 },
+  username: { flex: 1, marginTop: 2 },
+  icon: { fontSize: 40, color: colors.darkGray },
   iconconContainer: {
     marginRight: 8,
     borderRadius: 4,
@@ -22,13 +16,6 @@ const styles = StyleSheet.create({
     width: 70,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  fullName: {
-    flex: 1,
-    fontWeight: 'bold',
-  },
-  username: {
-    flex: 1,
   },
 });
 
@@ -39,9 +26,9 @@ interface BeneficiaryCardContentProps {
 const BeneficiaryCardContent: React.FC<BeneficiaryCardContentProps> = ({ beneficiary }) => (
   <View style={styles.content}>
     <View style={styles.iconconContainer}>
-      <Icon style={styles.icon} name="user" solid />
+      <Icon style={styles.icon} name='user-large' />
     </View>
-    <View style={{ flexDirection: 'column', flex: 1 }}>
+    <View>
       <Text style={styles.fullName}>
         {beneficiary.prenom} {beneficiary.nom}
       </Text>

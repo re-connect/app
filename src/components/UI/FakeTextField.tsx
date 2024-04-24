@@ -1,10 +1,9 @@
-import { View } from 'native-base';
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { colors } from '../../style';
 import ErrorText from './ErrorText';
 import Text from './Text';
+import Icon from './Icon';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,8 +59,7 @@ const FakeTextField: React.FC<Props> = ({ iconName, onPress, value, touched, err
         style={{
           ...styles.fieldContainer,
           ...(showErrors ? { borderColor: colors.red } : {}),
-        }}
-      >
+        }}>
         <Icon style={styles.leftIcon} color={colors.darkGray} name={iconName} />
         <View style={{ flex: 1 }}>
           <Text style={styles.text}>{value}</Text>
@@ -69,7 +67,7 @@ const FakeTextField: React.FC<Props> = ({ iconName, onPress, value, touched, err
         {!!value && touched ? (
           <Icon
             color={showErrors ? colors.red : colors.primary}
-            name={showErrors ? 'times' : 'check'}
+            name={showErrors ? 'xmark' : 'check'}
             style={{ ...styles.rightIcon, color: showErrors ? colors.red : colors.green }}
           />
         ) : null}

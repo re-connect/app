@@ -1,25 +1,20 @@
 import { Formik, FormikProps } from 'formik';
 import * as React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import resetPasswordShape from '../../helpers/forms/resetPasswordShape';
 import { useResetPassword } from '../../hooks/UserHooks';
 import RoundedButton from '../UI/RoundedButton';
 import Separator from '../UI/Separator';
 import TextField from '../UI/TextField';
-
-export interface ResetPasswordData {
-  password: string;
-  confirm: string;
-}
+import PasswordValidityWidget from './PasswordValidityWidget';
+import Shape from '../../helpers/forms/resetPasswordShape';
+import { ResetPasswordData } from '../../types/Users';
 
 const ResetPasswordForm: React.FC = () => {
   const { isResetting, reset } = useResetPassword();
+  const initialValues = { password: '', confirm: '' };
+
   return (
-    <Formik
-      validationSchema={resetPasswordShape}
-      onSubmit={(values) => reset(values)}
-      initialValues={{ password: '', confirm: '' }}
-    >
+    <Formik validationSchema={Shape} onSubmit={values => reset(values)} initialValues={initialValues}>
       {({
         errors,
         isValid,
@@ -29,37 +24,41 @@ const ResetPasswordForm: React.FC = () => {
         touched,
         values,
       }: FormikProps<ResetPasswordData>) => (
-        <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
+        <KeyboardAwareScrollView keyboardShouldPersistTaps='handled'>
           <Separator height={2} />
           <TextField
-            contentType="password"
+            contentType='password'
             error={errors.password}
-            fieldLabel="new_password"
+            fieldLabel='new_password'
             handleBlur={handleBlur('password')}
             handleChange={handleChange('password')}
-            iconName="tag"
+            iconName='key'
             okIcon
             touched={touched.password}
             value={values.password}
+            displayError
           />
           <Separator height={2} />
+          <PasswordValidityWidget password={values.password} />
+          <Separator height={2} />
           <TextField
-            contentType="password"
+            contentType='password'
             error={errors.confirm}
-            fieldLabel="confirm_password"
+            fieldLabel='confirm_password'
             handleBlur={handleBlur('confirm')}
             handleChange={handleChange('confirm')}
-            iconName="tag"
+            iconName='key'
             okIcon
             touched={touched.confirm}
             value={values.confirm}
+            displayError
           />
           <Separator height={2} />
           <RoundedButton
             isLoading={isResetting}
             disabled={!isValid}
-            iconName="save"
-            text="update"
+            iconName='save'
+            text='update'
             onPress={() => handleSubmit()}
           />
         </KeyboardAwareScrollView>
