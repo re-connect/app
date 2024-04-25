@@ -13,6 +13,7 @@ import pt from '../translations/pt';
 import ro from '../translations/ro';
 import ru from '../translations/ru';
 import ua from '../translations/ua';
+import et from '../translations/et';
 
 export interface Language {
   code: string;
@@ -34,6 +35,7 @@ const resources = {
   pt: { translation: pt },
   ua: { translation: ua },
   prs: { translation: prs },
+  et: { translation: et },
 };
 
 i18n
@@ -64,6 +66,7 @@ export const allLanguages: Language[] = [
   { code: 'it', flag: 'IT', name: 'Italiano' },
   { code: 'ps', flag: 'AF', name: 'پښتو' },
   { code: 'prs', flag: 'AF', name: 'دری' },
+  { code: 'et', flag: 'ET', name: 'ትግርኛ' },
 ];
 
 export default i18n;

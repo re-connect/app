@@ -41,6 +41,7 @@ const tracks: Array<Track> = [
   { key: 'pakistan', name: 'اُردُو', flag: 'PK', player: createPlayer('pakistan') },
   { key: 'somalia', name: 'اف سومالى', flag: 'SO', player: createPlayer('somalia') },
   { key: 'srilanka', name: 'தமிழ்', flag: 'LK', player: createPlayer('srilanka') },
+  { key: 'tigrinya', name: 'ትግርኛ', flag: 'ET', player: createPlayer('tigrinya') },
 ];
 
 const getCurrentPlayerFromKey = (key: string | null): Sound | null => {
