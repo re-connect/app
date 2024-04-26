@@ -6,5 +6,12 @@
   },
   "ios": {
     "bundleIdentifier": "com.reconnect.CloudSolidaire"
+  },
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "51777ac4-e972-4681-b541-02aec14b789e"
+      }
+    }
   }
 }

@@ -43,6 +43,8 @@
     "date-fns-tz": "^1.2.2",
     "eslint-plugin-jest": "^27.6.3",
     "expo": "^50.0.0",
+    "expo-constants": "~15.4.6",
+    "expo-dev-client": "~3.3.11",
     "expo-font": "^11.10.3",
     "fbjs": "^3.0.4",
     "formik": "^2.2.9",
